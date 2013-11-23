@@ -13,9 +13,7 @@
 namespace MassTransit.Pipeline.Inspectors
 {
     using System;
-    using System.Linq;
     using System.Text;
-    using Distributor.Pipeline;
     using Magnum.Extensions;
     using Saga;
     using Saga.Pipeline;
@@ -80,22 +78,6 @@ namespace MassTransit.Pipeline.Inspectors
             where TMessage : class
         {
             Append(string.Format("Consumed by Instance ({0})", GetMessageName<TMessage>()));
-
-            return true;
-        }
-
-        public bool Inspect<TMessage>(DistributorMessageSink<TMessage> sink)
-            where TMessage : class
-        {
-            Append(string.Format("Distributor ({0})", GetMessageName<TMessage>()));
-
-            return true;
-        }
-
-        public bool Inspect<TMessage>(WorkerMessageSink<TMessage> sink)
-            where TMessage : class
-        {
-            Append(string.Format("Distributor Worker ({0})", typeof(TMessage).ToFriendlyName()));
 
             return true;
         }

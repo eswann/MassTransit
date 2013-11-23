@@ -15,7 +15,6 @@ namespace MassTransit.Tests.TextFixtures
 	using System;
 	using System.Collections.Generic;
 	using BusConfigurators;
-	using Distributor;
 	using Magnum.Extensions;
 	using MassTransit.Saga;
 	using MassTransit.Services.Subscriptions.Server;
@@ -56,8 +55,6 @@ namespace MassTransit.Tests.TextFixtures
 			SetupLocalBus();
 
 			SetupRemoteBus();
-
-			Instances = new Dictionary<string, ServiceInstance>();
 		}
 
 		protected void SetupLocalBus()
@@ -89,17 +86,6 @@ namespace MassTransit.Tests.TextFixtures
 			RemoteControlBus = RemoteBus.ControlBus;
 		}
 
-		protected Dictionary<string, ServiceInstance> Instances { get; private set; }
-
-		protected ServiceInstance AddInstance(string instanceName, string queueName,
-		                                      Action<ServiceBusConfigurator> configureBus)
-		{
-			var instance = new ServiceInstance(queueName, SubscriptionServiceUri, configureBus);
-
-			Instances.Add(instanceName, instance);
-
-			return instance;
-		}
 
 		protected virtual void ConfigureLocalBus(ServiceBusConfigurator configurator)
 		{
@@ -124,10 +110,6 @@ namespace MassTransit.Tests.TextFixtures
 
 		protected override void TeardownContext()
 		{
-			Instances.Each(x => x.Value.Dispose());
-
-			Instances.Clear();
-
 			RemoteBus.Dispose();
 			RemoteBus = null;
 			RemoteControlBus = null;

@@ -14,10 +14,6 @@ namespace MassTransit.SubscriptionConnectors
 {
     using System.Collections.Generic;
     using System.Linq;
-    using Distributor;
-    using Magnum.Reflection;
-    using Saga;
-    using Saga.SubscriptionConnectors;
 
     /// <summary>
     /// Helper class for providing the message reflection for consumers.

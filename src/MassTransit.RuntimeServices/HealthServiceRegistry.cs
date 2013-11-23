@@ -17,8 +17,6 @@ namespace MassTransit.RuntimeServices
     using Model;
     using NHibernate;
     using NHibernate.Tool.hbm2ddl;
-    using NHibernateIntegration;
-    using NHibernateIntegration.Saga;
     using Saga;
     using Services.HealthMonitoring;
     using StructureMap;
@@ -35,8 +33,6 @@ namespace MassTransit.RuntimeServices
                 .Singleton()
                 .Use(context => CreateSessionFactory());
 
-            For(typeof(ISagaRepository<>))
-                .Add(typeof(NHibernateSagaRepository<>));
 
             For<IServiceBus>()
                 .Singleton()
@@ -57,12 +53,14 @@ namespace MassTransit.RuntimeServices
 
         static ISessionFactory CreateSessionFactory()
         {
-            var provider = new NHibernateSessionFactoryProvider(new[]
-                {
-                    typeof(HealthSagaMap),
-                });
+            //var provider = new NHibernateSessionFactoryProvider(new[]
+            //    {
+            //        typeof(HealthSagaMap),
+            //    });
 
-            return provider.GetSessionFactory();
+            //return provider.GetSessionFactory();
+
+            return null;
         }
 
         static void BuildSchema(NHibernate.Cfg.Configuration config)

@@ -26,8 +26,7 @@ namespace MassTransit
 	/// 
 	/// <para>Have a look at <see cref="BusServiceLayer"/> for the different levels the service can live in.</para>
 	/// </summary>
-	public interface IBusService :
-		IDisposable
+	public interface IBusService : IDisposable
 	{
 		/// <summary>
 		/// Called when the service is being started, which is after the service bus has been started.
