@@ -26,8 +26,8 @@ namespace MassTransit.Tests.Serialization
 		[Test]
 		public void Should_create_a_proxy_for_the_interface()
 		{
-			var user = new UserImpl("Chris", "noone@nowhere.com");
-			ComplaintAdded complaint = new ComplaintAddedImpl(user, "No toilet paper", BusinessArea.Appearance)
+			var user = new User("Chris", "noone@nowhere.com");
+			IComplaintAdded complaint = new ComplaintAdded(user, "No toilet paper", BusinessArea.Appearance)
 				{
 					Body = "There was no toilet paper in the stall, forcing me to use my treasured issue of .NET Developer magazine."
 				};
@@ -40,12 +40,12 @@ namespace MassTransit.Tests.Serialization
 		{
 			var pipeline = InboundPipelineConfigurator.CreateDefault(null);
 
-			var consumer = new TestMessageConsumer<ComplaintAdded>();
+			var consumer = new TestMessageConsumer<IComplaintAdded>();
 
 			pipeline.ConnectInstance(consumer);
 
-			var user = new UserImpl("Chris", "noone@nowhere.com");
-			ComplaintAdded complaint = new ComplaintAddedImpl(user, "No toilet paper", BusinessArea.Appearance)
+			var user = new User("Chris", "noone@nowhere.com");
+			IComplaintAdded complaint = new ComplaintAdded(user, "No toilet paper", BusinessArea.Appearance)
 				{
 					Body = "There was no toilet paper in the stall, forcing me to use my treasured issue of .NET Developer magazine."
 				};
@@ -83,9 +83,9 @@ namespace MassTransit.Tests.Serialization
 		
 	}
 
-	public interface ComplaintAdded
+	public interface IComplaintAdded
 	{
-		User AddedBy { get; }
+		IUser AddedBy { get; }
 
 		DateTime AddedAt { get; }
 
@@ -103,21 +103,21 @@ namespace MassTransit.Tests.Serialization
 		Courtesy,
 	}
 
-	public interface User
+	public interface IUser
 	{
 		string Name { get; }
 		string Email { get; }
 	}
 
-	public class UserImpl : User
+	public class User : IUser
 	{
-		public UserImpl(string name, string email)
+		public User(string name, string email)
 		{
 			Name = name;
 			Email = email;
 		}
 
-		protected UserImpl()
+		protected User()
 		{
 		}
 
@@ -125,7 +125,7 @@ namespace MassTransit.Tests.Serialization
 
 		public string Email { get; set; }
 
-		public bool Equals(User other)
+		public bool Equals(IUser other)
 		{
 			if (ReferenceEquals(null, other)) return false;
 			if (ReferenceEquals(this, other)) return true;
@@ -136,8 +136,8 @@ namespace MassTransit.Tests.Serialization
 		{
 			if (ReferenceEquals(null, obj)) return false;
 			if (ReferenceEquals(this, obj)) return true;
-			if(!typeof(User).IsAssignableFrom(obj.GetType())) return false;
-			return Equals((User) obj);
+			if(!typeof(IUser).IsAssignableFrom(obj.GetType())) return false;
+			return Equals((IUser) obj);
 		}
 
 		public override int GetHashCode()
@@ -149,10 +149,10 @@ namespace MassTransit.Tests.Serialization
 		}
 	}
 
-	public class ComplaintAddedImpl :
-		ComplaintAdded
+	public class ComplaintAdded :
+		IComplaintAdded
 	{
-		public ComplaintAddedImpl(User addedBy, string subject, BusinessArea area)
+		public ComplaintAdded(IUser addedBy, string subject, BusinessArea area)
 		{
 			DateTime dateTime = DateTime.UtcNow;
 			AddedAt = new DateTime(dateTime.Year, dateTime.Month, dateTime.Day, dateTime.Hour, dateTime.Minute, dateTime.Second,
@@ -164,11 +164,11 @@ namespace MassTransit.Tests.Serialization
 			Body = string.Empty;
 		}
 
-		protected ComplaintAddedImpl()
+		protected ComplaintAdded()
 		{
 		}
 
-		public User AddedBy { get; set; }
+		public IUser AddedBy { get; set; }
 
 		public DateTime AddedAt { get; set; }
 
@@ -178,7 +178,7 @@ namespace MassTransit.Tests.Serialization
 
 		public BusinessArea Area { get; set; }
 
-		public bool Equals(ComplaintAdded other)
+		public bool Equals(IComplaintAdded other)
 		{
 			if (ReferenceEquals(null, other)) return false;
 			if (ReferenceEquals(this, other)) return true;
@@ -189,8 +189,8 @@ namespace MassTransit.Tests.Serialization
 		{
 			if (ReferenceEquals(null, obj)) return false;
 			if (ReferenceEquals(this, obj)) return true;
-			if (!typeof(ComplaintAdded).IsAssignableFrom(obj.GetType())) return false;
-			return Equals((ComplaintAdded)obj);
+			if (!typeof(IComplaintAdded).IsAssignableFrom(obj.GetType())) return false;
+			return Equals((IComplaintAdded)obj);
 		}
 
 		public override int GetHashCode()

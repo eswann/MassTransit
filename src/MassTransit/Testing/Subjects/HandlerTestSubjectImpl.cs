@@ -35,7 +35,7 @@ namespace MassTransit.Testing.Subjects
 			_received = new ReceivedMessageListImpl<TSubject>();
 		}
 
-		public ReceivedMessageList<TSubject> Received
+		public IReceivedMessageList<TSubject> Received
 		{
 			get { return _received; }
 		}

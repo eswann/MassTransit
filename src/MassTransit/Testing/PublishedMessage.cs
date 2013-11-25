@@ -16,17 +16,75 @@ namespace MassTransit.Testing
 	using Context;
 
     public interface IPublishedMessage
-	{
-		ISendContext Context { get; }
-		Exception Exception { get; }
+    {
+        ISendContext Context { get; }
+        Exception Exception { get; }
 
-		Type MessageType { get; }
-	}
+        Type MessageType { get; }
+    }
 
-	public interface PublishedMessage<T> :
-		IPublishedMessage
+    public interface IPublishedMessage<T> :
+        IPublishedMessage
+        where T : class
+    {
+        new IPublishContext<T> Context { get; }
+    }
+
+    public class PublishedMessage<T> :
+		IPublishedMessage<T>
 		where T : class
 	{
-		new IPublishContext<T> Context { get; }
+		readonly IPublishContext<T> _context;
+		Exception _exception;
+
+		public PublishedMessage(IPublishContext<T> context)
+		{
+			_context = context;
+		}
+
+		public IPublishContext<T> Context
+		{
+			get { return _context; }
+		}
+
+		ISendContext IPublishedMessage.Context
+		{
+			get { return Context; }
+		}
+
+		public Exception Exception
+		{
+			get { return _exception; }
+		}
+
+		public Type MessageType
+		{
+			get { return typeof (T); }
+		}
+
+		public void SetException(Exception exception)
+		{
+			_exception = exception;
+		}
+
+		public override int GetHashCode()
+		{
+			return (_context != null ? _context.GetHashCode() : 0);
+		}
+
+		public bool Equals(PublishedMessage<T> other)
+		{
+			if (ReferenceEquals(null, other)) return false;
+			if (ReferenceEquals(this, other)) return true;
+			return Equals(other._context.Message, _context.Message);
+		}
+
+		public override bool Equals(object obj)
+		{
+			if (ReferenceEquals(null, obj)) return false;
+			if (ReferenceEquals(this, obj)) return true;
+			if (obj.GetType() != typeof (SentMessage<T>)) return false;
+			return Equals((PublishedMessage<T>) obj);
+		}
 	}
 }

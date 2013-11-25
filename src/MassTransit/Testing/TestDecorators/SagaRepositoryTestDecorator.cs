@@ -22,14 +22,14 @@ namespace MassTransit.Testing.TestDecorators
 		ISagaRepository<TSaga>
 		where TSaga : class, ISaga
 	{
-		readonly ReceivedMessageListImpl _received;
+		readonly ReceivedMessageList _received;
 		readonly ISagaRepository<TSaga> _sagaRepository;
-		readonly SagaListImpl<TSaga> _sagas;
-		SagaListImpl<TSaga> _created;
+		readonly SagaList<TSaga> _sagas;
+		SagaList<TSaga> _created;
 
 		public SagaRepositoryTestDecorator(ISagaRepository<TSaga> sagaRepository,
-		                                   ReceivedMessageListImpl received, SagaListImpl<TSaga> created,
-		                                   SagaListImpl<TSaga> sagas)
+		                                   ReceivedMessageList received, SagaList<TSaga> created,
+		                                   SagaList<TSaga> sagas)
 		{
 			_sagaRepository = sagaRepository;
 			_received = received;

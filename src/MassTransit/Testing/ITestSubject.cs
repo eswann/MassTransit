@@ -10,18 +10,22 @@
 // under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR 
 // CONDITIONS OF ANY KIND, either express or implied. See the License for the 
 // specific language governing permissions and limitations under the License.
-namespace MassTransit.Transports.Msmq
+namespace MassTransit.Testing
 {
-	using System.Diagnostics;
+	using System;
+	using Scenarios;
 
-	[DebuggerDisplay("OUT:{Address}")]
-	public class NonTransactionalOutboundMsmqTransport :
-		OutboundMsmqTransport
+	public interface ITestSubject<TSubject> :
+		IDisposable
+		where TSubject : class
 	{
-		public NonTransactionalOutboundMsmqTransport(IMsmqEndpointAddress address,
-		                                             ConnectionHandler<MessageQueueConnection> connectionHandler)
-			: base(address, connectionHandler)
-		{
-		}
+	}
+
+	public interface ITestSubject<TScenario, TSubject> :
+		ITestSubject<TSubject>
+		where TSubject : class
+		where TScenario : ITestScenario
+	{
+		void Prepare(TScenario scenario);
 	}
 }

@@ -14,9 +14,21 @@ namespace MassTransit.Testing
 {
 	using Saga;
 
-	public interface ISagaInstance<T>
+    public interface ISagaInstance<T>
+    where T : class, ISaga
+    {
+        T Saga { get; set; }
+    }
+
+	public class SagaInstance<T> :
+		ISagaInstance<T>
 		where T : class, ISaga
 	{
-		T Saga { get; set; }
+		public SagaInstance(T saga)
+		{
+			Saga = saga;
+		}
+
+		public T Saga { get; set; }
 	}
 }

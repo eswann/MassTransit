@@ -30,7 +30,7 @@ namespace MassTransit.Tests.TextFixtures
 		{
 			if (_endpointFactoryConfigurator != null)
 			{
-				IConfigurationResult result = ConfigurationResultImpl.CompileResults(_endpointFactoryConfigurator.Validate());
+				IConfigurationResult result = ConfigurationResult.CompileResults(_endpointFactoryConfigurator.Validate());
 
 				try
 				{

@@ -43,10 +43,10 @@ namespace MassTransit.Configurators
     }
 
 	[Serializable]
-	public class ValidationResultImpl :
+	public class ValidationResult :
 		IValidationResult
 	{
-		public ValidationResultImpl(ValidationResultDisposition disposition, string key, string value, string message)
+		public ValidationResult(ValidationResultDisposition disposition, string key, string value, string message)
 		{
 			Disposition = disposition;
 			Key = key;
@@ -54,14 +54,14 @@ namespace MassTransit.Configurators
 			Message = message;
 		}
 
-		public ValidationResultImpl(ValidationResultDisposition disposition, string key, string message)
+		public ValidationResult(ValidationResultDisposition disposition, string key, string message)
 		{
 			Disposition = disposition;
 			Key = key;
 			Message = message;
 		}
 
-		public ValidationResultImpl(ValidationResultDisposition disposition, string message)
+		public ValidationResult(ValidationResultDisposition disposition, string message)
 		{
 			Key = "";
 			Disposition = disposition;

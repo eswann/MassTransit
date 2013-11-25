@@ -180,7 +180,7 @@
     <Compile Include="Configuration\EndpointConfigurators\EndpointFactoryDefaultSettings.cs" />
     <Compile Include="Configuration\BusConfigurators\ServiceBusDefaultSettings.cs" />
     <Compile Include="Configuration\BusConfigurators\PostCreateBusBuilderConfigurator.cs" />
-    <Compile Include="Configuration\Configurators\Configurator.cs" />
+    <Compile Include="Configuration\Configurators\IConfigurator.cs" />
     <Compile Include="Configuration\BusConfigurators\ControlBusConfigurator.cs" />
     <Compile Include="Configuration\BusConfigurators\BusBuilderConfigurator.cs" />
     <Compile Include="Configuration\BusServiceConfigurators\CustomBusServiceConfigurator.cs" />
@@ -509,13 +509,9 @@
     <Compile Include="Testing\ILocalRemoteTestScenario.cs" />
     <Compile Include="Testing\PipelineSinkLocator.cs" />
     <Compile Include="Testing\PublishedMessage.cs" />
-    <Compile Include="Testing\PublishedMessageImpl.cs" />
     <Compile Include="Testing\PublishedMessageList.cs" />
-    <Compile Include="Testing\PublishedMessageListImpl.cs" />
     <Compile Include="Testing\SagaInstance.cs" />
-    <Compile Include="Testing\SagaInstanceImpl.cs" />
     <Compile Include="Testing\SagaList.cs" />
-    <Compile Include="Testing\SagaListImpl.cs" />
     <Compile Include="Testing\SagaSubjectExtensions.cs" />
     <Compile Include="Testing\SagaTest.cs" />
     <Compile Include="Testing\ScenarioAssertionExtensions.cs" />
@@ -528,7 +524,6 @@
     <Compile Include="Testing\Factories\ConsumerTestFactory.cs" />
     <Compile Include="Testing\Instances\TestInstance.cs" />
     <Compile Include="Testing\Instances\ConsumerTestInstance.cs" />
-    <Compile Include="Testing\ReceivedMessage.cs" />
     <Compile Include="Testing\ScenarioConfigurators\IScenarioBuilderConfigurator.cs" />
     <Compile Include="Testing\ScenarioConfigurators\BusTestScenarioBuilderConfigurator.cs" />
     <Compile Include="Testing\ScenarioConfigurators\EndpointTestScenarioBuilderConfigurator.cs" />
@@ -537,14 +532,11 @@
     <Compile Include="Testing\Scenarios\EndpointTestScenario.cs" />
     <Compile Include="Testing\Scenarios\LocalRemoteTestScenarioImpl.cs" />
     <Compile Include="Testing\Scenarios\ITestScenario.cs" />
-    <Compile Include="Testing\SentMessage.cs" />
     <Compile Include="Testing\PublishTestActionExtensions.cs" />
-    <Compile Include="Testing\ReceivedMessageImpl.cs" />
+    <Compile Include="Testing\ReceivedMessage.cs" />
     <Compile Include="Testing\ReceivedMessageList.cs" />
-    <Compile Include="Testing\ReceivedMessageListImpl.cs" />
-    <Compile Include="Testing\SentMessageImpl.cs" />
+    <Compile Include="Testing\SentMessage.cs" />
     <Compile Include="Testing\SentMessageList.cs" />
-    <Compile Include="Testing\SentMessageListImpl.cs" />
     <Compile Include="Testing\Subjects\ConsumerTestSubject.cs" />
     <Compile Include="Testing\Subjects\ConsumerTestSubjectImpl.cs" />
     <Compile Include="Testing\Subjects\SagaTestSubject.cs" />
@@ -567,7 +559,7 @@
     <Compile Include="Testing\TestDecorators\SagaRepositoryTestDecorator.cs" />
     <Compile Include="Testing\TestDecorators\ServiceBusTestDecorator.cs" />
     <Compile Include="Testing\TestFactory.cs" />
-    <Compile Include="Testing\TestInstance.cs" />
+    <Compile Include="Testing\ITestInstance.cs" />
     <Compile Include="Testing\TestInstanceConfigurators\SagaTestInstanceConfigurator.cs" />
     <Compile Include="Testing\TestInstanceConfigurators\SagaTestInstanceConfiguratorImpl.cs" />
     <Compile Include="Testing\TestInstanceConfigurators\TestInstanceConfigurator.cs" />
@@ -576,7 +568,7 @@
     <Compile Include="Testing\TestInstanceConfigurators\ConsumerTestInstanceConfiguratorImpl.cs" />
     <Compile Include="Testing\TestInstanceConfigurators\HandlerTestInstanceConfigurator.cs" />
     <Compile Include="Testing\TestInstanceConfigurators\HandlerTestInstanceConfiguratorImpl.cs" />
-    <Compile Include="Testing\TestSubject.cs" />
+    <Compile Include="Testing\ITestSubject.cs" />
     <Compile Include="Testing\TransportFactoryTestExtensions.cs" />
     <Compile Include="Threading\ConsumerPool.cs" />
     <Compile Include="Threading\ThreadPoolConsumerPool.cs" />

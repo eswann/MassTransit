@@ -22,7 +22,7 @@ namespace MassTransit.Testing.Subjects
 	    where TScenario : ITestScenario
 	{
 		readonly IConsumerFactory<TSubject> _consumerFactory;
-		readonly ReceivedMessageListImpl _received;
+		readonly ReceivedMessageList _received;
 		bool _disposed;
 		UnsubscribeAction _unsubscribe;
 
@@ -30,7 +30,7 @@ namespace MassTransit.Testing.Subjects
 		{
 			_consumerFactory = consumerFactory;
 
-			_received = new ReceivedMessageListImpl();
+			_received = new ReceivedMessageList();
 		}
 
 		public IReceivedMessageList Received

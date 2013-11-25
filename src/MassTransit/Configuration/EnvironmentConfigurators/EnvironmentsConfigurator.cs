@@ -71,7 +71,7 @@ namespace MassTransit.EnvironmentConfigurators
 
 		public IServiceBusEnvironment GetCurrentEnvironment()
 		{
-			ConfigurationResultImpl.CompileResults(Validate());
+			ConfigurationResult.CompileResults(Validate());
 
 			string environment = _currentEnvironment.ToLowerInvariant();
 

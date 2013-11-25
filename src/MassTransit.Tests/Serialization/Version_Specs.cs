@@ -31,8 +31,8 @@ namespace MassTransit.Tests.Serialization
 				var receiveContext = ReceiveContext.FromBodyStream(bodyStream);
 				serializer.Deserialize(receiveContext);
 
-				IConsumeContext<ComplaintAdded> context;
-				receiveContext.TryGetContext<ComplaintAdded>(out context).ShouldBeTrue();
+				IConsumeContext<IComplaintAdded> context;
+				receiveContext.TryGetContext<IComplaintAdded>(out context).ShouldBeTrue();
 
 				context.ShouldNotBeNull();
 			}
@@ -47,8 +47,8 @@ namespace MassTransit.Tests.Serialization
 				var receiveContext = ReceiveContext.FromBodyStream(bodyStream);
 				serializer.Deserialize(receiveContext);
 
-				IConsumeContext<ComplaintAdded> context;
-				receiveContext.TryGetContext<ComplaintAdded>(out context).ShouldBeTrue();
+				IConsumeContext<IComplaintAdded> context;
+				receiveContext.TryGetContext<IComplaintAdded>(out context).ShouldBeTrue();
 
 				context.ShouldNotBeNull();
 			}

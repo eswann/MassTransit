@@ -46,7 +46,7 @@ namespace MassTransit.TestFramework.Fixtures
 		{
 			if (EndpointFactoryConfigurator != null)
 			{
-				IConfigurationResult result = ConfigurationResultImpl.CompileResults(EndpointFactoryConfigurator.Validate());
+				IConfigurationResult result = ConfigurationResult.CompileResults(EndpointFactoryConfigurator.Validate());
 
 				try
 				{

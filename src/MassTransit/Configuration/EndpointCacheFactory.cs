@@ -33,7 +33,7 @@ namespace MassTransit
 
 			configure(configurator);
 
-			IConfigurationResult result = ConfigurationResultImpl.CompileResults(configurator.Validate());
+			IConfigurationResult result = ConfigurationResult.CompileResults(configurator.Validate());
 
 			try
 			{

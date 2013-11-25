@@ -76,7 +76,7 @@ namespace MassTransit.Testing.ScenarioBuilders
 
 		protected IEndpointFactory BuildEndpointFactory()
 		{
-			IConfigurationResult result = ConfigurationResultImpl.CompileResults(_endpointFactoryConfigurator.Validate());
+			IConfigurationResult result = ConfigurationResult.CompileResults(_endpointFactoryConfigurator.Validate());
 
 			IEndpointFactory endpointFactory;
 			try

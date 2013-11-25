@@ -23,7 +23,7 @@ namespace MassTransit.Testing.TestDecorators
         IServiceBus
     {
         readonly IServiceBus _bus;
-        readonly PublishedMessageListImpl _published;
+        readonly PublishedMessageList _published;
         readonly EndpointTestScenario _scenario;
 
         public ServiceBusTestDecorator(IServiceBus bus, EndpointTestScenario scenario)
@@ -31,7 +31,7 @@ namespace MassTransit.Testing.TestDecorators
             _bus = bus;
             _scenario = scenario;
 
-            _published = new PublishedMessageListImpl();
+            _published = new PublishedMessageList();
         }
 
         public void Inspect(IDiagnosticsProbe probe)
@@ -80,12 +80,12 @@ namespace MassTransit.Testing.TestDecorators
         public void Publish<T>(T message, Action<IPublishContext<T>> contextCallback)
             where T : class
         {
-            PublishedMessageImpl<T> published = null;
+            PublishedMessage<T> published = null;
             try
             {
                 _bus.Publish(message, context =>
                     {
-                        published = new PublishedMessageImpl<T>(context);
+                        published = new PublishedMessage<T>(context);
 
                         contextCallback(context);
                     });

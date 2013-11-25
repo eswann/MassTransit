@@ -25,20 +25,20 @@ namespace MassTransit.Testing.Subjects
 		where TSaga : class, ISaga
 		where TScenario : ITestScenario
 	{
-		readonly SagaListImpl<TSaga> _created;
-		readonly ReceivedMessageListImpl _received;
+		readonly SagaList<TSaga> _created;
+		readonly ReceivedMessageList _received;
 		readonly ISagaRepository<TSaga> _sagaRepository;
 		bool _disposed;
-		SagaListImpl<TSaga> _sagas;
+		SagaList<TSaga> _sagas;
 		UnsubscribeAction _unsubscribe;
 
 		public SagaTestSubjectImpl(ISagaRepository<TSaga> sagaRepository)
 		{
 			_sagaRepository = sagaRepository;
 
-			_received = new ReceivedMessageListImpl();
-			_created = new SagaListImpl<TSaga>();
-			_sagas = new SagaListImpl<TSaga>();
+			_received = new ReceivedMessageList();
+			_created = new SagaList<TSaga>();
+			_sagas = new SagaList<TSaga>();
 		}
 
 		public IReceivedMessageList Received

@@ -16,47 +16,47 @@ namespace MassTransit.Configurators
 	{
 		public static IValidationResult Failure(this IConfigurator configurator, string message)
 		{
-			return new ValidationResultImpl(ValidationResultDisposition.Failure, message);
+			return new ValidationResult(ValidationResultDisposition.Failure, message);
 		}
 
 		public static IValidationResult Failure(this IConfigurator configurator, string key, string message)
 		{
-			return new ValidationResultImpl(ValidationResultDisposition.Failure, key, message);
+			return new ValidationResult(ValidationResultDisposition.Failure, key, message);
 		}
 
 		public static IValidationResult Failure(this IConfigurator configurator, string key, string value, string message)
 		{
-			return new ValidationResultImpl(ValidationResultDisposition.Failure, key, value, message);
+			return new ValidationResult(ValidationResultDisposition.Failure, key, value, message);
 		}
 
 		public static IValidationResult Warning(this IConfigurator configurator, string message)
 		{
-			return new ValidationResultImpl(ValidationResultDisposition.Warning, message);
+			return new ValidationResult(ValidationResultDisposition.Warning, message);
 		}
 
 		public static IValidationResult Warning(this IConfigurator configurator, string key, string message)
 		{
-			return new ValidationResultImpl(ValidationResultDisposition.Warning, key, message);
+			return new ValidationResult(ValidationResultDisposition.Warning, key, message);
 		}
 
 		public static IValidationResult Warning(this IConfigurator configurator, string key, string value, string message)
 		{
-			return new ValidationResultImpl(ValidationResultDisposition.Warning, key, value, message);
+			return new ValidationResult(ValidationResultDisposition.Warning, key, value, message);
 		}
 
 		public static IValidationResult Success(this IConfigurator configurator, string message)
 		{
-			return new ValidationResultImpl(ValidationResultDisposition.Success, message);
+			return new ValidationResult(ValidationResultDisposition.Success, message);
 		}
 
 		public static IValidationResult Success(this IConfigurator configurator, string key, string message)
 		{
-			return new ValidationResultImpl(ValidationResultDisposition.Success, key, message);
+			return new ValidationResult(ValidationResultDisposition.Success, key, message);
 		}
 
 		public static IValidationResult Success(this IConfigurator configurator, string key, string value, string message)
 		{
-			return new ValidationResultImpl(ValidationResultDisposition.Success, key, value, message);
+			return new ValidationResult(ValidationResultDisposition.Success, key, value, message);
 		}
 
 		public static IValidationResult WithParentKey(this IValidationResult result, string parentKey)
@@ -65,7 +65,7 @@ namespace MassTransit.Configurators
 
 			string key = parentKey + "." + result.Key;
 
-			return new ValidationResultImpl(result.Disposition, key, result.Value, result.Message);
+			return new ValidationResult(result.Disposition, key, result.Value, result.Message);
 		}
 	}
 }

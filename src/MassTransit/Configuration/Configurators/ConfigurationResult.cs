@@ -25,12 +25,12 @@ namespace MassTransit.Configurators
     }
 
 	[Serializable, DebuggerDisplay("{DebuggerString()}")]
-	public class ConfigurationResultImpl :
+	public class ConfigurationResult :
 		IConfigurationResult
 	{
 		readonly IList<IValidationResult> _results;
 
-		ConfigurationResultImpl(IEnumerable<IValidationResult> results)
+		ConfigurationResult(IEnumerable<IValidationResult> results)
 		{
 			_results = results.ToList();
 		}
@@ -65,7 +65,7 @@ namespace MassTransit.Configurators
 
 		public static IConfigurationResult CompileResults(IEnumerable<IValidationResult> results)
 		{
-			var result = new ConfigurationResultImpl(results);
+			var result = new ConfigurationResult(results);
 
 			if (result.ContainsFailure)
 			{

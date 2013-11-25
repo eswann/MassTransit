@@ -46,18 +46,18 @@ namespace MassTransit.Testing.Scenarios
 	{
 		readonly EndpointCache _endpointCache;
 		readonly IDictionary<Uri, EndpointTestDecorator> _endpoints;
-		readonly ReceivedMessageListImpl _received;
-		readonly PublishedMessageListImpl _published;
-		readonly SentMessageListImpl _sent;
-		readonly ReceivedMessageListImpl _skipped;
+		readonly ReceivedMessageList _received;
+		readonly PublishedMessageList _published;
+		readonly SentMessageList _sent;
+		readonly ReceivedMessageList _skipped;
 		bool _disposed;
 
 		protected EndpointTestScenario(IEndpointFactory endpointFactory)
 		{
-			_received = new ReceivedMessageListImpl();
-			_sent = new SentMessageListImpl();
-			_skipped = new ReceivedMessageListImpl();
-			_published = new PublishedMessageListImpl();
+			_received = new ReceivedMessageList();
+			_sent = new SentMessageList();
+			_skipped = new ReceivedMessageList();
+			_published = new PublishedMessageList();
 
 			_endpoints = new Dictionary<Uri, EndpointTestDecorator>();
 

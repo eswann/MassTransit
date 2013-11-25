@@ -41,7 +41,7 @@ namespace MassTransit.SubscriptionConfigurators
                                  .FormatWith(x.MessageType.ToShortTypeName()))
                 .Select(message => configurator.Warning("Consumer", message));
 
-            foreach (ValidationResultImpl message in warningForMessages)
+            foreach (ValidationResult message in warningForMessages)
                 yield return message;
         }
 

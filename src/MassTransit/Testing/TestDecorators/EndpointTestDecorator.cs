@@ -24,8 +24,8 @@ namespace MassTransit.Testing.TestDecorators
         IEndpoint
     {
         readonly IEndpoint _endpoint;
-        readonly ReceivedMessageListImpl _received;
-        readonly SentMessageListImpl _sent;
+        readonly ReceivedMessageList _received;
+        readonly SentMessageList _sent;
         EndpointTestScenario _scenario;
 
         public EndpointTestDecorator(IEndpoint endpoint, EndpointTestScenario scenario)
@@ -33,8 +33,8 @@ namespace MassTransit.Testing.TestDecorators
             _endpoint = endpoint;
             _scenario = scenario;
 
-            _sent = new SentMessageListImpl();
-            _received = new ReceivedMessageListImpl();
+            _sent = new SentMessageList();
+            _received = new ReceivedMessageList();
         }
 
         public IReceivedMessageList Received
@@ -82,7 +82,7 @@ namespace MassTransit.Testing.TestDecorators
         public void Send<T>(ISendContext<T> context) 
             where T : class
         {
-            var send = new SentMessageImpl<T>(context);
+            var send = new SentMessage<T>(context);
             try
             {
                 _endpoint.Send(context);
@@ -182,7 +182,7 @@ namespace MassTransit.Testing.TestDecorators
                     Action<IReceiveContext> receive = receiver(decoratedReceiveContext);
                     if (receive == null)
                     {
-                        var skipped = new ReceivedMessageImpl(receiveContext);
+                        var skipped = new ReceivedMessage(receiveContext);
                         _scenario.AddSkipped(skipped);
 
                         return null;
@@ -191,7 +191,7 @@ namespace MassTransit.Testing.TestDecorators
                     return context =>
                         {
                             decoratedReceiveContext = new ReceiveContextTestDecorator(context, _scenario);
-                            var received = new ReceivedMessageImpl(context);
+                            var received = new ReceivedMessage(context);
                             try
                             {
                                 receive(decoratedReceiveContext);

@@ -21,17 +21,17 @@ namespace MassTransit.Testing.TestDecorators
 		where TMessage : class
 		where TSaga : class, ISaga
 	{
-		readonly SagaListImpl<TSaga> _created;
+		readonly SagaList<TSaga> _created;
 		readonly ISagaPolicy<TSaga, TMessage> _policy;
-		readonly SagaListImpl<TSaga> _removed;
+		readonly SagaList<TSaga> _removed;
 		readonly Guid _sagaId;
 
-		public SagaPolicyTestDecorator(ISagaPolicy<TSaga, TMessage> policy, Guid sagaId, SagaListImpl<TSaga> created)
+		public SagaPolicyTestDecorator(ISagaPolicy<TSaga, TMessage> policy, Guid sagaId, SagaList<TSaga> created)
 		{
 			_policy = policy;
 			_sagaId = sagaId;
 			_created = created;
-			_removed = new SagaListImpl<TSaga>();
+			_removed = new SagaList<TSaga>();
 		}
 
 		public bool CanCreateInstance(IConsumeContext<TMessage> context)
