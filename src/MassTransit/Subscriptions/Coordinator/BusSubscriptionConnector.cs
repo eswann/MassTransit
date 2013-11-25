@@ -45,7 +45,7 @@ namespace MassTransit.Subscriptions.Coordinator
         /// Adds a remote subscription to the route path or a local data or control bus 
         /// </summary>
         /// <param name="message"></param>
-        public void OnSubscriptionAdded(SubscriptionAdded message)
+        public void OnSubscriptionAdded(ISubscriptionAdded message)
         {
             // determine whether the message should be send over the control bus
             bool isControlMessage = message.EndpointUri.IsControlAddress();
@@ -66,7 +66,7 @@ namespace MassTransit.Subscriptions.Coordinator
         /// Removes a remote subscription from the route path or a local data or control bus 
         /// </summary>
         /// <param name="message"></param>
-        public void OnSubscriptionRemoved(SubscriptionRemoved message)
+        public void OnSubscriptionRemoved(ISubscriptionRemoved message)
         {
             _connectionCache.WithValue(message.SubscriptionId, unsubscribe =>
                 {

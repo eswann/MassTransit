@@ -10,9 +10,21 @@
 // under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR 
 // CONDITIONS OF ANY KIND, either express or implied. See the License for the 
 // specific language governing permissions and limitations under the License.
-namespace MassTransit.Testing.Builders
+namespace MassTransit.Subscriptions.Messages
 {
-	public interface TestBuilder
+	using System;
+
+	public interface IPeerSubscription :
+		ISubscription
 	{
+		/// <summary>
+		/// The instance of the client that created the subscription
+		/// </summary>
+		Guid PeerId { get; }
+
+		/// <summary>
+		/// The message number sent by this client
+		/// </summary>
+		long MessageNumber { get; }
 	}
 }

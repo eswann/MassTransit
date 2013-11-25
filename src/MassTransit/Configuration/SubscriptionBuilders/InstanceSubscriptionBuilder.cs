@@ -17,7 +17,7 @@ namespace MassTransit.SubscriptionBuilders
     using Subscriptions;
 
     public class InstanceSubscriptionBuilder :
-        SubscriptionBuilder
+        ISubscriptionBuilder
     {
         readonly IInstanceConnector _connector;
         readonly object _instance;

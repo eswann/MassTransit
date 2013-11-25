@@ -14,11 +14,12 @@ namespace MassTransit.RequestResponse.Configurators
 {
     using System;
     using System.Threading;
+    using Advanced;
     using Context;
 
-    public interface InlineRequestConfigurator<TRequest> :
-        RequestConfigurator<TRequest>
-        where TRequest : class
+    public interface IInlineRequestConfigurator<TRequest> :
+    IRequestConfigurator<TRequest>
+    where TRequest : class
     {
         /// <summary>
         /// Sets the synchronization context for the response and timeout handlers to 
@@ -63,5 +64,71 @@ namespace MassTransit.RequestResponse.Configurators
         /// </summary>
         /// <param name="faultCallback"></param>
         void HandleFault(Action<IConsumeContext<Fault<TRequest>>, Fault<TRequest>> faultCallback);
+    }
+
+
+    public class InlineRequestConfigurator<TRequest> :
+        RequestConfiguratorBase<TRequest>,
+        IInlineRequestConfigurator<TRequest>
+        where TRequest : class
+    {
+        readonly Request<TRequest> _request;
+
+        public InlineRequestConfigurator(TRequest message)
+            : base(message)
+        {
+            _request = new Request<TRequest>(RequestId, Request);
+        }
+
+        public void Handle<T>(Action<T> handler)
+            where T : class
+        {
+            AddHandler(typeof(T),
+                () => new CompleteResponseHandler<T>(RequestId, _request, RequestSynchronizationContext, handler));
+        }
+
+        public void Handle<T>(Action<IConsumeContext<T>, T> handler)
+            where T : class
+        {
+            AddHandler(typeof(T),
+                () => new CompleteResponseHandler<T>(RequestId, _request, RequestSynchronizationContext, handler));
+        }
+
+        public void Watch<T>(Action<T> watcher)
+            where T : class
+        {
+            AddHandler(typeof(T), () => new WatchResponseHandler<T>(RequestId, RequestSynchronizationContext, watcher));
+        }
+
+        public void Watch<T>(Action<IConsumeContext<T>, T> watcher)
+            where T : class
+        {
+            AddHandler(typeof(T), () => new WatchResponseHandler<T>(RequestId, RequestSynchronizationContext, watcher));
+        }
+
+        public void HandleFault(Action<Fault<TRequest>> faultCallback)
+        {
+            AddHandler(typeof(Fault<TRequest>), () => new CompleteResponseHandler<Fault<TRequest>>(RequestId, 
+                _request, RequestSynchronizationContext, faultCallback));
+        }
+
+        public void HandleFault(Action<IConsumeContext<Fault<TRequest>>, Fault<TRequest>> faultCallback)
+        {
+            AddHandler(typeof(Fault<TRequest>), () => new CompleteResponseHandler<Fault<TRequest>>(RequestId,
+                _request, RequestSynchronizationContext, faultCallback));
+        }
+
+        public IAsyncRequest<TRequest> Build(IServiceBus bus)
+        {
+            _request.SetTimeout(Timeout);
+            if (TimeoutHandler != null)
+                _request.SetTimeoutHandler(TimeoutHandler);
+
+            UnsubscribeAction unsubscribeAction = bus.Configure(x => Handlers.CombineSubscriptions(h => h.Connect(x)));
+
+            _request.SetUnsubscribeAction(unsubscribeAction);
+
+            return _request;
+        }
     }
 }

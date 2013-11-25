@@ -19,7 +19,7 @@ namespace MassTransit.Configuration
 	/// and you may have multiple buses with different sets of settings, active,
 	/// at any given point in time of your application.
 	/// </summary>
-	public interface BusSettings
+	public interface IBusSettings
 	{
 		Uri InputAddress { get; }
 

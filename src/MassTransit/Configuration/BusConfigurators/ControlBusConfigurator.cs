@@ -30,26 +30,26 @@ namespace MassTransit.BusConfigurators
         void ReceiveFrom(Uri uri);
     }
 
-    public class ControlBusConfiguratorImpl :
+    public class ControlBusConfigurator :
         IControlBusConfigurator,
-        BusBuilderConfigurator
+        IBusBuilderConfigurator
     {
-        static readonly ILog _log = Logger.Get(typeof(ControlBusConfiguratorImpl));
+        static readonly ILog _log = Logger.Get(typeof(ControlBusConfigurator));
 
-        readonly IList<BusBuilderConfigurator> _configurators;
+        readonly IList<IBusBuilderConfigurator> _configurators;
         Uri _uri;
 
-        public ControlBusConfiguratorImpl()
+        public ControlBusConfigurator()
         {
-            _configurators = new List<BusBuilderConfigurator>();
+            _configurators = new List<IBusBuilderConfigurator>();
         }
 
-        public BusBuilder Configure(BusBuilder builder)
+        public IBusBuilder Configure(IBusBuilder builder)
         {
             if (builder == null)
                 throw new ArgumentNullException("builder");
 
-            builder.Match<ServiceBusBuilder>(x =>
+            builder.Match<IServiceBusBuilder>(x =>
                 {
                     var settings = new ServiceBusSettings(builder.Settings);
 
@@ -67,7 +67,7 @@ namespace MassTransit.BusConfigurators
                     settings.ConcurrentReceiverLimit = 1;
                     settings.AutoStart = true;
 
-                    BusBuilder controlBusBuilder = new ControlBusBuilderImpl(settings);
+                    IBusBuilder controlBusBuilder = new ControlBusBuilder(settings);
 
                     controlBusBuilder = _configurators
                         .Aggregate(controlBusBuilder, (current, configurator) => configurator.Configure(current));

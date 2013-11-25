@@ -29,9 +29,9 @@ namespace MassTransit.Subscriptions.Coordinator
         Consumes<AddSubscription>.Context,
         Consumes<RemoveSubscription>.Context,
         Consumes<AddPeerSubscription>.Context,
-        Consumes<RemovePeerSubscription>.Context,
+        Consumes<IRemovePeerSubscription>.Context,
         Consumes<AddPeer>.Context,
-        Consumes<RemovePeer>.Context
+        Consumes<IRemovePeer>.Context
     {
         static readonly ILog _log = Logger.Get(typeof (SubscriptionMessageConsumer));
         readonly SubscriptionRouter _router;
@@ -100,7 +100,7 @@ namespace MassTransit.Subscriptions.Coordinator
                 });
         }
 
-        public void Consume(IConsumeContext<RemovePeer> context)
+        public void Consume(IConsumeContext<IRemovePeer> context)
         {
             if (DiscardMessage(context, context.Message.PeerId))
                 return;
@@ -108,7 +108,7 @@ namespace MassTransit.Subscriptions.Coordinator
             _router.Send(context.Message);
         }
 
-        public void Consume(IConsumeContext<RemovePeerSubscription> context)
+        public void Consume(IConsumeContext<IRemovePeerSubscription> context)
         {
             if (DiscardMessage(context, context.Message.PeerId))
                 return;

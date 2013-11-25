@@ -36,7 +36,7 @@ namespace MassTransit.RequestResponse
             CompletionSource = new TaskCompletionSource<TResponse>(TaskCreationOptions.None);
         }
 
-        Task TaskResponseHandler.Task
+        Task ITaskResponseHandler.Task
         {
             get { return CompletionSource.Task; }
         }
@@ -46,7 +46,7 @@ namespace MassTransit.RequestResponse
             get { return CompletionSource.Task; }
         }
 
-        Task<T> TaskResponseHandler.GetTask<T>()
+        Task<T> ITaskResponseHandler.GetTask<T>()
         {
             var self = this as TaskResponseHandlerBase<T>;
             if (self == null)

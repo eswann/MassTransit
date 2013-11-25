@@ -30,13 +30,13 @@ namespace MassTransit.Subscriptions.Coordinator
 		/// Called when a subscription is registered in the service bus.
 		/// </summary>
 		/// <param name="message">The subscription added message.</param>
-		void OnSubscriptionAdded([NotNull] SubscriptionAdded message);
+		void OnSubscriptionAdded([NotNull] ISubscriptionAdded message);
 
 		/// <summary>
 		/// Called when a subscription is unregistered in the service bus.
 		/// </summary>
 		/// <param name="message">The subscription removed message.</param>
-		void OnSubscriptionRemoved([NotNull] SubscriptionRemoved message);
+		void OnSubscriptionRemoved([NotNull] ISubscriptionRemoved message);
 
 		/// <summary>
 		/// Called when the observation is complete and we should go away

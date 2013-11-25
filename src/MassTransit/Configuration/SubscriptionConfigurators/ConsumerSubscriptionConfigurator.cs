@@ -46,7 +46,7 @@ namespace MassTransit.SubscriptionConfigurators
             return _consumerFactory.Validate();
         }
 
-        public SubscriptionBuilder Configure()
+        public ISubscriptionBuilder Configure()
         {
             return new ConsumerSubscriptionBuilder<TConsumer>(_consumerFactory, ReferenceFactory);
         }

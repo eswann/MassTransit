@@ -22,20 +22,20 @@ namespace MassTransit.SubscriptionBuilders
         /// the bus is started.
         /// </summary>
         /// <param name="builder"></param>
-        void AddSubscriptionBuilder(SubscriptionBuilder builder);
+        void AddSubscriptionBuilder(ISubscriptionBuilder builder);
     }
 
 	public class SubscriptionBusServiceBuilder :
 		ISubscriptionBusServiceBuilder
 	{
-		readonly IList<SubscriptionBuilder> _builders;
+		readonly IList<ISubscriptionBuilder> _builders;
 
 		public SubscriptionBusServiceBuilder()
 		{
-			_builders = new List<SubscriptionBuilder>();
+			_builders = new List<ISubscriptionBuilder>();
 		}
 
-		public void AddSubscriptionBuilder(SubscriptionBuilder builder)
+		public void AddSubscriptionBuilder(ISubscriptionBuilder builder)
 		{
 			_builders.Add(builder);
 		}

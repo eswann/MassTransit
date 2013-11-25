@@ -12,12 +12,8 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Subscriptions.Messages
 {
-	using System;
-
-	public interface Peer
+	public interface IUnsubscribeFrom :
+		ISubscription
 	{
-		Guid PeerId { get; }
-		long Timestamp { get; }
-		Uri PeerUri { get; }
 	}
 }

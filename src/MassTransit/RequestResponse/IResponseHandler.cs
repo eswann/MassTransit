@@ -18,7 +18,7 @@ namespace MassTransit.RequestResponse
     /// <summary>
     /// A response handler is defined by the request/response DSL
     /// </summary>
-    public interface ResponseHandler
+    public interface IResponseHandler
     {
         Type ResponseType { get; }
 

@@ -40,7 +40,7 @@ namespace MassTransit.EndpointConfigurators
 		/// Overrides the default EndpointResolver builder with another builder
 		/// </summary>
 		/// <param name="endpointFactoryBuilderFactory"></param>
-		void UseEndpointFactoryBuilder(Func<IEndpointFactoryDefaultSettings, EndpointFactoryBuilder> endpointFactoryBuilderFactory);
+		void UseEndpointFactoryBuilder(Func<IEndpointFactoryDefaultSettings, IEndpointFactoryBuilder> endpointFactoryBuilderFactory);
 
 		/// <summary>
 		/// Adds an endpoint configurator to the endpoint resolver builder
@@ -54,7 +54,7 @@ namespace MassTransit.EndpointConfigurators
 	{
 		readonly EndpointFactoryDefaultSettings _defaultSettings;
 		readonly IList<IEndpointFactoryBuilderConfigurator> _endpointFactoryConfigurators;
-		Func<IEndpointFactoryDefaultSettings, EndpointFactoryBuilder> _endpointFactoryBuilderFactory;
+		Func<IEndpointFactoryDefaultSettings, IEndpointFactoryBuilder> _endpointFactoryBuilderFactory;
 
 		public EndpointFactoryConfigurator(EndpointFactoryDefaultSettings defaultSettings)
 		{
@@ -72,7 +72,7 @@ namespace MassTransit.EndpointConfigurators
 				yield return result.WithParentKey("EndpointFactory");
 		}
 
-		public void UseEndpointFactoryBuilder(Func<IEndpointFactoryDefaultSettings, EndpointFactoryBuilder> endpointFactoryBuilderFactory)
+		public void UseEndpointFactoryBuilder(Func<IEndpointFactoryDefaultSettings, IEndpointFactoryBuilder> endpointFactoryBuilderFactory)
 		{
 			_endpointFactoryBuilderFactory = endpointFactoryBuilderFactory;
 		}
@@ -89,7 +89,7 @@ namespace MassTransit.EndpointConfigurators
 
 		public IEndpointFactory CreateEndpointFactory()
 		{
-			EndpointFactoryBuilder builder = _endpointFactoryBuilderFactory(_defaultSettings);
+			IEndpointFactoryBuilder builder = _endpointFactoryBuilderFactory(_defaultSettings);
 
 			foreach (IEndpointFactoryBuilderConfigurator configurator in _endpointFactoryConfigurators)
 			{
@@ -99,9 +99,9 @@ namespace MassTransit.EndpointConfigurators
 			return builder.Build();
 		}
 
-		static EndpointFactoryBuilder DefaultEndpointResolverBuilderFactory(IEndpointFactoryDefaultSettings defaults)
+		static IEndpointFactoryBuilder DefaultEndpointResolverBuilderFactory(IEndpointFactoryDefaultSettings defaults)
 		{
-			return new EndpointFactoryBuilderImpl(defaults);
+			return new EndpointFactoryBuilder(defaults);
 		}
 	}
 }

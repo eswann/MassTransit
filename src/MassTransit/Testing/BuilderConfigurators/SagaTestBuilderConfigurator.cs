@@ -21,6 +21,6 @@ namespace MassTransit.Testing.BuilderConfigurators
 		where TSaga : class, ISaga
 		where TScenario : ITestScenario
 	{
-		SagaTestBuilder<TScenario, TSaga> Configure(SagaTestBuilder<TScenario, TSaga> builder);
+		ISagaTestBuilder<TScenario, TSaga> Configure(ISagaTestBuilder<TScenario, TSaga> builder);
 	}
 }

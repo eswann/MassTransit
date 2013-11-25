@@ -25,11 +25,11 @@ namespace MassTransit.Subscriptions.Coordinator
 		Guid PeerId { get; }
 		Uri PeerUri { get; }
 
-		IEnumerable<Subscription> LocalSubscriptions { get; }
+		IEnumerable<ISubscription> LocalSubscriptions { get; }
 
 		void Send(AddPeerSubscription message);
-		void Send(RemovePeerSubscription message);
+		void Send(IRemovePeerSubscription message);
 		void Send(AddPeer message);
-		void Send(RemovePeer message);
+		void Send(IRemovePeer message);
 	}
 }

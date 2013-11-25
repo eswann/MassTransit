@@ -37,7 +37,7 @@ namespace MassTransit
 		{
 			var instanceConfigurator = new InstanceSubscriptionConfigurator(instance);
 
-			var busServiceConfigurator = new SubscriptionBusServiceBuilderConfiguratorImpl(instanceConfigurator);
+			var busServiceConfigurator = new SubscriptionBusServiceBuilderConfigurator(instanceConfigurator);
 
 			configurator.AddConfigurator(busServiceConfigurator);
 

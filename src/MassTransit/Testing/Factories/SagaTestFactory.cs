@@ -22,7 +22,7 @@ namespace MassTransit.Testing.Factories
         where TSaga : class, ISaga
         where TScenario : ITestScenario
     {
-        ISagaTest<TScenario, TSaga> New(Action<SagaTestInstanceConfigurator<TScenario, TSaga>> configureTest);
+        ISagaTest<TScenario, TSaga> New(Action<ISagaTestInstanceConfigurator<TScenario, TSaga>> configureTest);
     }
 
 	public class SagaTestFactory<TScenario, TSaga> :
@@ -37,9 +37,9 @@ namespace MassTransit.Testing.Factories
 			_scenarioBuilderFactory = scenarioBuilderFactory;
 		}
 
-		public ISagaTest<TScenario, TSaga> New(Action<SagaTestInstanceConfigurator<TScenario, TSaga>> configureTest)
+		public ISagaTest<TScenario, TSaga> New(Action<ISagaTestInstanceConfigurator<TScenario, TSaga>> configureTest)
 		{
-			var configurator = new SagaTestInstanceConfiguratorImpl<TScenario, TSaga>(_scenarioBuilderFactory);
+			var configurator = new SagaTestInstanceConfigurator<TScenario, TSaga>(_scenarioBuilderFactory);
 
 			configureTest(configurator);
 

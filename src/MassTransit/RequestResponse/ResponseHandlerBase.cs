@@ -20,7 +20,7 @@ namespace MassTransit.RequestResponse
     using SubscriptionConnectors;
 
     public abstract class ResponseHandlerBase<TResponse> :
-        ResponseHandler
+        IResponseHandler
         where TResponse : class
     {
         readonly HandlerSelector<TResponse> _handler;
@@ -47,12 +47,12 @@ namespace MassTransit.RequestResponse
             _synchronizationContext = synchronizationContext;
         }
 
-        Type ResponseHandler.ResponseType
+        Type IResponseHandler.ResponseType
         {
             get { return typeof(TResponse); }
         }
 
-        UnsubscribeAction ResponseHandler.Connect(IInboundPipelineConfigurator configurator)
+        UnsubscribeAction IResponseHandler.Connect(IInboundPipelineConfigurator configurator)
         {
             var connector = new RequestHandlerSubscriptionConnector<TResponse>();
 

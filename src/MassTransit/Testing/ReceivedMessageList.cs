@@ -150,7 +150,7 @@ namespace MassTransit.Testing
 		}
 	}
 
-	public class ReceivedMessageListImpl<T> :
+	public class ReceivedMessageList<T> :
 		IReceivedMessageList<T>,
 		IDisposable
 	{
@@ -158,7 +158,7 @@ namespace MassTransit.Testing
 		readonly AutoResetEvent _received;
 		TimeSpan _timeout = 8.Seconds();
 
-		public ReceivedMessageListImpl()
+		public ReceivedMessageList()
 		{
 			_messages = new HashSet<IReceivedMessage<T>>(new MessageIdEqualityComparer());
 			_received = new AutoResetEvent(false);

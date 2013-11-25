@@ -15,7 +15,7 @@ namespace MassTransit.Testing.Scenarios
 	using TestDecorators;
 	using Transports;
 
-	public class LocalRemoteTestScenarioImpl :
+	public class LocalRemoteTestScenario :
 		EndpointTestScenario,
 		ILocalRemoteTestScenario
 	{
@@ -25,7 +25,7 @@ namespace MassTransit.Testing.Scenarios
 		IServiceBus _realLocalBus;
 		IServiceBus _realRemoteBus;
 
-		public LocalRemoteTestScenarioImpl(IEndpointFactory endpointFactory)
+		public LocalRemoteTestScenario(IEndpointFactory endpointFactory)
 			: base(endpointFactory)
 		{
 		}

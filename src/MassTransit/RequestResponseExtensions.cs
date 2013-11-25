@@ -19,10 +19,10 @@ namespace MassTransit
     public static class RequestResponseExtensions
     {
         public static bool PublishRequest<TRequest>(this IServiceBus bus, TRequest message,
-            Action<InlineRequestConfigurator<TRequest>> configureCallback)
+            Action<IInlineRequestConfigurator<TRequest>> configureCallback)
             where TRequest : class
         {
-            var configurator = new InlineRequestConfiguratorImpl<TRequest>(message);
+            var configurator = new InlineRequestConfigurator<TRequest>(message);
             configureCallback(configurator);
 
             IAsyncRequest<TRequest> request = configurator.Build(bus);
@@ -34,10 +34,10 @@ namespace MassTransit
 
         public static IAsyncResult BeginPublishRequest<TRequest>(this IServiceBus bus, TRequest message,
             AsyncCallback callback, object state,
-            Action<InlineRequestConfigurator<TRequest>> configureCallback)
+            Action<IInlineRequestConfigurator<TRequest>> configureCallback)
             where TRequest : class
         {
-            var configurator = new InlineRequestConfiguratorImpl<TRequest>(message);
+            var configurator = new InlineRequestConfigurator<TRequest>(message);
             configureCallback(configurator);
 
             IAsyncRequest<TRequest> request = configurator.Build(bus);
@@ -58,10 +58,10 @@ namespace MassTransit
         }
 
         public static bool SendRequest<TRequest>(this IEndpoint endpoint, TRequest message, IServiceBus bus,
-            Action<InlineRequestConfigurator<TRequest>> configureCallback)
+            Action<IInlineRequestConfigurator<TRequest>> configureCallback)
             where TRequest : class
         {
-            var configurator = new InlineRequestConfiguratorImpl<TRequest>(message);
+            var configurator = new InlineRequestConfigurator<TRequest>(message);
             configureCallback(configurator);
 
             IAsyncRequest<TRequest> request = configurator.Build(bus);
@@ -72,10 +72,10 @@ namespace MassTransit
         }
 
         public static IAsyncResult BeginSendRequest<TRequest>(this IEndpoint endpoint, TRequest message, IServiceBus bus,
-            AsyncCallback callback, object state, Action<InlineRequestConfigurator<TRequest>> configureCallback)
+            AsyncCallback callback, object state, Action<IInlineRequestConfigurator<TRequest>> configureCallback)
             where TRequest : class
         {
-            var configurator = new InlineRequestConfiguratorImpl<TRequest>(message);
+            var configurator = new InlineRequestConfigurator<TRequest>(message);
 
             configureCallback(configurator);
             IAsyncRequest<TRequest> request = configurator.Build(bus);

@@ -34,7 +34,7 @@ namespace MassTransit
 		{
 			var handlerConfigurator = new HandlerSubscriptionConfigurator<T>(handler);
 
-			var busServiceConfigurator = new SubscriptionBusServiceBuilderConfiguratorImpl(handlerConfigurator);
+			var busServiceConfigurator = new SubscriptionBusServiceBuilderConfigurator(handlerConfigurator);
 
 			configurator.AddConfigurator(busServiceConfigurator);
 
@@ -47,7 +47,7 @@ namespace MassTransit
 		{
 			var handlerConfigurator = new HandlerSubscriptionConfigurator<T>(handler);
 
-			var busServiceConfigurator = new SubscriptionBusServiceBuilderConfiguratorImpl(handlerConfigurator);
+			var busServiceConfigurator = new SubscriptionBusServiceBuilderConfigurator(handlerConfigurator);
 
 			configurator.AddConfigurator(busServiceConfigurator);
 

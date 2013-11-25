@@ -17,7 +17,7 @@ namespace MassTransit.SubscriptionBuilders
     using Subscriptions;
 
     public class HandlerSubscriptionBuilder<TMessage> :
-        SubscriptionBuilder
+        ISubscriptionBuilder
         where TMessage : class
     {
         readonly HandlerSubscriptionConnector<TMessage> _connector;

@@ -19,7 +19,7 @@ namespace MassTransit.Testing
 
 	public static class PublishTestActionExtensions
 	{
-		public static void Publish<TMessage>(this TestInstanceConfigurator<IBusTestScenario> configurator, TMessage message)
+		public static void Publish<TMessage>(this ITestInstanceConfigurator<IBusTestScenario> configurator, TMessage message)
 			where TMessage : class
 		{
 			var actionConfigurator = new PublishTestActionConfigurator<IBusTestScenario, TMessage>(x => x.Bus, message);
@@ -27,7 +27,7 @@ namespace MassTransit.Testing
 			configurator.AddActionConfigurator(actionConfigurator);
 		}
 
-		public static void Publish<TMessage>(this TestInstanceConfigurator<IBusTestScenario> configurator, TMessage message,
+		public static void Publish<TMessage>(this ITestInstanceConfigurator<IBusTestScenario> configurator, TMessage message,
 		                                     Action<IPublishContext<TMessage>> callback)
 			where TMessage : class
 		{
@@ -37,7 +37,7 @@ namespace MassTransit.Testing
 			configurator.AddActionConfigurator(actionConfigurator);
 		}
 
-		public static void Publish<TMessage>(this TestInstanceConfigurator<IBusTestScenario> configurator, TMessage message,
+		public static void Publish<TMessage>(this ITestInstanceConfigurator<IBusTestScenario> configurator, TMessage message,
 		                                     Action<IBusTestScenario, IPublishContext<TMessage>> callback)
 			where TMessage : class
 		{
@@ -47,7 +47,7 @@ namespace MassTransit.Testing
 			configurator.AddActionConfigurator(actionConfigurator);
 		}
 
-		public static void Publish<TMessage>(this TestInstanceConfigurator<ILocalRemoteTestScenario> configurator,
+		public static void Publish<TMessage>(this ITestInstanceConfigurator<ILocalRemoteTestScenario> configurator,
 		                                     TMessage message)
 			where TMessage : class
 		{
@@ -57,7 +57,7 @@ namespace MassTransit.Testing
 			configurator.AddActionConfigurator(actionConfigurator);
 		}
 
-		public static void Publish<TMessage>(this TestInstanceConfigurator<ILocalRemoteTestScenario> configurator,
+		public static void Publish<TMessage>(this ITestInstanceConfigurator<ILocalRemoteTestScenario> configurator,
 		                                     TMessage message,
 		                                     Action<IPublishContext<TMessage>> callback)
 			where TMessage : class
@@ -69,7 +69,7 @@ namespace MassTransit.Testing
 			configurator.AddActionConfigurator(actionConfigurator);
 		}
 
-		public static void Publish<TMessage>(this TestInstanceConfigurator<ILocalRemoteTestScenario> configurator,
+		public static void Publish<TMessage>(this ITestInstanceConfigurator<ILocalRemoteTestScenario> configurator,
 		                                     TMessage message,
 		                                     Action<ILocalRemoteTestScenario, IPublishContext<TMessage>> callback)
 			where TMessage : class

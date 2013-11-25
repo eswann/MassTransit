@@ -39,7 +39,7 @@ namespace MassTransit.EndpointConfigurators
             }
         }
 
-        public EndpointFactoryBuilder Configure(EndpointFactoryBuilder builder)
+        public IEndpointFactoryBuilder Configure(IEndpointFactoryBuilder builder)
         {
             IMessageSerializer serializer = _serializerFactory();
             if (serializer == null)

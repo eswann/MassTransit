@@ -39,10 +39,10 @@ namespace MassTransit.Testing.Configurators
     }
 
     [Serializable]
-    public class TestConfiguratorResultImpl :
+    public class TestConfiguratorResult :
         ITestConfiguratorResult
     {
-        public TestConfiguratorResultImpl(TestConfiguratorResultDisposition disposition, string key, string value,
+        public TestConfiguratorResult(TestConfiguratorResultDisposition disposition, string key, string value,
                                           string message)
         {
             Disposition = disposition;
@@ -51,14 +51,14 @@ namespace MassTransit.Testing.Configurators
             Message = message;
         }
 
-        public TestConfiguratorResultImpl(TestConfiguratorResultDisposition disposition, string key, string message)
+        public TestConfiguratorResult(TestConfiguratorResultDisposition disposition, string key, string message)
         {
             Disposition = disposition;
             Key = key;
             Message = message;
         }
 
-        public TestConfiguratorResultImpl(TestConfiguratorResultDisposition disposition, string message)
+        public TestConfiguratorResult(TestConfiguratorResultDisposition disposition, string message)
         {
             Key = "";
             Disposition = disposition;

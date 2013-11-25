@@ -24,7 +24,7 @@ namespace MassTransit.Testing.Instances
 		where TSaga : class, ISaga
 		where TScenario : ITestScenario
 	{
-		readonly SagaTestSubjectImpl<TScenario, TSaga> _subject;
+		readonly SagaTestSubject<TScenario, TSaga> _subject;
 
 		bool _disposed;
 
@@ -32,7 +32,7 @@ namespace MassTransit.Testing.Instances
 		                        ISagaRepository<TSaga> sagaRepository)
 			: base(scenario, actions)
 		{
-			_subject = new SagaTestSubjectImpl<TScenario, TSaga>(sagaRepository);
+			_subject = new SagaTestSubject<TScenario, TSaga>(sagaRepository);
 		}
 
 		public void Execute()
@@ -42,7 +42,7 @@ namespace MassTransit.Testing.Instances
 			ExecuteTestActions();
 		}
 
-		public SagaTestSubject<TSaga> Saga
+		public ISagaTestSubject<TSaga> Saga
 		{
 			get { return _subject; }
 		}

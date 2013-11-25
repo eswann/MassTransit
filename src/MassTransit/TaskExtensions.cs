@@ -21,10 +21,10 @@ namespace MassTransit
     public static class TaskExtensions
     {
         public static ITaskRequest<TRequest> PublishRequestAsync<TRequest>(this IServiceBus bus, TRequest message,
-            Action<TaskRequestConfigurator<TRequest>> configureCallback)
+            Action<ITaskRequestConfigurator<TRequest>> configureCallback)
             where TRequest : class
         {
-            var configurator = new TaskRequestConfiguratorImpl<TRequest>(message);
+            var configurator = new TaskRequestConfigurator<TRequest>(message);
 
             configureCallback(configurator);
 
@@ -36,10 +36,10 @@ namespace MassTransit
         }
         
         public static ITaskRequest<TRequest> PublishRequestAsync<TRequest>(this IServiceBus bus, TRequest message,
-          Action<TaskRequestConfigurator<TRequest>> configureCallback, Action<IPublishContext<TRequest>> contextConfigurator)
+          Action<ITaskRequestConfigurator<TRequest>> configureCallback, Action<IPublishContext<TRequest>> contextConfigurator)
           where TRequest : class
         {
-            var configurator = new TaskRequestConfiguratorImpl<TRequest>(message);
+            var configurator = new TaskRequestConfigurator<TRequest>(message);
 
             configureCallback(configurator);
 
@@ -56,10 +56,10 @@ namespace MassTransit
 
         public static ITaskRequest<TRequest> SendRequestAsync<TRequest>(this IEndpoint endpoint, IServiceBus bus,
             TRequest message,
-            Action<TaskRequestConfigurator<TRequest>> configureCallback)
+            Action<ITaskRequestConfigurator<TRequest>> configureCallback)
             where TRequest : class
         {
-            var configurator = new TaskRequestConfiguratorImpl<TRequest>(message);
+            var configurator = new TaskRequestConfigurator<TRequest>(message);
 
             configureCallback(configurator);
 

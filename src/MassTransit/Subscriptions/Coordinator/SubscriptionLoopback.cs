@@ -58,7 +58,7 @@ namespace MassTransit.Subscriptions.Coordinator
             get { return _router; }
         }
 
-        public void OnSubscriptionAdded(SubscriptionAdded message)
+        public void OnSubscriptionAdded(ISubscriptionAdded message)
         {
             if (_ignoredMessageTypes.Contains(message.MessageName))
                 return;
@@ -80,7 +80,7 @@ namespace MassTransit.Subscriptions.Coordinator
                 });
         }
 
-        public void OnSubscriptionRemoved(SubscriptionRemoved message)
+        public void OnSubscriptionRemoved(ISubscriptionRemoved message)
         {
             if (_ignoredMessageTypes.Contains(message.MessageName))
                 return;

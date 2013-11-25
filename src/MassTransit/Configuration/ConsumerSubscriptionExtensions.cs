@@ -34,7 +34,7 @@ namespace MassTransit
 
             var consumerConfigurator = new ConsumerSubscriptionConfigurator<TConsumer>(consumerFactory);
 
-            var busServiceConfigurator = new SubscriptionBusServiceBuilderConfiguratorImpl(consumerConfigurator);
+            var busServiceConfigurator = new SubscriptionBusServiceBuilderConfigurator(consumerConfigurator);
 
             configurator.AddConfigurator(busServiceConfigurator);
 
@@ -52,7 +52,7 @@ namespace MassTransit
 
             var consumerConfigurator = new ConsumerSubscriptionConfigurator<TConsumer>(delegateConsumerFactory);
 
-            var busServiceConfigurator = new SubscriptionBusServiceBuilderConfiguratorImpl(consumerConfigurator);
+            var busServiceConfigurator = new SubscriptionBusServiceBuilderConfigurator(consumerConfigurator);
 
             configurator.AddConfigurator(busServiceConfigurator);
 
@@ -70,7 +70,7 @@ namespace MassTransit
 
             var consumerConfigurator = new ConsumerSubscriptionConfigurator<TConsumer>(delegateConsumerFactory);
 
-            var busServiceConfigurator = new SubscriptionBusServiceBuilderConfiguratorImpl(consumerConfigurator);
+            var busServiceConfigurator = new SubscriptionBusServiceBuilderConfigurator(consumerConfigurator);
 
             configurator.AddConfigurator(busServiceConfigurator);
 
@@ -90,7 +90,7 @@ namespace MassTransit
                 FastActivator.Create(typeof (UntypedConsumerSubscriptionConfigurator<>),
                     new[] {consumerType}, new object[] {consumerFactory});
 
-            var busServiceConfigurator = new SubscriptionBusServiceBuilderConfiguratorImpl(consumerConfigurator);
+            var busServiceConfigurator = new SubscriptionBusServiceBuilderConfigurator(consumerConfigurator);
 
             configurator.AddConfigurator(busServiceConfigurator);
 

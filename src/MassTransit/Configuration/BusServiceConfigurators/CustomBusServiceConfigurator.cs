@@ -18,7 +18,7 @@ namespace MassTransit.BusServiceConfigurators
 	using Configurators;
 
 	public class CustomBusServiceConfigurator :
-		BusBuilderConfigurator
+		IBusBuilderConfigurator
 	{
 		readonly IBusServiceConfigurator _configurator;
 
@@ -33,7 +33,7 @@ namespace MassTransit.BusServiceConfigurators
 				yield return this.Failure("BusServiceConfigurator", "The bus service configurator cannot be null");
 		}
 
-		public BusBuilder Configure(BusBuilder builder)
+		public IBusBuilder Configure(IBusBuilder builder)
 		{
 			builder.AddBusServiceConfigurator(_configurator);
 

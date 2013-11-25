@@ -21,7 +21,7 @@ namespace MassTransit.Testing.Factories
         where TConsumer : class
         where TScenario : ITestScenario
     {
-        ConsumerTest<TScenario, TConsumer> New(Action<ConsumerTestInstanceConfigurator<TScenario, TConsumer>> configureTest);
+        ConsumerTest<TScenario, TConsumer> New(Action<IConsumerTestInstanceConfigurator<TScenario, TConsumer>> configureTest);
     }
 
 	public class ConsumerTestFactory<TScenario, TConsumer> :
@@ -37,9 +37,9 @@ namespace MassTransit.Testing.Factories
 		}
 
 		public ConsumerTest<TScenario, TConsumer> New(
-			Action<ConsumerTestInstanceConfigurator<TScenario, TConsumer>> configureTest)
+			Action<IConsumerTestInstanceConfigurator<TScenario, TConsumer>> configureTest)
 		{
-			var configurator = new ConsumerTestInstanceConfiguratorImpl<TScenario, TConsumer>(_scenarioBuilderFactory);
+			var configurator = new ConsumerTestInstanceConfigurator<TScenario, TConsumer>(_scenarioBuilderFactory);
 
 			configureTest(configurator);
 

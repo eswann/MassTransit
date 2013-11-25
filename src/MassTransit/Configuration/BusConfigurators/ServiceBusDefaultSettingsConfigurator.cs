@@ -27,13 +27,12 @@ namespace MassTransit.BusConfigurators
         void EnablePerformanceCounters();
     }
 
-
-    public class ServiceBusDefaultSettingsConfiguratorImpl :
+    public class ServiceBusDefaultSettingsConfigurator :
         IServiceBusDefaultSettingsConfigurator
     {
         readonly ServiceBusDefaultSettings _defaultSettings;
 
-        public ServiceBusDefaultSettingsConfiguratorImpl(ServiceBusDefaultSettings defaultSettings)
+        public ServiceBusDefaultSettingsConfigurator(ServiceBusDefaultSettings defaultSettings)
         {
             _defaultSettings = defaultSettings;
         }

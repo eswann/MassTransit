@@ -13,19 +13,78 @@
 namespace MassTransit.Testing.TestInstanceConfigurators
 {
 	using System;
+	using System.Collections.Generic;
+	using System.Linq;
 	using BuilderConfigurators;
 	using Builders;
+	using Configurators;
 	using Saga;
+	using ScenarioBuilders;
 	using Scenarios;
 
-	public interface SagaTestInstanceConfigurator<TScenario, TSaga> :
-		TestInstanceConfigurator<TScenario>
+    public interface ISagaTestInstanceConfigurator<TScenario, TSaga> :
+    ITestInstanceConfigurator<TScenario>
+        where TSaga : class, ISaga
+        where TScenario : ITestScenario
+    {
+        void UseBuilder(Func<TScenario, ISagaTestBuilder<TScenario, TSaga>> builderFactory);
+        void AddConfigurator(SagaTestBuilderConfigurator<TScenario, TSaga> configurator);
+
+        void UseSagaRepository(ISagaRepository<TSaga> sagaRepository);
+    }
+
+	public class SagaTestInstanceConfigurator<TScenario, TSaga> :
+		TestInstanceConfigurator<TScenario>,
+		ISagaTestInstanceConfigurator<TScenario, TSaga>
 		where TSaga : class, ISaga
 		where TScenario : ITestScenario
 	{
-		void UseBuilder(Func<TScenario, SagaTestBuilder<TScenario, TSaga>> builderFactory);
-		void AddConfigurator(SagaTestBuilderConfigurator<TScenario, TSaga> configurator);
+		readonly IList<SagaTestBuilderConfigurator<TScenario, TSaga>> _configurators;
 
-		void UseSagaRepository(ISagaRepository<TSaga> sagaRepository);
+		Func<TScenario, ISagaTestBuilder<TScenario, TSaga>> _builderFactory;
+		ISagaRepository<TSaga> _sagaRepository;
+
+		public SagaTestInstanceConfigurator(Func<IScenarioBuilder<TScenario>> scenarioBuilderFactory)
+			: base(scenarioBuilderFactory)
+		{
+			_configurators = new List<SagaTestBuilderConfigurator<TScenario, TSaga>>();
+
+			_builderFactory = scenario => new SagaTestBuilder<TScenario, TSaga>(scenario);
+		}
+
+		public void UseBuilder(Func<TScenario, ISagaTestBuilder<TScenario, TSaga>> builderFactory)
+		{
+			_builderFactory = builderFactory;
+		}
+
+		public void AddConfigurator(SagaTestBuilderConfigurator<TScenario, TSaga> configurator)
+		{
+			_configurators.Add(configurator);
+		}
+
+		public void UseSagaRepository(ISagaRepository<TSaga> sagaRepository)
+		{
+			_sagaRepository = sagaRepository;
+		}
+
+		public new IEnumerable<ITestConfiguratorResult> Validate()
+		{
+			return base.Validate().Concat(_configurators.SelectMany(x => x.Validate()));
+		}
+
+		public ISagaTest<TScenario, TSaga> Build()
+		{
+			TScenario context = BuildTestScenario();
+
+			ISagaTestBuilder<TScenario, TSaga> builder = _builderFactory(context);
+
+			builder.SetSagaRepository(_sagaRepository);
+
+			builder = _configurators.Aggregate(builder, (current, configurator) => configurator.Configure(current));
+
+			BuildTestActions(builder);
+
+			return builder.Build();
+		}
 	}
 }

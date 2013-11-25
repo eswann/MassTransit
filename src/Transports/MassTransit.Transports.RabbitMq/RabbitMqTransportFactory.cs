@@ -187,7 +187,7 @@ namespace MassTransit.Transports.RabbitMq
                             if (_log.IsDebugEnabled)
                                 _log.DebugFormat("Using default configurator for connection: {0}", address.Uri);
 
-                            var configurator = new ConnectionFactoryConfiguratorImpl(address);
+                            var configurator = new ConnectionFactoryConfigurator(address);
 
                             return configurator.CreateBuilder();
                         });

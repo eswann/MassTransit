@@ -223,20 +223,20 @@ namespace MassTransit.EndpointConfigurators
                 yield return this.Failure("ErrorTransportFactory", "The error transport factory method is null");
         }
 
-        public EndpointFactoryBuilder Configure(EndpointFactoryBuilder builder)
+        public IEndpointFactoryBuilder Configure(IEndpointFactoryBuilder builder)
         {
-            EndpointBuilder endpointBuilder = CreateBuilder();
+            IEndpointBuilder endpointBuilder = CreateBuilder();
 
             builder.AddEndpointBuilder(_baseUri, endpointBuilder);
 
             return builder;
         }
 
-        public EndpointBuilder CreateBuilder()
+        public IEndpointBuilder CreateBuilder()
         {
             ITransportSettings errorSettings = new TransportSettings(_errorAddress ?? _settings.ErrorAddress, _settings);
 
-            var endpointBuilder = new EndpointBuilderImpl(_settings.Address, _settings, errorSettings, _transportFactory,
+            var endpointBuilder = new EndpointBuilder(_settings.Address, _settings, errorSettings, _transportFactory,
                 _errorTransportFactory, () => _settings.TrackerFactory(_settings.RetryLimit));
 
             return endpointBuilder;

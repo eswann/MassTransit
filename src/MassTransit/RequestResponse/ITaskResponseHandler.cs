@@ -18,8 +18,8 @@ namespace MassTransit.RequestResponse
     /// <summary>
     /// A task response handler provides access to the task itself
     /// </summary>
-    public interface TaskResponseHandler :
-        ResponseHandler
+    public interface ITaskResponseHandler :
+        IResponseHandler
     {
         /// <summary>
         /// Returns the Task for the response handler
@@ -39,7 +39,7 @@ namespace MassTransit.RequestResponse
     }
 
     public interface TaskResponseHandler<T> :
-        TaskResponseHandler
+        ITaskResponseHandler
         where T : class
     {
         /// <summary>

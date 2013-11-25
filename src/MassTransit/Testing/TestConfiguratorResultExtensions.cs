@@ -18,50 +18,50 @@ namespace MassTransit.Testing
 	{
 		public static ITestConfiguratorResult Failure(this ITestConfigurator configurator, string message)
 		{
-			return new TestConfiguratorResultImpl(TestConfiguratorResultDisposition.Failure, message);
+			return new TestConfiguratorResult(TestConfiguratorResultDisposition.Failure, message);
 		}
 
 		public static ITestConfiguratorResult Failure(this ITestConfigurator configurator, string key, string message)
 		{
-			return new TestConfiguratorResultImpl(TestConfiguratorResultDisposition.Failure, key, message);
+			return new TestConfiguratorResult(TestConfiguratorResultDisposition.Failure, key, message);
 		}
 
 		public static ITestConfiguratorResult Failure(this ITestConfigurator configurator, string key, string value,
 		                                             string message)
 		{
-			return new TestConfiguratorResultImpl(TestConfiguratorResultDisposition.Failure, key, value, message);
+			return new TestConfiguratorResult(TestConfiguratorResultDisposition.Failure, key, value, message);
 		}
 
 		public static ITestConfiguratorResult Warning(this ITestConfigurator configurator, string message)
 		{
-			return new TestConfiguratorResultImpl(TestConfiguratorResultDisposition.Warning, message);
+			return new TestConfiguratorResult(TestConfiguratorResultDisposition.Warning, message);
 		}
 
 		public static ITestConfiguratorResult Warning(this ITestConfigurator configurator, string key, string message)
 		{
-			return new TestConfiguratorResultImpl(TestConfiguratorResultDisposition.Warning, key, message);
+			return new TestConfiguratorResult(TestConfiguratorResultDisposition.Warning, key, message);
 		}
 
 		public static ITestConfiguratorResult Warning(this ITestConfigurator configurator, string key, string value,
 		                                             string message)
 		{
-			return new TestConfiguratorResultImpl(TestConfiguratorResultDisposition.Warning, key, value, message);
+			return new TestConfiguratorResult(TestConfiguratorResultDisposition.Warning, key, value, message);
 		}
 
 		public static ITestConfiguratorResult Success(this ITestConfigurator configurator, string message)
 		{
-			return new TestConfiguratorResultImpl(TestConfiguratorResultDisposition.Success, message);
+			return new TestConfiguratorResult(TestConfiguratorResultDisposition.Success, message);
 		}
 
 		public static ITestConfiguratorResult Success(this ITestConfigurator configurator, string key, string message)
 		{
-			return new TestConfiguratorResultImpl(TestConfiguratorResultDisposition.Success, key, message);
+			return new TestConfiguratorResult(TestConfiguratorResultDisposition.Success, key, message);
 		}
 
 		public static ITestConfiguratorResult Success(this ITestConfigurator configurator, string key, string value,
 		                                             string message)
 		{
-			return new TestConfiguratorResultImpl(TestConfiguratorResultDisposition.Success, key, value, message);
+			return new TestConfiguratorResult(TestConfiguratorResultDisposition.Success, key, value, message);
 		}
 
 		public static ITestConfiguratorResult WithParentKey(this ITestConfiguratorResult result, string parentKey)
@@ -70,7 +70,7 @@ namespace MassTransit.Testing
 
 			string key = parentKey + "." + result.Key;
 
-			return new TestConfiguratorResultImpl(result.Disposition, key, result.Value, result.Message);
+			return new TestConfiguratorResult(result.Disposition, key, result.Value, result.Message);
 		}
 	}
 }

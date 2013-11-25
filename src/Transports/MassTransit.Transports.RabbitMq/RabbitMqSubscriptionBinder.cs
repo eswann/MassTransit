@@ -44,7 +44,7 @@ namespace MassTransit.Transports.RabbitMq
             _messageNameFormatter = _inboundTransport.MessageNameFormatter;
         }
 
-        public void OnSubscriptionAdded(SubscriptionAdded message)
+        public void OnSubscriptionAdded(ISubscriptionAdded message)
         {
             Guard.AgainstNull(_inputAddress, "InputAddress", "The input address was not set");
 
@@ -62,7 +62,7 @@ namespace MassTransit.Transports.RabbitMq
             _bindings[message.SubscriptionId] = messageName;
         }
 
-        public void OnSubscriptionRemoved(SubscriptionRemoved message)
+        public void OnSubscriptionRemoved(ISubscriptionRemoved message)
         {
             Guard.AgainstNull(_inputAddress, "InputAddress", "The input address was not set");
 

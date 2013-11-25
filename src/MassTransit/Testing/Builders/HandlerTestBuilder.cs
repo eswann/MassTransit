@@ -13,16 +13,59 @@
 namespace MassTransit.Testing.Builders
 {
 	using System;
+	using System.Collections.Generic;
 	using Context;
+	using Instances;
 	using Scenarios;
+	using TestActions;
 
-	public interface HandlerTestBuilder<TScenario, TMessage> :
-		TestInstanceBuilder<TScenario>
+    public interface IHandlerTestBuilder<TScenario, TMessage> :
+    ITestInstanceBuilder<TScenario>
+        where TMessage : class
+        where TScenario : ITestScenario
+    {
+        HandlerTest<TScenario, TMessage> Build();
+
+        void SetHandler(Action<IConsumeContext<TMessage>, TMessage> handler);
+    }
+
+	public class HandlerTestBuilder<TScenario, TMessage> :
+		IHandlerTestBuilder<TScenario, TMessage>
 		where TMessage : class
 		where TScenario : ITestScenario
 	{
-		HandlerTest<TScenario, TMessage> Build();
+		readonly TScenario _scenario;
+		readonly IList<TestAction<TScenario>> _actions;
+		Action<IConsumeContext<TMessage>, TMessage> _handler;
 
-		void SetHandler(Action<IConsumeContext<TMessage>, TMessage> handler);
+
+		public HandlerTestBuilder(TScenario scenario)
+		{
+			_scenario = scenario;
+			_handler = DefaultHandler;
+
+			_actions = new List<TestAction<TScenario>>();
+		}
+
+		public HandlerTest<TScenario, TMessage> Build()
+		{
+			var test = new HandlerTestInstance<TScenario, TMessage>(_scenario, _actions, _handler);
+
+			return test;
+		}
+
+		public void SetHandler(Action<IConsumeContext<TMessage>, TMessage> handler)
+		{
+			_handler = handler;
+		}
+
+		public void AddTestAction(TestAction<TScenario> testAction)
+		{
+			_actions.Add(testAction);
+		}
+
+		static void DefaultHandler(IConsumeContext<TMessage> bus, TMessage message)
+		{
+		}
 	}
 }

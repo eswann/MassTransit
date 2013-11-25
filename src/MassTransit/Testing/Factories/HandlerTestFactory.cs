@@ -21,7 +21,7 @@ namespace MassTransit.Testing.Factories
         where TMessage : class
         where TScenario : ITestScenario
     {
-        HandlerTest<TScenario, TMessage> New(Action<HandlerTestInstanceConfigurator<TScenario, TMessage>> configureTest);
+        HandlerTest<TScenario, TMessage> New(Action<IHandlerTestInstanceConfigurator<TScenario, TMessage>> configureTest);
     }
 
 	public class HandlerTestFactory<TScenario, TMessage> :
@@ -37,9 +37,9 @@ namespace MassTransit.Testing.Factories
 		}
 
 
-		public HandlerTest<TScenario, TMessage> New(Action<HandlerTestInstanceConfigurator<TScenario, TMessage>> configureTest)
+		public HandlerTest<TScenario, TMessage> New(Action<IHandlerTestInstanceConfigurator<TScenario, TMessage>> configureTest)
 		{
-			var configurator = new HandlerTestInstanceConfiguratorImpl<TScenario, TMessage>(_scenarioBuilderFactory);
+			var configurator = new HandlerTestInstanceConfigurator<TScenario, TMessage>(_scenarioBuilderFactory);
 
 			configureTest(configurator);
 

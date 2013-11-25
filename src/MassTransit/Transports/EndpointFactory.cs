@@ -27,7 +27,7 @@ namespace MassTransit.Transports
         IEndpointFactory
     {
         readonly IEndpointFactoryDefaultSettings _defaults;
-        readonly Cache<Uri, EndpointBuilder> _endpointBuilders;
+        readonly Cache<Uri, IEndpointBuilder> _endpointBuilders;
         readonly Cache<string, ITransportFactory> _transportFactories;
         bool _disposed;
 
@@ -38,7 +38,7 @@ namespace MassTransit.Transports
         /// <param name="endpointBuilders"></param>
         /// <param name="defaults"></param>
         public EndpointFactory([NotNull] IDictionary<string, ITransportFactory> transportFactories,
-            [NotNull] IDictionary<Uri, EndpointBuilder> endpointBuilders,
+            [NotNull] IDictionary<Uri, IEndpointBuilder> endpointBuilders,
             [NotNull] IEndpointFactoryDefaultSettings defaults)
         {
             if (transportFactories == null)
@@ -49,7 +49,7 @@ namespace MassTransit.Transports
                 throw new ArgumentNullException("defaults");
             _transportFactories = new ConcurrentCache<string, ITransportFactory>(transportFactories);
             _defaults = defaults;
-            _endpointBuilders = new ConcurrentCache<Uri, EndpointBuilder>(endpointBuilders);
+            _endpointBuilders = new ConcurrentCache<Uri, IEndpointBuilder>(endpointBuilders);
         }
 
         public IEndpoint CreateEndpoint(Uri requestedUri)
@@ -65,7 +65,7 @@ namespace MassTransit.Transports
                         (_defaults.CreateMissingQueues && _defaults.CreateTransactionalQueues));
 
                     var uriPath = new Uri(address.Uri.GetLeftPart(UriPartial.Path));
-                    EndpointBuilder builder = _endpointBuilders.Get(uriPath, key =>
+                    IEndpointBuilder builder = _endpointBuilders.Get(uriPath, key =>
                         {
                             var configurator = new EndpointConfigurator(address, _defaults);
                             return configurator.CreateBuilder();

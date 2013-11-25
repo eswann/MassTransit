@@ -49,7 +49,7 @@ namespace MassTransit.Subscriptions.Coordinator
             subscription.Send(message);
         }
 
-        public void Send(RemovePeerSubscription message)
+        public void Send(IRemovePeerSubscription message)
         {
             var key = new SubscriptionKey(message.MessageName, message.CorrelationId);
 
@@ -67,7 +67,7 @@ namespace MassTransit.Subscriptions.Coordinator
             _messageSubscriptions.Each(x => x.Send(message));
         }
 
-        public void Send(RemovePeer message)
+        public void Send(IRemovePeer message)
         {
             _messageSubscriptions.Each(x => x.Send(message));
         }

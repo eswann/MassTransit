@@ -19,12 +19,37 @@ namespace MassTransit.RequestResponse
     using Logging;
     using Magnum.Extensions;
 
-    public class RequestImpl<TRequest> :
+    /// <summary>
+    /// Handle to a request that was sent/published
+    /// </summary>
+    public interface IRequest
+    {
+        /// <summary>
+        /// Identifies the request for matching up request/response messages
+        /// </summary>
+        string RequestId { get; }
+    }
+
+    /// <summary>
+    /// Handle to a request that was sent/published
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    public interface IRequest<out T> :
+        IRequest
+        where T : class
+    {
+        /// <summary>
+        /// The request message that was sent/published
+        /// </summary>
+        T Message { get; }
+    }
+
+    public class Request<TRequest> :
         IAsyncRequest<TRequest>,
         IRequestComplete
         where TRequest : class
     {
-        static readonly ILog _log = Logger.Get(typeof(RequestImpl<TRequest>));
+        static readonly ILog _log = Logger.Get(typeof(Request<TRequest>));
         readonly IList<AsyncCallback> _completionCallbacks;
         readonly object _lock = new object();
         readonly TRequest _message;
@@ -38,7 +63,7 @@ namespace MassTransit.RequestResponse
         TimeoutHandler<TRequest> _timeoutHandler;
         RegisteredWaitHandle _waitHandle;
 
-        public RequestImpl(string requestId, TRequest message)
+        public Request(string requestId, TRequest message)
         {
             _requestId = requestId;
             _message = message;

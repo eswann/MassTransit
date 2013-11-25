@@ -77,7 +77,7 @@ namespace MassTransit.AutofacIntegration
         /// <param name="configurator"></param>
         /// <param name="scope"></param>
         /// <returns></returns>
-        public static SagaSubscriptionConfigurator<TSaga> Saga<TSaga>(
+        public static ISagaSubscriptionConfigurator<TSaga> Saga<TSaga>(
             this ISubscriptionBusServiceConfigurator configurator, ILifetimeScope scope, string name = "message")
             where TSaga : class, ISaga
         {

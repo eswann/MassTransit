@@ -16,7 +16,7 @@ namespace MassTransit.Transports.RabbitMq.Configuration
     using MassTransit.BusConfigurators;
     using MassTransit.EndpointConfigurators;
     using Magnum.Extensions;
-    using MassTransit.Pipeline.Configuration;
+    using Pipeline.Configuration;
     using MassTransit.Transports;
     using MassTransit.Transports.RabbitMq.Configuration.Configurators;
 
@@ -86,7 +86,7 @@ namespace MassTransit.Transports.RabbitMq.Configuration
         public static void UseRabbitMq(this IEndpointFactoryConfigurator configurator,
             Action<IRabbitMqTransportFactoryConfigurator> configureFactory)
         {
-            var transportFactoryConfigurator = new RabbitMqTransportFactoryConfiguratorImpl();
+            var transportFactoryConfigurator = new RabbitMqTransportFactoryConfigurator();
 
             configureFactory(transportFactoryConfigurator);
 

@@ -32,12 +32,12 @@ namespace MassTransit.Subscriptions
 	public class SubscriptionBusService :
 		IBusService
 	{
-		readonly IList<SubscriptionBuilder> _builders;
+		readonly IList<ISubscriptionBuilder> _builders;
 		readonly IList<ISubscriptionReference> _subscriptions;
 
 		bool _disposed;
 
-		public SubscriptionBusService(IList<SubscriptionBuilder> builders)
+		public SubscriptionBusService(IList<ISubscriptionBuilder> builders)
 		{
 			_builders = builders;
 
@@ -53,7 +53,7 @@ namespace MassTransit.Subscriptions
 		{
 			bus.Configure(pipelineConfigurator =>
 				{
-					foreach (SubscriptionBuilder builder in _builders)
+					foreach (ISubscriptionBuilder builder in _builders)
 					{
 						try
 						{

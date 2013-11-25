@@ -29,16 +29,16 @@ namespace MassTransit.Saga.Configuration
         /// <param name="configurator"></param>
         /// <param name="sagaRepository"></param>
         /// <returns></returns>
-        public static SagaSubscriptionConfigurator<TSaga> Saga<TSaga>(
+        public static ISagaSubscriptionConfigurator<TSaga> Saga<TSaga>(
             this ISubscriptionBusServiceConfigurator configurator, ISagaRepository<TSaga> sagaRepository)
             where TSaga : class, ISaga
         {
             if (_log.IsDebugEnabled)
                 _log.DebugFormat("Subscribing Saga: {0}", typeof(TSaga));
 
-            var sagaConfigurator = new SagaSubscriptionConfiguratorImpl<TSaga>(sagaRepository);
+            var sagaConfigurator = new SagaSubscriptionConfigurator<TSaga>(sagaRepository);
 
-            var busServiceConfigurator = new SubscriptionBusServiceBuilderConfiguratorImpl(sagaConfigurator);
+            var busServiceConfigurator = new SubscriptionBusServiceBuilderConfigurator(sagaConfigurator);
 
             configurator.AddConfigurator(busServiceConfigurator);
 

@@ -32,20 +32,20 @@ namespace MassTransit.RequestResponse
         readonly TRequest _message;
         readonly TimeoutHandler<TRequest> _timeoutHandler;
         readonly string _requestId;
-        readonly Cache<Type, TaskResponseHandler> _responseHandlers;
+        readonly Cache<Type, ITaskResponseHandler> _responseHandlers;
         readonly TaskCompletionSource<TRequest> _source;
 
         CancellationTokenRegistration _cancelRequestRegistration;
         UnsubscribeAction _unsubscribe;
 
         public TaskRequest(string requestId, TRequest message, TimeSpan timeout, TimeoutHandler<TRequest> timeoutHandler,
-            CancellationToken cancellationToken, IServiceBus bus, IEnumerable<ResponseHandler> handlers)
+            CancellationToken cancellationToken, IServiceBus bus, IEnumerable<IResponseHandler> handlers)
         {
             _requestId = requestId;
             _message = message;
             _timeoutHandler = timeoutHandler;
-            _responseHandlers = new DictionaryCache<Type, TaskResponseHandler>(x => x.ResponseType,
-                handlers.Cast<TaskResponseHandler>());
+            _responseHandlers = new DictionaryCache<Type, ITaskResponseHandler>(x => x.ResponseType,
+                handlers.Cast<ITaskResponseHandler>());
 
             // this is our task, which we complete/fail/cancel as appropriate
             _source = new TaskCompletionSource<TRequest>(TaskCreationOptions.None);
@@ -91,7 +91,7 @@ namespace MassTransit.RequestResponse
         {
             if (_responseHandlers.Has(typeof(T)))
             {
-                TaskResponseHandler handler = _responseHandlers[typeof(T)];
+                ITaskResponseHandler handler = _responseHandlers[typeof(T)];
 
                 return handler.GetTask<T>();
             }
@@ -146,7 +146,7 @@ namespace MassTransit.RequestResponse
 
         void NotifyHandlersOfTimeout()
         {
-            foreach (TaskResponseHandler handler in _responseHandlers)
+            foreach (ITaskResponseHandler handler in _responseHandlers)
             {
                 handler.HandleTimeout();
             }
@@ -173,7 +173,7 @@ namespace MassTransit.RequestResponse
 
         UnsubscribeAction SubscribeHandlers(IServiceBus bus)
         {
-            foreach (TaskResponseHandler handler in _responseHandlers)
+            foreach (ITaskResponseHandler handler in _responseHandlers)
             {
                 handler.Task.ContinueWith(x =>
                     {

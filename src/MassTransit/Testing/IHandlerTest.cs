@@ -19,7 +19,7 @@ namespace MassTransit.Testing
 		ITestInstance
 		where TMessage : class
 	{
-		HandlerTestSubject<TMessage> Handler { get; }
+		IHandlerTestSubject<TMessage> Handler { get; }
 	}
 
 	public interface HandlerTest<TScenario, TMessage> :

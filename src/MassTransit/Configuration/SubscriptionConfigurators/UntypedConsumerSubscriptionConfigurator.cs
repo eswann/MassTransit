@@ -44,7 +44,7 @@ namespace MassTransit.SubscriptionConfigurators
                         typeof(TConsumer).ToShortTypeName()));
         }
 
-        public SubscriptionBuilder Configure()
+        public ISubscriptionBuilder Configure()
         {
             return new ConsumerSubscriptionBuilder<TConsumer>(_consumerFactory, ReferenceFactory);
         }

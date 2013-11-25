@@ -16,7 +16,7 @@ namespace MassTransit.BusConfigurators
 	using Configuration;
 
 	public class ServiceBusSettings :
-		BusSettings
+		IBusSettings
 	{
 		public ServiceBusSettings(ServiceBusDefaultSettings defaultSettings)
 		{
@@ -30,7 +30,7 @@ namespace MassTransit.BusConfigurators
 		    EnablePerformanceCounters = defaultSettings.EnablePerformanceCounters;
 		}
 
-		public ServiceBusSettings(BusSettings settings)
+		public ServiceBusSettings(IBusSettings settings)
 		{
 			AutoStart = settings.AutoStart;
 			ConcurrentConsumerLimit = settings.ConcurrentConsumerLimit;

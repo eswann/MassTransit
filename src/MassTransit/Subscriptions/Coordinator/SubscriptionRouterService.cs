@@ -88,13 +88,13 @@ namespace MassTransit.Subscriptions.Coordinator
             _unregister();
         }
 
-        public void OnSubscriptionAdded(SubscriptionAdded message)
+        public void OnSubscriptionAdded(ISubscriptionAdded message)
         {
             lock (_observers)
                 _observers.Each(x => x.OnSubscriptionAdded(message));
         }
 
-        public void OnSubscriptionRemoved(SubscriptionRemoved message)
+        public void OnSubscriptionRemoved(ISubscriptionRemoved message)
         {
             lock (_observers)
                 _observers.Each(x => x.OnSubscriptionRemoved(message));
@@ -104,7 +104,7 @@ namespace MassTransit.Subscriptions.Coordinator
         {
         }
 
-        public IEnumerable<Subscription> LocalSubscriptions
+        public IEnumerable<ISubscription> LocalSubscriptions
         {
             get { return _listeners.SelectMany(x => x.Subscriptions); }
         }
@@ -115,7 +115,7 @@ namespace MassTransit.Subscriptions.Coordinator
                 _peerCache.Send(message);
         }
 
-        public void Send(RemovePeerSubscription message)
+        public void Send(IRemovePeerSubscription message)
         {
             if (_peerCache != null)
                 _peerCache.Send(message);
@@ -127,7 +127,7 @@ namespace MassTransit.Subscriptions.Coordinator
                 _peerCache.Send(message);
         }
 
-        public void Send(RemovePeer message)
+        public void Send(IRemovePeer message)
         {
             if (_peerCache != null)
                 _peerCache.Send(message);

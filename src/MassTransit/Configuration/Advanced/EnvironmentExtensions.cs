@@ -23,7 +23,7 @@ namespace MassTransit.Advanced
 		public static void Environments(this IServiceBusConfigurator configurator,
 		                                Action<IEnvironmentsConfigurator> configureCallback)
 		{
-			var environmentsConfigurator = new EnvironmentsConfiguratorImpl();
+			var environmentsConfigurator = new EnvironmentsConfigurator();
 
 			configureCallback(environmentsConfigurator);
 

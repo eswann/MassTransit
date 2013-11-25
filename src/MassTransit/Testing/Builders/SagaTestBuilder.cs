@@ -12,16 +12,58 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Testing.Builders
 {
+	using System.Collections.Generic;
+	using Instances;
 	using Saga;
 	using Scenarios;
+	using TestActions;
 
-	public interface SagaTestBuilder<TScenario, TSaga> :
-		TestInstanceBuilder<TScenario>
+    public interface ISagaTestBuilder<TScenario, TSaga> :
+    ITestInstanceBuilder<TScenario>
+        where TSaga : class, ISaga
+        where TScenario : ITestScenario
+    {
+        ISagaTest<TScenario, TSaga> Build();
+
+        void SetSagaRepository(ISagaRepository<TSaga> sagaRepository);
+    }
+
+	public class SagaTestBuilder<TScenario, TSaga> :
+		ISagaTestBuilder<TScenario, TSaga>
 		where TSaga : class, ISaga
 		where TScenario : ITestScenario
 	{
-		ISagaTest<TScenario, TSaga> Build();
+		readonly IList<TestAction<TScenario>> _actions;
+		readonly TScenario _scenario;
+		ISagaRepository<TSaga> _sagaRepository;
 
-		void SetSagaRepository(ISagaRepository<TSaga> sagaRepository);
+		public SagaTestBuilder(TScenario scenario)
+		{
+			_scenario = scenario;
+
+			_actions = new List<TestAction<TScenario>>();
+		}
+
+		public ISagaTest<TScenario, TSaga> Build()
+		{
+			if(_sagaRepository == null)
+			{
+				_sagaRepository = new InMemorySagaRepository<TSaga>();
+			}
+
+			var test = new SagaTestInstance<TScenario, TSaga>(_scenario, _actions, _sagaRepository);
+
+			return test;
+		}
+
+		public void SetSagaRepository(ISagaRepository<TSaga> sagaRepository)
+		{
+			_sagaRepository = sagaRepository;
+		}
+
+		public void AddTestAction(TestAction<TScenario> testAction)
+		{
+			_actions.Add(testAction);
+		}
 	}
 }

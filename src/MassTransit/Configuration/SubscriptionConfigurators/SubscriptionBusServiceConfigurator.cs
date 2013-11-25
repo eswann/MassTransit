@@ -38,7 +38,7 @@ namespace MassTransit.SubscriptionConfigurators
 	public class SubscriptionBusServiceConfigurator :
 		ISubscriptionBusServiceConfigurator,
 		IBusServiceConfigurator,
-		BusBuilderConfigurator
+		IBusBuilderConfigurator
 	{
 		readonly IList<ISubscriptionBusServiceBuilderConfigurator> _configurators;
 
@@ -59,7 +59,7 @@ namespace MassTransit.SubscriptionConfigurators
 			_configurators.Add(configurator);
 		}
 
-		public BusBuilder Configure(BusBuilder builder)
+		public IBusBuilder Configure(IBusBuilder builder)
 		{
 			builder.AddBusServiceConfigurator(this);
 

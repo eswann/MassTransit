@@ -20,9 +20,9 @@ namespace MassTransit.EndpointConfigurators
 	public class DelegateEndpointFactoryBuilderConfigurator :
 		IEndpointFactoryBuilderConfigurator
 	{
-		readonly Action<EndpointFactoryBuilder> _builderCallback;
+		readonly Action<IEndpointFactoryBuilder> _builderCallback;
 
-		public DelegateEndpointFactoryBuilderConfigurator(Action<EndpointFactoryBuilder> builderCallback)
+		public DelegateEndpointFactoryBuilderConfigurator(Action<IEndpointFactoryBuilder> builderCallback)
 		{
 			_builderCallback = builderCallback;
 		}
@@ -33,7 +33,7 @@ namespace MassTransit.EndpointConfigurators
 				yield return this.Failure("BuilderCallback", "was not configured. This should have been passed in via the ctor.");
 		}
 
-		public EndpointFactoryBuilder Configure(EndpointFactoryBuilder builder)
+		public IEndpointFactoryBuilder Configure(IEndpointFactoryBuilder builder)
 		{
 			_builderCallback(builder);
 

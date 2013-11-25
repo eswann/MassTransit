@@ -75,7 +75,7 @@ namespace MassTransit.Services.Subscriptions.Client
         /// Called when a subscription was added.
         /// </summary>
         /// <param name="message"></param>
-        public void OnSubscriptionAdded(SubscriptionAdded message)
+        public void OnSubscriptionAdded(ISubscriptionAdded message)
         {
             _producer.OnSubscriptionAdded(message);
         }
@@ -84,7 +84,7 @@ namespace MassTransit.Services.Subscriptions.Client
         /// Called when a subscription was removed.
         /// </summary>
         /// <param name="message">The message.</param>
-        public void OnSubscriptionRemoved(SubscriptionRemoved message)
+        public void OnSubscriptionRemoved(ISubscriptionRemoved message)
         {
             _producer.OnSubscriptionRemoved(message);
         }

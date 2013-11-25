@@ -32,7 +32,7 @@ namespace MassTransit.Subscriptions.Coordinator
             _busSubscriptionCache = new BusSubscriptionCache(observer);
         }
 
-        public IEnumerable<Subscription> Subscriptions
+        public IEnumerable<ISubscription> Subscriptions
         {
             get { return _busSubscriptionCache.Subscriptions; }
         }

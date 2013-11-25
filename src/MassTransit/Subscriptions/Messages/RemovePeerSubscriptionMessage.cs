@@ -17,7 +17,7 @@ namespace MassTransit.Subscriptions.Messages
 	[Serializable]
 	public class RemovePeerSubscriptionMessage :
 		PeerSubscriptionMessage,
-		RemovePeerSubscription
+		IRemovePeerSubscription
 	{
 	}
 }

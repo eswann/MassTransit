@@ -18,7 +18,7 @@ namespace MassTransit.Saga.SubscriptionBuilders
     using Subscriptions;
 
     public class SagaSubscriptionBuilder<TSaga> :
-        SubscriptionBuilder
+        ISubscriptionBuilder
         where TSaga : class, ISaga
     {
         readonly SagaConnector<TSaga> _connector;

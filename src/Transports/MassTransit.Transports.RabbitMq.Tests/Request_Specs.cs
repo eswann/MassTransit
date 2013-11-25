@@ -32,38 +32,38 @@ namespace MassTransit.Transports.RabbitMq.Tests
         }
 
         class PingHandler
-            : Consumes<IConsumeContext<PingMessage>>.All
+            : Consumes<IConsumeContext<IPingMessage>>.All
         {
-            public void Consume(IConsumeContext<PingMessage> context)
+            public void Consume(IConsumeContext<IPingMessage> context)
             {
-                context.Respond<PongMessage>(new PongImpl());
+                context.Respond<IPongMessage>(new Pong());
             }
         }
 
-        public interface PingMessage
+        public interface IPingMessage
         {
         }
 
-        public interface PlinkMessage
+        public interface IPlinkMessage
         {
         }
 
-        public interface PongMessage
+        public interface IPongMessage
         {
         }
 
-        class PingImpl :
-            PingMessage
+        class Ping :
+            IPingMessage
         {
         }
 
-        class PlinkMessageImpl : 
-            PlinkMessage
+        class PlinkMessage : 
+            IPlinkMessage
         {
         }
 
-        class PongImpl :
-            PongMessage
+        class Pong :
+            IPongMessage
         {
         }
 
@@ -71,9 +71,9 @@ namespace MassTransit.Transports.RabbitMq.Tests
         public void Should_respond_properly()
         {
             bool result = LocalBus.GetEndpoint(LocalBus.Endpoint.Address.Uri)
-                .SendRequest<PingMessage>(new PingImpl(), LocalBus, req =>
+                .SendRequest<IPingMessage>(new Ping(), LocalBus, req =>
                     {
-                        req.Handle<PongMessage>(x => { });
+                        req.Handle<IPongMessage>(x => { });
                         req.SetTimeout(10.Seconds());
                     });
 
@@ -86,9 +86,9 @@ namespace MassTransit.Transports.RabbitMq.Tests
             Assert.Throws<RequestTimeoutException>(() =>
                 {
                     LocalBus.GetEndpoint(LocalBus.Endpoint.Address.Uri)
-                        .SendRequest<PlinkMessage>(new PlinkMessageImpl(), LocalBus, req =>
+                        .SendRequest<IPlinkMessage>(new PlinkMessage(), LocalBus, req =>
                             {
-                                req.Handle<PongMessage>(x => { });
+                                req.Handle<IPongMessage>(x => { });
                                 req.SetTimeout(8.Seconds());
                             });
                 });

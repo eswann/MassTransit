@@ -36,13 +36,13 @@ namespace MassTransit.EnvironmentConfigurators
         void Select(string environmentName);
     }
 
-    public class EnvironmentsConfiguratorImpl :
+    public class EnvironmentsConfigurator :
 		IEnvironmentsConfigurator
 	{
 		readonly IDictionary<string, Func<IServiceBusEnvironment>> _environments;
 		string _currentEnvironment;
 
-		public EnvironmentsConfiguratorImpl()
+		public EnvironmentsConfigurator()
 		{
 			_environments = new Dictionary<string, Func<IServiceBusEnvironment>>();
 		}

@@ -23,7 +23,7 @@ namespace MassTransit.Testing.Instances
 		where TConsumer : class, IConsumer
 	    where TScenario : ITestScenario
 	{
-		readonly ConsumerTestSubjectImpl<TScenario, TConsumer> _subject;
+		readonly ConsumerTestSubject<TScenario, TConsumer> _subject;
 
 		bool _disposed;
 
@@ -31,7 +31,7 @@ namespace MassTransit.Testing.Instances
 		                            IConsumerFactory<TConsumer> consumerFactory)
 			: base(scenario, actions)
 		{
-			_subject = new ConsumerTestSubjectImpl<TScenario, TConsumer>(consumerFactory);
+			_subject = new ConsumerTestSubject<TScenario, TConsumer>(consumerFactory);
 		}
 
 		public void Execute()
@@ -41,7 +41,7 @@ namespace MassTransit.Testing.Instances
 			ExecuteTestActions();
 		}
 
-		public ConsumerTestSubject<TConsumer> Consumer
+		public IConsumerTestSubject<TConsumer> Consumer
 		{
 			get { return _subject; }
 		}

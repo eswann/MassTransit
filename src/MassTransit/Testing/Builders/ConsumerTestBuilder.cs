@@ -12,15 +12,52 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Testing.Builders
 {
+	using System.Collections.Generic;
+	using Instances;
 	using Scenarios;
+	using TestActions;
 
-	public interface ConsumerTestBuilder<TScenario, TConsumer> :
-		TestInstanceBuilder<TScenario>
-		where TConsumer : class
-		where TScenario : ITestScenario
+
+    public interface IConsumerTestBuilder<TScenario, TConsumer> :
+        ITestInstanceBuilder<TScenario>
+        where TConsumer : class
+        where TScenario : ITestScenario
+    {
+        ConsumerTest<TScenario, TConsumer> Build();
+
+        void SetConsumerFactory(IConsumerFactory<TConsumer> consumerFactory);
+    }
+
+	public class ConsumerTestBuilder<TScenario, TConsumer> :
+		IConsumerTestBuilder<TScenario, TConsumer>
+		where TConsumer : class, IConsumer
+	    where TScenario : ITestScenario
 	{
-		ConsumerTest<TScenario, TConsumer> Build();
+		readonly IList<TestAction<TScenario>> _actions;
+		readonly TScenario _scenario;
+		IConsumerFactory<TConsumer> _consumerFactory;
+		public ConsumerTestBuilder(TScenario scenario)
+		{
+			_scenario = scenario;
 
-		void SetConsumerFactory(IConsumerFactory<TConsumer> consumerFactory);
+			_actions = new List<TestAction<TScenario>>();
+		}
+
+		public ConsumerTest<TScenario, TConsumer> Build()
+		{
+			var test = new ConsumerTestInstance<TScenario, TConsumer>(_scenario, _actions, _consumerFactory);
+
+			return test;
+		}
+
+		public void SetConsumerFactory(IConsumerFactory<TConsumer> consumerFactory)
+		{
+			_consumerFactory = consumerFactory;
+		}
+
+		public void AddTestAction(TestAction<TScenario> testAction)
+		{
+			_actions.Add(testAction);
+		}
 	}
 }

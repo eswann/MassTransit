@@ -44,7 +44,7 @@ namespace MassTransit.Testing.TestDecorators
 
 				yield return message =>
 					{
-						var received = new ReceivedMessageImpl<TMessage>(message);
+						var received = new ReceivedMessage<TMessage>(message);
 
 						try
 						{

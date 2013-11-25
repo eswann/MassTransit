@@ -36,7 +36,7 @@ namespace MassTransit.EndpointConfigurators
                     "was not configured (it was null). The factory method should have been specified.");
         }
 
-        public EndpointFactoryBuilder Configure(EndpointFactoryBuilder builder)
+        public IEndpointFactoryBuilder Configure(IEndpointFactoryBuilder builder)
         {
             IMessageSerializer serializer = _serializerFactory();
             if (serializer == null)

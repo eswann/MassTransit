@@ -45,7 +45,7 @@ namespace MassTransit.SubscriptionConfigurators
                         _instance.GetType().ToShortTypeName()));
         }
 
-        public SubscriptionBuilder Configure()
+        public ISubscriptionBuilder Configure()
         {
             return new InstanceSubscriptionBuilder(_instance, ReferenceFactory);
         }

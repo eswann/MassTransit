@@ -44,7 +44,7 @@ namespace MassTransit.Testing.ScenarioBuilders
 		EndpointScenarioBuilder<IBusTestScenario>,
 		IBusScenarioBuilder
 	{
-		readonly ServiceBusConfiguratorImpl _configurator;
+		readonly ServiceBusConfigurator _configurator;
 		readonly ServiceBusDefaultSettings _settings;
 
 		/// <summary>
@@ -57,7 +57,7 @@ namespace MassTransit.Testing.ScenarioBuilders
 			_settings.ConcurrentConsumerLimit = 1;
 			_settings.ReceiveTimeout = 50.Milliseconds();
 
-			_configurator = new ServiceBusConfiguratorImpl(_settings);
+			_configurator = new ServiceBusConfigurator(_settings);
 			_configurator.ReceiveFrom(uri);
 		}
 

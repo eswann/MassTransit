@@ -20,6 +20,6 @@ namespace MassTransit.Testing.BuilderConfigurators
 		where TConsumer : class
 		where TScenario : ITestScenario
 	{
-		ConsumerTestBuilder<TScenario, TConsumer> Configure(ConsumerTestBuilder<TScenario, TConsumer> builder);
+		IConsumerTestBuilder<TScenario, TConsumer> Configure(IConsumerTestBuilder<TScenario, TConsumer> builder);
 	}
 }

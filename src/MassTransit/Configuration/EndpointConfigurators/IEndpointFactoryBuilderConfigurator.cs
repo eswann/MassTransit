@@ -18,6 +18,6 @@ namespace MassTransit.EndpointConfigurators
 	public interface IEndpointFactoryBuilderConfigurator :
 		IConfigurator
 	{
-		EndpointFactoryBuilder Configure(EndpointFactoryBuilder builder);
+		IEndpointFactoryBuilder Configure(IEndpointFactoryBuilder builder);
 	}
 }

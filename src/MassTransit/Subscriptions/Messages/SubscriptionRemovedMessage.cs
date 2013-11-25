@@ -17,7 +17,7 @@ namespace MassTransit.Subscriptions.Messages
 	[Serializable]
 	public class SubscriptionRemovedMessage :
 		SubscriptionMessage,
-		SubscriptionRemoved
+		ISubscriptionRemoved
 	{
 	}
 }

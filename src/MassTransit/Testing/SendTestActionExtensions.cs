@@ -19,7 +19,7 @@ namespace MassTransit.Testing
 
 	public static class SendTestActionExtensions
 	{
-		public static void Send<TMessage>(this TestInstanceConfigurator<IBusTestScenario> configurator, TMessage message)
+		public static void Send<TMessage>(this ITestInstanceConfigurator<IBusTestScenario> configurator, TMessage message)
 			where TMessage : class
 		{
 			var actionConfigurator = new SendTestActionConfigurator<IBusTestScenario, TMessage>(x => x.Bus.Endpoint, message);
@@ -27,7 +27,7 @@ namespace MassTransit.Testing
 			configurator.AddActionConfigurator(actionConfigurator);
 		}
 
-		public static void Send<TMessage>(this TestInstanceConfigurator<IBusTestScenario> configurator, TMessage message,
+		public static void Send<TMessage>(this ITestInstanceConfigurator<IBusTestScenario> configurator, TMessage message,
 		                                  Action<ISendContext<TMessage>> callback)
 			where TMessage : class
 		{
@@ -37,7 +37,7 @@ namespace MassTransit.Testing
 			configurator.AddActionConfigurator(actionConfigurator);
 		}
 
-		public static void Send<TMessage>(this TestInstanceConfigurator<IBusTestScenario> configurator, TMessage message,
+		public static void Send<TMessage>(this ITestInstanceConfigurator<IBusTestScenario> configurator, TMessage message,
 		                                  Action<IBusTestScenario, ISendContext<TMessage>> callback)
 			where TMessage : class
 		{
@@ -47,7 +47,7 @@ namespace MassTransit.Testing
 			configurator.AddActionConfigurator(actionConfigurator);
 		}
 
-		public static void Send<TMessage>(this TestInstanceConfigurator<ILocalRemoteTestScenario> configurator, TMessage message)
+		public static void Send<TMessage>(this ITestInstanceConfigurator<ILocalRemoteTestScenario> configurator, TMessage message)
 			where TMessage : class
 		{
 			var actionConfigurator = new SendTestActionConfigurator<ILocalRemoteTestScenario, TMessage>(x => x.RemoteBus.Endpoint, message);
@@ -55,7 +55,7 @@ namespace MassTransit.Testing
 			configurator.AddActionConfigurator(actionConfigurator);
 		}
 
-		public static void Send<TMessage>(this TestInstanceConfigurator<ILocalRemoteTestScenario> configurator, TMessage message,
+		public static void Send<TMessage>(this ITestInstanceConfigurator<ILocalRemoteTestScenario> configurator, TMessage message,
 		                                  Action<ISendContext<TMessage>> callback)
 			where TMessage : class
 		{
@@ -65,7 +65,7 @@ namespace MassTransit.Testing
 			configurator.AddActionConfigurator(actionConfigurator);
 		}
 
-		public static void Send<TMessage>(this TestInstanceConfigurator<ILocalRemoteTestScenario> configurator, TMessage message,
+		public static void Send<TMessage>(this ITestInstanceConfigurator<ILocalRemoteTestScenario> configurator, TMessage message,
 										  Action<ILocalRemoteTestScenario, ISendContext<TMessage>> callback)
 			where TMessage : class
 		{

@@ -12,13 +12,69 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Testing.Subjects
 {
-	public interface ConsumerTestSubject<TConsumer> :
-		ITestSubject<TConsumer>
-		where TConsumer : class
+	using System;
+	using Scenarios;
+	using TestDecorators;
+
+    public interface IConsumerTestSubject<TConsumer> :
+    ITestSubject<TConsumer>
+    where TConsumer : class
+    {
+        /// <summary>
+        /// The messages that were received by the handler
+        /// </summary>
+        IReceivedMessageList Received { get; }
+    }
+
+	public class ConsumerTestSubject<TScenario, TSubject> :
+		IConsumerTestSubject<TSubject>
+		where TSubject : class, IConsumer
+	    where TScenario : ITestScenario
 	{
-		/// <summary>
-		/// The messages that were received by the handler
-		/// </summary>
-		IReceivedMessageList Received { get; }
+		readonly IConsumerFactory<TSubject> _consumerFactory;
+		readonly ReceivedMessageList _received;
+		bool _disposed;
+		UnsubscribeAction _unsubscribe;
+
+		public ConsumerTestSubject(IConsumerFactory<TSubject> consumerFactory)
+		{
+			_consumerFactory = consumerFactory;
+
+			_received = new ReceivedMessageList();
+		}
+
+		public IReceivedMessageList Received
+		{
+			get { return _received; }
+		}
+
+		public void Dispose()
+		{
+			Dispose(true);
+		}
+
+		public void Prepare(TScenario scenario)
+		{
+			var decoratedConsumerFactory = new ConsumerFactoryTestDecorator<TSubject>(_consumerFactory, _received);
+
+			_unsubscribe = scenario.InputBus.SubscribeConsumer(decoratedConsumerFactory);
+		}
+
+		void Dispose(bool disposing)
+		{
+			if (_disposed) return;
+			if (disposing)
+			{
+				if (_unsubscribe != null)
+				{
+					_unsubscribe();
+					_unsubscribe = null;
+				}
+
+				_received.Dispose();
+			}
+
+			_disposed = true;
+		}
 	}
 }

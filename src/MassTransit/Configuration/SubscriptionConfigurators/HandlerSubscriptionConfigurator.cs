@@ -57,7 +57,7 @@ namespace MassTransit.SubscriptionConfigurators
 				yield return this.Failure("The handler cannot be null. This should have come from the ctor.");
 		}
 
-		public SubscriptionBuilder Configure()
+		public ISubscriptionBuilder Configure()
 		{
 			return new HandlerSubscriptionBuilder<TMessage>(_handler, ReferenceFactory);
 		}

@@ -19,18 +19,18 @@ namespace MassTransit.BusConfigurators
 	using Configurators;
 
 	public class PostCreateBusBuilderConfigurator :
-		BusBuilderConfigurator
+		IBusBuilderConfigurator
 	{
-		readonly IList<BusBuilderConfigurator> _configurators;
+		readonly IList<IBusBuilderConfigurator> _configurators;
 		readonly Action<ServiceBus> _postCreateAction;
 
 		public PostCreateBusBuilderConfigurator(Action<ServiceBus> postCreateAction)
 		{
 			_postCreateAction = postCreateAction;
-			_configurators = new List<BusBuilderConfigurator>();
+			_configurators = new List<IBusBuilderConfigurator>();
 		}
 
-		public BusBuilder Configure(BusBuilder builder)
+		public IBusBuilder Configure(IBusBuilder builder)
 		{
 			builder.AddPostCreateAction(_postCreateAction);
 

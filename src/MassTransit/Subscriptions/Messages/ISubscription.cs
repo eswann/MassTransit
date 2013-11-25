@@ -18,7 +18,7 @@ namespace MassTransit.Subscriptions.Messages
     /// <summary>
     /// Describes a subscription of an <see cref="Endpoint"/> to a particular message.
     /// </summary>
-	public interface Subscription
+	public interface ISubscription
 	{
         /// <summary>
         /// Gets the subscription id.

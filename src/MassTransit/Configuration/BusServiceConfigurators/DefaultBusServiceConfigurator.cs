@@ -21,7 +21,7 @@ namespace MassTransit.BusServiceConfigurators
 
 	public class DefaultBusServiceConfigurator<TService> :
 		IBusServiceConfigurator,
-		BusBuilderConfigurator
+		IBusBuilderConfigurator
 		where TService : IBusService
 	{
 		readonly Func<IServiceBus, TService> _serviceFactory;
@@ -40,7 +40,7 @@ namespace MassTransit.BusServiceConfigurators
 					.FormatWith(typeof (TService).Name));
 		}
 
-		public BusBuilder Configure(BusBuilder builder)
+		public IBusBuilder Configure(IBusBuilder builder)
 		{
 			builder.AddBusServiceConfigurator(this);
 

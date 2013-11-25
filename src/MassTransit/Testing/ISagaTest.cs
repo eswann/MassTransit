@@ -20,7 +20,7 @@ namespace MassTransit.Testing
 		ITestInstance
 		where TSaga : class, ISaga
 	{
-		SagaTestSubject<TSaga> Saga { get; }
+		ISagaTestSubject<TSaga> Saga { get; }
 	}
 
 	public interface ISagaTest<TScenario, TConsumer> :

@@ -47,7 +47,7 @@ namespace MassTransit.BusConfigurators
         /// Specifies the builder factory to use when the service is invoked
         /// </summary>
         /// <param name="builderFactory"></param>
-        void UseBusBuilder(Func<BusSettings, BusBuilder> builderFactory);
+        void UseBusBuilder(Func<IBusSettings, IBusBuilder> builderFactory);
 
         /// <summary>
         /// Adds a configurator to the subscription coordinator builder
@@ -59,7 +59,7 @@ namespace MassTransit.BusConfigurators
         /// Adds a configurator for the service bus builder to the configurator
         /// </summary>
         /// <param name="configurator"></param>
-        void AddBusConfigurator(BusBuilderConfigurator configurator);
+        void AddBusConfigurator(IBusBuilderConfigurator configurator);
 
         /// <summary>
         /// Specify the endpoint from which messages should be read
@@ -102,24 +102,24 @@ namespace MassTransit.BusConfigurators
     /// <see cref="IServiceBusConfigurator"/>. Core implementation of service bus
     /// configurator.
     /// </summary>
-    public class ServiceBusConfiguratorImpl :
+    public class ServiceBusConfigurator :
         IServiceBusConfigurator
     {
-        static readonly ILog _log = Logger.Get(typeof (ServiceBusConfiguratorImpl));
+        static readonly ILog _log = Logger.Get(typeof (ServiceBusConfigurator));
 
-        readonly IList<BusBuilderConfigurator> _configurators;
+        readonly IList<IBusBuilderConfigurator> _configurators;
         readonly IEndpointFactoryConfigurator _endpointFactoryConfigurator;
         readonly ServiceBusSettings _settings;
 
         readonly SubscriptionRouterConfigurator _subscriptionRouterConfigurator;
-        Func<BusSettings, BusBuilder> _builderFactory;
+        Func<IBusSettings, IBusBuilder> _builderFactory;
 
-        public ServiceBusConfiguratorImpl(ServiceBusDefaultSettings defaultSettings)
+        public ServiceBusConfigurator(ServiceBusDefaultSettings defaultSettings)
         {
             _settings = new ServiceBusSettings(defaultSettings);
 
             _builderFactory = DefaultBuilderFactory;
-            _configurators = new List<BusBuilderConfigurator>();
+            _configurators = new List<IBusBuilderConfigurator>();
 
             _endpointFactoryConfigurator = new EndpointFactoryConfigurator(new EndpointFactoryDefaultSettings());
 
@@ -151,7 +151,7 @@ namespace MassTransit.BusConfigurators
                 yield return result;
         }
 
-        public void UseBusBuilder(Func<BusSettings, BusBuilder> builderFactory)
+        public void UseBusBuilder(Func<IBusSettings, IBusBuilder> builderFactory)
         {
             _builderFactory = builderFactory;
         }
@@ -161,7 +161,7 @@ namespace MassTransit.BusConfigurators
             _subscriptionRouterConfigurator.AddConfigurator(configurator);
         }
 
-        public void AddBusConfigurator(BusBuilderConfigurator configurator)
+        public void AddBusConfigurator(IBusBuilderConfigurator configurator)
         {
             _configurators.Add(configurator);
         }
@@ -198,7 +198,7 @@ namespace MassTransit.BusConfigurators
         }
 
         public void UseEndpointFactoryBuilder(
-            Func<IEndpointFactoryDefaultSettings, EndpointFactoryBuilder> endpointFactoryBuilderFactory)
+            Func<IEndpointFactoryDefaultSettings, IEndpointFactoryBuilder> endpointFactoryBuilderFactory)
         {
             _endpointFactoryConfigurator.UseEndpointFactoryBuilder(endpointFactoryBuilderFactory);
         }
@@ -226,13 +226,13 @@ namespace MassTransit.BusConfigurators
             IEndpointCache endpointCache = CreateEndpointCache();
             _settings.EndpointCache = endpointCache;
 
-            BusBuilder builder = _builderFactory(_settings);
+            IBusBuilder builder = _builderFactory(_settings);
 
             _subscriptionRouterConfigurator.SetNetwork(_settings.Network);
 
             // run through all configurators that have been set and let
             // them do their magic
-            foreach (BusBuilderConfigurator configurator in _configurators)
+            foreach (IBusBuilderConfigurator configurator in _configurators)
             {
                 builder = configurator.Configure(builder);
             }
@@ -262,7 +262,7 @@ namespace MassTransit.BusConfigurators
 
         /// <summary>
         /// This lets you change the bus settings without
-        /// having to implement a <see cref="BusBuilderConfigurator"/>
+        /// having to implement a <see cref="IBusBuilderConfigurator"/>
         /// first. Use with caution.
         /// </summary>
         /// <param name="callback">The callback that changes the settings.</param>
@@ -284,9 +284,9 @@ namespace MassTransit.BusConfigurators
             return endpointCache;
         }
 
-        static BusBuilder DefaultBuilderFactory(BusSettings settings)
+        static IBusBuilder DefaultBuilderFactory(IBusSettings settings)
         {
-            return new ServiceBusBuilderImpl(settings);
+            return new ServiceBusBuilder(settings);
         }
     }
 }

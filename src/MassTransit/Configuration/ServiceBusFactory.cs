@@ -32,7 +32,7 @@ namespace MassTransit
 		{
 			Guard.AgainstNull(configure, "configure");
 
-			var configurator = new ServiceBusConfiguratorImpl(_defaultSettings);
+			var configurator = new ServiceBusConfigurator(_defaultSettings);
 
 			configurator.EnableMessageTracing();
 
@@ -54,7 +54,7 @@ namespace MassTransit
 		{
 			Guard.AgainstNull(configure);
 
-			var configurator = new ServiceBusDefaultSettingsConfiguratorImpl(_defaultSettings);
+			var configurator = new ServiceBusDefaultSettingsConfigurator(_defaultSettings);
 
 			configure(configurator);
 		}

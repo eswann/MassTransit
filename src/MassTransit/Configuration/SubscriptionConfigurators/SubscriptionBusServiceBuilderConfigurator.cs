@@ -22,12 +22,12 @@ namespace MassTransit.SubscriptionConfigurators
         ISubscriptionBusServiceBuilder Configure(ISubscriptionBusServiceBuilder builder);
     }
 
-	public class SubscriptionBusServiceBuilderConfiguratorImpl :
+	public class SubscriptionBusServiceBuilderConfigurator :
 		ISubscriptionBusServiceBuilderConfigurator
 	{
 		readonly ISubscriptionBuilderConfigurator _configurator;
 
-		public SubscriptionBusServiceBuilderConfiguratorImpl(ISubscriptionBuilderConfigurator configurator)
+		public SubscriptionBusServiceBuilderConfigurator(ISubscriptionBuilderConfigurator configurator)
 		{
 			_configurator = configurator;
 		}
@@ -39,7 +39,7 @@ namespace MassTransit.SubscriptionConfigurators
 
 		public ISubscriptionBusServiceBuilder Configure(ISubscriptionBusServiceBuilder builder)
 		{
-			SubscriptionBuilder subscriptionBuilder = _configurator.Configure();
+			ISubscriptionBuilder subscriptionBuilder = _configurator.Configure();
 
 			builder.AddSubscriptionBuilder(subscriptionBuilder);
 

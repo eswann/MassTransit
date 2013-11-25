@@ -20,7 +20,7 @@ namespace MassTransit.Testing
 	public static class ConsumerTestConfiguratorExtensions
 	{
 		public static void ConstructUsing<TScenario, TConsumer>(
-			this ConsumerTestInstanceConfigurator<TScenario, TConsumer> configurator,
+			this IConsumerTestInstanceConfigurator<TScenario, TConsumer> configurator,
 			Func<TConsumer> consumer)
 			where TConsumer : class
 			where TScenario : ITestScenario

@@ -19,7 +19,7 @@ namespace MassTransit.Testing
 
 	/// <summary>
 	/// Factory for testing message handlers, buses and messages - received, skipped, sent and published. The builders used
-	/// with the <see cref="TestInstanceConfigurator{TScenario}"/>, defaults to the loopback bus scenario. Use the extension methods in
+	/// with the <see cref="ITestInstanceConfigurator{TScenario}"/>, defaults to the loopback bus scenario. Use the extension methods in
 	/// <see cref="BusTestScenarioExtensions"/> to use alternative scenario builders. A builder is something that ties some component
 	/// together.
 	/// </summary>

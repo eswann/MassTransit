@@ -51,9 +51,9 @@ namespace MassTransit.Services.Subscriptions.Configuration
         /// </summary>
         [Obsolete("The extension method on UseMsmq should be used instead")]
         public static void UseSubscriptionService(this IServiceBusConfigurator configurator,
-            Action<SubscriptionClientConfigurator> configureCallback)
+            Action<ISubscriptionClientConfigurator> configureCallback)
         {
-            var clientConfigurator = new SubscriptionClientConfiguratorImpl();
+            var clientConfigurator = new SubscriptionClientConfigurator();
 
             configureCallback(clientConfigurator);
 

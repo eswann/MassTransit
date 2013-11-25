@@ -24,7 +24,7 @@ namespace MassTransit.SubscriptionConfigurators
 
 	public class SubscriptionRouterConfigurator :
 		IBusServiceConfigurator,
-		BusBuilderConfigurator
+		IBusBuilderConfigurator
 	{
 		readonly IList<ISubscriptionRouterBuilderConfigurator> _configurators;
 		string _network;
@@ -40,7 +40,7 @@ namespace MassTransit.SubscriptionConfigurators
 			return _configurators.SelectMany(x => x.Validate());
 		}
 
-		public BusBuilder Configure(BusBuilder builder)
+		public IBusBuilder Configure(IBusBuilder builder)
 		{
 			builder.AddBusServiceConfigurator(this);
 

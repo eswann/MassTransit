@@ -74,7 +74,7 @@ namespace MassTransit.Subscriptions.Coordinator
         }
 
         [UsedImplicitly]
-        public void Handle(Message<RemovePeer> message)
+        public void Handle(Message<IRemovePeer> message)
         {
             try
             {
@@ -114,7 +114,7 @@ namespace MassTransit.Subscriptions.Coordinator
         }
 
         [UsedImplicitly]
-        public void Handle(Message<RemovePeerSubscription> message)
+        public void Handle(Message<IRemovePeerSubscription> message)
         {
             try
             {

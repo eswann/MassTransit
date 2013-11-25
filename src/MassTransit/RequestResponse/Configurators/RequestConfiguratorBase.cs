@@ -23,7 +23,7 @@ namespace MassTransit.RequestResponse.Configurators
         where TRequest : class
     {
         readonly IList<Action<ISendContext<TRequest>>> _contextActions;
-        readonly Cache<Type, ResponseHandler> _handlers;
+        readonly Cache<Type, IResponseHandler> _handlers;
         readonly TRequest _message;
         readonly string _requestId;
         protected SynchronizationContext RequestSynchronizationContext;
@@ -37,7 +37,7 @@ namespace MassTransit.RequestResponse.Configurators
             Timeout = TimeSpan.FromMilliseconds(-1);
 
             _contextActions = new List<Action<ISendContext<TRequest>>>();
-            _handlers = new DictionaryCache<Type, ResponseHandler>();
+            _handlers = new DictionaryCache<Type, IResponseHandler>();
         }
 
         public TRequest Request
@@ -50,7 +50,7 @@ namespace MassTransit.RequestResponse.Configurators
             get { return _requestId; }
         }
 
-        protected IEnumerable<ResponseHandler> Handlers
+        protected IEnumerable<IResponseHandler> Handlers
         {
             get { return _handlers; }
         }
@@ -98,7 +98,7 @@ namespace MassTransit.RequestResponse.Configurators
 
 
         protected T AddHandler<T>(Type responseType, Func<T> responseHandlerFactory)
-            where T : class, ResponseHandler
+            where T : class, IResponseHandler
         {
             if (_handlers.Has(responseType))
                 throw new ArgumentException("A response handler for {0} has already been declared."

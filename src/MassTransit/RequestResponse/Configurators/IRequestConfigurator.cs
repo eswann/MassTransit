@@ -15,7 +15,7 @@ namespace MassTransit.RequestResponse.Configurators
     using System;
     using Context;
 
-    public interface RequestConfigurator
+    public interface IRequestConfigurator
     {
         /// <summary>
         /// Returns the identifier assigned to this request
@@ -49,8 +49,8 @@ namespace MassTransit.RequestResponse.Configurators
     /// Configures a request and the associated response handler behavior
     /// </summary>
     /// <typeparam name="TRequest">The message type of the request</typeparam>
-    public interface RequestConfigurator<TRequest> :
-        RequestConfigurator
+    public interface IRequestConfigurator<TRequest> :
+        IRequestConfigurator
         where TRequest : class
     {
         /// <summary>

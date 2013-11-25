@@ -54,14 +54,14 @@ namespace MassTransit.Testing
 		}
 	}
 
-	public class ReceivedMessageImpl<T> :
+	public class ReceivedMessage<T> :
 		IReceivedMessage<T>
 		where T : class
 	{
 		readonly IConsumeContext<T> _context;
 		Exception _exception;
 
-		public ReceivedMessageImpl(IConsumeContext<T> context)
+		public ReceivedMessage(IConsumeContext<T> context)
 		{
 			_context = context;
 		}

@@ -17,7 +17,7 @@ namespace MassTransit.SubscriptionBuilders
     using Subscriptions;
 
     public class ConsumerSubscriptionBuilder<TConsumer> :
-        SubscriptionBuilder
+        ISubscriptionBuilder
         where TConsumer : class
     {
         readonly IConsumerConnector _consumerConnector;

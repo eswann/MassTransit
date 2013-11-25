@@ -18,7 +18,7 @@ namespace MassTransit.Subscriptions.Coordinator
     using Messages;
 
     public class BusSubscription :
-        Subscription
+        ISubscription
     {
         static readonly ILog _log = Logger.Get(typeof(BusSubscription));
         readonly string _correlationId;
@@ -39,7 +39,7 @@ namespace MassTransit.Subscriptions.Coordinator
             _subscriptionId = Guid.Empty;
         }
 
-        public IEnumerable<Subscription> Subscriptions
+        public IEnumerable<ISubscription> Subscriptions
         {
             get
             {
@@ -68,7 +68,7 @@ namespace MassTransit.Subscriptions.Coordinator
             get { return _correlationId; }
         }
 
-        public void OnSubscribeTo(SubscribeTo added)
+        public void OnSubscribeTo(ISubscribeTo added)
         {
             lock (_ids)
             {
@@ -94,7 +94,7 @@ namespace MassTransit.Subscriptions.Coordinator
             _observer.OnSubscriptionAdded(add);
         }
 
-        public void OnUnsubscribeFrom(UnsubscribeFrom removed)
+        public void OnUnsubscribeFrom(IUnsubscribeFrom removed)
         {
             lock (_ids)
             {

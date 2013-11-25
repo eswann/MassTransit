@@ -25,7 +25,7 @@ namespace MassTransit.Testing.Instances
 		where TMessage : class
 		where TScenario : ITestScenario
 	{
-		readonly HandlerTestSubjectImpl<TScenario, TMessage> _subject;
+		readonly HandlerTestSubject<TScenario, TMessage> _subject;
 
 		bool _disposed;
 
@@ -33,7 +33,7 @@ namespace MassTransit.Testing.Instances
 		                           Action<IConsumeContext<TMessage>, TMessage> handler)
 			: base(scenario, actions)
 		{
-			_subject = new HandlerTestSubjectImpl<TScenario, TMessage>(handler);
+			_subject = new HandlerTestSubject<TScenario, TMessage>(handler);
 		}
 
 		public void Execute()
@@ -43,7 +43,7 @@ namespace MassTransit.Testing.Instances
 			ExecuteTestActions();
 		}
 
-		public HandlerTestSubject<TMessage> Handler
+		public IHandlerTestSubject<TMessage> Handler
 		{
 			get { return _subject; }
 		}

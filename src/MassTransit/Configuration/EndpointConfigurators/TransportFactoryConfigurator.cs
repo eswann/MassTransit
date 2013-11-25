@@ -37,7 +37,7 @@ namespace MassTransit.EndpointConfigurators
 				yield return this.Failure("TransportFactory", "The transport factory was null. This should have been in the ctor.");
 		}
 
-		public EndpointFactoryBuilder Configure(EndpointFactoryBuilder builder)
+		public IEndpointFactoryBuilder Configure(IEndpointFactoryBuilder builder)
 		{
 			TTransport transportFactory = _transportFactory();
 

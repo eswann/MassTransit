@@ -32,12 +32,12 @@ namespace MassTransit.Subscriptions.Coordinator
                     x => new BusSubscription(x.MessageName, x.CorrelationId, _observer));
         }
 
-        public IEnumerable<Subscription> Subscriptions
+        public IEnumerable<ISubscription> Subscriptions
         {
             get { return _subscriptions.SelectMany(x => x.Subscriptions).ToList(); }
         }
 
-        public void OnSubscribeTo(SubscribeTo message)
+        public void OnSubscribeTo(ISubscribeTo message)
         {
             var key = new SubscriptionKey(message.MessageName, message.CorrelationId);
 
@@ -49,7 +49,7 @@ namespace MassTransit.Subscriptions.Coordinator
             subscription.OnSubscribeTo(message);
         }
 
-        public void OnUnsubscribeFrom(UnsubscribeFrom message)
+        public void OnUnsubscribeFrom(IUnsubscribeFrom message)
         {
             var key = new SubscriptionKey(message.MessageName, message.CorrelationId);
 

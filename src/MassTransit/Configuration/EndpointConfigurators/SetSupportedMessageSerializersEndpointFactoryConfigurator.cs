@@ -38,7 +38,7 @@ namespace MassTransit.EndpointConfigurators
             }
         }
 
-        public EndpointFactoryBuilder Configure(EndpointFactoryBuilder builder)
+        public IEndpointFactoryBuilder Configure(IEndpointFactoryBuilder builder)
         {
             ISupportedMessageSerializers supportedSerializers = _supportedSerializersFactory();
             if (supportedSerializers == null)

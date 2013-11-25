@@ -26,8 +26,8 @@ namespace MassTransit.Testing.ScenarioBuilders
 		const string DefaultLocalUri = "loopback://localhost/mt_client";
 		const string DefaultRemoteUri = "loopback://localhost/mt_server";
 
-		readonly ServiceBusConfiguratorImpl _localConfigurator;
-		readonly ServiceBusConfiguratorImpl _remoteConfigurator;
+		readonly ServiceBusConfigurator _localConfigurator;
+		readonly ServiceBusConfigurator _remoteConfigurator;
 		readonly ServiceBusDefaultSettings _settings;
 		SubscriptionLoopback _localLoopback;
 		SubscriptionLoopback _remoteLoopback;
@@ -38,10 +38,10 @@ namespace MassTransit.Testing.ScenarioBuilders
 			_settings.ConcurrentConsumerLimit = 4;
 			_settings.ReceiveTimeout = 50.Milliseconds();
 
-			_localConfigurator = new ServiceBusConfiguratorImpl(_settings);
+			_localConfigurator = new ServiceBusConfigurator(_settings);
 			_localConfigurator.ReceiveFrom(DefaultLocalUri);
 
-			_remoteConfigurator = new ServiceBusConfiguratorImpl(_settings);
+			_remoteConfigurator = new ServiceBusConfigurator(_settings);
 			_remoteConfigurator.ReceiveFrom(DefaultRemoteUri);
 		}
 
@@ -59,7 +59,7 @@ namespace MassTransit.Testing.ScenarioBuilders
 		{
 			IEndpointFactory endpointFactory = BuildEndpointFactory();
 
-			var scenario = new LocalRemoteTestScenarioImpl(endpointFactory);
+			var scenario = new LocalRemoteTestScenario(endpointFactory);
 
 			BuildLocalBus(scenario);
 			BuildRemoteBus(scenario);
@@ -70,7 +70,7 @@ namespace MassTransit.Testing.ScenarioBuilders
 			return scenario;
 		}
 
-		protected virtual void BuildLocalBus(LocalRemoteTestScenarioImpl scenario)
+		protected virtual void BuildLocalBus(LocalRemoteTestScenario scenario)
 		{
 			_localConfigurator.ChangeSettings(x => { x.EndpointCache = scenario.EndpointCache; });
 
@@ -83,7 +83,7 @@ namespace MassTransit.Testing.ScenarioBuilders
 			scenario.LocalBus = _localConfigurator.CreateServiceBus();
 		}
 
-		protected virtual void BuildRemoteBus(LocalRemoteTestScenarioImpl scenario)
+		protected virtual void BuildRemoteBus(LocalRemoteTestScenario scenario)
 		{
 			_remoteConfigurator.ChangeSettings(x => { x.EndpointCache = scenario.EndpointCache; });
 

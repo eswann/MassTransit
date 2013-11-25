@@ -48,7 +48,7 @@ namespace MassTransit.Subscriptions.Coordinator
             SendAddPeerMessage();
         }
 
-        public void OnSubscriptionAdded(SubscriptionAdded message)
+        public void OnSubscriptionAdded(ISubscriptionAdded message)
         {
             long messageNumber = Interlocked.Increment(ref _lastMessageNumber);
 
@@ -68,7 +68,7 @@ namespace MassTransit.Subscriptions.Coordinator
             _endpoint.Send(add, SetSendContext);
         }
 
-        public void OnSubscriptionRemoved(SubscriptionRemoved message)
+        public void OnSubscriptionRemoved(ISubscriptionRemoved message)
         {
             long messageNumber = Interlocked.Increment(ref _lastMessageNumber);
 

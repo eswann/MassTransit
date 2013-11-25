@@ -33,7 +33,7 @@ namespace MassTransit.EndpointConfigurators
                     "must be >= 0.");
         }
 
-        public EndpointFactoryBuilder Configure(EndpointFactoryBuilder builder)
+        public IEndpointFactoryBuilder Configure(IEndpointFactoryBuilder builder)
         {
             builder.SetDefaultRetryLimit(_retryLimit);
 

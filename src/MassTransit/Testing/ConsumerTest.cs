@@ -19,7 +19,7 @@ namespace MassTransit.Testing
 		ITestInstance
 		where TConsumer : class
 	{
-		ConsumerTestSubject<TConsumer> Consumer { get; }
+		IConsumerTestSubject<TConsumer> Consumer { get; }
 	}
 
 	public interface ConsumerTest<TScenario, TConsumer> :

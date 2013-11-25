@@ -18,6 +18,6 @@ namespace MassTransit.SubscriptionConfigurators
 	public interface ISubscriptionBuilderConfigurator :
 		IConfigurator
 	{
-		SubscriptionBuilder Configure();
+		ISubscriptionBuilder Configure();
 	}
 }
