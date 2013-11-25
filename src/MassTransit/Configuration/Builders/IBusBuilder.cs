@@ -20,12 +20,12 @@ namespace MassTransit.Builders
 	/// A BusBuilder is the base interface for building service, and includes things like
 	/// control bus, subscription bus, and other limited-functionality bus instances
 	/// </summary>
-	public interface BusBuilder
+	public interface IBusBuilder
 	{
 		/// <summary>
 		/// The settings to creating the bus, including address, etc.
 		/// </summary>
-		BusSettings Settings { get; }
+		IBusSettings Settings { get; }
 
 		/// <summary>
 		/// Builds the bus instance
@@ -52,6 +52,6 @@ namespace MassTransit.Builders
 		/// <typeparam name="T"></typeparam>
 		/// <param name="callback"></param>
 		void Match<T>(Action<T> callback)
-			where T : class, BusBuilder;
+			where T : class, IBusBuilder;
 	}
 }
