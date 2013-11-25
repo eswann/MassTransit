@@ -18,10 +18,10 @@ namespace MassTransit
 
 	public static class SubscriptionConfiguratorExtensions
 	{
-		public static void Subscribe(this ServiceBusConfigurator configurator,
-									 Action<SubscriptionBusServiceConfigurator> configure)
+		public static void Subscribe(this IServiceBusConfigurator configurator,
+									 Action<ISubscriptionBusServiceConfigurator> configure)
 		{
-			var subscriptionConfigurator = new SubscriptionBusServiceConfiguratorImpl();
+			var subscriptionConfigurator = new SubscriptionBusServiceConfigurator();
 
 			configure(subscriptionConfigurator);
 

@@ -19,9 +19,9 @@ namespace MassTransit.Saga.SubscriptionConfigurators
 	using SubscriptionBuilders;
 
 	public class SagaSubscriptionConfiguratorImpl<TSaga> :
-		SubscriptionConfiguratorImpl<SagaSubscriptionConfigurator<TSaga>>,
+		SubscriptionConfigurator<SagaSubscriptionConfigurator<TSaga>>,
 		SagaSubscriptionConfigurator<TSaga>,
-		SubscriptionBuilderConfigurator
+		ISubscriptionBuilderConfigurator
 		where TSaga : class, ISaga
 	{
 		readonly ISagaRepository<TSaga> _sagaRepository;
@@ -31,7 +31,7 @@ namespace MassTransit.Saga.SubscriptionConfigurators
 			_sagaRepository = sagaRepository;
 		}
 
-		public IEnumerable<ValidationResult> Validate()
+		public IEnumerable<IValidationResult> Validate()
 		{
 			if (_sagaRepository == null)
 				yield return this.Failure("The saga repository cannot be null. How else are we going to save stuff? #facetopalm");

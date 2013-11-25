@@ -24,15 +24,15 @@ namespace MassTransit
     {
         static readonly ILog _log = Logger.Get(typeof (ConsumerSubscriptionExtensions));
 
-        public static ConsumerSubscriptionConfigurator<TConsumer> Consumer<TConsumer>(
-            [NotNull] this SubscriptionBusServiceConfigurator configurator,
+        public static IConsumerSubscriptionConfigurator<TConsumer> Consumer<TConsumer>(
+            [NotNull] this ISubscriptionBusServiceConfigurator configurator,
             [NotNull] IConsumerFactory<TConsumer> consumerFactory)
             where TConsumer : class, IConsumer
         {
             if (_log.IsDebugEnabled)
                 _log.DebugFormat("Subscribing Consumer: {0} (using supplied consumer factory)", typeof (TConsumer));
 
-            var consumerConfigurator = new ConsumerSubscriptionConfiguratorImpl<TConsumer>(consumerFactory);
+            var consumerConfigurator = new ConsumerSubscriptionConfigurator<TConsumer>(consumerFactory);
 
             var busServiceConfigurator = new SubscriptionBusServiceBuilderConfiguratorImpl(consumerConfigurator);
 
@@ -41,8 +41,8 @@ namespace MassTransit
             return consumerConfigurator;
         }
 
-        public static ConsumerSubscriptionConfigurator<TConsumer> Consumer<TConsumer>(
-            [NotNull] this SubscriptionBusServiceConfigurator configurator)
+        public static IConsumerSubscriptionConfigurator<TConsumer> Consumer<TConsumer>(
+            [NotNull] this ISubscriptionBusServiceConfigurator configurator)
             where TConsumer : class, IConsumer, new()
         {
             if (_log.IsDebugEnabled)
@@ -50,7 +50,7 @@ namespace MassTransit
 
             var delegateConsumerFactory = new DelegateConsumerFactory<TConsumer>(() => new TConsumer());
 
-            var consumerConfigurator = new ConsumerSubscriptionConfiguratorImpl<TConsumer>(delegateConsumerFactory);
+            var consumerConfigurator = new ConsumerSubscriptionConfigurator<TConsumer>(delegateConsumerFactory);
 
             var busServiceConfigurator = new SubscriptionBusServiceBuilderConfiguratorImpl(consumerConfigurator);
 
@@ -59,8 +59,8 @@ namespace MassTransit
             return consumerConfigurator;
         }
 
-        public static ConsumerSubscriptionConfigurator<TConsumer> Consumer<TConsumer>(
-            [NotNull] this SubscriptionBusServiceConfigurator configurator, [NotNull] Func<TConsumer> consumerFactory)
+        public static IConsumerSubscriptionConfigurator<TConsumer> Consumer<TConsumer>(
+            [NotNull] this ISubscriptionBusServiceConfigurator configurator, [NotNull] Func<TConsumer> consumerFactory)
             where TConsumer : class, IConsumer
         {
             if (_log.IsDebugEnabled)
@@ -68,7 +68,7 @@ namespace MassTransit
 
             var delegateConsumerFactory = new DelegateConsumerFactory<TConsumer>(consumerFactory);
 
-            var consumerConfigurator = new ConsumerSubscriptionConfiguratorImpl<TConsumer>(delegateConsumerFactory);
+            var consumerConfigurator = new ConsumerSubscriptionConfigurator<TConsumer>(delegateConsumerFactory);
 
             var busServiceConfigurator = new SubscriptionBusServiceBuilderConfiguratorImpl(consumerConfigurator);
 
@@ -77,8 +77,8 @@ namespace MassTransit
             return consumerConfigurator;
         }
 
-        public static ConsumerSubscriptionConfigurator Consumer(
-            [NotNull] this SubscriptionBusServiceConfigurator configurator,
+        public static IConsumerSubscriptionConfigurator Consumer(
+            [NotNull] this ISubscriptionBusServiceConfigurator configurator,
             [NotNull] Type consumerType,
             [NotNull] Func<Type, object> consumerFactory)
         {
@@ -86,7 +86,7 @@ namespace MassTransit
                 _log.DebugFormat("Subscribing Consumer: {0} (by type, using object consumer factory)", consumerType);
 
             var consumerConfigurator =
-                (SubscriptionBuilderConfigurator)
+                (ISubscriptionBuilderConfigurator)
                 FastActivator.Create(typeof (UntypedConsumerSubscriptionConfigurator<>),
                     new[] {consumerType}, new object[] {consumerFactory});
 
@@ -94,7 +94,7 @@ namespace MassTransit
 
             configurator.AddConfigurator(busServiceConfigurator);
 
-            return consumerConfigurator as ConsumerSubscriptionConfigurator;
+            return consumerConfigurator as IConsumerSubscriptionConfigurator;
         }
 
         public static UnsubscribeAction SubscribeConsumer<TConsumer>([NotNull] this IServiceBus bus)
@@ -105,7 +105,7 @@ namespace MassTransit
 
             var delegateConsumerFactory = new DelegateConsumerFactory<TConsumer>(() => new TConsumer());
 
-            ConsumerConnector connector = ConsumerConnectorCache.GetConsumerConnector<TConsumer>();
+            IConsumerConnector connector = ConsumerConnectorCache.GetConsumerConnector<TConsumer>();
 
             return bus.Configure(x => connector.Connect(x, delegateConsumerFactory));
         }
@@ -119,7 +119,7 @@ namespace MassTransit
 
             var delegateConsumerFactory = new DelegateConsumerFactory<TConsumer>(consumerFactory);
 
-            ConsumerConnector connector = ConsumerConnectorCache.GetConsumerConnector<TConsumer>();
+            IConsumerConnector connector = ConsumerConnectorCache.GetConsumerConnector<TConsumer>();
 
             return bus.Configure(x => connector.Connect(x, delegateConsumerFactory));
         }
@@ -132,7 +132,7 @@ namespace MassTransit
             if (_log.IsDebugEnabled)
                 _log.DebugFormat("Subscribing Consumer: {0} (using supplied consumer factory)", typeof (TConsumer));
 
-            ConsumerConnector connector = ConsumerConnectorCache.GetConsumerConnector<TConsumer>();
+            IConsumerConnector connector = ConsumerConnectorCache.GetConsumerConnector<TConsumer>();
 
             return bus.Configure(x => connector.Connect(x, consumerFactory));
         }
@@ -146,9 +146,9 @@ namespace MassTransit
             object factory = FastActivator.Create(typeof (ObjectConsumerFactory<>), new[] {consumerType},
                 new object[] {consumerFactory});
 
-            ConsumerConnector connector = ConsumerConnectorCache.GetConsumerConnector(consumerType);
+            IConsumerConnector connector = ConsumerConnectorCache.GetConsumerConnector(consumerType);
 
-            return bus.Configure(x => connector.FastInvoke<ConsumerConnector, UnsubscribeAction>("Connect", x, factory));
+            return bus.Configure(x => connector.FastInvoke<IConsumerConnector, UnsubscribeAction>("Connect", x, factory));
         }
     }
 }

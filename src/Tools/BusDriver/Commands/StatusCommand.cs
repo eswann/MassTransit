@@ -17,12 +17,13 @@ namespace BusDriver.Commands
     using Formatting;
     using Magnum.Extensions;
     using MassTransit;
+    using MassTransit.Context;
     using MassTransit.Diagnostics.Introspection;
     using MassTransit.Diagnostics.Introspection.Messages;
     using MassTransit.Logging;
 
     public class StatusCommand :
-        Consumes<BusStatus>.Context,
+        Consumes<IBusStatus>.Context,
         Command,
         IPendingCommand
     {
@@ -52,7 +53,7 @@ namespace BusDriver.Commands
             _unsubscribe = bus.SubscribeInstance(this);
             _requestId = NewId.Next().ToString("N");
 
-            endpoint.Send<GetBusStatus>(new GetBusStatusImpl(), x =>
+            endpoint.Send<IGetBusStatus>(new GetBusStatusImpl(), x =>
                 {
                     x.SendResponseTo(bus);
                     x.SetRequestId(_requestId);
@@ -64,7 +65,7 @@ namespace BusDriver.Commands
         }
 
 
-        public void Consume(IConsumeContext<BusStatus> context)
+        public void Consume(IConsumeContext<IBusStatus> context)
         {
             if (!_requestId.Equals(context.RequestId))
                 return;
@@ -77,7 +78,7 @@ namespace BusDriver.Commands
                 .BeginBlock("Status URI:", _uriString)
                 .EndBlock();
 
-            foreach (BusStatusEntry entry in context.Message.Entries)
+            foreach (IBusStatusEntry entry in context.Message.Entries)
             {
                 text.BodyFormat("{0}:{1}", entry.Key, entry.Value);
             }

@@ -16,13 +16,14 @@ namespace MassTransit.Testing.Subjects
 	using System.Collections;
 	using System.Collections.Generic;
 	using Saga;
+	using Saga.Configuration;
 	using Scenarios;
 	using TestDecorators;
 
 	public class SagaTestSubjectImpl<TScenario, TSaga> :
 		SagaTestSubject<TSaga>
 		where TSaga : class, ISaga
-		where TScenario : TestScenario
+		where TScenario : ITestScenario
 	{
 		readonly SagaListImpl<TSaga> _created;
 		readonly ReceivedMessageListImpl _received;
@@ -40,12 +41,12 @@ namespace MassTransit.Testing.Subjects
 			_sagas = new SagaListImpl<TSaga>();
 		}
 
-		public ReceivedMessageList Received
+		public IReceivedMessageList Received
 		{
 			get { return _received; }
 		}
 
-		public SagaList<TSaga> Created
+		public ISagaList<TSaga> Created
 		{
 			get { return _created; }
 		}
@@ -55,7 +56,7 @@ namespace MassTransit.Testing.Subjects
 			Dispose(true);
 		}
 
-		public IEnumerator<SagaInstance<TSaga>> GetEnumerator()
+		public IEnumerator<ISagaInstance<TSaga>> GetEnumerator()
 		{
 			return _sagas.GetEnumerator();
 		}

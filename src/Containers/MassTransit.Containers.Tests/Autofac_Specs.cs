@@ -13,6 +13,7 @@
 namespace MassTransit.Containers.Tests
 {
     using Autofac;
+    using AutofacIntegration;
     using Magnum.TestFramework;
     using Saga;
     using Scenarios;
@@ -31,8 +32,8 @@ namespace MassTransit.Containers.Tests
             builder.RegisterType<SimpleConsumer>();
             builder.RegisterType<SimpleConsumerDependency>()
                    .As<ISimpleConsumerDependency>();
-            builder.RegisterType<AnotherMessageConsumerImpl>()
-                   .As<AnotherMessageConsumer>();
+            builder.RegisterType<AnotherMessageConsumer>()
+                   .As<IAnotherMessageConsumer>();
 
             _container = builder.Build();
         }
@@ -43,7 +44,7 @@ namespace MassTransit.Containers.Tests
             _container.Dispose();
         }
 
-        protected override void SubscribeLocalBus(SubscriptionBusServiceConfigurator subscriptionBusServiceConfigurator)
+        protected override void SubscribeLocalBus(ISubscriptionBusServiceConfigurator subscriptionBusServiceConfigurator)
         {
             subscriptionBusServiceConfigurator.LoadFrom(_container);
         }
@@ -73,7 +74,7 @@ namespace MassTransit.Containers.Tests
             _container.Dispose();
         }
 
-        protected override void SubscribeLocalBus(SubscriptionBusServiceConfigurator subscriptionBusServiceConfigurator)
+        protected override void SubscribeLocalBus(ISubscriptionBusServiceConfigurator subscriptionBusServiceConfigurator)
         {
             subscriptionBusServiceConfigurator.LoadFrom(_container);
         }

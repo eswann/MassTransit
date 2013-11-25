@@ -21,8 +21,8 @@ namespace MassTransit.Transports.RabbitMq.Configuration.Configurators
 
 
     public class SslConnectionFactoryConfiguratorImpl :
-        SslConnectionFactoryConfigurator,
-        ConnectionFactoryBuilderConfigurator
+        ISslConnectionFactoryConfigurator,
+        IConnectionFactoryBuilderConfigurator
     {
         SslPolicyErrors _acceptablePolicyErrors;
         string _certificatePath;
@@ -81,7 +81,7 @@ namespace MassTransit.Transports.RabbitMq.Configuration.Configurators
             return builder;
         }
 
-        public IEnumerable<ValidationResult> Validate()
+        public IEnumerable<IValidationResult> Validate()
         {
             if (_serverName.IsEmpty())
             {

@@ -20,7 +20,7 @@ namespace MassTransit.SubscriptionBuilders
         SubscriptionBuilder
         where TConsumer : class
     {
-        readonly ConsumerConnector _consumerConnector;
+        readonly IConsumerConnector _consumerConnector;
         readonly IConsumerFactory<TConsumer> _consumerFactory;
         readonly ReferenceFactory _referenceFactory;
 

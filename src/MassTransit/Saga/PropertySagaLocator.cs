@@ -15,6 +15,7 @@ namespace MassTransit.Saga
 	using System;
 	using System.Collections.Generic;
 	using System.Linq.Expressions;
+	using Context;
 	using Pipeline;
 
 	public class PropertySagaLocator<TSaga, TMessage> :

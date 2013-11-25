@@ -10,13 +10,12 @@
 // under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR 
 // CONDITIONS OF ANY KIND, either express or implied. See the License for the 
 // specific language governing permissions and limitations under the License.
-namespace MassTransit
+namespace MassTransit.Services.Subscriptions.Configuration
 {
     using System;
-    using BusConfigurators;
-    using Services.Subscriptions.Configuration;
-    using SubscriptionConfigurators;
-    using Util;
+    using MassTransit.BusConfigurators;
+    using MassTransit.SubscriptionConfigurators;
+    using MassTransit.Util;
 
     public static class SubscriptionClientConfiguratorExtensions
     {
@@ -28,7 +27,7 @@ namespace MassTransit
         /// <param name="configurator"></param>
         /// <param name="subscriptionServiceUri"></param>
         [Obsolete("The extension method on UseMsmq should be used instead")]
-        public static void UseSubscriptionService(this ServiceBusConfigurator configurator,
+        public static void UseSubscriptionService(this IServiceBusConfigurator configurator,
             string subscriptionServiceUri)
         {
             configurator.UseSubscriptionService(x => x.SetSubscriptionServiceEndpoint(subscriptionServiceUri.ToUri()));
@@ -40,7 +39,7 @@ namespace MassTransit
         /// publishers and subscribers, while routing is carried out by MassTransit.RuntimeServices
         /// </summary>
         [Obsolete("The extension method on UseMsmq should be used instead")]
-        public static void UseSubscriptionService(this ServiceBusConfigurator configurator, Uri subscriptionServiceUri)
+        public static void UseSubscriptionService(this IServiceBusConfigurator configurator, Uri subscriptionServiceUri)
         {
             configurator.UseSubscriptionService(x => x.SetSubscriptionServiceEndpoint(subscriptionServiceUri));
         }
@@ -51,14 +50,14 @@ namespace MassTransit
         /// publishers and subscribers, while routing is carried out by MassTransit.RuntimeServices
         /// </summary>
         [Obsolete("The extension method on UseMsmq should be used instead")]
-        public static void UseSubscriptionService(this ServiceBusConfigurator configurator,
+        public static void UseSubscriptionService(this IServiceBusConfigurator configurator,
             Action<SubscriptionClientConfigurator> configureCallback)
         {
             var clientConfigurator = new SubscriptionClientConfiguratorImpl();
 
             configureCallback(clientConfigurator);
 
-            var routerBuilderConfigurator = new SubscriptionRouterBuilderConfiguratorImpl(x => x.SetNetwork(null));
+            var routerBuilderConfigurator = new SubscriptionRouterBuilderConfigurator(x => x.SetNetwork(null));
 
             configurator.AddSubscriptionRouterConfigurator(routerBuilderConfigurator);
 

@@ -15,6 +15,7 @@ namespace MassTransit.Serialization
     using System;
     using System.IO;
     using System.Runtime.Serialization;
+    using Context;
     using Custom;
 
     public class VersionOneXmlMessageSerializer :

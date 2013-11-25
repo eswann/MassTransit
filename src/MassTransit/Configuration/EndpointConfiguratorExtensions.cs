@@ -25,7 +25,7 @@ namespace MassTransit
 		/// Specify a serializer for this endpoint (overrides the default)
 		/// </summary>
 		/// <typeparam name="TSerializer"></typeparam>
-		public static EndpointConfigurator UseSerializer<TSerializer>(this EndpointConfigurator configurator)
+		public static IEndpointConfigurator UseSerializer<TSerializer>(this IEndpointConfigurator configurator)
 			where TSerializer : IMessageSerializer, new()
 		{
 			return configurator.UseSerializer(new TSerializer());
@@ -36,7 +36,7 @@ namespace MassTransit
 		/// </summary>
 		/// <param name="configurator"></param>
 		/// <param name="serializerType"></param>
-		public static EndpointConfigurator UseSerializer(this EndpointConfigurator configurator, Type serializerType)
+		public static IEndpointConfigurator UseSerializer(this IEndpointConfigurator configurator, Type serializerType)
 		{
 			return configurator.UseSerializer((IMessageSerializer) FastActivator.Create(serializerType));
 		}
@@ -45,7 +45,7 @@ namespace MassTransit
 		/// Specifies a null transport for error messages
 		/// </summary>
 		/// <param name="configurator"></param>
-		public static EndpointConfigurator DiscardFaultingMessages(this EndpointConfigurator configurator)
+		public static IEndpointConfigurator DiscardFaultingMessages(this IEndpointConfigurator configurator)
 		{
 			return configurator.SetErrorTransportFactory((factory, settings) => new NullOutboundTransport(settings.Address));
 		}
@@ -54,7 +54,7 @@ namespace MassTransit
 		/// Overrides the default error address with a new error address
 		/// </summary>
 		/// <returns></returns>
-		public static EndpointConfigurator SetErrorAddress(this EndpointConfigurator configurator, string uriString)
+		public static IEndpointConfigurator SetErrorAddress(this IEndpointConfigurator configurator, string uriString)
 		{
 			return configurator.SetErrorAddress(uriString.ToUri("Error URI was not valid"));
 		}

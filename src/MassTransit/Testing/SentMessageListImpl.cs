@@ -20,16 +20,16 @@ namespace MassTransit.Testing
 	using Magnum.Extensions;
 
 	public class SentMessageListImpl :
-		SentMessageList,
+		ISentMessageList,
 		IDisposable
 	{
-		readonly HashSet<SentMessage> _messages;
+		readonly HashSet<ISentMessage> _messages;
 		readonly AutoResetEvent _received;
 		TimeSpan _timeout = 12.Seconds();
 
 		public SentMessageListImpl()
 		{
-			_messages = new HashSet<SentMessage>(new MessageIdEqualityComparer());
+			_messages = new HashSet<ISentMessage>(new MessageIdEqualityComparer());
 			_received = new AutoResetEvent(false);
 		}
 
@@ -40,7 +40,7 @@ namespace MassTransit.Testing
 			}
 		}
 
-		public IEnumerator<SentMessage> GetEnumerator()
+		public IEnumerator<ISentMessage> GetEnumerator()
 		{
 			lock (_messages)
 				return _messages.ToList().GetEnumerator();
@@ -67,7 +67,7 @@ namespace MassTransit.Testing
 	        return Any(x => typeof(T).IsAssignableFrom(x.MessageType) && filter((SentMessage<T>)x));
 	    }
 
-	    public bool Any(Func<SentMessage, bool> filter)
+	    public bool Any(Func<ISentMessage, bool> filter)
 		{
 			bool any;
 			lock (_messages)
@@ -85,7 +85,7 @@ namespace MassTransit.Testing
 			return true;
 		}
 
-		public void Add(SentMessage message)
+		public void Add(ISentMessage message)
 		{
 			lock (_messages)
 			{
@@ -95,14 +95,14 @@ namespace MassTransit.Testing
 		}
 
 		class MessageIdEqualityComparer :
-			IEqualityComparer<SentMessage>
+			IEqualityComparer<ISentMessage>
 		{
-			public bool Equals(SentMessage x, SentMessage y)
+			public bool Equals(ISentMessage x, ISentMessage y)
 			{
 				return x.Equals(y);
 			}
 
-			public int GetHashCode(SentMessage message)
+			public int GetHashCode(ISentMessage message)
 			{
 				return message.Context.GetHashCode();
 			}

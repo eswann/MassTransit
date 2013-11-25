@@ -37,7 +37,7 @@ namespace MassTransit.BusConfigurators
 			return builder;
 		}
 
-		public IEnumerable<ValidationResult> Validate()
+		public IEnumerable<IValidationResult> Validate()
 		{
 			return from configurator in _configurators
 			       from result in configurator.Validate()

@@ -14,11 +14,12 @@ namespace MassTransit.Transports.RabbitMq.Tests.Testing
 {
 	using Magnum.TestFramework;
 	using MassTransit.Testing;
+	using RabbitMq.Testing;
 
-	[Scenario, NotYetImplemented("This is broken because RabbitMQ does not have subscriptions")]
+    [Scenario, NotYetImplemented("This is broken because RabbitMQ does not have subscriptions")]
 	public class Using_the_handler_test_factory
 	{
-		HandlerTest<A> _test;
+		IHandlerTest<A> _test;
 
 		[When]
 		public void Setup()

@@ -21,7 +21,7 @@ namespace MassTransit.Testing.Builders
 	public class SagaTestBuilderImpl<TScenario, TSaga> :
 		SagaTestBuilder<TScenario, TSaga>
 		where TSaga : class, ISaga
-		where TScenario : TestScenario
+		where TScenario : ITestScenario
 	{
 		readonly IList<TestAction<TScenario>> _actions;
 		readonly TScenario _scenario;

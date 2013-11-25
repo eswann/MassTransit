@@ -10,14 +10,13 @@
 // under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR 
 // CONDITIONS OF ANY KIND, either express or implied. See the License for the 
 // specific language governing permissions and limitations under the License.
-namespace MassTransit
+namespace MassTransit.Saga.Configuration
 {
-    using Logging;
+    using MassTransit.Logging;
     using Magnum;
-    using Saga;
-    using Saga.SubscriptionConfigurators;
-    using Saga.SubscriptionConnectors;
-    using SubscriptionConfigurators;
+    using MassTransit.Saga.SubscriptionConfigurators;
+    using MassTransit.Saga.SubscriptionConnectors;
+    using MassTransit.SubscriptionConfigurators;
 
     public static class SagaSubscriptionConfiguratorExtensions
     {
@@ -31,7 +30,7 @@ namespace MassTransit
         /// <param name="sagaRepository"></param>
         /// <returns></returns>
         public static SagaSubscriptionConfigurator<TSaga> Saga<TSaga>(
-            this SubscriptionBusServiceConfigurator configurator, ISagaRepository<TSaga> sagaRepository)
+            this ISubscriptionBusServiceConfigurator configurator, ISagaRepository<TSaga> sagaRepository)
             where TSaga : class, ISaga
         {
             if (_log.IsDebugEnabled)

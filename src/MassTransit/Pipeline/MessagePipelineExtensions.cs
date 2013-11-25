@@ -118,7 +118,7 @@ namespace MassTransit.Pipeline
 				{
 					var consumerFactory = new DelegateConsumerFactory<TComponent>(() => new TComponent());
 
-					ConsumerConnector connector = ConsumerConnectorCache.GetConsumerConnector<TComponent>();
+					IConsumerConnector connector = ConsumerConnectorCache.GetConsumerConnector<TComponent>();
 					return connector.Connect(x, consumerFactory);
 				});
 		}
@@ -138,7 +138,7 @@ namespace MassTransit.Pipeline
 				{
 					var factory = new DelegateConsumerFactory<TConsumer>(consumerFactory);
 
-					ConsumerConnector connector = ConsumerConnectorCache.GetConsumerConnector<TConsumer>();
+					IConsumerConnector connector = ConsumerConnectorCache.GetConsumerConnector<TConsumer>();
 				    return connector.Connect(x, factory);
 				});
 		}
@@ -155,7 +155,7 @@ namespace MassTransit.Pipeline
 		{
 			return pipeline.Configure(x =>
 				{
-					InstanceConnector connector = InstanceConnectorCache.GetInstanceConnector<TComponent>();
+					IInstanceConnector connector = InstanceConnectorCache.GetInstanceConnector<TComponent>();
 					return connector.Connect(x, instance);
 				});
 		}

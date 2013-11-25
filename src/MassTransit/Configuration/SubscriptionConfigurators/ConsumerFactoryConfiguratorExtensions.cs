@@ -22,7 +22,7 @@ namespace MassTransit.SubscriptionConfigurators
 
     public static class ConsumerFactoryConfiguratorExtensions
     {
-        public static IEnumerable<ValidationResult> ValidateConsumer<TConsumer>(this Configurator configurator)
+        public static IEnumerable<IValidationResult> ValidateConsumer<TConsumer>(this IConfigurator configurator)
             where TConsumer : class
         {
             if (!typeof(TConsumer).Implements<IConsumer>())
@@ -30,7 +30,7 @@ namespace MassTransit.SubscriptionConfigurators
                     string.Format("The consumer class {0} does not implement any IConsumer interfaces",
                         typeof(TConsumer).ToShortTypeName()));
 
-            IEnumerable<ValidationResult> warningForMessages = MessageInterfaceTypeReflector<TConsumer>
+            IEnumerable<IValidationResult> warningForMessages = MessageInterfaceTypeReflector<TConsumer>
                 .GetAllTypes()
                 .Distinct()
                 .Where(x => !(HasDefaultProtectedCtor(typeof(TConsumer)) || HasSinglePublicCtor(typeof(TConsumer))))
@@ -45,13 +45,13 @@ namespace MassTransit.SubscriptionConfigurators
                 yield return message;
         }
 
-        public static IEnumerable<ValidationResult> Validate<TConsumer>(this IConsumerFactory<TConsumer> consumerFactory)
+        public static IEnumerable<IValidationResult> Validate<TConsumer>(this IConsumerFactory<TConsumer> consumerFactory)
             where TConsumer : class
         {
             if (consumerFactory == null)
                 yield return ValidationResultExtensions.Failure(null, "ConsumerFactory", "must not be null");
 
-            foreach (ValidationResult result in ValidateConsumer<TConsumer>(null))
+            foreach (IValidationResult result in ValidateConsumer<TConsumer>(null))
             {
                 yield return result;
             }

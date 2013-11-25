@@ -85,7 +85,7 @@ namespace MassTransit.Tests
 		class Production :
 			IServiceBusEnvironment
 		{
-			public void Configure(ServiceBusConfigurator configurator)
+			public void Configure(IServiceBusConfigurator configurator)
 			{
 				configurator.SetConcurrentConsumerLimit(7);
 			}
@@ -94,7 +94,7 @@ namespace MassTransit.Tests
 		class Development :
 			IServiceBusEnvironment
 		{
-			public void Configure(ServiceBusConfigurator configurator)
+			public void Configure(IServiceBusConfigurator configurator)
 			{
 				configurator.SetConcurrentConsumerLimit(1);
 			}

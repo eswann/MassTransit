@@ -15,6 +15,7 @@ namespace MassTransit.Saga.Pipeline
 	using System;
 	using System.Collections.Generic;
 	using System.Linq.Expressions;
+	using Context;
 	using Logging;
 	using Magnum.Extensions;
 	using Magnum.StateMachine;

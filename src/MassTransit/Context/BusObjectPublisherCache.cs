@@ -19,15 +19,15 @@ namespace MassTransit.Context
     {
         static BusObjectPublisherCache _instance;
 
-        readonly Cache<Type, BusObjectPublisher> _typeCache =
-            new GenericTypeCache<BusObjectPublisher>(typeof(BusObjectPublisherImpl<>));
+        readonly Cache<Type, IBusObjectPublisher> _typeCache =
+            new GenericTypeCache<IBusObjectPublisher>(typeof(BusObjectPublisher<>));
 
         public static BusObjectPublisherCache Instance
         {
             get { return _instance ?? (_instance = new BusObjectPublisherCache()); }
         }
 
-        public BusObjectPublisher this[Type type]
+        public IBusObjectPublisher this[Type type]
         {
             get { return _typeCache[type]; }
         }

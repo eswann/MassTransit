@@ -16,6 +16,7 @@ namespace BusDriver.Commands
 	using System.IO;
 	using System.Text;
 	using Formatting;
+	using MassTransit.Context;
 	using MassTransit.Logging;
 	using Magnum.Extensions;
 	using Magnum.FileSystem;

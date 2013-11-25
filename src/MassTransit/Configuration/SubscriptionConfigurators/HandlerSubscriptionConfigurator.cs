@@ -1,4 +1,4 @@
-// Copyright 2007-2011 Chris Patterson, Dru Sellers, Travis Smith, et. al.
+﻿// Copyright 2007-2011 Chris Patterson, Dru Sellers, Travis Smith, et. al.
 //  
 // Licensed under the Apache License, Version 2.0 (the "License"); you may not use 
 // this file except in compliance with the License. You may obtain a copy of the 
@@ -13,11 +13,53 @@
 namespace MassTransit.SubscriptionConfigurators
 {
 	using System;
+	using System.Collections.Generic;
+	using Configurators;
+	using Context;
+	using Pipeline;
+	using SubscriptionBuilders;
 
-	public interface HandlerSubscriptionConfigurator<TMessage> :
-		SubscriptionConfigurator<HandlerSubscriptionConfigurator<TMessage>>
+    public interface IHandlerSubscriptionConfigurator<TMessage> :
+    ISubscriptionConfigurator<IHandlerSubscriptionConfigurator<TMessage>>
+    where TMessage : class
+    {
+        IHandlerSubscriptionConfigurator<TMessage> Where(Predicate<TMessage> condition);
+    }
+
+	public class HandlerSubscriptionConfigurator<TMessage> :
+		SubscriptionConfigurator<IHandlerSubscriptionConfigurator<TMessage>>,
+		IHandlerSubscriptionConfigurator<TMessage>,
+		ISubscriptionBuilderConfigurator
 		where TMessage : class
 	{
-		HandlerSubscriptionConfigurator<TMessage> Where(Predicate<TMessage> condition);
+		HandlerSelector<TMessage> _handler;
+
+		public HandlerSubscriptionConfigurator(Action<TMessage> handler)
+		{
+			_handler = HandlerSelector.ForHandler(handler);
+		}
+
+		public HandlerSubscriptionConfigurator(Action<IConsumeContext<TMessage>, TMessage> handler)
+		{
+			_handler = x => context => handler(context, context.Message);
+		}
+
+		public IHandlerSubscriptionConfigurator<TMessage> Where(Predicate<TMessage> condition)
+		{
+			_handler = HandlerSelector.ForCondition(_handler, condition);
+
+			return this;
+		}
+
+		public IEnumerable<IValidationResult> Validate()
+		{
+			if (_handler == null)
+				yield return this.Failure("The handler cannot be null. This should have come from the ctor.");
+		}
+
+		public SubscriptionBuilder Configure()
+		{
+			return new HandlerSubscriptionBuilder<TMessage>(_handler, ReferenceFactory);
+		}
 	}
 }

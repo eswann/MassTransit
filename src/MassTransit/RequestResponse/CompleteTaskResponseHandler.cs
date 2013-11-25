@@ -14,6 +14,7 @@ namespace MassTransit.RequestResponse
 {
 #if NET40
     using System;
+    using Context;
 
     public class CompleteTaskResponseHandler<TResponse> :
         TaskResponseHandlerBase<TResponse>

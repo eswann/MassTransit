@@ -51,7 +51,7 @@ namespace MassTransit
 		/// <exception cref="ConfigurationException">
 		/// If the bus has already been initialized by a call
 		/// to this method.</exception>
-		public static void Initialize(Action<ServiceBusConfigurator> configure)
+		public static void Initialize(Action<IServiceBusConfigurator> configure)
 		{
 			if (_instance != null)
 				throw new ConfigurationException("Bus.Instance has already been initialized. Call Shutdown first.");

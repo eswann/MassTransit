@@ -16,6 +16,7 @@ namespace MassTransit.Tests.Configuration
 	using Examples.Sagas.Messages;
 	using Magnum.TestFramework;
 	using MassTransit.Saga;
+	using MassTransit.Saga.Configuration;
 	using MassTransit.Services.Subscriptions.Messages;
 	using MassTransit.Services.Subscriptions.Server;
 	using MassTransit.Services.Subscriptions.Server.Messages;

@@ -17,13 +17,14 @@ namespace BusDriver.Commands
 	using System.Linq;
 	using System.Threading;
 	using Formatting;
+	using MassTransit.Context;
 	using MassTransit.Diagnostics.Tracing;
 	using MassTransit.Logging;
 	using Magnum.Extensions;
 	using MassTransit;
 
     public class TraceCommand :
-		Consumes<ReceivedMessageTraceList>.All,
+		Consumes<IReceivedMessageTraceList>.All,
 		Command,
 		IPendingCommand
 	{
@@ -52,14 +53,14 @@ namespace BusDriver.Commands
 
 			_unsubscribe = bus.SubscribeInstance(this);
 
-			endpoint.Send<GetMessageTraceList>(new GetMessageTraceListImpl {Count = _count}, x => x.SendResponseTo(bus));
+			endpoint.Send<IGetMessageTraceList>(new GetMessageTraceList {Count = _count}, x => x.SendResponseTo(bus));
 
 			Program.AddPendingCommand(this);
 
 			return true;
 		}
 
-		public void Consume(ReceivedMessageTraceList list)
+		public void Consume(IReceivedMessageTraceList list)
 		{
 			if (_unsubscribe != null)
 				_unsubscribe();
@@ -70,7 +71,7 @@ namespace BusDriver.Commands
 					string.Format("{0} message{1}", list.Messages.Count, list.Messages.Count == 1 ? "" : "s"))
 				.Break();
 
-			foreach (ReceivedMessageTraceDetail message in list.Messages)
+			foreach (IReceivedMessageTraceDetail message in list.Messages)
 			{
 				text.BeginBlock("Received: " + message.Id, Format(message.StartTime));
 
@@ -81,7 +82,7 @@ namespace BusDriver.Commands
 
 				if (message.Receivers != null)
 				{
-					foreach (ReceiverTraceDetail receiver in message.Receivers)
+					foreach (IReceiverTraceDetail receiver in message.Receivers)
 					{
 						text.BeginBlock(receiver.ReceiverType, Format(receiver.StartTime));
 						text.Table(GetReceiverDictionary(receiver));
@@ -91,7 +92,7 @@ namespace BusDriver.Commands
 
 				if (message.SentMessages != null)
 				{
-					foreach (SentMessageTraceDetail sent in message.SentMessages)
+					foreach (ISentMessageTraceDetail sent in message.SentMessages)
 					{
 						text.BeginBlock("Sent: " + sent.Id, Format(sent.StartTime));
 
@@ -124,12 +125,12 @@ namespace BusDriver.Commands
 		}
 
 
-		IDictionary<string, string> GetReceiverDictionary(ReceiverTraceDetail detail)
+		IDictionary<string, string> GetReceiverDictionary(IReceiverTraceDetail detail)
 		{
 			return GetReceiverValues(detail).ToDictionary(x => x.Key, x => x.Value);
 		}
 
-		IEnumerable<KeyValuePair<string, string>> GetReceiverValues(ReceiverTraceDetail detail)
+		IEnumerable<KeyValuePair<string, string>> GetReceiverValues(IReceiverTraceDetail detail)
 		{
 			if (detail.MessageType.IsNotEmpty())
 				yield return new KeyValuePair<string, string>("Message Type", detail.MessageType);
@@ -142,12 +143,12 @@ namespace BusDriver.Commands
 					new KeyValuePair<string, string>("Duration (ms)", ((int) detail.Duration.TotalMilliseconds).ToString("N0"));
 		}
 
-		IDictionary<string, string> GetMessageHeaderDictionary(MessageTraceDetail detail)
+		IDictionary<string, string> GetMessageHeaderDictionary(IMessageTraceDetail detail)
 		{
 			return GetMessageHeaderValues(detail).ToDictionary(x => x.Key, x => x.Value);
 		}
 
-		IEnumerable<KeyValuePair<string, string>> GetMessageHeaderValues(MessageTraceDetail detail)
+		IEnumerable<KeyValuePair<string, string>> GetMessageHeaderValues(IMessageTraceDetail detail)
 		{
 			if (detail.MessageId.IsNotEmpty())
 				yield return new KeyValuePair<string, string>("Message Id", detail.MessageId);

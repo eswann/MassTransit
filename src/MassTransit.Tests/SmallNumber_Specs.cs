@@ -22,7 +22,7 @@ namespace MassTransit.Tests
         [Test]
         public void Should_properly_deserialize()
         {
-            ConsumerTest<BusTestScenario, SmallNumberConsumer> testConsumer = TestFactory
+            ConsumerTest<IBusTestScenario, SmallNumberConsumer> testConsumer = TestFactory
                 .ForConsumer<SmallNumberConsumer>()
                 .New(x =>
                     {

@@ -14,6 +14,7 @@ namespace MassTransit.Tests.Saga
 {
     using BusConfigurators;
     using MassTransit.Saga;
+    using MassTransit.Saga.Configuration;
     using NUnit.Framework;
     using TextFixtures;
 
@@ -22,7 +23,7 @@ namespace MassTransit.Tests.Saga
     public class Injecting_properties_into_a_saga :
         LoopbackTestFixture
     {
-        protected override void ConfigureLocalBus(ServiceBusConfigurator configurator)
+        protected override void ConfigureLocalBus(IServiceBusConfigurator configurator)
         {
             base.ConfigureLocalBus(configurator);
 

@@ -16,7 +16,7 @@ namespace MassTransit.Diagnostics.Tracing
 
     public static class MessageTraceClientExtensions
 	{
-		public static void GetMessageTrace(this IServiceBus bus, IEndpoint endpoint, Action<ReceivedMessageTraceList> callback)
+		public static void GetMessageTrace(this IServiceBus bus, IEndpoint endpoint, Action<IReceivedMessageTraceList> callback)
 		{
 			new MessageTraceClient(bus, endpoint, 100, callback);
 		}

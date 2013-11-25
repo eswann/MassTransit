@@ -15,6 +15,7 @@ namespace MassTransit.RequestResponse.Configurators
 #if NET40
     using System;
     using System.Threading.Tasks;
+    using Context;
 
     /// <summary>
     /// Configures a request and the associated response handler behavior

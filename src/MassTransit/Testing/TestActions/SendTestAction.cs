@@ -13,12 +13,13 @@
 namespace MassTransit.Testing.TestActions
 {
 	using System;
+	using Context;
 	using Scenarios;
 
 	public class SendTestAction<TScenario, TMessage> :
 		TestAction<TScenario>
 		where TMessage : class
-		where TScenario : TestScenario
+		where TScenario : ITestScenario
 	{
 		readonly Action<TScenario, ISendContext<TMessage>> _callback;
 		readonly Func<TScenario, IEndpoint> _endpointAccessor;

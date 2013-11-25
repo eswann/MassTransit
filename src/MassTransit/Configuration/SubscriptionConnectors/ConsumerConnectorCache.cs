@@ -21,11 +21,11 @@ namespace MassTransit.SubscriptionConnectors
         [ThreadStatic]
         static ConsumerConnectorCache _current;
 
-        readonly GenericTypeCache<ConsumerConnector> _connectors;
+        readonly GenericTypeCache<IConsumerConnector> _connectors;
 
         ConsumerConnectorCache()
         {
-            _connectors = new GenericTypeCache<ConsumerConnector>(typeof (ConsumerConnector<>));
+            _connectors = new GenericTypeCache<IConsumerConnector>(typeof (ConsumerConnector<>));
         }
 
         static ConsumerConnectorCache Instance
@@ -39,21 +39,21 @@ namespace MassTransit.SubscriptionConnectors
             }
         }
 
-        public static ConsumerConnector GetConsumerConnector<T>()
+        public static IConsumerConnector GetConsumerConnector<T>()
             where T : class
         {
             return Instance._connectors.Get(typeof (T), _ => new ConsumerConnector<T>());
         }
 
-        public static ConsumerConnector GetConsumerConnector(Type type)
+        public static IConsumerConnector GetConsumerConnector(Type type)
         {
             return Instance._connectors.Get(type, ConsumerConnectorFactory);
         }
 
-        static ConsumerConnector ConsumerConnectorFactory(Type type)
+        static IConsumerConnector ConsumerConnectorFactory(Type type)
         {
             var args = new object[] {};
-            var connector = (ConsumerConnector) FastActivator.Create(typeof (ConsumerConnector<>), new[] {type}, args);
+            var connector = (IConsumerConnector) FastActivator.Create(typeof (ConsumerConnector<>), new[] {type}, args);
 
             return connector;
         }

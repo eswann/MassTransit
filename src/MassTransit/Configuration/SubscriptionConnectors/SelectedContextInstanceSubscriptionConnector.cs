@@ -13,12 +13,13 @@
 namespace MassTransit.SubscriptionConnectors
 {
     using System;
+    using Context;
     using Pipeline;
     using Pipeline.Configuration;
     using Pipeline.Sinks;
 
     public class SelectedContextInstanceSubscriptionConnector<TConsumer, TMessage> :
-        InstanceSubscriptionConnector
+        IInstanceSubscriptionConnector
         where TConsumer : class, Consumes<IConsumeContext<TMessage>>.Selected
         where TMessage : class
     {

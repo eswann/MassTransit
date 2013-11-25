@@ -18,6 +18,7 @@ namespace MassTransit.Tests.Services.Timeout
 	using Magnum.Extensions;
 	using Magnum.TestFramework;
 	using MassTransit.Saga;
+	using MassTransit.Saga.Configuration;
 	using MassTransit.Services.Timeout.Messages;
 	using MassTransit.Services.Timeout.Server;
 	using NUnit.Framework;
@@ -30,7 +31,7 @@ namespace MassTransit.Tests.Services.Timeout
 	{
 		InMemorySagaRepository<TimeoutSaga> _timeoutSagaRepository;
 
-		protected override void ConfigureLocalBus(ServiceBusConfigurator configurator)
+		protected override void ConfigureLocalBus(IServiceBusConfigurator configurator)
 		{
 			base.ConfigureLocalBus(configurator);
 

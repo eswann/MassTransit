@@ -16,8 +16,9 @@ using MassTransit.Util;
 namespace MassTransit.Transports
 {
 	using System;
+	using Context;
 
-	/// <summary>
+    /// <summary>
 	/// The inbound transport takes messages from the underlying transport technology and hands it to the
 	/// Action{IReceiveContext} that can be gotten from the lookup function 
 	/// passed to the <see cref="Receive"/> method.

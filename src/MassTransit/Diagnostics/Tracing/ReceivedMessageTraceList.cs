@@ -14,8 +14,14 @@ namespace MassTransit.Diagnostics.Tracing
 {
     using System.Collections.Generic;
 
-    public interface ReceivedMessageTraceList
+    public interface IReceivedMessageTraceList
+    {
+        IList<IReceivedMessageTraceDetail> Messages { get; }
+    }
+
+    public class ReceivedMessageTraceList :
+		IReceivedMessageTraceList
 	{
-		IList<ReceivedMessageTraceDetail> Messages { get; }
+		public IList<IReceivedMessageTraceDetail> Messages { get; set; }
 	}
 }

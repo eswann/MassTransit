@@ -20,14 +20,14 @@ namespace MassTransit.BusServiceConfigurators
 	public class CustomBusServiceConfigurator :
 		BusBuilderConfigurator
 	{
-		readonly BusServiceConfigurator _configurator;
+		readonly IBusServiceConfigurator _configurator;
 
-		public CustomBusServiceConfigurator(BusServiceConfigurator configurator)
+		public CustomBusServiceConfigurator(IBusServiceConfigurator configurator)
 		{
 			_configurator = configurator;
 		}
 
-		public IEnumerable<ValidationResult> Validate()
+		public IEnumerable<IValidationResult> Validate()
 		{
 			if (_configurator == null)
 				yield return this.Failure("BusServiceConfigurator", "The bus service configurator cannot be null");

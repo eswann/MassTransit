@@ -12,11 +12,12 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Tests.Examples
 {
-	using Magnum.TestFramework;
-	using TestFramework;
-	using TestFramework.Examples.Messages;
+    using Context;
+    using Magnum.TestFramework;
+    using Messages;
+    using TestFramework;
 
-	[Scenario]
+    [Scenario]
 	public class Given_a_pong_service :
 		Given_two_service_buses_with_shared_subscriptions
 	{

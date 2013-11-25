@@ -16,8 +16,8 @@ namespace MassTransit.Testing
 	using System.Collections.Generic;
 	using Saga;
 
-	public interface SagaList<T> :
-		IEnumerable<SagaInstance<T>>
+	public interface ISagaList<T> :
+		IEnumerable<ISagaInstance<T>>
 		where T : class, ISaga
 	{
 		bool Any();

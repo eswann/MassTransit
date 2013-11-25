@@ -14,6 +14,7 @@ namespace MassTransit.Tests
 {
     using System.Transactions;
     using BusConfigurators;
+    using Context;
     using Magnum.Extensions;
     using Magnum.TestFramework;
     using NUnit.Framework;
@@ -34,7 +35,7 @@ namespace MassTransit.Tests
             _second.IsAvailable(8.Seconds()).ShouldBeTrue("Interceptor not called second");
         }
 
-        protected override void ConfigureLocalBus(ServiceBusConfigurator configurator)
+        protected override void ConfigureLocalBus(IServiceBusConfigurator configurator)
         {
             base.ConfigureLocalBus(configurator);
 

@@ -24,7 +24,7 @@ namespace MassTransit.Saga
         StateMachine<T>
         where T : SagaStateMachine<T>
     {
-        static readonly Cache<Event, EventBinder<T>> _binders = new DictionaryCache<Event, EventBinder<T>>();
+        static readonly Cache<Event, IEventBinder<T>> _binders = new DictionaryCache<Event, IEventBinder<T>>();
         static Expression<Func<T, bool>> _completedExpression = x => false;
 
         protected SagaStateMachine()
@@ -36,7 +36,7 @@ namespace MassTransit.Saga
         {
         }
 
-        public static bool TryGetEventBinder(Event targetEvent, out EventBinder<T> expression)
+        public static bool TryGetEventBinder(Event targetEvent, out IEventBinder<T> expression)
         {
             if (_binders.Has(targetEvent))
             {
@@ -58,9 +58,9 @@ namespace MassTransit.Saga
             _completedExpression = expression;
         }
 
-        protected static EventBinder<T, V> Correlate<V>(Event<V> targetEvent)
+        protected static IEventBinder<T, V> Correlate<V>(Event<V> targetEvent)
         {
-            return (EventBinder<T, V>)_binders.Get(targetEvent, x => new DataEventBinder<T, V>());
+            return (IEventBinder<T, V>)_binders.Get(targetEvent, x => new DataEventBinder<T, V>());
         }
     }
 }

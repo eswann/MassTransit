@@ -12,13 +12,14 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Tests.Testing
 {
-	using Magnum.TestFramework;
+    using Context;
+    using Magnum.TestFramework;
 	using MassTransit.Testing;
 
 	[Scenario]
 	public class When_a_consumer_is_being_tested
 	{
-		ConsumerTest<BusTestScenario, Testsumer> _test;
+		ConsumerTest<IBusTestScenario, Testsumer> _test;
 
 		[When]
 		public void A_consumer_is_being_tested()
@@ -88,7 +89,7 @@ namespace MassTransit.Tests.Testing
 	[Scenario]
 	public class When_a_context_consumer_is_being_tested
 	{
-		ConsumerTest<BusTestScenario, Testsumer> _test;
+		ConsumerTest<IBusTestScenario, Testsumer> _test;
 
 		[When]
 		public void A_consumer_is_being_tested()

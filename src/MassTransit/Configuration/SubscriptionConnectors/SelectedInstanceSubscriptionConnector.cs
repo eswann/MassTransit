@@ -18,7 +18,7 @@ namespace MassTransit.SubscriptionConnectors
 	using Pipeline.Sinks;
 
 	public class SelectedInstanceSubscriptionConnector<TConsumer, TMessage> :
-		InstanceSubscriptionConnector
+		IInstanceSubscriptionConnector
 		where TConsumer : class, Consumes<TMessage>.Selected
 		where TMessage : class
 	{

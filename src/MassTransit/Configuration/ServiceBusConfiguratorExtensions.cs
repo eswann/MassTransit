@@ -22,7 +22,7 @@ namespace MassTransit
 		/// </summary>
 		/// <param name="configurator"></param>
 		/// <param name="uriString">The uri of the endpoint</param>
-		public static void ReceiveFrom(this ServiceBusConfigurator configurator, string uriString)
+		public static void ReceiveFrom(this IServiceBusConfigurator configurator, string uriString)
 		{
 			configurator.ReceiveFrom(uriString.ToUri("The receive endpoint URI is invalid"));
 		}

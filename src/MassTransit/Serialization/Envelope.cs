@@ -15,8 +15,9 @@ namespace MassTransit.Serialization
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using Context;
 
-	/// <summary>
+    /// <summary>
 	/// The envelope in use for storing meta-data/out-of-band data and message object data.
 	/// </summary>
     public class Envelope

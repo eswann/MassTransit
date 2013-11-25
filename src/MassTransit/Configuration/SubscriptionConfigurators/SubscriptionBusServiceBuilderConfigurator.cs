@@ -12,12 +12,38 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.SubscriptionConfigurators
 {
+	using System.Collections.Generic;
 	using Configurators;
 	using SubscriptionBuilders;
 
-	public interface SubscriptionBusServiceBuilderConfigurator :
-		Configurator
+    public interface ISubscriptionBusServiceBuilderConfigurator :
+    IConfigurator
+    {
+        ISubscriptionBusServiceBuilder Configure(ISubscriptionBusServiceBuilder builder);
+    }
+
+	public class SubscriptionBusServiceBuilderConfiguratorImpl :
+		ISubscriptionBusServiceBuilderConfigurator
 	{
-		SubscriptionBusServiceBuilder Configure(SubscriptionBusServiceBuilder builder);
+		readonly ISubscriptionBuilderConfigurator _configurator;
+
+		public SubscriptionBusServiceBuilderConfiguratorImpl(ISubscriptionBuilderConfigurator configurator)
+		{
+			_configurator = configurator;
+		}
+
+		public IEnumerable<IValidationResult> Validate()
+		{
+			return _configurator.Validate();
+		}
+
+		public ISubscriptionBusServiceBuilder Configure(ISubscriptionBusServiceBuilder builder)
+		{
+			SubscriptionBuilder subscriptionBuilder = _configurator.Configure();
+
+			builder.AddSubscriptionBuilder(subscriptionBuilder);
+
+			return builder;
+		}
 	}
 }

@@ -41,9 +41,9 @@ namespace MassTransit.Containers.Tests.Scenarios
             LocalBus.Dispose();
         }
 
-        protected abstract void SubscribeLocalBus(SubscriptionBusServiceConfigurator subscriptionBusServiceConfigurator);
+        protected abstract void SubscribeLocalBus(ISubscriptionBusServiceConfigurator subscriptionBusServiceConfigurator);
 
-        protected virtual void ConfigureLocalBus(ServiceBusConfigurator configurator)
+        protected virtual void ConfigureLocalBus(IServiceBusConfigurator configurator)
         {
         }
     }

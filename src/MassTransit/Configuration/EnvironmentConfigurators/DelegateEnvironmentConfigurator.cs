@@ -19,14 +19,14 @@ namespace MassTransit.EnvironmentConfigurators
 	public class DelegateEnvironmentConfigurator :
 		IServiceBusEnvironment
 	{
-		readonly Action<ServiceBusConfigurator> _callback;
+		readonly Action<IServiceBusConfigurator> _callback;
 
-		public DelegateEnvironmentConfigurator(Action<ServiceBusConfigurator> callback)
+		public DelegateEnvironmentConfigurator(Action<IServiceBusConfigurator> callback)
 		{
 			_callback = callback;
 		}
 
-		public void Configure(ServiceBusConfigurator configurator)
+		public void Configure(IServiceBusConfigurator configurator)
 		{
 			_callback(configurator);
 		}

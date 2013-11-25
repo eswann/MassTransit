@@ -14,6 +14,7 @@ namespace MassTransit.Transports.RabbitMq.Tests
 {
     using System;
     using BusConfigurators;
+    using Context;
     using Exceptions;
     using Magnum.Extensions;
     using Magnum.TestFramework;
@@ -23,7 +24,7 @@ namespace MassTransit.Transports.RabbitMq.Tests
     public class When_sending_a_request_to_a_rabbitmq_endpoint :
         Given_a_rabbitmq_bus
     {
-        protected override void ConfigureServiceBus(Uri uri, ServiceBusConfigurator configurator)
+        protected override void ConfigureServiceBus(Uri uri, IServiceBusConfigurator configurator)
         {
             base.ConfigureServiceBus(uri, configurator);
 

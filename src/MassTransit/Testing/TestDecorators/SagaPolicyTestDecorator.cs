@@ -13,6 +13,7 @@
 namespace MassTransit.Testing.TestDecorators
 {
 	using System;
+	using Context;
 	using Saga;
 
 	public class SagaPolicyTestDecorator<TSaga, TMessage> :

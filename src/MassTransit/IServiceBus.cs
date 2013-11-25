@@ -15,6 +15,7 @@
 namespace MassTransit
 {
     using System;
+    using Context;
     using Diagnostics.Introspection;
     using Util;
     using Pipeline;
@@ -36,7 +37,7 @@ namespace MassTransit
     /// </summary>
     public interface IServiceBus :
         IDisposable,
-        DiagnosticsSource
+        IDiagnosticsSource
     {
         /// <summary>
         ///   The endpoint from which messages are received

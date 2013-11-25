@@ -14,6 +14,7 @@ namespace MassTransit.Testing.Instances
 {
 	using System;
 	using System.Collections.Generic;
+	using Context;
 	using Scenarios;
 	using Subjects;
 	using TestActions;
@@ -22,7 +23,7 @@ namespace MassTransit.Testing.Instances
 		TestInstance<TScenario>,
 		HandlerTest<TScenario, TMessage>
 		where TMessage : class
-		where TScenario : TestScenario
+		where TScenario : ITestScenario
 	{
 		readonly HandlerTestSubjectImpl<TScenario, TMessage> _subject;
 

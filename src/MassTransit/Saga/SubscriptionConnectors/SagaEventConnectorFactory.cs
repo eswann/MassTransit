@@ -20,13 +20,13 @@ namespace MassTransit.Saga.SubscriptionConnectors
 	using Magnum.Reflection;
 	using Magnum.StateMachine;
 
-	public interface SagaEventConnectorFactory
+	public interface ISagaEventConnectorFactory
 	{
-		IEnumerable<SagaSubscriptionConnector> Create();
+		IEnumerable<ISagaSubscriptionConnector> Create();
 	}
 
 	public class SagaEventConnectorFactory<TSaga, TMessage> :
-		SagaEventConnectorFactory
+		ISagaEventConnectorFactory
 		where TSaga : SagaStateMachine<TSaga>, ISaga
 		where TMessage : class
 	{
@@ -47,18 +47,18 @@ namespace MassTransit.Saga.SubscriptionConnectors
 			_removeExpression = SagaStateMachine<TSaga>.GetCompletedExpression();
 		}
 
-		public IEnumerable<SagaSubscriptionConnector> Create()
+		public IEnumerable<ISagaSubscriptionConnector> Create()
 		{
-			EventBinder<TSaga> eventBinder;
+			IEventBinder<TSaga> eventBinder;
 			if (SagaStateMachine<TSaga>.TryGetEventBinder(_dataEvent, out eventBinder))
 			{
-				yield return (SagaSubscriptionConnector) FastActivator.Create(typeof (PropertySagaSubscriptionConnector<,>),
+				yield return (ISagaSubscriptionConnector) FastActivator.Create(typeof (PropertySagaSubscriptionConnector<,>),
 					new[] {typeof (TSaga), typeof (TMessage)},
 					new object[] {_sagaRepository, _dataEvent, _states, _policyFactory, _removeExpression, eventBinder});
 			}
 			else if (typeof (TMessage).Implements<CorrelatedBy<Guid>>())
 			{
-				yield return (SagaSubscriptionConnector)FastActivator.Create(typeof(CorrelatedSagaSubscriptionConnector<,>),
+				yield return (ISagaSubscriptionConnector)FastActivator.Create(typeof(CorrelatedSagaSubscriptionConnector<,>),
 					new[] {typeof (TSaga), typeof (TMessage)},
 					new object[] {_sagaRepository, _dataEvent, _states, _policyFactory, _removeExpression});
 			}

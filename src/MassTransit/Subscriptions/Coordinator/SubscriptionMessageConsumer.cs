@@ -14,6 +14,7 @@ namespace MassTransit.Subscriptions.Coordinator
 {
     using System;
     using System.Collections.Generic;
+    using Context;
     using Logging;
     using Messages;
     using Services.Subscriptions.Messages;

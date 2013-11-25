@@ -12,7 +12,9 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Serialization
 {
-	/// <summary>
+    using Context;
+
+    /// <summary>
 	/// Extensions to the <see cref="Envelope"/> class dealing with transferring data
 	/// from the context to the envelope or vice versa.
 	/// </summary>

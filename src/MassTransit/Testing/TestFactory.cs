@@ -26,30 +26,30 @@ namespace MassTransit.Testing
 	public static class TestFactory
 	{
 		/// <summary>
-		/// Creates a new <see cref="HandlerTestFactory{TScenario,TMessage}"/> for the passed message (generic parameter).
+		/// Creates a new <see cref="IHandlerTestFactory{TScenario,TMessage}"/> for the passed message (generic parameter).
 		/// </summary>
 		/// <typeparam name="TMessage">The type of the message to create a test for.</typeparam>
 		/// <returns>A 'configurator' - a handler test factory.</returns>
-		public static HandlerTestFactory<BusTestScenario, TMessage> ForHandler<TMessage>()
+		public static IHandlerTestFactory<IBusTestScenario, TMessage> ForHandler<TMessage>()
 			where TMessage : class
 		{
-			var factory = new HandlerTestFactoryImpl<BusTestScenario, TMessage>(() => new LoopbackBusScenarioBuilder());
+			var factory = new HandlerTestFactory<IBusTestScenario, TMessage>(() => new LoopbackBusScenarioBuilder());
 
 			return factory;
 		}
 
-		public static ConsumerTestFactory<BusTestScenario, TConsumer> ForConsumer<TConsumer>()
+		public static IConsumerTestFactory<IBusTestScenario, TConsumer> ForConsumer<TConsumer>()
 			where TConsumer : class, IConsumer
 		{
-			var factory = new ConsumerTestFactoryImpl<BusTestScenario, TConsumer>(() => new LoopbackBusScenarioBuilder());
+			var factory = new ConsumerTestFactory<IBusTestScenario, TConsumer>(() => new LoopbackBusScenarioBuilder());
 
 			return factory;
 		}
 
-		public static SagaTestFactory<BusTestScenario, TSaga> ForSaga<TSaga>()
+		public static ISagaTestFactory<IBusTestScenario, TSaga> ForSaga<TSaga>()
 			where TSaga : class, ISaga
 		{
-			var factory = new SagaTestFactoryImpl<BusTestScenario, TSaga>(() => new LoopbackBusScenarioBuilder());
+			var factory = new SagaTestFactory<IBusTestScenario, TSaga>(() => new LoopbackBusScenarioBuilder());
 
 			return factory;
 		}

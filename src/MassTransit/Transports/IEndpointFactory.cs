@@ -22,7 +22,7 @@ namespace MassTransit.Transports
 	/// Implementors are responsible for creating endpoints based on passed uris.
 	/// </summary>
     public interface IEndpointFactory :
-        DiagnosticsSource,
+        IDiagnosticsSource,
         IDisposable
     {
         /// <summary>

@@ -13,6 +13,7 @@
 namespace MassTransit.Tests.Serialization
 {
     using BusConfigurators;
+    using Context;
     using Magnum.Extensions;
     using Magnum.TestFramework;
     using NUnit.Framework;
@@ -29,7 +30,7 @@ namespace MassTransit.Tests.Serialization
             _called = new FutureMessage<Message<int>>();
         }
 
-        protected override void ConfigureLocalBus(ServiceBusConfigurator configurator)
+        protected override void ConfigureLocalBus(IServiceBusConfigurator configurator)
         {
             configurator.Subscribe(x => x.Handler<Message<int>>((context,message) =>
                 {

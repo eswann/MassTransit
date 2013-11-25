@@ -15,8 +15,9 @@ namespace MassTransit.Pipeline.Sinks
 	using System;
 	using System.Collections.Generic;
 	using System.Linq;
+	using Context;
 
-	public class InboundConvertMessageSink<TMessage> :
+    public class InboundConvertMessageSink<TMessage> :
 		IPipelineSink<IConsumeContext>
 		where TMessage : class
 	{

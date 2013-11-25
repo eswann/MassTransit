@@ -31,14 +31,14 @@ namespace MassTransit.Containers.Tests.Scenarios
         [Then]
         public void Should_have_a_subscription_for_the_consumer_message_type()
         {
-            LocalBus.HasSubscription<SimpleMessageInterface>().Count()
+            LocalBus.HasSubscription<ISimpleMessage>().Count()
                     .ShouldEqual(1, "No subscription for the SimpleMessageInterface was found.");
         }
 
         [Then]
         public void Should_have_a_subscription_for_the_nested_consumer_type()
         {
-            LocalBus.HasSubscription<AnotherMessageInterface>().Count()
+            LocalBus.HasSubscription<IAnotherMessageInterface>().Count()
                     .ShouldEqual(1, "Only one subscription should be registered for another consumer");
         }
 
@@ -49,8 +49,8 @@ namespace MassTransit.Containers.Tests.Scenarios
 
             var complete = new ManualResetEvent(false);
 
-            LocalBus.SubscribeHandler<SimpleMessageClass>(x => complete.Set());
-            LocalBus.Publish(new SimpleMessageClass(name));
+            LocalBus.SubscribeHandler<SimpleMessage>(x => complete.Set());
+            LocalBus.Publish(new SimpleMessage(name));
 
             complete.WaitOne(8.Seconds());
 

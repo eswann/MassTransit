@@ -21,19 +21,19 @@ namespace MassTransit.Testing
 	using Saga;
 
 	public class SagaListImpl<T> :
-		SagaList<T>,
+		ISagaList<T>,
 		IDisposable
 		where T : class, ISaga
 	{
-		readonly IDictionary<Guid, SagaInstance<T>> _sagaIndex; 
-		readonly HashSet<SagaInstance<T>> _sagas;
+		readonly IDictionary<Guid, ISagaInstance<T>> _sagaIndex; 
+		readonly HashSet<ISagaInstance<T>> _sagas;
 		readonly AutoResetEvent _updated;
 		TimeSpan _timeout = 12.Seconds();
 
 		public SagaListImpl()
 		{
-			_sagas = new HashSet<SagaInstance<T>>(new SagaEqualityComparer());
-			_sagaIndex = new Dictionary<Guid, SagaInstance<T>>();
+			_sagas = new HashSet<ISagaInstance<T>>(new SagaEqualityComparer());
+			_sagaIndex = new Dictionary<Guid, ISagaInstance<T>>();
 			_updated = new AutoResetEvent(false);
 		}
 
@@ -44,7 +44,7 @@ namespace MassTransit.Testing
 			}
 		}
 
-		public IEnumerator<SagaInstance<T>> GetEnumerator()
+		public IEnumerator<ISagaInstance<T>> GetEnumerator()
 		{
 			lock (_sagas)
 				return _sagas.ToList().GetEnumerator();
@@ -59,7 +59,7 @@ namespace MassTransit.Testing
 		{
 			bool any;
 
-			Func<SagaInstance<T>, bool> predicate = x => filter(x.Saga);
+			Func<ISagaInstance<T>, bool> predicate = x => filter(x.Saga);
 
 			lock (_sagas)
 				any = _sagas.Any(predicate);
@@ -80,9 +80,9 @@ namespace MassTransit.Testing
 
 		public T Contains(Guid sagaId)
 		{
-			SagaInstance<T> instance;
+			ISagaInstance<T> instance;
 
-			Func<SagaInstance<T>, bool> predicate = x => x.Saga.CorrelationId == sagaId;
+			Func<ISagaInstance<T>, bool> predicate = x => x.Saga.CorrelationId == sagaId;
 
 			lock (_sagas)
 				instance = _sagas.FirstOrDefault(predicate);
@@ -123,7 +123,7 @@ namespace MassTransit.Testing
 		{
 			lock (_sagas)
 			{
-				SagaInstance<T> instance;
+				ISagaInstance<T> instance;
 				if(!_sagaIndex.TryGetValue(saga.CorrelationId, out instance))
 				{
 					instance = new SagaInstanceImpl<T>(saga);
@@ -143,14 +143,14 @@ namespace MassTransit.Testing
 		}
 
 		class SagaEqualityComparer :
-			IEqualityComparer<SagaInstance<T>>
+			IEqualityComparer<ISagaInstance<T>>
 		{
-			public bool Equals(SagaInstance<T> x, SagaInstance<T> y)
+			public bool Equals(ISagaInstance<T> x, ISagaInstance<T> y)
 			{
 				return Equals(x.Saga.CorrelationId, y.Saga.CorrelationId);
 			}
 
-			public int GetHashCode(SagaInstance<T> message)
+			public int GetHashCode(ISagaInstance<T> message)
 			{
 				return message.Saga.CorrelationId.GetHashCode();
 			}

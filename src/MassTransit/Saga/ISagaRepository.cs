@@ -14,6 +14,7 @@ namespace MassTransit.Saga
 {
 	using System;
 	using System.Collections.Generic;
+	using Context;
 	using MassTransit.Pipeline;
 
 	/// <summary>

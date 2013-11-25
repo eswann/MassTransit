@@ -21,7 +21,7 @@ namespace MassTransit.EndpointConfigurators
 	using Util;
 
 	public class TransportFactoryConfigurator<TTransport> :
-		EndpointFactoryBuilderConfigurator
+		IEndpointFactoryBuilderConfigurator
 		where TTransport : class, ITransportFactory
 	{
 		readonly Func<TTransport> _transportFactory;
@@ -31,7 +31,7 @@ namespace MassTransit.EndpointConfigurators
 			_transportFactory = transportFactory;
 		}
 
-		public IEnumerable<ValidationResult> Validate()
+		public IEnumerable<IValidationResult> Validate()
 		{
 			if (_transportFactory == null)
 				yield return this.Failure("TransportFactory", "The transport factory was null. This should have been in the ctor.");

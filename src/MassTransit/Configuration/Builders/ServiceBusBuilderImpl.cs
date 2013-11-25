@@ -28,7 +28,7 @@ namespace MassTransit.Builders
         ServiceBusBuilder
     {
         static readonly ILog _log = Logger.Get<ServiceBusBuilderImpl>();
-        readonly IList<BusServiceConfigurator> _busServiceConfigurators;
+        readonly IList<IBusServiceConfigurator> _busServiceConfigurators;
         readonly IList<Action<ServiceBus>> _postCreateActions;
         readonly BusSettings _settings;
 
@@ -41,7 +41,7 @@ namespace MassTransit.Builders
             _settings = settings;
 
             _postCreateActions = new List<Action<ServiceBus>>();
-            _busServiceConfigurators = new List<BusServiceConfigurator>();
+            _busServiceConfigurators = new List<IBusServiceConfigurator>();
         }
 
         public BusSettings Settings
@@ -96,7 +96,7 @@ namespace MassTransit.Builders
             _postCreateActions.Add(postCreateAction);
         }
 
-        public void AddBusServiceConfigurator(BusServiceConfigurator configurator)
+        public void AddBusServiceConfigurator(IBusServiceConfigurator configurator)
         {
             _busServiceConfigurators.Add(configurator);
         }
@@ -112,7 +112,7 @@ namespace MassTransit.Builders
 
         void RunBusServiceConfigurators(ServiceBus bus)
         {
-            foreach (BusServiceConfigurator busServiceConfigurator in _busServiceConfigurators)
+            foreach (IBusServiceConfigurator busServiceConfigurator in _busServiceConfigurators)
             {
                 try
                 {

@@ -14,61 +14,62 @@ namespace MassTransit.Testing
 {
 	using System;
 	using ActionConfigurators;
+	using Context;
 	using TestInstanceConfigurators;
 
 	public static class SendTestActionExtensions
 	{
-		public static void Send<TMessage>(this TestInstanceConfigurator<BusTestScenario> configurator, TMessage message)
+		public static void Send<TMessage>(this TestInstanceConfigurator<IBusTestScenario> configurator, TMessage message)
 			where TMessage : class
 		{
-			var actionConfigurator = new SendTestActionConfigurator<BusTestScenario, TMessage>(x => x.Bus.Endpoint, message);
+			var actionConfigurator = new SendTestActionConfigurator<IBusTestScenario, TMessage>(x => x.Bus.Endpoint, message);
 
 			configurator.AddActionConfigurator(actionConfigurator);
 		}
 
-		public static void Send<TMessage>(this TestInstanceConfigurator<BusTestScenario> configurator, TMessage message,
+		public static void Send<TMessage>(this TestInstanceConfigurator<IBusTestScenario> configurator, TMessage message,
 		                                  Action<ISendContext<TMessage>> callback)
 			where TMessage : class
 		{
-			var actionConfigurator = new SendTestActionConfigurator<BusTestScenario, TMessage>(x => x.Bus.Endpoint, message,
+			var actionConfigurator = new SendTestActionConfigurator<IBusTestScenario, TMessage>(x => x.Bus.Endpoint, message,
 				(scenario, context) => callback(context));
 
 			configurator.AddActionConfigurator(actionConfigurator);
 		}
 
-		public static void Send<TMessage>(this TestInstanceConfigurator<BusTestScenario> configurator, TMessage message,
-		                                  Action<BusTestScenario, ISendContext<TMessage>> callback)
+		public static void Send<TMessage>(this TestInstanceConfigurator<IBusTestScenario> configurator, TMessage message,
+		                                  Action<IBusTestScenario, ISendContext<TMessage>> callback)
 			where TMessage : class
 		{
-			var actionConfigurator = new SendTestActionConfigurator<BusTestScenario, TMessage>(x => x.Bus.Endpoint, message,
+			var actionConfigurator = new SendTestActionConfigurator<IBusTestScenario, TMessage>(x => x.Bus.Endpoint, message,
 				callback);
 
 			configurator.AddActionConfigurator(actionConfigurator);
 		}
 
-		public static void Send<TMessage>(this TestInstanceConfigurator<LocalRemoteTestScenario> configurator, TMessage message)
+		public static void Send<TMessage>(this TestInstanceConfigurator<ILocalRemoteTestScenario> configurator, TMessage message)
 			where TMessage : class
 		{
-			var actionConfigurator = new SendTestActionConfigurator<LocalRemoteTestScenario, TMessage>(x => x.RemoteBus.Endpoint, message);
+			var actionConfigurator = new SendTestActionConfigurator<ILocalRemoteTestScenario, TMessage>(x => x.RemoteBus.Endpoint, message);
 
 			configurator.AddActionConfigurator(actionConfigurator);
 		}
 
-		public static void Send<TMessage>(this TestInstanceConfigurator<LocalRemoteTestScenario> configurator, TMessage message,
+		public static void Send<TMessage>(this TestInstanceConfigurator<ILocalRemoteTestScenario> configurator, TMessage message,
 		                                  Action<ISendContext<TMessage>> callback)
 			where TMessage : class
 		{
-			var actionConfigurator = new SendTestActionConfigurator<LocalRemoteTestScenario, TMessage>(x => x.RemoteBus.Endpoint, message,
+			var actionConfigurator = new SendTestActionConfigurator<ILocalRemoteTestScenario, TMessage>(x => x.RemoteBus.Endpoint, message,
 				(scenario, context) => callback(context));
 
 			configurator.AddActionConfigurator(actionConfigurator);
 		}
 
-		public static void Send<TMessage>(this TestInstanceConfigurator<LocalRemoteTestScenario> configurator, TMessage message,
-										  Action<LocalRemoteTestScenario, ISendContext<TMessage>> callback)
+		public static void Send<TMessage>(this TestInstanceConfigurator<ILocalRemoteTestScenario> configurator, TMessage message,
+										  Action<ILocalRemoteTestScenario, ISendContext<TMessage>> callback)
 			where TMessage : class
 		{
-			var actionConfigurator = new SendTestActionConfigurator<LocalRemoteTestScenario, TMessage>(x => x.RemoteBus.Endpoint, message,
+			var actionConfigurator = new SendTestActionConfigurator<ILocalRemoteTestScenario, TMessage>(x => x.RemoteBus.Endpoint, message,
 				callback);
 
 			configurator.AddActionConfigurator(actionConfigurator);

@@ -23,7 +23,7 @@ namespace MassTransit.Testing
 			this ConsumerTestInstanceConfigurator<TScenario, TConsumer> configurator,
 			Func<TConsumer> consumer)
 			where TConsumer : class
-			where TScenario : TestScenario
+			where TScenario : ITestScenario
 		{
 			var consumerFactory = new DelegateConsumerFactory<TConsumer>(consumer);
 

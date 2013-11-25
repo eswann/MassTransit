@@ -17,6 +17,7 @@ namespace MassTransit.Tests.Saga.Locator
     using System.Diagnostics;
     using System.Linq;
     using System.Linq.Expressions;
+    using Context;
     using Magnum.Extensions;
     using MassTransit.Pipeline;
     using MassTransit.Saga;

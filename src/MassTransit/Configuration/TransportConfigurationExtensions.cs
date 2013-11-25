@@ -16,7 +16,7 @@ namespace MassTransit
 
 	public static class TransportConfigurationExtensions
 	{
-		public static EndpointFactoryConfigurator SetCreateMissingQueues(this EndpointFactoryConfigurator configurator,
+		public static IEndpointFactoryConfigurator SetCreateMissingQueues(this IEndpointFactoryConfigurator configurator,
 		                                                                 bool value)
 		{
 			var builderConfigurator = new DelegateEndpointFactoryBuilderConfigurator(x => x.SetCreateMissingQueues(value));
@@ -26,7 +26,7 @@ namespace MassTransit
 			return configurator;
 		}
 
-		public static EndpointFactoryConfigurator SetCreateTransactionalQueues(this EndpointFactoryConfigurator configurator,
+		public static IEndpointFactoryConfigurator SetCreateTransactionalQueues(this IEndpointFactoryConfigurator configurator,
 		                                                                       bool value)
 		{
 			var builderConfigurator = new DelegateEndpointFactoryBuilderConfigurator(x => x.SetCreateTransactionalQueues(value));
@@ -36,7 +36,7 @@ namespace MassTransit
 			return configurator;
 		}
 
-		public static EndpointFactoryConfigurator SetPurgeOnStartup(this EndpointFactoryConfigurator configurator, bool value)
+		public static IEndpointFactoryConfigurator SetPurgeOnStartup(this IEndpointFactoryConfigurator configurator, bool value)
 		{
 			var builderConfigurator = new DelegateEndpointFactoryBuilderConfigurator(x => x.SetPurgeOnStartup(value));
 

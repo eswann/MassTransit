@@ -19,7 +19,7 @@ namespace MassTransit.Testing.Instances
 	using TestActions;
 
 	public abstract class TestInstance<TScenario>
-		where TScenario : TestScenario
+		where TScenario : ITestScenario
 	{
 		readonly IList<TestAction<TScenario>> _actions;
 		readonly TScenario _scenario;
@@ -31,22 +31,22 @@ namespace MassTransit.Testing.Instances
 			_actions = actions;
 		}
 
-		public ReceivedMessageList Received
+		public IReceivedMessageList Received
 		{
 			get { return _scenario.Received; }
 		}
 
-		public SentMessageList Sent
+		public ISentMessageList Sent
 		{
 			get { return _scenario.Sent; }
 		}
 
-		public PublishedMessageList Published
+		public IPublishedMessageList Published
 		{
 			get { return _scenario.Published; }
 		}
 
-		public ReceivedMessageList Skipped
+		public IReceivedMessageList Skipped
 		{
 			get { return _scenario.Skipped; }
 		}

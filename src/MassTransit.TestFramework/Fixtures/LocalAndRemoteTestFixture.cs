@@ -49,7 +49,7 @@ namespace MassTransit.TestFramework.Fixtures
 		SubscriptionLoopback _localLoopback;
 		SubscriptionLoopback _remoteLoopback;
 
-		protected virtual void ConfigureLocalBus(ServiceBusConfigurator configurator)
+		protected virtual void ConfigureLocalBus(IServiceBusConfigurator configurator)
 		{
 			configurator.AddSubscriptionObserver((bus, coordinator) =>
 				{
@@ -58,7 +58,7 @@ namespace MassTransit.TestFramework.Fixtures
 				});
 		}
 
-		protected virtual void ConfigureRemoteBus(ServiceBusConfigurator configurator)
+		protected virtual void ConfigureRemoteBus(IServiceBusConfigurator configurator)
 		{
 			configurator.AddSubscriptionObserver((bus, coordinator) =>
 				{

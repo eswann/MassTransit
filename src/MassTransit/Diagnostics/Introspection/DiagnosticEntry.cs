@@ -12,10 +12,24 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Diagnostics.Introspection
 {
-    public interface DiagnosticEntry
+    public interface IDiagnosticEntry
     {
         string Context { get; }
         string Key { get; }
         string Value { get; }
+    }
+
+    public class DiagnosticEntry :
+        IDiagnosticEntry
+    {
+        public DiagnosticEntry(string key, object value)
+        {
+            Key = key;
+            Value = string.Format("{0}", value);
+        }
+
+        public string Context { get; set; }
+        public string Key { get; set; }
+        public string Value { get; set; }
     }
 }

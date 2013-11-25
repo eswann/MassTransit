@@ -14,6 +14,7 @@ namespace MassTransit.Saga
 {
 	using System;
 	using System.Linq.Expressions;
+	using Context;
 	using Magnum.Reflection;
 
 	public class CreateOrUseExistingSagaPolicy<TSaga, TMessage> :

@@ -14,13 +14,36 @@ namespace MassTransit.Testing.Factories
 {
 	using System;
 	using Saga;
+	using ScenarioBuilders;
 	using Scenarios;
 	using TestInstanceConfigurators;
 
-	public interface SagaTestFactory<TScenario, TSaga>
+    public interface ISagaTestFactory<TScenario, TSaga>
+        where TSaga : class, ISaga
+        where TScenario : ITestScenario
+    {
+        SagaTest<TScenario, TSaga> New(Action<SagaTestInstanceConfigurator<TScenario, TSaga>> configureTest);
+    }
+
+	public class SagaTestFactory<TScenario, TSaga> :
+		ISagaTestFactory<TScenario, TSaga>
 		where TSaga : class, ISaga
-		where TScenario : TestScenario
+		where TScenario : ITestScenario
 	{
-		SagaTest<TScenario, TSaga> New(Action<SagaTestInstanceConfigurator<TScenario, TSaga>> configureTest);
+		readonly Func<IScenarioBuilder<TScenario>> _scenarioBuilderFactory;
+
+		public SagaTestFactory(Func<IScenarioBuilder<TScenario>> scenarioBuilderFactory)
+		{
+			_scenarioBuilderFactory = scenarioBuilderFactory;
+		}
+
+		public SagaTest<TScenario, TSaga> New(Action<SagaTestInstanceConfigurator<TScenario, TSaga>> configureTest)
+		{
+			var configurator = new SagaTestInstanceConfiguratorImpl<TScenario, TSaga>(_scenarioBuilderFactory);
+
+			configureTest(configurator);
+
+			return configurator.Build();
+		}
 	}
 }

@@ -15,8 +15,9 @@ namespace MassTransit.Pipeline.Sinks
 	using System;
 	using System.Collections.Generic;
 	using System.Linq;
+	using Context;
 
-	public class OutboundMessageFilter<TMessage> :
+    public class OutboundMessageFilter<TMessage> :
 		OutboundPipelineSink<TMessage>
 		where TMessage : class
 	{

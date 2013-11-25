@@ -13,6 +13,8 @@
 namespace MassTransit.Transports.RabbitMq.Tests
 {
     using System;
+    using Configuration;
+    using Context;
     using NUnit.Framework;
     using TestFramework;
 

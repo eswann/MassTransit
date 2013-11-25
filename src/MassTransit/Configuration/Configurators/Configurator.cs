@@ -18,13 +18,13 @@ namespace MassTransit.Configurators
 	/// Base interface for all MassTransit configurators. This interface only
 	/// contains a method for validating the validity of the configuration.
 	/// </summary>
-	public interface Configurator
+	public interface IConfigurator
 	{
 		/// <summary>
 		/// Validate the configuration of this configurator, to make sure
 		/// that you haven't done silly mistakes.
 		/// </summary>
 		/// <returns></returns>
-		IEnumerable<ValidationResult> Validate();
+		IEnumerable<IValidationResult> Validate();
 	}
 }

@@ -19,7 +19,7 @@ namespace MassTransit.Testing.Subjects
 	public class ConsumerTestSubjectImpl<TScenario, TSubject> :
 		ConsumerTestSubject<TSubject>
 		where TSubject : class, IConsumer
-	    where TScenario : TestScenario
+	    where TScenario : ITestScenario
 	{
 		readonly IConsumerFactory<TSubject> _consumerFactory;
 		readonly ReceivedMessageListImpl _received;
@@ -33,7 +33,7 @@ namespace MassTransit.Testing.Subjects
 			_received = new ReceivedMessageListImpl();
 		}
 
-		public ReceivedMessageList Received
+		public IReceivedMessageList Received
 		{
 			get { return _received; }
 		}

@@ -35,7 +35,7 @@ namespace MassTransit
             _catalog = new ServiceCatalog();
         }
 
-        public void AddService(BusServiceLayer layer, IBusService service)
+        public void AddService(IBusServiceLayer layer, IBusService service)
         {
             _catalog.Add(layer, service);
         }
@@ -100,12 +100,12 @@ namespace MassTransit
             }
         }
 
-        public void Inspect(DiagnosticsProbe probe)
+        public void Inspect(IDiagnosticsProbe probe)
         {
             probe.Add("mt.service_count", _catalog.NumberOfServices);
             _catalog.Services
-                .Where(svc => svc.Implements<DiagnosticsSource>())
-                .Cast<DiagnosticsSource>()
+                .Where(svc => svc.Implements<IDiagnosticsSource>())
+                .Cast<IDiagnosticsSource>()
                 .Each(src => src.Inspect(probe));
         }
 

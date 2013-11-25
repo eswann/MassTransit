@@ -16,10 +16,12 @@ namespace MassTransit.Tests
     using System.Linq;
     using System.Threading.Tasks;
     using BusConfigurators;
+    using Context;
     using Exceptions;
     using Magnum.Extensions;
     using Magnum.TestFramework;
     using NUnit.Framework;
+    using RequestResponse;
     using TestFramework;
     using TextFixtures;
 
@@ -137,7 +139,7 @@ namespace MassTransit.Tests
             _pingReceived = new FutureMessage<PingMessage>();
         }
 
-        protected override void ConfigureRemoteBus(ServiceBusConfigurator configurator)
+        protected override void ConfigureRemoteBus(IServiceBusConfigurator configurator)
         {
             base.ConfigureRemoteBus(configurator);
 

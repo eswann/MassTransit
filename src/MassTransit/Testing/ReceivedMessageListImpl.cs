@@ -17,19 +17,20 @@ namespace MassTransit.Testing
 	using System.Collections.Generic;
 	using System.Linq;
 	using System.Threading;
+	using Context;
 	using Magnum.Extensions;
 
 	public class ReceivedMessageListImpl :
-		ReceivedMessageList,
+		IReceivedMessageList,
 		IDisposable
 	{
-		readonly HashSet<ReceivedMessage> _messages;
+		readonly HashSet<IReceivedMessage> _messages;
 		readonly AutoResetEvent _received;
 		TimeSpan _timeout = 12.Seconds();
 
 		public ReceivedMessageListImpl()
 		{
-			_messages = new HashSet<ReceivedMessage>(new MessageIdEqualityComparer());
+			_messages = new HashSet<IReceivedMessage>(new MessageIdEqualityComparer());
 			_received = new AutoResetEvent(false);
 		}
 
@@ -40,7 +41,7 @@ namespace MassTransit.Testing
 			}
 		}
 
-		public IEnumerator<ReceivedMessage> GetEnumerator()
+		public IEnumerator<IReceivedMessage> GetEnumerator()
 		{
 			lock (_messages)
 				return _messages.ToList().GetEnumerator();
@@ -75,13 +76,13 @@ namespace MassTransit.Testing
 			return Any<T>((c,m) => true);
 		}
 
-		public bool Any<T>(Func<ReceivedMessage, T, bool> filter)
+		public bool Any<T>(Func<IReceivedMessage, T, bool> filter)
 			where T : class
 		{
 			bool any;
 			IConsumeContext<T> consumeContext;
 
-			Func<ReceivedMessage, bool> predicate =
+			Func<IReceivedMessage, bool> predicate =
 				x => x.Context.TryGetContext(out consumeContext) && filter(x, consumeContext.Message);
 
 			lock (_messages)
@@ -101,7 +102,7 @@ namespace MassTransit.Testing
 			return true;
 		}
 
-		public void Add(ReceivedMessage message)
+		public void Add(IReceivedMessage message)
 		{
 			lock (_messages)
 			{
@@ -110,21 +111,21 @@ namespace MassTransit.Testing
 			}
 		}
 
-		public void Remove(ReceivedMessage message)
+		public void Remove(IReceivedMessage message)
 		{
 			lock (_messages)
 				_messages.Remove(message);
 		}
 
 		class MessageIdEqualityComparer :
-			IEqualityComparer<ReceivedMessage>
+			IEqualityComparer<IReceivedMessage>
 		{
-			public bool Equals(ReceivedMessage x, ReceivedMessage y)
+			public bool Equals(IReceivedMessage x, IReceivedMessage y)
 			{
 				return string.Equals(x.Context.MessageId, y.Context.MessageId);
 			}
 
-			public int GetHashCode(ReceivedMessage message)
+			public int GetHashCode(IReceivedMessage message)
 			{
 				return message.Context.MessageId.GetHashCode();
 			}

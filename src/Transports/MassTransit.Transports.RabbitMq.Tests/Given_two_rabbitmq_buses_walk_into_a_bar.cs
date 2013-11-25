@@ -14,6 +14,7 @@ namespace MassTransit.Transports.RabbitMq.Tests
 {
     using System;
     using BusConfigurators;
+    using Configuration;
     using Configuration.Configurators;
     using Magnum.TestFramework;
     using NUnit.Framework;
@@ -50,19 +51,19 @@ namespace MassTransit.Transports.RabbitMq.Tests
             RemoteBus = null;
         }
 
-        protected virtual void ConfigureLocalBus(ServiceBusConfigurator configurator)
+        protected virtual void ConfigureLocalBus(IServiceBusConfigurator configurator)
         {
         }
 
-        protected virtual void ConfigureRemoteBus(ServiceBusConfigurator configurator)
+        protected virtual void ConfigureRemoteBus(IServiceBusConfigurator configurator)
         {
         }
 
-        protected virtual void ConfigureRabbitMq(RabbitMqTransportFactoryConfigurator configurator)
+        protected virtual void ConfigureRabbitMq(IRabbitMqTransportFactoryConfigurator configurator)
         {
         }
 
-        protected IServiceBus SetupServiceBus(Uri uri, Action<ServiceBusConfigurator> configure)
+        protected IServiceBus SetupServiceBus(Uri uri, Action<IServiceBusConfigurator> configure)
         {
             IServiceBus bus = ServiceBusFactory.New(x =>
                 {

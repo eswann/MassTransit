@@ -14,9 +14,9 @@ namespace MassTransit.Transports.RabbitMq.Configuration.Configurators
 {
 	using MassTransit.Configurators;
 
-	public interface RabbitMqTransportFactoryConfigurator :
-		Configurator
+	public interface IRabbitMqTransportFactoryConfigurator :
+		IConfigurator
 	{
-		void AddConfigurator(RabbitMqTransportFactoryBuilderConfigurator configurator);
+		void AddConfigurator(IRabbitMqTransportFactoryBuilderConfigurator configurator);
 	}
 }

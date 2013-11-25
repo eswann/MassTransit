@@ -20,7 +20,7 @@ namespace MassTransit.EndpointConfigurators
     using Serialization;
 
     public class SetSupportedMessageSerializersEndpointFactoryConfigurator :
-        EndpointFactoryBuilderConfigurator
+        IEndpointFactoryBuilderConfigurator
     {
         readonly Func<ISupportedMessageSerializers> _supportedSerializersFactory;
 
@@ -29,7 +29,7 @@ namespace MassTransit.EndpointConfigurators
             _supportedSerializersFactory = supportedSerializersFactory;
         }
 
-        public IEnumerable<ValidationResult> Validate()
+        public IEnumerable<IValidationResult> Validate()
         {
             if (_supportedSerializersFactory == null)
             {

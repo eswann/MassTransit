@@ -36,8 +36,8 @@ namespace MassTransit.Tests.Saga
 	/// </summary>
 	public class RegisterUserSaga :
 		InitiatedBy<RegisterUser>,
-		Orchestrates<UserVerificationEmailSent>,
-		Orchestrates<UserValidated>,
+		IOrchestrate<UserVerificationEmailSent>,
+		IOrchestrate<UserValidated>,
 		ISaga
 	{
 		public string DisplayName { get; set; }

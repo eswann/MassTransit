@@ -17,6 +17,7 @@ namespace MassTransit.TestFramework.Fixtures
 	using MassTransit.Transports;
 	using NUnit.Framework;
 	using Saga;
+	using Services.Subscriptions.Configuration;
 	using Services.Subscriptions.Server;
 
 	[TestFixture]
@@ -69,7 +70,7 @@ namespace MassTransit.TestFramework.Fixtures
 
 		protected SubscriptionService SubscriptionService { get; private set; }
 
-		protected override void ConfigureServiceBus(Uri uri, ServiceBusConfigurator configurator)
+		protected override void ConfigureServiceBus(Uri uri, IServiceBusConfigurator configurator)
 		{
 			base.ConfigureServiceBus(uri, configurator);
 

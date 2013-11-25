@@ -14,6 +14,7 @@ namespace MassTransit.RequestResponse
 {
     using System;
     using System.Threading;
+    using Context;
 
     public class CompleteResponseHandler<TResponse> :
         ResponseHandlerBase<TResponse>

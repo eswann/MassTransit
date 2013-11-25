@@ -2,6 +2,7 @@
 {
     using System;
     using System.Threading;
+    using Configuration;
     using Magnum.Extensions;
     using NUnit.Framework;
 

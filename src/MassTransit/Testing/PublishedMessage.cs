@@ -13,8 +13,9 @@
 namespace MassTransit.Testing
 {
 	using System;
+	using Context;
 
-	public interface PublishedMessage
+    public interface IPublishedMessage
 	{
 		ISendContext Context { get; }
 		Exception Exception { get; }
@@ -23,7 +24,7 @@ namespace MassTransit.Testing
 	}
 
 	public interface PublishedMessage<T> :
-		PublishedMessage
+		IPublishedMessage
 		where T : class
 	{
 		new IPublishContext<T> Context { get; }

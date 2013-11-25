@@ -14,8 +14,9 @@ namespace MassTransit.Saga
 {
 	using System;
 	using System.Collections.Generic;
+	using Context;
 
-	public interface ISagaLocator<TMessage>
+    public interface ISagaLocator<TMessage>
 		where TMessage : class
 	{
 		IEnumerable<Guid> Find(IConsumeContext<TMessage> context);

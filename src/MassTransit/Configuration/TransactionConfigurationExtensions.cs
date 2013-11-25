@@ -26,7 +26,7 @@ namespace MassTransit
         /// <param name="timeout"></param>
         /// <returns></returns>
         public static T SetDefaultTransactionTimeout<T>(this T configurator, TimeSpan timeout)
-            where T : EndpointFactoryConfigurator
+            where T : IEndpointFactoryConfigurator
         {
             var builderConfigurator =
                 new DelegateEndpointFactoryBuilderConfigurator(x => x.SetDefaultTransactionTimeout(timeout));
@@ -37,7 +37,7 @@ namespace MassTransit
         }
 
         public static T SetDefaultIsolationLevel<T>(this T configurator, IsolationLevel level)
-            where T : EndpointFactoryConfigurator
+            where T : IEndpointFactoryConfigurator
         {
             var builderConfigurator =
                 new DelegateEndpointFactoryBuilderConfigurator(x => x.SetDefaultIsolationLevel(level));

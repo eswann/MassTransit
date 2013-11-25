@@ -13,8 +13,9 @@
 namespace MassTransit.Transports
 {
 	using System;
+	using Context;
 
-	public class Transport :
+    public class Transport :
 		IDuplexTransport
 	{
 		readonly Func<IInboundTransport> _inboundFactory;

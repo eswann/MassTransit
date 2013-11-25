@@ -1,6 +1,7 @@
 ﻿namespace MassTransit.Transports.RabbitMq.Tests
 {
 	using System;
+	using Configuration;
 	using Magnum.TestFramework;
 	using TestFramework.Fixtures;
 
@@ -14,7 +15,7 @@
 			ConfigureEndpointFactory(x => x.UseJsonSerializer());
 		}
 
-		protected override void ConfigureServiceBus(Uri uri, BusConfigurators.ServiceBusConfigurator configurator)
+		protected override void ConfigureServiceBus(Uri uri, BusConfigurators.IServiceBusConfigurator configurator)
 		{
 			base.ConfigureServiceBus(uri, configurator);
 			configurator.UseRabbitMq();

@@ -17,7 +17,7 @@ namespace MassTransit.EndpointConfigurators
     using Configurators;
 
     public class DefaultRetryLimitEndpointFactoryConfigurator :
-        EndpointFactoryBuilderConfigurator
+        IEndpointFactoryBuilderConfigurator
     {
         readonly int _retryLimit;
 
@@ -26,7 +26,7 @@ namespace MassTransit.EndpointConfigurators
             _retryLimit = retryLimit;
         }
 
-        public IEnumerable<ValidationResult> Validate()
+        public IEnumerable<IValidationResult> Validate()
         {
             if (_retryLimit < 0)
                 yield return this.Failure("RetryLimit",

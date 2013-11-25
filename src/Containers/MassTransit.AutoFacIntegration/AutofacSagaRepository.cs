@@ -16,6 +16,7 @@ namespace MassTransit.AutofacIntegration
     using System.Collections.Generic;
     using System.Linq;
     using Autofac;
+    using Context;
     using Pipeline;
     using Saga;
 

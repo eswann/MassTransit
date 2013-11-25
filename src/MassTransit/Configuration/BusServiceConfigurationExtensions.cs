@@ -19,9 +19,9 @@ namespace MassTransit
 	public static class BusServiceConfigurationExtensions
 	{
         [Obsolete("Use AddService<TService>(..) instead.")]
-		public static void ConfigureService<TServiceConfigurator>(this ServiceBusConfigurator configurator, BusServiceLayer layer,
+		public static void ConfigureService<TServiceConfigurator>(this IServiceBusConfigurator configurator, IBusServiceLayer layer,
 		                                                          Action<TServiceConfigurator> configure)
-			where TServiceConfigurator : BusServiceConfigurator, new()
+			where TServiceConfigurator : IBusServiceConfigurator, new()
 		{
 			var serviceConfigurator = new TServiceConfigurator();
 
@@ -32,7 +32,7 @@ namespace MassTransit
 			configurator.AddBusConfigurator(busConfigurator);
 		}
 
-		public static void AddService<TService>(this ServiceBusConfigurator configurator, BusServiceLayer layer, Func<TService> serviceFactory)
+		public static void AddService<TService>(this IServiceBusConfigurator configurator, IBusServiceLayer layer, Func<TService> serviceFactory)
 			where TService : IBusService
 		{
 			var serviceConfigurator = new DefaultBusServiceConfigurator<TService>(layer, bus => serviceFactory());
@@ -40,7 +40,7 @@ namespace MassTransit
 			configurator.AddBusConfigurator(serviceConfigurator);
 		}
 
-		public static void AddService<TService>(this ServiceBusConfigurator configurator, BusServiceLayer layer,
+		public static void AddService<TService>(this IServiceBusConfigurator configurator, IBusServiceLayer layer,
 		                                        Func<IServiceBus, TService> serviceFactory)
 			where TService : IBusService
 		{

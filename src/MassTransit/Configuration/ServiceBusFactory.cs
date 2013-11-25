@@ -15,6 +15,7 @@ namespace MassTransit
 	using System;
 	using BusConfigurators;
 	using Configurators;
+	using Diagnostics;
 	using Exceptions;
 	using Magnum;
 	using Util;
@@ -27,7 +28,7 @@ namespace MassTransit
 		static readonly ServiceBusDefaultSettings _defaultSettings = new ServiceBusDefaultSettings();
 
 		[NotNull]
-		public static IServiceBus New([NotNull] Action<ServiceBusConfigurator> configure)
+		public static IServiceBus New([NotNull] Action<IServiceBusConfigurator> configure)
 		{
 			Guard.AgainstNull(configure, "configure");
 
@@ -49,7 +50,7 @@ namespace MassTransit
 			}
 		}
 
-		public static void ConfigureDefaultSettings([NotNull] Action<ServiceBusDefaultSettingsConfigurator> configure)
+		public static void ConfigureDefaultSettings([NotNull] Action<IServiceBusDefaultSettingsConfigurator> configure)
 		{
 			Guard.AgainstNull(configure);
 

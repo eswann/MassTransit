@@ -40,7 +40,7 @@ namespace MassTransit
             get { return _services.Count; }
         }
 
-        public void Add(BusServiceLayer layer, IBusService service)
+        public void Add(IBusServiceLayer layer, IBusService service)
         {
             _services[(int)layer].Add(service);
         }

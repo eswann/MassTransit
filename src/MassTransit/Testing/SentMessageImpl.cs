@@ -13,8 +13,9 @@
 namespace MassTransit.Testing
 {
 	using System;
+	using Context;
 
-	public class SentMessageImpl<T> :
+    public class SentMessageImpl<T> :
 		SentMessage<T>
 		where T : class
 	{
@@ -41,7 +42,7 @@ namespace MassTransit.Testing
 			get { return typeof (T); }
 		}
 
-		ISendContext SentMessage.Context
+		ISendContext ISentMessage.Context
 		{
 			get { return Context; }
 		}

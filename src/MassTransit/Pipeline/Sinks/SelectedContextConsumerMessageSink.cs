@@ -14,6 +14,7 @@ namespace MassTransit.Pipeline.Sinks
 {
     using System;
     using System.Collections.Generic;
+    using Context;
     using Magnum.Extensions;
 
     public class SelectedContextConsumerMessageSink<TConsumer, TMessage> :

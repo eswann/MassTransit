@@ -15,7 +15,7 @@ namespace MassTransit.Testing
 	using Saga;
 
 	public class SagaInstanceImpl<T> :
-		SagaInstance<T>
+		ISagaInstance<T>
 		where T : class, ISaga
 	{
 		public SagaInstanceImpl(T saga)

@@ -26,9 +26,9 @@ namespace MassTransit.Testing.TestDecorators
         readonly IEndpoint _endpoint;
         readonly ReceivedMessageListImpl _received;
         readonly SentMessageListImpl _sent;
-        EndpointTestScenarioImpl _scenario;
+        EndpointTestScenario _scenario;
 
-        public EndpointTestDecorator(IEndpoint endpoint, EndpointTestScenarioImpl scenario)
+        public EndpointTestDecorator(IEndpoint endpoint, EndpointTestScenario scenario)
         {
             _endpoint = endpoint;
             _scenario = scenario;
@@ -37,12 +37,12 @@ namespace MassTransit.Testing.TestDecorators
             _received = new ReceivedMessageListImpl();
         }
 
-        public ReceivedMessageList Received
+        public IReceivedMessageList Received
         {
             get { return _received; }
         }
 
-        public SentMessageList Sent
+        public ISentMessageList Sent
         {
             get { return _sent; }
         }

@@ -15,15 +15,15 @@ namespace MassTransit.Testing
 	using System;
 	using System.Collections.Generic;
 
-	public interface ReceivedMessageList :
-		IEnumerable<ReceivedMessage>
+	public interface IReceivedMessageList :
+		IEnumerable<IReceivedMessage>
 	{
 		bool Any();
 
 		bool Any<T>()
 			where T : class;
 
-		bool Any<T>(Func<ReceivedMessage, T, bool> filter)
+		bool Any<T>(Func<IReceivedMessage, T, bool> filter)
 			where T : class;
 	}
 

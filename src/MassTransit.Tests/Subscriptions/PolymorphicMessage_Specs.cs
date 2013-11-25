@@ -36,7 +36,7 @@ namespace MassTransit.Tests.Subscriptions
 			LocalBus.Publish(new Message());
 		}
 
-		protected override void ConfigureRemoteBus(ServiceBusConfigurator configurator)
+		protected override void ConfigureRemoteBus(IServiceBusConfigurator configurator)
 		{
 			base.ConfigureRemoteBus(configurator);
 

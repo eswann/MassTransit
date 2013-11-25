@@ -18,21 +18,21 @@ namespace MassTransit.Transports.RabbitMq.Configuration.Configurators
 	using MassTransit.Configurators;
 
 	public class RabbitMqTransportFactoryConfiguratorImpl :
-		RabbitMqTransportFactoryConfigurator
+		IRabbitMqTransportFactoryConfigurator
 	{
-		readonly IList<RabbitMqTransportFactoryBuilderConfigurator> _transportFactoryConfigurators;
+		readonly IList<IRabbitMqTransportFactoryBuilderConfigurator> _transportFactoryConfigurators;
 
 		public RabbitMqTransportFactoryConfiguratorImpl()
 		{
-			_transportFactoryConfigurators = new List<RabbitMqTransportFactoryBuilderConfigurator>();
+			_transportFactoryConfigurators = new List<IRabbitMqTransportFactoryBuilderConfigurator>();
 		}
 
-		public IEnumerable<ValidationResult> Validate()
+		public IEnumerable<IValidationResult> Validate()
 		{
 			return _transportFactoryConfigurators.SelectMany(x => x.Validate());
 		}
 
-		public void AddConfigurator(RabbitMqTransportFactoryBuilderConfigurator configurator)
+		public void AddConfigurator(IRabbitMqTransportFactoryBuilderConfigurator configurator)
 		{
 			_transportFactoryConfigurators.Add(configurator);
 		}

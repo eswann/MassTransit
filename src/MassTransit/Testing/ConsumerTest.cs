@@ -16,7 +16,7 @@ namespace MassTransit.Testing
 	using Subjects;
 
 	public interface ConsumerTest<TConsumer> :
-		TestInstance
+		ITestInstance
 		where TConsumer : class
 	{
 		ConsumerTestSubject<TConsumer> Consumer { get; }
@@ -25,7 +25,7 @@ namespace MassTransit.Testing
 	public interface ConsumerTest<TScenario, TConsumer> :
 		ConsumerTest<TConsumer>
 		where TConsumer : class
-		where TScenario : TestScenario
+		where TScenario : ITestScenario
 	{
 		TScenario Scenario { get; }
 	}

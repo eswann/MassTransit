@@ -13,8 +13,9 @@
 namespace MassTransit.Pipeline
 {
 	using System;
+	using Context;
 
-	/// <summary>
+    /// <summary>
 	/// Implemented by classes that can be placed in the inbound message pipeline. See
 	/// <see cref="IPipelineSink{IConsumeContext}"/> for sink documentation.
 	/// </summary>

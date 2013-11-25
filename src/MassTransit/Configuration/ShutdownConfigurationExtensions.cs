@@ -17,7 +17,7 @@ namespace MassTransit
 
     public static class ShutdownConfigurationExtensions
     {
-        public static void SetShutdownTimeout(this ServiceBusConfigurator configurator, TimeSpan timeout)
+        public static void SetShutdownTimeout(this IServiceBusConfigurator configurator, TimeSpan timeout)
         {
             var controlBusConfigurator =
                 new PostCreateBusBuilderConfigurator(bus => { bus.ShutdownTimeout = timeout; });

@@ -34,7 +34,7 @@ namespace MassTransit.Tests.TextFixtures
 				});
 		}
 
-		protected virtual void ConfigureLocalBus(ServiceBusConfigurator configurator)
+		protected virtual void ConfigureLocalBus(IServiceBusConfigurator configurator)
 		{
 		}
 

@@ -12,7 +12,8 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.SubscriptionConnectors
 {
-	using Pipeline;
+    using Context;
+    using Pipeline;
 	using Pipeline.Configuration;
 	using Pipeline.Sinks;
 

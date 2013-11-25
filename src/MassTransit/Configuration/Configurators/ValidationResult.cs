@@ -1,4 +1,4 @@
-// Copyright 2007-2011 Chris Patterson, Dru Sellers, Travis Smith, et. al.
+﻿// Copyright 2007-2011 Chris Patterson, Dru Sellers, Travis Smith, et. al.
 //  
 // Licensed under the Apache License, Version 2.0 (the "License"); you may not use 
 // this file except in compliance with the License. You may obtain a copy of the 
@@ -12,31 +12,70 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Configurators
 {
-	/// <summary>
-	/// Reports information about the configuration before configuring
-	/// so that corrections can be made without allocating resources, etc.
-	/// </summary>
-	public interface ValidationResult
+	using System;
+
+    /// <summary>
+    /// Reports information about the configuration before configuring
+    /// so that corrections can be made without allocating resources, etc.
+    /// </summary>
+    public interface IValidationResult
+    {
+        /// <summary>
+        /// The disposition of the result, any Failure items will prevent
+        /// the configuration from completing.
+        /// </summary>
+        ValidationResultDisposition Disposition { get; }
+
+        /// <summary>
+        /// The message associated with the result
+        /// </summary>
+        string Message { get; }
+
+        /// <summary>
+        /// The key associated with the result (chained if configurators are nested)
+        /// </summary>
+        string Key { get; }
+
+        /// <summary>
+        /// The value associated with the result
+        /// </summary>
+        string Value { get; }
+    }
+
+	[Serializable]
+	public class ValidationResultImpl :
+		IValidationResult
 	{
-		/// <summary>
-		/// The disposition of the result, any Failure items will prevent
-		/// the configuration from completing.
-		/// </summary>
-		ValidationResultDisposition Disposition { get; }
+		public ValidationResultImpl(ValidationResultDisposition disposition, string key, string value, string message)
+		{
+			Disposition = disposition;
+			Key = key;
+			Value = value;
+			Message = message;
+		}
 
-		/// <summary>
-		/// The message associated with the result
-		/// </summary>
-		string Message { get; }
+		public ValidationResultImpl(ValidationResultDisposition disposition, string key, string message)
+		{
+			Disposition = disposition;
+			Key = key;
+			Message = message;
+		}
 
-		/// <summary>
-		/// The key associated with the result (chained if configurators are nested)
-		/// </summary>
-		string Key { get; }
+		public ValidationResultImpl(ValidationResultDisposition disposition, string message)
+		{
+			Key = "";
+			Disposition = disposition;
+			Message = message;
+		}
 
-		/// <summary>
-		/// The value associated with the result
-		/// </summary>
-		string Value { get; }
+		public ValidationResultDisposition Disposition { get; private set; }
+		public string Key { get; private set; }
+		public string Value { get; set; }
+		public string Message { get; private set; }
+
+		public override string ToString()
+		{
+			return string.Format("[{0}] {1}", Disposition, string.IsNullOrEmpty(Key) ? Message : Key + " " + Message);
+		}
 	}
 }

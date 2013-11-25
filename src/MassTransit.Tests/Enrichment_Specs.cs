@@ -14,6 +14,7 @@ namespace MassTransit.Tests
 {
     using System.Linq;
     using BusConfigurators;
+    using Context;
     using Magnum.Extensions;
     using Magnum.TestFramework;
     using NUnit.Framework;
@@ -27,7 +28,7 @@ namespace MassTransit.Tests
         [Test]
         public void Should_be_possible()
         {
-            RemoteBus.HasSubscription<SecureCommand>(8.Seconds()).Any().ShouldBeTrue();
+            RemoteBus.HasSubscription<ISecureCommand>(8.Seconds()).Any().ShouldBeTrue();
 
             RemoteBus.Publish(new CommandAndCredentials
                 {
@@ -39,7 +40,7 @@ namespace MassTransit.Tests
             CommandHandler.CredentialsReceived.IsAvailable(8.Seconds()).ShouldBeTrue();
         }
 
-        protected override void ConfigureLocalBus(ServiceBusConfigurator configurator)
+        protected override void ConfigureLocalBus(IServiceBusConfigurator configurator)
         {
             base.ConfigureLocalBus(configurator);
 
@@ -48,13 +49,13 @@ namespace MassTransit.Tests
 
 
         public class CommandHandler :
-            Consumes<SecureCommand>.Context
+            Consumes<ISecureCommand>.Context
         {
-            public static FutureMessage<UserCredentials> CredentialsReceived = new FutureMessage<UserCredentials>();
+            public static FutureMessage<IUserCredentials> CredentialsReceived = new FutureMessage<IUserCredentials>();
 
-            public void Consume(IConsumeContext<SecureCommand> context)
+            public void Consume(IConsumeContext<ISecureCommand> context)
             {
-                IConsumeContext<UserCredentials> credentials;
+                IConsumeContext<IUserCredentials> credentials;
                 if (context.TryGetContext(out credentials))
                 {
                     CredentialsReceived.Set(credentials.Message);
@@ -64,20 +65,20 @@ namespace MassTransit.Tests
 
 
         class CommandAndCredentials :
-            SecureCommand,
-            UserCredentials
+            ISecureCommand,
+            IUserCredentials
         {
             public string SqlText { get; set; }
             public string Username { get; set; }
             public string Password { get; set; }
         }
 
-        public interface SecureCommand
+        public interface ISecureCommand
         {
             string SqlText { get; }
         }
 
-        public interface UserCredentials
+        public interface IUserCredentials
         {
             string Username { get; }
             string Password { get; }
@@ -91,10 +92,10 @@ namespace MassTransit.Tests
         [Test]
         public void Should_be_possible()
         {
-            LocalBus.HasSubscription<BusinessCommand>(8.Seconds()).Any().ShouldBeTrue();
-            RemoteBus.HasSubscription<SecureCommand<BusinessCommand>>(8.Seconds()).Any().ShouldBeTrue();
+            LocalBus.HasSubscription<IBusinessCommand>(8.Seconds()).Any().ShouldBeTrue();
+            RemoteBus.HasSubscription<ISecureCommand<IBusinessCommand>>(8.Seconds()).Any().ShouldBeTrue();
 
-            RemoteBus.Publish(new BusinessCommandImpl
+            RemoteBus.Publish(new BusinessCommand
                 {
                     SqlText = "DROP TABLE [Users]",
                 });
@@ -102,66 +103,66 @@ namespace MassTransit.Tests
             CommandHandler.CommandReceived.IsAvailable(8.Seconds()).ShouldBeTrue();
         }
 
-        protected override void ConfigureLocalBus(ServiceBusConfigurator configurator)
+        protected override void ConfigureLocalBus(IServiceBusConfigurator configurator)
         {
             base.ConfigureLocalBus(configurator);
 
             configurator.Subscribe(x => { x.Consumer<CommandHandler>(); });
         }
 
-        protected override void ConfigureRemoteBus(ServiceBusConfigurator configurator)
+        protected override void ConfigureRemoteBus(IServiceBusConfigurator configurator)
         {
             base.ConfigureRemoteBus(configurator);
 
-            configurator.Subscribe(x => x.Consumer<CommandSecurityMaker<BusinessCommand>>());
+            configurator.Subscribe(x => x.Consumer<CommandSecurityMaker<IBusinessCommand>>());
         }
 
 
         public class CommandHandler :
-            Consumes<SecureCommand<BusinessCommand>>.Context
+            Consumes<ISecureCommand<IBusinessCommand>>.Context
         {
-            public static FutureMessage<UserCredentials> CommandReceived = new FutureMessage<UserCredentials>();
+            public static FutureMessage<IUserCredentials> CommandReceived = new FutureMessage<IUserCredentials>();
 
-            public void Consume(IConsumeContext<SecureCommand<BusinessCommand>> context)
+            public void Consume(IConsumeContext<ISecureCommand<IBusinessCommand>> context)
             {
                 CommandReceived.Set(context.Message.Credentials);
             }
         }
 
 
-        class SecureCommandImpl<T> :
-            SecureCommand<T>
+        class SecureCommand<T> :
+            ISecureCommand<T>
             where T : class
         {
             public T Command { get;  set; }
-            public UserCredentials Credentials { get;  set; }
+            public IUserCredentials Credentials { get;  set; }
         }
 
-        public interface SecureCommand<T>
+        public interface ISecureCommand<T>
             where T : class
         {
             T Command { get; }
-            UserCredentials Credentials { get; }
+            IUserCredentials Credentials { get; }
         }
 
-        public interface BusinessCommand
+        public interface IBusinessCommand
         {
             string SqlText { get; }
         }
 
-        class BusinessCommandImpl : 
-            BusinessCommand
+        class BusinessCommand : 
+            IBusinessCommand
         {
             public string SqlText { get; set; }
         }
 
-        public interface UserCredentials
+        public interface IUserCredentials
         {
             string Username { get; }
             string Password { get; }
         }
 
-        class UserCredentialsImpl : UserCredentials
+        class UserCredentials : IUserCredentials
         {
             public string Username { get;  set; }
             public string Password { get;  set; }
@@ -173,10 +174,10 @@ namespace MassTransit.Tests
         {
             public void Consume(IConsumeContext<T> message)
             {
-                var output = new SecureCommandImpl<T>()
+                var output = new SecureCommand<T>()
                     {
                         Command = message.Message,
-                        Credentials = new UserCredentialsImpl {Username = "sa", Password = "god"},
+                        Credentials = new UserCredentials {Username = "sa", Password = "god"},
                     };
 
                 message.Bus.Publish(output, x => x.ForwardUsingOriginalContext(message));

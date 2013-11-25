@@ -13,6 +13,7 @@
 namespace MassTransit.Pipeline
 {
     using System;
+    using Context;
 
     /// <summary>
     /// Given a message, returns the handler for that message, or null if the message

@@ -13,6 +13,7 @@
 namespace MassTransit.Configuration
 {
     using System;
+    using Context;
 
 
     public class DelegateMessageInterceptor :

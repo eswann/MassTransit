@@ -14,52 +14,52 @@ namespace MassTransit.Configurators
 {
 	public static class ValidationResultExtensions
 	{
-		public static ValidationResult Failure(this Configurator configurator, string message)
+		public static IValidationResult Failure(this IConfigurator configurator, string message)
 		{
 			return new ValidationResultImpl(ValidationResultDisposition.Failure, message);
 		}
 
-		public static ValidationResult Failure(this Configurator configurator, string key, string message)
+		public static IValidationResult Failure(this IConfigurator configurator, string key, string message)
 		{
 			return new ValidationResultImpl(ValidationResultDisposition.Failure, key, message);
 		}
 
-		public static ValidationResult Failure(this Configurator configurator, string key, string value, string message)
+		public static IValidationResult Failure(this IConfigurator configurator, string key, string value, string message)
 		{
 			return new ValidationResultImpl(ValidationResultDisposition.Failure, key, value, message);
 		}
 
-		public static ValidationResult Warning(this Configurator configurator, string message)
+		public static IValidationResult Warning(this IConfigurator configurator, string message)
 		{
 			return new ValidationResultImpl(ValidationResultDisposition.Warning, message);
 		}
 
-		public static ValidationResult Warning(this Configurator configurator, string key, string message)
+		public static IValidationResult Warning(this IConfigurator configurator, string key, string message)
 		{
 			return new ValidationResultImpl(ValidationResultDisposition.Warning, key, message);
 		}
 
-		public static ValidationResult Warning(this Configurator configurator, string key, string value, string message)
+		public static IValidationResult Warning(this IConfigurator configurator, string key, string value, string message)
 		{
 			return new ValidationResultImpl(ValidationResultDisposition.Warning, key, value, message);
 		}
 
-		public static ValidationResult Success(this Configurator configurator, string message)
+		public static IValidationResult Success(this IConfigurator configurator, string message)
 		{
 			return new ValidationResultImpl(ValidationResultDisposition.Success, message);
 		}
 
-		public static ValidationResult Success(this Configurator configurator, string key, string message)
+		public static IValidationResult Success(this IConfigurator configurator, string key, string message)
 		{
 			return new ValidationResultImpl(ValidationResultDisposition.Success, key, message);
 		}
 
-		public static ValidationResult Success(this Configurator configurator, string key, string value, string message)
+		public static IValidationResult Success(this IConfigurator configurator, string key, string value, string message)
 		{
 			return new ValidationResultImpl(ValidationResultDisposition.Success, key, value, message);
 		}
 
-		public static ValidationResult WithParentKey(this ValidationResult result, string parentKey)
+		public static IValidationResult WithParentKey(this IValidationResult result, string parentKey)
 		{
 			//string key = result.Key.Contains(".") ? result.Key.Substring(result.Key.IndexOf('.')) : "";
 

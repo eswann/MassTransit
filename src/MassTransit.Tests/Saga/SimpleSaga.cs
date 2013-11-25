@@ -18,8 +18,8 @@ namespace MassTransit.Tests.Saga
 
 	public class SimpleSaga :
 		InitiatedBy<InitiateSimpleSaga>,
-		Orchestrates<CompleteSimpleSaga>,
-		Observes<ObservableSagaMessage,SimpleSaga>,
+		IOrchestrate<CompleteSimpleSaga>,
+		IObserve<ObservableSagaMessage,SimpleSaga>,
 		ISaga
 	{
 		public SimpleSaga()

@@ -19,7 +19,7 @@ namespace MassTransit.Transports.RabbitMq.Configuration.Configurators
 
 
     public class UsernameConnectionFactoryConfigurator :
-        ConnectionFactoryBuilderConfigurator
+        IConnectionFactoryBuilderConfigurator
     {
         readonly string _userName;
 
@@ -34,7 +34,7 @@ namespace MassTransit.Transports.RabbitMq.Configuration.Configurators
             return builder;
         }
 
-        public IEnumerable<ValidationResult> Validate()
+        public IEnumerable<IValidationResult> Validate()
         {
             if (string.IsNullOrEmpty(_userName))
                 yield return this.Failure("UserName", "Must not be null");

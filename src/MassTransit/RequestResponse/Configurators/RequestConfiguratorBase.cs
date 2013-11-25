@@ -15,6 +15,7 @@ namespace MassTransit.RequestResponse.Configurators
     using System;
     using System.Collections.Generic;
     using System.Threading;
+    using Context;
     using Magnum.Caching;
     using Magnum.Extensions;
 

@@ -19,7 +19,7 @@ namespace MassTransit.Transports.RabbitMq.Configuration.Configurators
 
 
     public class PasswordConnectionFactoryConfigurator :
-        ConnectionFactoryBuilderConfigurator
+        IConnectionFactoryBuilderConfigurator
     {
         readonly string _password;
 
@@ -34,7 +34,7 @@ namespace MassTransit.Transports.RabbitMq.Configuration.Configurators
             return builder;
         }
 
-        public IEnumerable<ValidationResult> Validate()
+        public IEnumerable<IValidationResult> Validate()
         {
             if (string.IsNullOrEmpty(_password))
                 yield return this.Failure("Password", "Must not be null");

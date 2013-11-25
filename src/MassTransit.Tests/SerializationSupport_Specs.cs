@@ -1,6 +1,7 @@
 ﻿namespace MassTransit.Tests
 {
     using System.Linq;
+    using Context;
     using Magnum.Extensions;
     using Magnum.TestFramework;
     using NUnit.Framework;
@@ -35,7 +36,7 @@
 
         }
 
-        protected override void ConfigureLocalBus(BusConfigurators.ServiceBusConfigurator configurator)
+        protected override void ConfigureLocalBus(BusConfigurators.IServiceBusConfigurator configurator)
         {
             base.ConfigureLocalBus(configurator);
 
@@ -45,7 +46,7 @@
             configurator.Subscribe(s => s.Handler<B>(_responseReceived.Complete));
         }
 
-        protected override void ConfigureRemoteBus(BusConfigurators.ServiceBusConfigurator configurator)
+        protected override void ConfigureRemoteBus(BusConfigurators.IServiceBusConfigurator configurator)
         {
             base.ConfigureRemoteBus(configurator);
 

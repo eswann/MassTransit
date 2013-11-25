@@ -20,8 +20,8 @@ namespace MassTransit.Advanced
 
 	public static class EnvironmentExtensions
 	{
-		public static void Environments(this ServiceBusConfigurator configurator,
-		                                Action<EnvironmentsConfigurator> configureCallback)
+		public static void Environments(this IServiceBusConfigurator configurator,
+		                                Action<IEnvironmentsConfigurator> configureCallback)
 		{
 			var environmentsConfigurator = new EnvironmentsConfiguratorImpl();
 
@@ -39,7 +39,7 @@ namespace MassTransit.Advanced
 		/// </summary>
 		/// <typeparam name="TEnvironment">The environment class to add</typeparam>
 		/// <param name="configurator"></param>
-		public static void Add<TEnvironment>(this EnvironmentsConfigurator configurator)
+		public static void Add<TEnvironment>(this IEnvironmentsConfigurator configurator)
 			where TEnvironment : class, IServiceBusEnvironment, new()
 		{
 			configurator.Add(() => new TEnvironment());
@@ -51,13 +51,13 @@ namespace MassTransit.Advanced
 		/// <typeparam name="TEnvironment">The environment class to add</typeparam>
 		/// <param name="configurator"></param>
 		/// <param name="environment">The environment instance already created and ready to use</param>
-		public static void Add<TEnvironment>(this EnvironmentsConfigurator configurator, TEnvironment environment)
+		public static void Add<TEnvironment>(this IEnvironmentsConfigurator configurator, TEnvironment environment)
 			where TEnvironment : class, IServiceBusEnvironment
 		{
 			configurator.Add(() => environment);
 		}
 
-		public static void Add(this EnvironmentsConfigurator configurator, string environmentName, Action<ServiceBusConfigurator> environmentConfigurator)
+		public static void Add(this IEnvironmentsConfigurator configurator, string environmentName, Action<IServiceBusConfigurator> environmentConfigurator)
 		{
 			var environment = new DelegateEnvironmentConfigurator(environmentConfigurator);
 
@@ -70,7 +70,7 @@ namespace MassTransit.Advanced
 		/// <typeparam name="TEnvironment">The environment class to add</typeparam>
 		/// <param name="configurator"></param>
 		/// <param name="environmentFactory">The factory method to create the environment instance</param>
-		public static void Add<TEnvironment>(this EnvironmentsConfigurator configurator, Func<TEnvironment> environmentFactory)
+		public static void Add<TEnvironment>(this IEnvironmentsConfigurator configurator, Func<TEnvironment> environmentFactory)
 			where TEnvironment : class, IServiceBusEnvironment
 		{
 			string environmentName = DefaultTypeNameConvention(typeof (TEnvironment));
@@ -84,7 +84,7 @@ namespace MassTransit.Advanced
 		/// </summary>
 		/// <param name="configurator"></param>
 		/// <param name="settingName"></param>
-		public static void SelectByAppSetting(this EnvironmentsConfigurator configurator, string settingName)
+		public static void SelectByAppSetting(this IEnvironmentsConfigurator configurator, string settingName)
 		{
 			string value = ConfigurationManager.AppSettings[settingName];
 			if (string.IsNullOrEmpty(value))
@@ -100,7 +100,7 @@ namespace MassTransit.Advanced
 		/// </summary>
 		/// <param name="configurator"></param>
 		/// <param name="valueName"></param>
-		public static void SelectByEnvironmentVariable(this EnvironmentsConfigurator configurator, string valueName)
+		public static void SelectByEnvironmentVariable(this IEnvironmentsConfigurator configurator, string valueName)
 		{
 			string value = Environment.GetEnvironmentVariable(valueName);
 			if (string.IsNullOrEmpty(value))
@@ -115,7 +115,7 @@ namespace MassTransit.Advanced
 		/// Selects the current environment using the local machine name
 		/// </summary>
 		/// <param name="configurator"></param>
-		public static void SelectByMachineName(this EnvironmentsConfigurator configurator)
+		public static void SelectByMachineName(this IEnvironmentsConfigurator configurator)
 		{
 			configurator.Select(Environment.MachineName);
 		}

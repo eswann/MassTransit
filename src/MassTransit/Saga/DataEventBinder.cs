@@ -17,19 +17,19 @@ namespace MassTransit.Saga
     using Util;
 
     public class DataEventBinder<TSaga, TMessage> :
-        EventBinder<TSaga, TMessage>
+        IEventBinder<TSaga, TMessage>
     {
         Func<TMessage, Guid> _correlationIdSelector;
         Expression<Func<TSaga, TMessage, bool>> _expression;
 
-        public EventBinder<TSaga, TMessage> By([NotNull] Expression<Func<TSaga, TMessage, bool>> expression)
+        public IEventBinder<TSaga, TMessage> By([NotNull] Expression<Func<TSaga, TMessage, bool>> expression)
         {
             _expression = expression;
 
             return this;
         }
 
-        public EventBinder<TSaga, TMessage> UseId([NotNull] Func<TMessage, Guid> correlationIdSelector)
+        public IEventBinder<TSaga, TMessage> UseId([NotNull] Func<TMessage, Guid> correlationIdSelector)
         {
             _correlationIdSelector = correlationIdSelector;
 

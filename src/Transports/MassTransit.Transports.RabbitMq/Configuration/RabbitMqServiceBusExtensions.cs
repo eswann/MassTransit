@@ -10,17 +10,15 @@
 // under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR 
 // CONDITIONS OF ANY KIND, either express or implied. See the License for the 
 // specific language governing permissions and limitations under the License.
-namespace MassTransit
+namespace MassTransit.Transports.RabbitMq.Configuration
 {
     using System;
-    using BusConfigurators;
-    using EndpointConfigurators;
+    using MassTransit.BusConfigurators;
+    using MassTransit.EndpointConfigurators;
     using Magnum.Extensions;
-    using Pipeline.Configuration;
-    using Transports;
-    using Transports.RabbitMq;
-    using Transports.RabbitMq.Configuration.Configurators;
-
+    using MassTransit.Pipeline.Configuration;
+    using MassTransit.Transports;
+    using MassTransit.Transports.RabbitMq.Configuration.Configurators;
 
     public static class RabbitMqServiceBusExtensions
     {
@@ -68,9 +66,9 @@ namespace MassTransit
         }
 
         /// <summary>
-        /// <see cref="UseRabbitMq{T}(T,Action{RabbitMqTransportFactoryConfigurator})"/>
+        /// <see cref="UseRabbitMq{T}(T,Action{IRabbitMqTransportFactoryConfigurator})"/>
         /// </summary>
-        public static void UseRabbitMq(this EndpointFactoryConfigurator configurator)
+        public static void UseRabbitMq(this IEndpointFactoryConfigurator configurator)
         {
             UseRabbitMq(configurator, x => { });
         }
@@ -85,8 +83,8 @@ namespace MassTransit
         /// <param name="configurator">configurator instance</param>
         /// <param name="configureFactory">custom action used to call APIs on the configurator</param>
         /// <returns>the configurator instance</returns>
-        public static void UseRabbitMq(this EndpointFactoryConfigurator configurator,
-            Action<RabbitMqTransportFactoryConfigurator> configureFactory)
+        public static void UseRabbitMq(this IEndpointFactoryConfigurator configurator,
+            Action<IRabbitMqTransportFactoryConfigurator> configureFactory)
         {
             var transportFactoryConfigurator = new RabbitMqTransportFactoryConfiguratorImpl();
 
@@ -102,7 +100,7 @@ namespace MassTransit
         /// </summary>
         /// <param name="configurator"></param>
         /// <returns></returns>
-        public static void UseRabbitMq(this ServiceBusConfigurator configurator)
+        public static void UseRabbitMq(this IServiceBusConfigurator configurator)
         {
             UseRabbitMq(configurator, x => { });
         }
@@ -114,8 +112,8 @@ namespace MassTransit
         /// <param name="configurator"></param>
         /// <param name="configureFactory"></param>
         /// <returns></returns>
-        public static void UseRabbitMq(this ServiceBusConfigurator configurator,
-            Action<RabbitMqTransportFactoryConfigurator> configureFactory)
+        public static void UseRabbitMq(this IServiceBusConfigurator configurator,
+            Action<IRabbitMqTransportFactoryConfigurator> configureFactory)
         {
             configurator.SetSubscriptionObserver((bus, coordinator) => new RabbitMqSubscriptionBinder(bus));
 
@@ -129,7 +127,7 @@ namespace MassTransit
 
             configurator.AddBusConfigurator(busConfigurator);
 
-            UseRabbitMq((EndpointFactoryConfigurator)configurator, configureFactory);
+            UseRabbitMq((IEndpointFactoryConfigurator)configurator, configureFactory);
         }
     }
 }

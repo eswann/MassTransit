@@ -13,6 +13,7 @@
 namespace MassTransit.Tests.Serialization
 {
     using System.Threading;
+    using Context;
     using Magnum.Extensions;
 	using MassTransit.Serialization;
 	using Messages;

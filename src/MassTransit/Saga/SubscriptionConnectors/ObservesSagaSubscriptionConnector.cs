@@ -20,7 +20,7 @@ namespace MassTransit.Saga.SubscriptionConnectors
 
 	public class ObservesSagaSubscriptionConnector<TSaga, TMessage> :
 		SagaSubscriptionConnector<TSaga, TMessage>
-		where TSaga : class, ISaga, Observes<TMessage, TSaga>
+		where TSaga : class, ISaga, IObserve<TMessage, TSaga>
 		where TMessage : class
 	{
 		readonly Expression<Func<TSaga, TMessage, bool>> _selector;
@@ -28,7 +28,7 @@ namespace MassTransit.Saga.SubscriptionConnectors
 		public ObservesSagaSubscriptionConnector(ISagaRepository<TSaga> sagaRepository)
 			: base(sagaRepository, new ExistingOrIgnoreSagaPolicy<TSaga, TMessage>(x => false))
 		{
-			var instance = (Observes<TMessage, TSaga>) FastActivator<TSaga>.Create(Guid.Empty);
+			var instance = (IObserve<TMessage, TSaga>) FastActivator<TSaga>.Create(Guid.Empty);
 
 			_selector = instance.GetBindExpression();
 		}

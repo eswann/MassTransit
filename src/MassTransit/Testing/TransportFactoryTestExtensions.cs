@@ -18,21 +18,21 @@ namespace MassTransit.Testing
 
 	public static class TransportFactoryTestExtensions
 	{
-		public static void AddTransportFactory<TTransportFactory>(this ScenarioConfigurator<BusTestScenario> configurator)
+		public static void AddTransportFactory<TTransportFactory>(this IScenarioConfigurator<IBusTestScenario> configurator)
 			where TTransportFactory : class, ITransportFactory, new()
 		{
 			var endpointFactoryConfigurator =
-				new EndpointTestScenarioBuilderConfiguratorImpl<BusTestScenario>(x => x.AddTransportFactory<TTransportFactory>());
+				new EndpointTestScenarioBuilderConfigurator<IBusTestScenario>(x => x.AddTransportFactory<TTransportFactory>());
 
 			configurator.AddConfigurator(endpointFactoryConfigurator);
 		}
 
 		public static void AddTransportFactory<TTransportFactory>(
-			this ScenarioConfigurator<LocalRemoteTestScenario> configurator)
+			this IScenarioConfigurator<ILocalRemoteTestScenario> configurator)
 			where TTransportFactory : class, ITransportFactory, new()
 		{
 			var endpointFactoryConfigurator =
-				new EndpointTestScenarioBuilderConfiguratorImpl<LocalRemoteTestScenario>(
+				new EndpointTestScenarioBuilderConfigurator<ILocalRemoteTestScenario>(
 					x => x.AddTransportFactory<TTransportFactory>());
 
 			configurator.AddConfigurator(endpointFactoryConfigurator);

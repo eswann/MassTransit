@@ -24,7 +24,7 @@
             _after = new Semaphore(0, 100);
         }
 
-        protected override void ConfigureLocalBus(BusConfigurators.ServiceBusConfigurator configurator)
+        protected override void ConfigureLocalBus(BusConfigurators.IServiceBusConfigurator configurator)
         {
             base.ConfigureLocalBus(configurator);
 

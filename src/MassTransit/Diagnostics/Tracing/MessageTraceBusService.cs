@@ -24,13 +24,13 @@ namespace MassTransit.Diagnostics.Tracing
 
     public class MessageTraceBusService :
 		IBusService,
-		Consumes<GetMessageTraceList>.All
+		Consumes<IGetMessageTraceList>.All
 	{
 		static readonly ILog _log = Logger.Get(typeof (MessageTraceBusService));
 		readonly ChannelConnection _connection;
 		readonly UntypedChannel _eventChannel;
 
-		readonly Deque<ReceivedMessageTraceDetail> _messages;
+		readonly Deque<IReceivedMessageTraceDetail> _messages;
 
 		IServiceBus _controlBus;
 		readonly int _detailLimit;
@@ -41,7 +41,7 @@ namespace MassTransit.Diagnostics.Tracing
 		{
 			_eventChannel = eventChannel;
 			_fiber = new PoolFiber();
-			_messages = new Deque<ReceivedMessageTraceDetail>();
+			_messages = new Deque<IReceivedMessageTraceDetail>();
 			_detailLimit = 100;
 
 			_connection = _eventChannel.Connect(x =>
@@ -52,9 +52,9 @@ namespace MassTransit.Diagnostics.Tracing
 				});
 		}
 
-		public void Consume(GetMessageTraceList message)
+		public void Consume(IGetMessageTraceList message)
 		{
-			IConsumeContext<GetMessageTraceList> context = ContextStorage.MessageContext<GetMessageTraceList>();
+			IConsumeContext<IGetMessageTraceList> context = ContextStorage.MessageContext<IGetMessageTraceList>();
 
 			Uri responseAddress = context.ResponseAddress;
 			if (responseAddress == null)
@@ -90,7 +90,7 @@ namespace MassTransit.Diagnostics.Tracing
 		{
 			DateTime startTime = message.ReceivedAt;
 
-			var detail = new ReceivedMessageTraceDetailImpl
+			var detail = new ReceivedMessageTraceDetail
 				{
 					Id = message.Context.Id,
 					MessageId = message.Context.MessageId,
@@ -108,7 +108,7 @@ namespace MassTransit.Diagnostics.Tracing
 					Duration = message.ReceiveDuration,
 				};
 
-			detail.Receivers = message.Context.Received.Select(x => (ReceiverTraceDetail) new ReceiverTraceDetailImpl
+			detail.Receivers = message.Context.Received.Select(x => (IReceiverTraceDetail) new ReceiverTraceDetail
 				{
 					MessageType = x.MessageType,
 					ReceiverType = x.ReceiverType,
@@ -117,7 +117,7 @@ namespace MassTransit.Diagnostics.Tracing
 					Duration = TimeSpan.Zero,
 				}).ToList();
 
-			detail.SentMessages = message.Context.Sent.Select(x => (SentMessageTraceDetail) new SentMessageTraceDetailImpl
+			detail.SentMessages = message.Context.Sent.Select(x => (ISentMessageTraceDetail) new SentMessageTraceDetail
 				{
 					Id = x.Context.Id,
 					MessageId = x.Context.MessageId,
@@ -155,11 +155,11 @@ namespace MassTransit.Diagnostics.Tracing
 		{
 			try
 			{
-				IList<ReceivedMessageTraceDetail> details = _messages.Reverse().Take(count).ToList();
+				IList<IReceivedMessageTraceDetail> details = _messages.Reverse().Take(count).ToList();
 
-				var message = new ReceivedMessageTraceListImpl {Messages = details};
+				var message = new ReceivedMessageTraceList {Messages = details};
 
-				endpoint.Send<ReceivedMessageTraceList>(message);
+				endpoint.Send<IReceivedMessageTraceList>(message);
 			}
 			catch (Exception ex)
 			{

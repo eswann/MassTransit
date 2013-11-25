@@ -20,6 +20,7 @@ namespace MassTransit.Services.Subscriptions.Server
     using Magnum.Extensions;
     using Messages;
     using Saga;
+    using Saga.Configuration;
     using Subscriptions.Messages;
 
     public class SubscriptionService :

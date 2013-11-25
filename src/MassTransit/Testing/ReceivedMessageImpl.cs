@@ -13,9 +13,10 @@
 namespace MassTransit.Testing
 {
 	using System;
+	using Context;
 
-	public class ReceivedMessageImpl :
-		ReceivedMessage
+    public class ReceivedMessageImpl :
+		IReceivedMessage
 	{
 		readonly IReceiveContext _context;
 		Exception _exception;

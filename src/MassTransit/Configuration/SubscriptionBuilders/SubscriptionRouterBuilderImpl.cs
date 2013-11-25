@@ -17,15 +17,26 @@ namespace MassTransit.SubscriptionBuilders
     using Magnum.Extensions;
     using Subscriptions.Coordinator;
 
-    public class SubscriptionRouterBuilderImpl :
-        SubscriptionRouterBuilder
+    public interface ISubscriptionRouterBuilder
+    {
+        void SetNetwork(string network);
+        void SetObserverFactory(Func<IServiceBus, SubscriptionRouter, SubscriptionObserver> observerFactory);
+        void AddObserverFactory(Func<IServiceBus, SubscriptionRouter, SubscriptionObserver> observerFactory);
+
+        void UseSubscriptionStorage(Func<SubscriptionStorage> subscriptionStorageFactory);
+
+        SubscriptionRouterService Build();
+    }
+
+    public class SubscriptionRouterBuilder :
+        ISubscriptionRouterBuilder
     {
         readonly IServiceBus _bus;
         readonly IList<Func<IServiceBus, SubscriptionRouter, SubscriptionObserver>> _observers;
         string _network;
         Func<SubscriptionStorage> _subscriptionStorageFactory;
 
-        public SubscriptionRouterBuilderImpl(IServiceBus bus, string network)
+        public SubscriptionRouterBuilder(IServiceBus bus, string network)
         {
             _bus = bus;
             _network = network;

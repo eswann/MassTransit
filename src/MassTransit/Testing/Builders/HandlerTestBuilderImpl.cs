@@ -14,6 +14,7 @@ namespace MassTransit.Testing.Builders
 {
 	using System;
 	using System.Collections.Generic;
+	using Context;
 	using Instances;
 	using Scenarios;
 	using TestActions;
@@ -21,7 +22,7 @@ namespace MassTransit.Testing.Builders
 	public class HandlerTestBuilderImpl<TScenario, TMessage> :
 		HandlerTestBuilder<TScenario, TMessage>
 		where TMessage : class
-		where TScenario : TestScenario
+		where TScenario : ITestScenario
 	{
 		readonly TScenario _scenario;
 		readonly IList<TestAction<TScenario>> _actions;

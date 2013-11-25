@@ -23,7 +23,7 @@ namespace MassTransit
         /// </summary>
         /// <param name="configurator"></param>
         /// <param name="interceptor"></param>
-        public static void AddInboundInterceptor(this ServiceBusConfigurator configurator,
+        public static void AddInboundInterceptor(this IServiceBusConfigurator configurator,
             IInboundMessageInterceptor interceptor)
         {
             var builderConfigurator = new PostCreateBusBuilderConfigurator(bus =>

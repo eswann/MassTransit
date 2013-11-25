@@ -22,8 +22,8 @@ namespace MassTransit.Transports.RabbitMq.Configuration.Configurators
 	/// </para>
 	/// <para>Digression: There are three turtles on the way down, then there's Atlas.</para>
 	/// </summary>
-	public interface ConnectionFactoryBuilderConfigurator :
-		Configurator
+	public interface IConnectionFactoryBuilderConfigurator :
+		IConfigurator
 	{
 		/// <summary>
 		/// Configure the connection factory builder.

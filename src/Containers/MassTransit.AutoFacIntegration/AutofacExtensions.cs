@@ -10,19 +10,18 @@
 // under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR 
 // CONDITIONS OF ANY KIND, either express or implied. See the License for the 
 // specific language governing permissions and limitations under the License.
-namespace MassTransit
+namespace MassTransit.AutofacIntegration
 {
     using System;
     using System.Collections.Generic;
     using System.Linq;
     using Autofac;
     using Autofac.Core;
-    using AutofacIntegration;
     using Magnum.Extensions;
-    using Saga;
-    using Saga.SubscriptionConfigurators;
-    using SubscriptionConfigurators;
-
+    using MassTransit.Saga;
+    using MassTransit.Saga.SubscriptionConfigurators;
+    using MassTransit.SubscriptionConfigurators;
+    using Saga.Configuration;
 
     public static class AutofacExtensions
     {
@@ -32,7 +31,7 @@ namespace MassTransit
         /// <param name="configurator"></param>
         /// <param name="scope">The LifetimeScope of the container</param>
         /// <param name="name">The name to use for the scope created for each message</param>
-        public static void LoadFrom(this SubscriptionBusServiceConfigurator configurator, ILifetimeScope scope,
+        public static void LoadFrom(this ISubscriptionBusServiceConfigurator configurator, ILifetimeScope scope,
             string name = "message")
         {
             IList<Type> concreteTypes = FindTypes<IConsumer>(scope, r => !r.Implements<ISaga>());
@@ -62,8 +61,8 @@ namespace MassTransit
         /// <param name="scope">The LifetimeScope of the container</param>
         /// <param name="name">The name of the scope created per-message</param>
         /// <returns></returns>
-        public static ConsumerSubscriptionConfigurator<TConsumer> Consumer<TConsumer>(
-            this SubscriptionBusServiceConfigurator configurator, ILifetimeScope scope, string name = "message")
+        public static IConsumerSubscriptionConfigurator<TConsumer> Consumer<TConsumer>(
+            this ISubscriptionBusServiceConfigurator configurator, ILifetimeScope scope, string name = "message")
             where TConsumer : class, IConsumer
         {
             var consumerFactory = new AutofacConsumerFactory<TConsumer>(scope, name);
@@ -79,7 +78,7 @@ namespace MassTransit
         /// <param name="scope"></param>
         /// <returns></returns>
         public static SagaSubscriptionConfigurator<TSaga> Saga<TSaga>(
-            this SubscriptionBusServiceConfigurator configurator, ILifetimeScope scope, string name = "message")
+            this ISubscriptionBusServiceConfigurator configurator, ILifetimeScope scope, string name = "message")
             where TSaga : class, ISaga
         {
             var sagaRepository = scope.Resolve<ISagaRepository<TSaga>>();

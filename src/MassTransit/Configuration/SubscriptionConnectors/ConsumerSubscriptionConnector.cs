@@ -20,16 +20,16 @@ namespace MassTransit.SubscriptionConnectors
 
     /// <summary>
     /// A connector for a specific message. Objects implementing this interface should be able to
-    /// both do <see cref="ConsumerConnector"/> and be typed to a specific message.
+    /// both do <see cref="IConsumerConnector"/> and be typed to a specific message.
     /// </summary>
-    public interface ConsumerSubscriptionConnector :
-        ConsumerConnector
+    public interface IConsumerSubscriptionConnector :
+        IConsumerConnector
     {
         Type MessageType { get; }
     }
 
     public class ConsumerSubscriptionConnector<TConsumer, TMessage> :
-        ConsumerSubscriptionConnector
+        IConsumerSubscriptionConnector
         where TConsumer : class, Consumes<TMessage>.All
         where TMessage : class
     {

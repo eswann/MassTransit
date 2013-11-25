@@ -15,11 +15,11 @@ namespace MassTransit.Context
     using System.Web;
 
     public class HttpContextContextStorageProvider :
-        ContextStorageProvider
+        IContextStorageProvider
     {
         const string ReceiveContextKey = "MassTransitReceiveContext";
 
-        readonly ContextStorageProvider _fallback;
+        readonly IContextStorageProvider _fallback;
 
         public HttpContextContextStorageProvider()
         {

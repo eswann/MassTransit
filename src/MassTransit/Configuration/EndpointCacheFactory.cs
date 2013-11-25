@@ -25,15 +25,15 @@ namespace MassTransit
 		static readonly EndpointFactoryDefaultSettings _defaultSettings = new EndpointFactoryDefaultSettings();
 
 		[NotNull]
-		public static IEndpointCache New([NotNull] Action<EndpointFactoryConfigurator> configure)
+		public static IEndpointCache New([NotNull] Action<IEndpointFactoryConfigurator> configure)
 		{
 			Guard.AgainstNull(configure, "configure");
 
-			var configurator = new EndpointFactoryConfiguratorImpl(_defaultSettings);
+			var configurator = new EndpointFactoryConfigurator(_defaultSettings);
 
 			configure(configurator);
 
-			ConfigurationResult result = ConfigurationResultImpl.CompileResults(configurator.Validate());
+			IConfigurationResult result = ConfigurationResultImpl.CompileResults(configurator.Validate());
 
 			try
 			{
@@ -49,11 +49,11 @@ namespace MassTransit
 			}
 		}
 
-		public static void ConfigureDefaultSettings([NotNull] Action<EndpointFactoryDefaultSettingsConfigurator> configure)
+		public static void ConfigureDefaultSettings([NotNull] Action<IEndpointFactoryDefaultSettingsConfigurator> configure)
 		{
 			Guard.AgainstNull(configure);
 
-			var configurator = new EndpointFactoryDefaultSettingsConfiguratorImpl(_defaultSettings);
+			var configurator = new EndpointFactoryDefaultSettingsConfigurator(_defaultSettings);
 
 			configure(configurator);
 		}

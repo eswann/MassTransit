@@ -24,7 +24,7 @@ namespace MassTransit.Subscriptions.Coordinator
         IBusService,
         SubscriptionRouter,
         SubscriptionObserver,
-        DiagnosticsSource
+        IDiagnosticsSource
     {
         readonly IList<BusSubscriptionEventListener> _listeners;
         readonly string _network;
@@ -68,7 +68,7 @@ namespace MassTransit.Subscriptions.Coordinator
             _repository.Load(this);
         }
 
-        public void Inspect(DiagnosticsProbe probe)
+        public void Inspect(IDiagnosticsProbe probe)
         {
             probe.Add("mt.network", _network);
         }

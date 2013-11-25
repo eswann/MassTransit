@@ -10,16 +10,15 @@
 // under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR 
 // CONDITIONS OF ANY KIND, either express or implied. See the License for the 
 // specific language governing permissions and limitations under the License.
-namespace MassTransit
+namespace MassTransit.Transports.RabbitMq.Configuration
 {
-	using System;
-	using Transports.RabbitMq;
-	using Transports.RabbitMq.Configuration.Configurators;
+    using System;
+    using MassTransit.Transports.RabbitMq.Configuration.Configurators;
 
-	public static class RabbitMqTransportFactoryExtensions
+    public static class RabbitMqTransportFactoryExtensions
 	{
-		public static void ConfigureHost(this RabbitMqTransportFactoryConfigurator configurator, Uri hostAddress,
-		                                 Action<ConnectionFactoryConfigurator> configureHost)
+		public static void ConfigureHost(this IRabbitMqTransportFactoryConfigurator configurator, Uri hostAddress,
+		                                 Action<IConnectionFactoryConfigurator> configureHost)
 		{
 			var hostConfigurator = new ConnectionFactoryConfiguratorImpl(RabbitMqEndpointAddress.Parse(hostAddress));
 			configureHost(hostConfigurator);

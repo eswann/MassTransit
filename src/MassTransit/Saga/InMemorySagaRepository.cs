@@ -16,6 +16,7 @@ namespace MassTransit.Saga
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading;
+    using Context;
     using Exceptions;
     using Logging;
     using MassTransit.Pipeline;

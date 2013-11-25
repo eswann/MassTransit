@@ -13,6 +13,7 @@
 namespace MassTransit.Tests.Examples.Sagas
 {
 	using Magnum.TestFramework;
+	using MassTransit.Saga.Configuration;
 	using TestFramework.Fixtures;
 
 	[Scenario]

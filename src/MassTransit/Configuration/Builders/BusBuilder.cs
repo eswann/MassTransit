@@ -44,7 +44,7 @@ namespace MassTransit.Builders
 		/// Adds a bus service that will be started and stopped with the service bus 
 		/// </summary>
 		/// <param name="configurator"></param>
-		void AddBusServiceConfigurator(BusServiceConfigurator configurator);
+		void AddBusServiceConfigurator(IBusServiceConfigurator configurator);
 
 		/// <summary>
 		/// Used to match a builder with a specific type, to allow customization of class properties

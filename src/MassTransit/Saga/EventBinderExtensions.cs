@@ -14,7 +14,7 @@ namespace MassTransit.Saga
 {
     public static class EventBinderExtensions
     {
-        public static EventBinder<TSaga, TMessage> UseNewId<TSaga, TMessage>(this EventBinder<TSaga, TMessage> binder)
+        public static IEventBinder<TSaga, TMessage> UseNewId<TSaga, TMessage>(this IEventBinder<TSaga, TMessage> binder)
         {
             return binder.UseId(x => NewId.NextGuid());
         }

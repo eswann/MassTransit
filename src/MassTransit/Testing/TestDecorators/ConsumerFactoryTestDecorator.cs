@@ -14,6 +14,7 @@ namespace MassTransit.Testing.TestDecorators
 {
 	using System;
 	using System.Collections.Generic;
+	using Context;
 	using Pipeline;
 
 	public class ConsumerFactoryTestDecorator<TConsumer> :

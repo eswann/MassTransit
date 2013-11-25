@@ -35,7 +35,7 @@ namespace MassTransit.Tests.Saga
         }
 
         Guid systemId;
-        SagaTest<BusTestScenario, CustomerRegistrationSaga> test;
+        SagaTest<IBusTestScenario, CustomerRegistrationSaga> test;
 
         [TestFixtureSetUp]
         public void A_state_machine_saga_is_being_tested()
@@ -76,7 +76,7 @@ namespace MassTransit.Tests.Saga
         }
 
         public class CustomBusScenarioBuilder :
-            BusScenarioBuilderImpl
+            BusScenarioBuilder
         {
             const string DefaultUri = "loopback://localhost/mt_client";
 

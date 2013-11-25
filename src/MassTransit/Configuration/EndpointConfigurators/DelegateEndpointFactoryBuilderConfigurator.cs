@@ -18,7 +18,7 @@ namespace MassTransit.EndpointConfigurators
 	using Configurators;
 
 	public class DelegateEndpointFactoryBuilderConfigurator :
-		EndpointFactoryBuilderConfigurator
+		IEndpointFactoryBuilderConfigurator
 	{
 		readonly Action<EndpointFactoryBuilder> _builderCallback;
 
@@ -27,7 +27,7 @@ namespace MassTransit.EndpointConfigurators
 			_builderCallback = builderCallback;
 		}
 
-		public IEnumerable<ValidationResult> Validate()
+		public IEnumerable<IValidationResult> Validate()
 		{
 			if (_builderCallback == null)
 				yield return this.Failure("BuilderCallback", "was not configured. This should have been passed in via the ctor.");

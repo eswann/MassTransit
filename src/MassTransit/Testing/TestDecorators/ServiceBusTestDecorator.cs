@@ -24,9 +24,9 @@ namespace MassTransit.Testing.TestDecorators
     {
         readonly IServiceBus _bus;
         readonly PublishedMessageListImpl _published;
-        readonly EndpointTestScenarioImpl _scenario;
+        readonly EndpointTestScenario _scenario;
 
-        public ServiceBusTestDecorator(IServiceBus bus, EndpointTestScenarioImpl scenario)
+        public ServiceBusTestDecorator(IServiceBus bus, EndpointTestScenario scenario)
         {
             _bus = bus;
             _scenario = scenario;
@@ -34,7 +34,7 @@ namespace MassTransit.Testing.TestDecorators
             _published = new PublishedMessageListImpl();
         }
 
-        public void Inspect(DiagnosticsProbe probe)
+        public void Inspect(IDiagnosticsProbe probe)
         {
             _bus.Inspect(probe);
         }

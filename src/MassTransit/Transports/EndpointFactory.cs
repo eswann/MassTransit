@@ -67,7 +67,7 @@ namespace MassTransit.Transports
                     var uriPath = new Uri(address.Uri.GetLeftPart(UriPartial.Path));
                     EndpointBuilder builder = _endpointBuilders.Get(uriPath, key =>
                         {
-                            var configurator = new EndpointConfiguratorImpl(address, _defaults);
+                            var configurator = new EndpointConfigurator(address, _defaults);
                             return configurator.CreateBuilder();
                         });
 
@@ -90,7 +90,7 @@ namespace MassTransit.Transports
             _transportFactories[scheme] = factory;
         }
 
-        public void Inspect(DiagnosticsProbe probe)
+        public void Inspect(IDiagnosticsProbe probe)
         {
             probe.Add("mt.default_serializer", _defaults.Serializer.GetType().ToShortTypeName());
             _transportFactories.Each(

@@ -24,8 +24,8 @@ namespace MassTransit
 		/// <param name="configurator"></param>
 		/// <param name="uriString"></param>
 		/// <returns></returns>
-		public static EndpointConfigurator ConfigureEndpoint<T>(this T configurator, string uriString)
-			where T : EndpointFactoryConfigurator
+		public static IEndpointConfigurator ConfigureEndpoint<T>(this T configurator, string uriString)
+			where T : IEndpointFactoryConfigurator
 		{
 			return configurator.ConfigureEndpoint(uriString.ToUri("The configure endpoint URI is invalid"));
 		}
@@ -36,10 +36,10 @@ namespace MassTransit
 		/// <param name="configurator"></param>
 		/// <param name="uri"></param>
 		/// <returns></returns>
-		public static EndpointConfigurator ConfigureEndpoint<T>(this T configurator, Uri uri)
-			where T : EndpointFactoryConfigurator
+		public static IEndpointConfigurator ConfigureEndpoint<T>(this T configurator, Uri uri)
+			where T : IEndpointFactoryConfigurator
 		{
-			var endpointConfigurator = new EndpointConfiguratorImpl(new EndpointAddress(uri), configurator.Defaults);
+			var endpointConfigurator = new EndpointConfigurator(new EndpointAddress(uri), configurator.Defaults);
 
 			configurator.AddEndpointFactoryConfigurator(endpointConfigurator);
 
@@ -54,10 +54,10 @@ namespace MassTransit
 		/// <param name="configureCallback"></param>
 		/// <returns></returns>
 		public static T ConfigureEndpoint<T>(this T configurator, string uriString,
-		                                     Action<EndpointConfigurator> configureCallback)
-			where T : EndpointFactoryConfigurator
+		                                     Action<IEndpointConfigurator> configureCallback)
+			where T : IEndpointFactoryConfigurator
 		{
-			EndpointConfigurator endpointConfigurator =
+			IEndpointConfigurator endpointConfigurator =
 				configurator.ConfigureEndpoint(uriString.ToUri("The configure endpoint URI is invalid"));
 
 			configureCallback(endpointConfigurator);
@@ -72,10 +72,10 @@ namespace MassTransit
 		/// <param name="uri"></param>
 		/// <param name="configureCallback"></param>
 		public static T ConfigureEndpoint<T>(this T configurator, Uri uri,
-		                                     Action<EndpointConfigurator> configureCallback)
-			where T : EndpointFactoryConfigurator
+		                                     Action<IEndpointConfigurator> configureCallback)
+			where T : IEndpointFactoryConfigurator
 		{
-			EndpointConfigurator endpointConfigurator = configurator.ConfigureEndpoint(uri);
+			IEndpointConfigurator endpointConfigurator = configurator.ConfigureEndpoint(uri);
 
 			configureCallback(endpointConfigurator);
 

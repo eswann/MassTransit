@@ -24,13 +24,13 @@ namespace MassTransit.Exceptions
 		{
 		}
 
-		public ConfigurationException(ConfigurationResult result, string message)
+		public ConfigurationException(IConfigurationResult result, string message)
 			: base(message)
 		{
 			Result = result;
 		}
 
-		public ConfigurationException(ConfigurationResult result, string message, Exception innerException)
+		public ConfigurationException(IConfigurationResult result, string message, Exception innerException)
 			: base(message, innerException)
 		{
 			Result = result;
@@ -51,6 +51,6 @@ namespace MassTransit.Exceptions
 		{
 		}
 
-		public ConfigurationResult Result { get; protected set; }
+		public IConfigurationResult Result { get; protected set; }
 	}
 }

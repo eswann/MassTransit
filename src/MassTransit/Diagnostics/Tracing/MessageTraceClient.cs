@@ -13,23 +13,24 @@
 namespace MassTransit.Diagnostics.Tracing
 {
     using System;
+    using Context;
 
     public class MessageTraceClient :
-		Consumes<ReceivedMessageTraceList>.All,
+		Consumes<IReceivedMessageTraceList>.All,
 		IDisposable
 	{
-		readonly Action<ReceivedMessageTraceList> _callback;
+		readonly Action<IReceivedMessageTraceList> _callback;
 		UnsubscribeAction _unsubscribe;
 
-		public MessageTraceClient(IServiceBus bus, IEndpoint target, int count, Action<ReceivedMessageTraceList> callback)
+		public MessageTraceClient(IServiceBus bus, IEndpoint target, int count, Action<IReceivedMessageTraceList> callback)
 		{
 			_callback = callback;
 			_unsubscribe = bus.SubscribeInstance(this);
 
-			target.Send<GetMessageTraceList>(new GetMessageTraceListImpl {Count = count}, x => x.SendResponseTo(bus));
+			target.Send<IGetMessageTraceList>(new GetMessageTraceList {Count = count}, x => x.SendResponseTo(bus));
 		}
 
-		public void Consume(ReceivedMessageTraceList message)
+		public void Consume(IReceivedMessageTraceList message)
 		{
 			if (_unsubscribe != null)
 				_unsubscribe();

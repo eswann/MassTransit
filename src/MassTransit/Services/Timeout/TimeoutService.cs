@@ -20,6 +20,7 @@ namespace MassTransit.Services.Timeout
 	using Magnum.Extensions;
 	using Messages;
 	using Saga;
+	using Saga.Configuration;
 	using Server;
 	using Stact;
 	using Stact.Internal;

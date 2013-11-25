@@ -138,7 +138,7 @@ namespace MassTransit.Tests.Configuration
 		[Then]
 		public void Should_have_an_a()
 		{
-			ConsumerSubscriptionConnector connector = _factory.Connectors.First();
+			IConsumerSubscriptionConnector connector = _factory.Connectors.First();
 			connector.MessageType.ShouldEqual(typeof (A));
 			connector.GetType().GetGenericTypeDefinition().ShouldEqual(typeof (SelectedConsumerSubscriptionConnector<,>));
 		}
@@ -146,7 +146,7 @@ namespace MassTransit.Tests.Configuration
 		[Then]
 		public void Should_have_a_b()
 		{
-			ConsumerSubscriptionConnector connector = _factory.Connectors.Skip(1).First();
+			IConsumerSubscriptionConnector connector = _factory.Connectors.Skip(1).First();
 			connector.MessageType.ShouldEqual(typeof (B));
 			connector.GetType().GetGenericTypeDefinition().ShouldEqual(typeof (SelectedConsumerSubscriptionConnector<,>));
 		}
@@ -154,7 +154,7 @@ namespace MassTransit.Tests.Configuration
 		[Then]
 		public void Should_have_a_c()
 		{
-			ConsumerSubscriptionConnector connector = _factory.Connectors.Skip(2).First();
+			IConsumerSubscriptionConnector connector = _factory.Connectors.Skip(2).First();
 			connector.MessageType.ShouldEqual(typeof (IC));
 			connector.GetType().GetGenericTypeDefinition().ShouldEqual(typeof (SelectedConsumerSubscriptionConnector<,>));
 		}
@@ -162,7 +162,7 @@ namespace MassTransit.Tests.Configuration
 		[Then]
 		public void Should_have_a_d()
 		{
-			ConsumerSubscriptionConnector connector = _factory.Connectors.Skip(3).First();
+			IConsumerSubscriptionConnector connector = _factory.Connectors.Skip(3).First();
 			connector.MessageType.ShouldEqual(typeof (D<A>));
 			connector.GetType().GetGenericTypeDefinition().ShouldEqual(typeof (SelectedConsumerSubscriptionConnector<,>));
 		}
@@ -254,7 +254,7 @@ namespace MassTransit.Tests.Configuration
 		[Then]
 		public void Should_have_an_a()
 		{
-			InstanceSubscriptionConnector connector = _factory.Connectors.First();
+			IInstanceSubscriptionConnector connector = _factory.Connectors.First();
 			connector.MessageType.ShouldEqual(typeof (A));
 			connector.GetType().GetGenericTypeDefinition().ShouldEqual(typeof (CorrelatedInstanceSubscriptionConnector<,,>));
 			connector.GetType().GetGenericArguments()[2].ShouldEqual(typeof (Guid));
@@ -263,7 +263,7 @@ namespace MassTransit.Tests.Configuration
 		[Then]
 		public void Should_have_a_b()
 		{
-			InstanceSubscriptionConnector connector = _factory.Connectors.Skip(1).First();
+			IInstanceSubscriptionConnector connector = _factory.Connectors.Skip(1).First();
 			connector.MessageType.ShouldEqual(typeof (B));
 			connector.GetType().GetGenericTypeDefinition().ShouldEqual(typeof (CorrelatedInstanceSubscriptionConnector<,,>));
 			connector.GetType().GetGenericArguments()[2].ShouldEqual(typeof (int));
@@ -272,7 +272,7 @@ namespace MassTransit.Tests.Configuration
 		[Then]
 		public void Should_have_a_c()
 		{
-			InstanceSubscriptionConnector connector = _factory.Connectors.Skip(2).First();
+			IInstanceSubscriptionConnector connector = _factory.Connectors.Skip(2).First();
 			connector.MessageType.ShouldEqual(typeof (IC));
 			connector.GetType().GetGenericTypeDefinition().ShouldEqual(typeof (CorrelatedInstanceSubscriptionConnector<,,>));
 			connector.GetType().GetGenericArguments()[2].ShouldEqual(typeof (long));
@@ -281,7 +281,7 @@ namespace MassTransit.Tests.Configuration
 		[Then]
 		public void Should_have_a_d()
 		{
-			InstanceSubscriptionConnector connector = _factory.Connectors.Skip(3).First();
+			IInstanceSubscriptionConnector connector = _factory.Connectors.Skip(3).First();
 			connector.MessageType.ShouldEqual(typeof (D<A>));
 			connector.GetType().GetGenericTypeDefinition().ShouldEqual(typeof (CorrelatedInstanceSubscriptionConnector<,,>));
 			connector.GetType().GetGenericArguments()[2].ShouldEqual(typeof (string));

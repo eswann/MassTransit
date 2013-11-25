@@ -14,6 +14,7 @@ namespace MassTransit.Transports.RabbitMq.Tests
 {
 	using System;
 	using BusConfigurators;
+	using Configuration;
 	using Magnum.TestFramework;
 	using TestFramework.Fixtures;
 
@@ -31,7 +32,7 @@ namespace MassTransit.Transports.RabbitMq.Tests
 
 		protected Uri LocalErrorUri { get; private set; }
 
-		protected override void ConfigureServiceBus(Uri uri, ServiceBusConfigurator configurator)
+		protected override void ConfigureServiceBus(Uri uri, IServiceBusConfigurator configurator)
 		{
 			base.ConfigureServiceBus(uri, configurator);
 

@@ -1,4 +1,4 @@
-// Copyright 2007-2011 Chris Patterson, Dru Sellers, Travis Smith, et. al.
+﻿// Copyright 2007-2011 Chris Patterson, Dru Sellers, Travis Smith, et. al.
 //  
 // Licensed under the Apache License, Version 2.0 (the "License"); you may not use 
 // this file except in compliance with the License. You may obtain a copy of the 
@@ -13,15 +13,17 @@
 namespace MassTransit.EndpointConfigurators
 {
 	using System;
+	using System.Collections.Generic;
+	using System.Linq;
 	using Builders;
 	using Configurators;
 	using Transports;
 
-	/// <summary>
+    /// <summary>
 	/// Allows for the configuration of the EndpointFactory through the use of an EndpointFactoryConfigurator
 	/// </summary>
-	public interface EndpointFactoryConfigurator :
-		Configurator
+	public interface IEndpointFactoryConfigurator :
+		IConfigurator
 	{
 		/// <summary>
 		/// Gets the endpoint factory defaults.
@@ -44,6 +46,62 @@ namespace MassTransit.EndpointConfigurators
 		/// Adds an endpoint configurator to the endpoint resolver builder
 		/// </summary>
 		/// <param name="configurator"></param>
-		void AddEndpointFactoryConfigurator(EndpointFactoryBuilderConfigurator configurator);
+		void AddEndpointFactoryConfigurator(IEndpointFactoryBuilderConfigurator configurator);
+	}
+
+	public class EndpointFactoryConfigurator :
+		IEndpointFactoryConfigurator
+	{
+		readonly EndpointFactoryDefaultSettings _defaultSettings;
+		readonly IList<IEndpointFactoryBuilderConfigurator> _endpointFactoryConfigurators;
+		Func<IEndpointFactoryDefaultSettings, EndpointFactoryBuilder> _endpointFactoryBuilderFactory;
+
+		public EndpointFactoryConfigurator(EndpointFactoryDefaultSettings defaultSettings)
+		{
+			_defaultSettings = defaultSettings;
+			_endpointFactoryBuilderFactory = DefaultEndpointResolverBuilderFactory;
+			_endpointFactoryConfigurators = new List<IEndpointFactoryBuilderConfigurator>();
+		}
+
+		public IEnumerable<IValidationResult> Validate()
+		{
+			if (_endpointFactoryBuilderFactory == null)
+				yield return this.Failure("BuilderFactory", "The builder factory was null. Since this came from a 'Default' this is spooky.");
+
+			foreach (var result in _endpointFactoryConfigurators.SelectMany(configurator => configurator.Validate()))
+				yield return result.WithParentKey("EndpointFactory");
+		}
+
+		public void UseEndpointFactoryBuilder(Func<IEndpointFactoryDefaultSettings, EndpointFactoryBuilder> endpointFactoryBuilderFactory)
+		{
+			_endpointFactoryBuilderFactory = endpointFactoryBuilderFactory;
+		}
+
+		public void AddEndpointFactoryConfigurator(IEndpointFactoryBuilderConfigurator configurator)
+		{
+			_endpointFactoryConfigurators.Add(configurator);
+		}
+
+		public IEndpointFactoryDefaultSettings Defaults
+		{
+			get { return _defaultSettings; }
+		}
+
+		public IEndpointFactory CreateEndpointFactory()
+		{
+			EndpointFactoryBuilder builder = _endpointFactoryBuilderFactory(_defaultSettings);
+
+			foreach (IEndpointFactoryBuilderConfigurator configurator in _endpointFactoryConfigurators)
+			{
+				builder = configurator.Configure(builder);
+			}
+
+			return builder.Build();
+		}
+
+		static EndpointFactoryBuilder DefaultEndpointResolverBuilderFactory(IEndpointFactoryDefaultSettings defaults)
+		{
+			return new EndpointFactoryBuilderImpl(defaults);
+		}
 	}
 }

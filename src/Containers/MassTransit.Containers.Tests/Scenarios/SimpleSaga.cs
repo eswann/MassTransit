@@ -19,8 +19,8 @@ namespace MassTransit.Containers.Tests.Scenarios
     public class SimpleSaga :
         ISaga,
         InitiatedBy<FirstSagaMessage>,
-        Orchestrates<SecondSagaMessage>,
-        Observes<ThirdSagaMessage, SimpleSaga>
+        IOrchestrate<SecondSagaMessage>,
+        IObserve<ThirdSagaMessage, SimpleSaga>
     {
         FirstSagaMessage _first;
 

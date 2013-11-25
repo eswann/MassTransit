@@ -10,17 +10,17 @@
 // under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR 
 // CONDITIONS OF ANY KIND, either express or implied. See the License for the 
 // specific language governing permissions and limitations under the License.
-namespace MassTransit
+namespace MassTransit.Diagnostics
 {
     using System;
-    using BusConfigurators;
-    using BusServiceConfigurators;
-    using Diagnostics.Introspection;
+    using MassTransit.BusConfigurators;
+    using MassTransit.BusServiceConfigurators;
+    using MassTransit.Diagnostics.Introspection;
     using Magnum.FileSystem;
 
     public static class IntrospectionExtensions
     {
-        public static void EnableRemoteIntrospection(this ServiceBusConfigurator configurator)
+        public static void EnableRemoteIntrospection(this IServiceBusConfigurator configurator)
         {
             var serviceConfigurator = new IntrospectionServiceConfigurator();
 
@@ -31,13 +31,13 @@ namespace MassTransit
 
         public static void WriteIntrospectionToConsole(this IServiceBus bus)
         {
-            DiagnosticsProbe probe = bus.Probe();
+            IDiagnosticsProbe probe = bus.Probe();
             Console.Write(probe);
         }
 
         public static void WriteIntrospectionToFile(this IServiceBus bus, string fileName)
         {
-            DiagnosticsProbe probe = bus.Probe();
+            IDiagnosticsProbe probe = bus.Probe();
             var fs = new DotNetFileSystem();
             fs.DeleteFile(fileName);
             fs.Write(fileName, probe.ToString());
@@ -46,7 +46,7 @@ namespace MassTransit
         /// <summary>
         /// A convenience method for inspecting an active service bus instance.
         /// </summary>
-        public static DiagnosticsProbe Probe(this IServiceBus bus)
+        public static IDiagnosticsProbe Probe(this IServiceBus bus)
         {
             var probe = new InMemoryDiagnosticsProbe();
             bus.Inspect(probe);

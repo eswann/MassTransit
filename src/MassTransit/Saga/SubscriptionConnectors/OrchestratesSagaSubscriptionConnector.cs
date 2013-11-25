@@ -18,7 +18,7 @@ namespace MassTransit.Saga.SubscriptionConnectors
 
 	public class OrchestratesSagaSubscriptionConnector<TSaga, TMessage> :
 		SagaSubscriptionConnector<TSaga, TMessage>
-		where TSaga : class, ISaga, Orchestrates<TMessage>
+		where TSaga : class, ISaga, IOrchestrate<TMessage>
 		where TMessage : class, CorrelatedBy<Guid>
 	{
 		public OrchestratesSagaSubscriptionConnector(ISagaRepository<TSaga> sagaRepository)

@@ -16,6 +16,7 @@ namespace MassTransit.Transports.RabbitMq
     using System.Collections;
     using System.Globalization;
     using System.IO;
+    using Context;
     using Exceptions;
     using Magnum;
     using RabbitMQ.Client;

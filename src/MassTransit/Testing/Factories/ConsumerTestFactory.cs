@@ -13,13 +13,37 @@
 namespace MassTransit.Testing.Factories
 {
 	using System;
+	using ScenarioBuilders;
 	using Scenarios;
 	using TestInstanceConfigurators;
 
-	public interface ConsumerTestFactory<TScenario, TConsumer>
-		where TConsumer : class
-		where TScenario : TestScenario
+    public interface IConsumerTestFactory<TScenario, TConsumer>
+        where TConsumer : class
+        where TScenario : ITestScenario
+    {
+        ConsumerTest<TScenario, TConsumer> New(Action<ConsumerTestInstanceConfigurator<TScenario, TConsumer>> configureTest);
+    }
+
+	public class ConsumerTestFactory<TScenario, TConsumer> :
+		IConsumerTestFactory<TScenario, TConsumer>
+		where TConsumer : class, IConsumer
+	    where TScenario : ITestScenario
 	{
-		ConsumerTest<TScenario, TConsumer> New(Action<ConsumerTestInstanceConfigurator<TScenario, TConsumer>> configureTest);
+		readonly Func<IScenarioBuilder<TScenario>> _scenarioBuilderFactory;
+
+		public ConsumerTestFactory(Func<IScenarioBuilder<TScenario>> scenarioBuilderFactory)
+		{
+			_scenarioBuilderFactory = scenarioBuilderFactory;
+		}
+
+		public ConsumerTest<TScenario, TConsumer> New(
+			Action<ConsumerTestInstanceConfigurator<TScenario, TConsumer>> configureTest)
+		{
+			var configurator = new ConsumerTestInstanceConfiguratorImpl<TScenario, TConsumer>(_scenarioBuilderFactory);
+
+			configureTest(configurator);
+
+			return configurator.Build();
+		}
 	}
 }

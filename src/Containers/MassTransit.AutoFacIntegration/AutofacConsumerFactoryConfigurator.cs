@@ -20,11 +20,11 @@ namespace MassTransit.AutofacIntegration
 
     public class AutofacConsumerFactoryConfigurator
     {
-        readonly SubscriptionBusServiceConfigurator _configurator;
+        readonly ISubscriptionBusServiceConfigurator _configurator;
         readonly ILifetimeScope _scope;
         string _name;
 
-        public AutofacConsumerFactoryConfigurator(SubscriptionBusServiceConfigurator configurator, ILifetimeScope scope, string name)
+        public AutofacConsumerFactoryConfigurator(ISubscriptionBusServiceConfigurator configurator, ILifetimeScope scope, string name)
         {
             _scope = scope;
             _name = name;

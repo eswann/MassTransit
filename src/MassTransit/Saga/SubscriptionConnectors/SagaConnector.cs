@@ -21,17 +21,17 @@ namespace MassTransit.Saga.SubscriptionConnectors
 	using MassTransit.Pipeline;
 	using Util;
 
-	public interface SagaConnector
+	public interface ISagaConnector
 	{
 		UnsubscribeAction Connect(IInboundPipelineConfigurator configurator);
 	}
 
 
 	public class SagaConnector<T> :
-		SagaConnector
+		ISagaConnector
 		where T : class, ISaga
 	{
-		readonly IEnumerable<SagaSubscriptionConnector> _connectors;
+		readonly IEnumerable<ISagaSubscriptionConnector> _connectors;
 		readonly object[] _args;
 
 		public SagaConnector(ISagaRepository<T> sagaRepository)
@@ -58,7 +58,7 @@ namespace MassTransit.Saga.SubscriptionConnectors
 			}
 		}
 
-		public IEnumerable<SagaSubscriptionConnector> Connectors
+		public IEnumerable<ISagaSubscriptionConnector> Connectors
 		{
 			get { return _connectors; }
 		}
@@ -69,7 +69,7 @@ namespace MassTransit.Saga.SubscriptionConnectors
 				.Aggregate<UnsubscribeAction, UnsubscribeAction>(() => true, (seed, x) => () => seed() && x());
 		}
 
-		IEnumerable<SagaSubscriptionConnector> Initiates()
+		IEnumerable<ISagaSubscriptionConnector> Initiates()
 		{
 			return typeof (T).GetInterfaces()
 				.Where(x => x.IsGenericType)
@@ -78,45 +78,45 @@ namespace MassTransit.Saga.SubscriptionConnectors
 				.Where(x => x.MessageType.IsValueType == false)
 				.Select(x => FastActivator.Create(typeof (InitiatedBySagaSubscriptionConnector<,>),
 					new[] {typeof (T), x.MessageType}, _args))
-				.Cast<SagaSubscriptionConnector>();
+				.Cast<ISagaSubscriptionConnector>();
 		}
 
-		IEnumerable<SagaSubscriptionConnector> Orchestrates()
+		IEnumerable<ISagaSubscriptionConnector> Orchestrates()
 		{
 			return typeof (T).GetInterfaces()
 				.Where(x => x.IsGenericType)
-				.Where(x => x.GetGenericTypeDefinition() == typeof (Orchestrates<>))
+				.Where(x => x.GetGenericTypeDefinition() == typeof (IOrchestrate<>))
 				.Select(x => new {InterfaceType = x, MessageType = x.GetGenericArguments()[0]})
 				.Where(x => x.MessageType.IsValueType == false)
 				.Select(x => FastActivator.Create(typeof (OrchestratesSagaSubscriptionConnector<,>),
 					new[] {typeof (T), x.MessageType}, _args))
-				.Cast<SagaSubscriptionConnector>();
+				.Cast<ISagaSubscriptionConnector>();
 		}
 
-		IEnumerable<SagaSubscriptionConnector> Observes()
+		IEnumerable<ISagaSubscriptionConnector> Observes()
 		{
 			return typeof (T).GetInterfaces()
 				.Where(x => x.IsGenericType)
-				.Where(x => x.GetGenericTypeDefinition() == typeof (Observes<,>))
+				.Where(x => x.GetGenericTypeDefinition() == typeof (IObserve<,>))
 				.Select(x => new {InterfaceType = x, MessageType = x.GetGenericArguments()[0]})
 				.Where(x => x.MessageType.IsValueType == false)
 				.Select(x => FastActivator.Create(typeof (ObservesSagaSubscriptionConnector<,>),
 					new[] {typeof (T), x.MessageType}, _args))
-				.Cast<SagaSubscriptionConnector>();
+				.Cast<ISagaSubscriptionConnector>();
 		}
 
-		IEnumerable<SagaSubscriptionConnector> StateMachineEvents()
+		IEnumerable<ISagaSubscriptionConnector> StateMachineEvents()
 		{
 			if (typeof (T).Implements(typeof (SagaStateMachine<>)))
 			{
-				var factory = (IEnumerable<SagaSubscriptionConnector>) FastActivator.Create(typeof (StateMachineSagaConnector<>),
+				var factory = (IEnumerable<ISagaSubscriptionConnector>) FastActivator.Create(typeof (StateMachineSagaConnector<>),
 					new[] {typeof (T)},
 					_args);
 
 				return factory;
 			}
 
-			return Enumerable.Empty<SagaSubscriptionConnector>();
+			return Enumerable.Empty<ISagaSubscriptionConnector>();
 		}
 	}
 }

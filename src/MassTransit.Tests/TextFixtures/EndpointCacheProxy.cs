@@ -35,7 +35,7 @@ namespace MassTransit.Tests.TextFixtures
             return _endpointCache.GetEndpoint(uri);
         }
 
-        public void Inspect(DiagnosticsProbe probe)
+        public void Inspect(IDiagnosticsProbe probe)
         {
             _endpointCache.Inspect(probe);
         }

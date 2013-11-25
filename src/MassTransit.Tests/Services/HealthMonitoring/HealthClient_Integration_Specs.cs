@@ -20,8 +20,10 @@ namespace MassTransit.Tests.Services.HealthMonitoring
     using MassTransit.Pipeline.Inspectors;
     using MassTransit.Saga;
     using MassTransit.Services.HealthMonitoring;
+    using MassTransit.Services.HealthMonitoring.Configuration;
     using MassTransit.Services.HealthMonitoring.Messages;
     using MassTransit.Services.HealthMonitoring.Server;
+    using MassTransit.Services.Subscriptions.Configuration;
     using MassTransit.Services.Subscriptions.Server;
     using MassTransit.Services.Timeout;
     using MassTransit.Services.Timeout.Server;

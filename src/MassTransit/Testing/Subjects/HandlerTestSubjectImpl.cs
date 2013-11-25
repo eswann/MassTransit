@@ -14,6 +14,7 @@ namespace MassTransit.Testing.Subjects
 {
 	using System;
 	using System.Linq;
+	using Context;
 	using Exceptions;
 	using Magnum.Extensions;
 	using Scenarios;
@@ -21,7 +22,7 @@ namespace MassTransit.Testing.Subjects
 	public class HandlerTestSubjectImpl<TScenario, TSubject> :
 		HandlerTestSubject<TSubject>
 		where TSubject : class
-		where TScenario : TestScenario
+		where TScenario : ITestScenario
 	{
 		readonly Action<IConsumeContext<TSubject>, TSubject> _handler;
 		readonly ReceivedMessageListImpl<TSubject> _received;

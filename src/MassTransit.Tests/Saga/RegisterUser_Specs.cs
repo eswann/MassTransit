@@ -15,6 +15,7 @@ namespace MassTransit.Tests.Saga
     using System.Diagnostics;
     using Magnum.TestFramework;
     using MassTransit.Saga;
+    using MassTransit.Saga.Configuration;
     using MassTransit.Subscriptions;
     using Messages;
     using NUnit.Framework;

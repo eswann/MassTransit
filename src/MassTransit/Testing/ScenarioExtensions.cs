@@ -19,54 +19,54 @@ namespace MassTransit.Testing
 
 	public static class ScenarioExtensions
 	{
-		public static HandlerTestFactoryImpl<BusTestScenario, TMessage> InSingleBusScenario<TScenario, TMessage>(
-			this HandlerTestFactory<TScenario, TMessage> factory)
-			where TScenario : TestScenario
+		public static HandlerTestFactory<IBusTestScenario, TMessage> InSingleBusScenario<TScenario, TMessage>(
+			this IHandlerTestFactory<TScenario, TMessage> factory)
+			where TScenario : ITestScenario
 			where TMessage : class
 		{
-			return new HandlerTestFactoryImpl<BusTestScenario, TMessage>(LoopbackBus);
+			return new HandlerTestFactory<IBusTestScenario, TMessage>(LoopbackBus);
 		}
 
-		public static HandlerTestFactoryImpl<LocalRemoteTestScenario, TMessage> InLocalRemoteBusScenario<TScenario, TMessage>(
-			this HandlerTestFactory<TScenario, TMessage> factory)
-			where TScenario : TestScenario
+		public static HandlerTestFactory<ILocalRemoteTestScenario, TMessage> InLocalRemoteBusScenario<TScenario, TMessage>(
+			this IHandlerTestFactory<TScenario, TMessage> factory)
+			where TScenario : ITestScenario
 			where TMessage : class
 		{
-			return new HandlerTestFactoryImpl<LocalRemoteTestScenario, TMessage>(LoopbackLocalRemote);
+			return new HandlerTestFactory<ILocalRemoteTestScenario, TMessage>(LoopbackLocalRemote);
 		}
 
-		public static ConsumerTestFactoryImpl<BusTestScenario, TConsumer> InSingleBusScenario<TScenario, TConsumer>(
-			this ConsumerTestFactory<TScenario, TConsumer> factory)
-			where TScenario : TestScenario
+		public static ConsumerTestFactory<IBusTestScenario, TConsumer> InSingleBusScenario<TScenario, TConsumer>(
+			this IConsumerTestFactory<TScenario, TConsumer> factory)
+			where TScenario : ITestScenario
 			where TConsumer : class, IConsumer
 		{
-			return new ConsumerTestFactoryImpl<BusTestScenario, TConsumer>(LoopbackBus);
+			return new ConsumerTestFactory<IBusTestScenario, TConsumer>(LoopbackBus);
 		}
 
-		public static ConsumerTestFactoryImpl<LocalRemoteTestScenario, TConsumer> InLocalRemoteBusScenario<TScenario, TConsumer>
+		public static ConsumerTestFactory<ILocalRemoteTestScenario, TConsumer> InLocalRemoteBusScenario<TScenario, TConsumer>
 			(
-			this ConsumerTestFactory<TScenario, TConsumer> factory)
-			where TScenario : TestScenario
+			this IConsumerTestFactory<TScenario, TConsumer> factory)
+			where TScenario : ITestScenario
 			where TConsumer : class, IConsumer
 		{
-			return new ConsumerTestFactoryImpl<LocalRemoteTestScenario, TConsumer>(LoopbackLocalRemote);
+			return new ConsumerTestFactory<ILocalRemoteTestScenario, TConsumer>(LoopbackLocalRemote);
 		}
 
-		public static SagaTestFactoryImpl<BusTestScenario, TSaga> InSingleBusScenario<TScenario, TSaga>(
-			this SagaTestFactory<TScenario, TSaga> factory)
-			where TScenario : TestScenario
+		public static SagaTestFactory<IBusTestScenario, TSaga> InSingleBusScenario<TScenario, TSaga>(
+			this ISagaTestFactory<TScenario, TSaga> factory)
+			where TScenario : ITestScenario
 			where TSaga : class, ISaga
 		{
-			return new SagaTestFactoryImpl<BusTestScenario, TSaga>(LoopbackBus);
+			return new SagaTestFactory<IBusTestScenario, TSaga>(LoopbackBus);
 		}
 
-		public static SagaTestFactoryImpl<LocalRemoteTestScenario, TSaga> InLocalRemoteBusScenario<TScenario, TSaga>
+		public static SagaTestFactory<ILocalRemoteTestScenario, TSaga> InLocalRemoteBusScenario<TScenario, TSaga>
 			(
-			this SagaTestFactory<TScenario, TSaga> factory)
-			where TScenario : TestScenario
+			this ISagaTestFactory<TScenario, TSaga> factory)
+			where TScenario : ITestScenario
 			where TSaga : class, ISaga
 		{
-			return new SagaTestFactoryImpl<LocalRemoteTestScenario, TSaga>(LoopbackLocalRemote);
+			return new SagaTestFactory<ILocalRemoteTestScenario, TSaga>(LoopbackLocalRemote);
 		}
 
 		static LoopbackBusScenarioBuilder LoopbackBus()

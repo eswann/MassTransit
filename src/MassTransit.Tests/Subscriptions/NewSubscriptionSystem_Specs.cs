@@ -12,13 +12,14 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Tests.Subscriptions
 {
-	using Magnum.TestFramework;
+    using Context;
+    using Magnum.TestFramework;
 	using MassTransit.Testing;
 
 	[Scenario]
 	public class When_the_new_subscription_system_is_used
 	{
-		ConsumerTest<BusTestScenario, Testsumer> _test;
+		ConsumerTest<IBusTestScenario, Testsumer> _test;
 		UnsubscribeAction _unsub;
 
 		[When]

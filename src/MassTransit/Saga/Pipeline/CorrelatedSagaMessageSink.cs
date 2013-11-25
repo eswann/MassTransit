@@ -14,6 +14,7 @@ namespace MassTransit.Saga.Pipeline
 {
 	using System;
 	using System.Collections.Generic;
+	using Context;
 	using Magnum.Extensions;
 
 	public class CorrelatedSagaMessageSink<TSaga, TMessage> :

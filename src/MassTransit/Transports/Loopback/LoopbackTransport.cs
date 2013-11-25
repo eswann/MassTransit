@@ -10,15 +10,14 @@
 // under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR 
 // CONDITIONS OF ANY KIND, either express or implied. See the License for the 
 // specific language governing permissions and limitations under the License.
-namespace MassTransit.Transports
+namespace MassTransit.Transports.Loopback
 {
     using System;
     using System.Collections.Generic;
     using System.Threading;
     using Context;
-    using Loopback;
     using Magnum.Extensions;
-    using Subscriptions.Coordinator;
+    using MassTransit.Subscriptions.Coordinator;
 
     /// <summary>
     /// The loopback transport is a built-in transport for MassTransit that 

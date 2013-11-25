@@ -17,8 +17,8 @@ namespace MassTransit.Testing.ActionConfigurators
 	using Scenarios;
 
 	public interface TestActionConfigurator<TScenario> :
-		TestConfigurator
-		where TScenario : TestScenario
+		ITestConfigurator
+		where TScenario : ITestScenario
 	{
 		void Configure(TestInstanceBuilder<TScenario> builder);
 	}

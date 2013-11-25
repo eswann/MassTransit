@@ -20,9 +20,9 @@ namespace MassTransit.SubscriptionConfigurators
     using SubscriptionBuilders;
 
     public class UntypedConsumerSubscriptionConfigurator<TConsumer> :
-        SubscriptionConfiguratorImpl<ConsumerSubscriptionConfigurator>,
-        ConsumerSubscriptionConfigurator,
-        SubscriptionBuilderConfigurator
+        SubscriptionConfigurator<IConsumerSubscriptionConfigurator>,
+        IConsumerSubscriptionConfigurator,
+        ISubscriptionBuilderConfigurator
         where TConsumer : class
     {
         readonly IConsumerFactory<TConsumer> _consumerFactory;
@@ -33,7 +33,7 @@ namespace MassTransit.SubscriptionConfigurators
                 new DelegateConsumerFactory<TConsumer>(() => (TConsumer)consumerFactory(typeof(TConsumer)));
         }
 
-        public IEnumerable<ValidationResult> Validate()
+        public IEnumerable<IValidationResult> Validate()
         {
             if (_consumerFactory == null)
                 yield return this.Failure("The consumer factory cannot be null.");

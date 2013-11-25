@@ -24,7 +24,7 @@ namespace MassTransit.Saga.SubscriptionConnectors
 	using Util;
 
 	public class CorrelatedSagaSubscriptionConnector<TSaga, TMessage> :
-		SagaSubscriptionConnector
+		ISagaSubscriptionConnector
 		where TSaga : SagaStateMachine<TSaga>, ISaga
 		where TMessage : class, CorrelatedBy<Guid>
 	{

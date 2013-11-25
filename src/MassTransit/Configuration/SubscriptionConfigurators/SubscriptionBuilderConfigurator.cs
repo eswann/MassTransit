@@ -15,8 +15,8 @@ namespace MassTransit.SubscriptionConfigurators
 	using Configurators;
 	using SubscriptionBuilders;
 
-	public interface SubscriptionBuilderConfigurator :
-		Configurator
+	public interface ISubscriptionBuilderConfigurator :
+		IConfigurator
 	{
 		SubscriptionBuilder Configure();
 	}

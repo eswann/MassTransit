@@ -18,22 +18,22 @@ namespace MassTransit.Diagnostics.Introspection
     using Magnum.Extensions;
 
     public class InMemoryDiagnosticsProbe :
-        DiagnosticsProbe
+        IDiagnosticsProbe
     {
-        readonly List<DiagnosticEntry> _entries;
+        readonly List<IDiagnosticEntry> _entries;
 
         public InMemoryDiagnosticsProbe()
         {
-            _entries = new List<DiagnosticEntry>();
+            _entries = new List<IDiagnosticEntry>();
         }
 
         public void Add(string key, object value)
         {
-            var entry = new DiagnosticEntryImpl(key, value);
+            var entry = new DiagnosticEntry(key, value);
             _entries.Add(entry);
         }
 
-        public IEnumerable<DiagnosticEntry> Entries
+        public IEnumerable<IDiagnosticEntry> Entries
         {
             get { return _entries; }
         }

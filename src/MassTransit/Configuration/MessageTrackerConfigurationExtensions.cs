@@ -18,7 +18,7 @@ namespace MassTransit
     public static class MessageTrackerConfigurationExtensions
     {
         public static T SetDefaultRetryLimit<T>(this T configurator, int retryLimit)
-            where T : EndpointFactoryConfigurator
+            where T : IEndpointFactoryConfigurator
         {
             var serializerConfigurator = new DefaultRetryLimitEndpointFactoryConfigurator(retryLimit);
 
@@ -29,7 +29,7 @@ namespace MassTransit
 
         public static T SetDefaultInboundMessageTrackerFactory<T>(this T configurator,
             MessageTrackerFactory messageTrackerFactory)
-            where T : EndpointFactoryConfigurator
+            where T : IEndpointFactoryConfigurator
         {
             var serializerConfigurator = new DefaultMessageTrackerEndpointFactoryConfigurator(messageTrackerFactory);
 

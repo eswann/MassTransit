@@ -18,7 +18,7 @@ namespace MassTransit.EndpointConfigurators
     using Transports;
 
     public class DefaultMessageTrackerEndpointFactoryConfigurator :
-        EndpointFactoryBuilderConfigurator
+        IEndpointFactoryBuilderConfigurator
     {
         readonly MessageTrackerFactory _messageTrackerFactory;
 
@@ -27,7 +27,7 @@ namespace MassTransit.EndpointConfigurators
             _messageTrackerFactory = messageTrackerFactory;
         }
 
-        public IEnumerable<ValidationResult> Validate()
+        public IEnumerable<IValidationResult> Validate()
         {
             if (_messageTrackerFactory == null)
                 yield return this.Failure("MessageTrackerFactory",

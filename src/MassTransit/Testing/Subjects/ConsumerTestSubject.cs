@@ -13,12 +13,12 @@
 namespace MassTransit.Testing.Subjects
 {
 	public interface ConsumerTestSubject<TConsumer> :
-		TestSubject<TConsumer>
+		ITestSubject<TConsumer>
 		where TConsumer : class
 	{
 		/// <summary>
 		/// The messages that were received by the handler
 		/// </summary>
-		ReceivedMessageList Received { get; }
+		IReceivedMessageList Received { get; }
 	}
 }

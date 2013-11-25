@@ -37,7 +37,7 @@ namespace MassTransit.Tests
 
 			LocalBus = ServiceBusFactory.New(x =>
 				{
-					x.AddService(BusServiceLayer.Session, () => new SubscriptionPublisher(_subscriptionService));
+					x.AddService(IBusServiceLayer.Session, () => new SubscriptionPublisher(_subscriptionService));
 					x.ReceiveFrom("loopback://localhost/mt_client");
 					x.UseControlBus();
 				});

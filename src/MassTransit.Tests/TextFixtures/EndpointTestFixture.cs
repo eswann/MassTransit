@@ -30,7 +30,7 @@ namespace MassTransit.Tests.TextFixtures
 		{
 			if (_endpointFactoryConfigurator != null)
 			{
-				ConfigurationResult result = ConfigurationResultImpl.CompileResults(_endpointFactoryConfigurator.Validate());
+				IConfigurationResult result = ConfigurationResultImpl.CompileResults(_endpointFactoryConfigurator.Validate());
 
 				try
 				{
@@ -79,14 +79,14 @@ namespace MassTransit.Tests.TextFixtures
 			ServiceBusFactory.ConfigureDefaultSettings(x => { x.SetEndpointCache(null); });
 		}
 
-		EndpointFactoryConfiguratorImpl _endpointFactoryConfigurator;
+		EndpointFactoryConfigurator _endpointFactoryConfigurator;
 		EndpointCache _endpointCache;
 
 		protected EndpointTestFixture()
 		{
 			var defaultSettings = new EndpointFactoryDefaultSettings();
 
-			_endpointFactoryConfigurator = new EndpointFactoryConfiguratorImpl(defaultSettings);
+			_endpointFactoryConfigurator = new EndpointFactoryConfigurator(defaultSettings);
 			_endpointFactoryConfigurator.AddTransportFactory<TTransportFactory>();
 			_endpointFactoryConfigurator.SetPurgeOnStartup(true);
 		}
@@ -108,7 +108,7 @@ namespace MassTransit.Tests.TextFixtures
 		{
 		}
 
-		protected void ConfigureEndpointFactory(Action<EndpointFactoryConfigurator> configure)
+		protected void ConfigureEndpointFactory(Action<IEndpointFactoryConfigurator> configure)
 		{
 			if (_endpointFactoryConfigurator == null)
 				throw new ConfigurationException("The endpoint factory configurator has already been executed.");

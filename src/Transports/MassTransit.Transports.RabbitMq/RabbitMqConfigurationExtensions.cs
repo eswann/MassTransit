@@ -10,10 +10,11 @@
 // under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR 
 // CONDITIONS OF ANY KIND, either express or implied. See the License for the 
 // specific language governing permissions and limitations under the License.
-namespace MassTransit
+namespace MassTransit.Transports.RabbitMq
 {
     using System;
-    using BusConfigurators;
+    using Configuration;
+    using MassTransit.BusConfigurators;
     using RabbitMQ.Client;
 
     /// <summary>
@@ -33,7 +34,7 @@ namespace MassTransit
         /// <param name="configurator">The configurator that is used to configure
         /// the message bus instance.</param>
         [Obsolete("Just .UseRabbitMq() instead, it's not all in one and this calls it directly")]
-        public static void UseRabbitMqRouting(this ServiceBusConfigurator configurator)
+        public static void UseRabbitMqRouting(this IServiceBusConfigurator configurator)
         {
             configurator.UseRabbitMq();
         }

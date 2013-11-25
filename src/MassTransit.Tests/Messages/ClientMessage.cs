@@ -1,8 +1,8 @@
-using System;
-
-namespace MassTransit.Tests
+namespace MassTransit.Tests.Messages
 {
-	[Serializable]
+    using System;
+
+    [Serializable]
 	public class ClientMessage
 	{
 		private string _name;

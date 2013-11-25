@@ -19,22 +19,22 @@ namespace MassTransit
 
     public static class SubscriptionRouterConfiguratorExtensions
     {
-        public static void SetSubscriptionObserver(this ServiceBusConfigurator configurator,
+        public static void SetSubscriptionObserver(this IServiceBusConfigurator configurator,
             Func<IServiceBus, SubscriptionRouter, SubscriptionObserver>
                 observerFactory)
         {
             var coordinatorConfigurator =
-                new SubscriptionRouterBuilderConfiguratorImpl(x => { x.SetObserverFactory(observerFactory); });
+                new SubscriptionRouterBuilderConfigurator(x => { x.SetObserverFactory(observerFactory); });
 
             configurator.AddSubscriptionRouterConfigurator(coordinatorConfigurator);
         }
 
-        public static void AddSubscriptionObserver(this ServiceBusConfigurator configurator,
+        public static void AddSubscriptionObserver(this IServiceBusConfigurator configurator,
             Func<IServiceBus, SubscriptionRouter, SubscriptionObserver>
                 observerFactory)
         {
             var coordinatorConfigurator =
-                new SubscriptionRouterBuilderConfiguratorImpl(x => { x.AddObserverFactory(observerFactory); });
+                new SubscriptionRouterBuilderConfigurator(x => { x.AddObserverFactory(observerFactory); });
 
             configurator.AddSubscriptionRouterConfigurator(coordinatorConfigurator);
         }
@@ -43,10 +43,10 @@ namespace MassTransit
         /// Specify a custom subscription storage for the bus instance
         /// </summary>
         /// <param name="subscriptionStorageFactory">Factory method for the subscription storage</param>
-        public static void UseSubscriptionStorage(this ServiceBusConfigurator configurator,
+        public static void UseSubscriptionStorage(this IServiceBusConfigurator configurator,
             Func<SubscriptionStorage> subscriptionStorageFactory)
         {
-            var builderConfigurator = new SubscriptionRouterBuilderConfiguratorImpl(
+            var builderConfigurator = new SubscriptionRouterBuilderConfigurator(
                 x => x.UseSubscriptionStorage(subscriptionStorageFactory));
 
             configurator.AddSubscriptionRouterConfigurator(builderConfigurator);

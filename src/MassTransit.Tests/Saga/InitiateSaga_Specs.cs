@@ -19,6 +19,7 @@ namespace MassTransit.Tests.Saga
 	using MassTransit.Pipeline;
 	using MassTransit.Pipeline.Inspectors;
 	using MassTransit.Saga;
+	using MassTransit.Saga.Configuration;
 	using NUnit.Framework;
 	using TestFramework;
 	using TextFixtures;

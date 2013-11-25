@@ -12,7 +12,7 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Containers.Tests.Scenarios
 {
-    public interface AnotherMessageInterface
+    public interface IAnotherMessageInterface
     {
         string Name { get; }
     }

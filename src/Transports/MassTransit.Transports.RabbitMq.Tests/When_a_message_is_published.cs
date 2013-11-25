@@ -25,7 +25,7 @@ namespace MassTransit.Transports.RabbitMq.Tests
 		Future<A> _received;
 		Future<B> _receivedB;
 
-		protected override void ConfigureServiceBus(Uri uri, ServiceBusConfigurator configurator)
+		protected override void ConfigureServiceBus(Uri uri, IServiceBusConfigurator configurator)
 		{
 			base.ConfigureServiceBus(uri, configurator);
 
@@ -82,7 +82,7 @@ namespace MassTransit.Transports.RabbitMq.Tests
 		Future<A> _received;
 		Future<B> _receivedB;
 
-		protected override void ConfigureLocalBus(ServiceBusConfigurator configurator)
+		protected override void ConfigureLocalBus(IServiceBusConfigurator configurator)
 		{
 		    base.ConfigureLocalBus(configurator);
 

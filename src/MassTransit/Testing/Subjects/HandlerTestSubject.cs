@@ -13,7 +13,7 @@
 namespace MassTransit.Testing.Subjects
 {
 	public interface HandlerTestSubject<TMessage> :
-		TestSubject<TMessage>
+		ITestSubject<TMessage>
 		where TMessage : class
 	{
 		/// <summary>

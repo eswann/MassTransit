@@ -20,8 +20,8 @@ namespace MassTransit.Testing.ScenarioBuilders
 	using Transports;
 
 	public class LoopbackLocalRemoteBusScenarioBuilder :
-		EndpointScenarioBuilderImpl<LocalRemoteTestScenario>,
-		LocalRemoteScenarioBuilder
+		EndpointScenarioBuilder<ILocalRemoteTestScenario>,
+		ILocalRemoteScenarioBuilder
 	{
 		const string DefaultLocalUri = "loopback://localhost/mt_client";
 		const string DefaultRemoteUri = "loopback://localhost/mt_server";
@@ -45,17 +45,17 @@ namespace MassTransit.Testing.ScenarioBuilders
 			_remoteConfigurator.ReceiveFrom(DefaultRemoteUri);
 		}
 
-		public void ConfigureLocalBus(Action<ServiceBusConfigurator> configureCallback)
+		public void ConfigureLocalBus(Action<IServiceBusConfigurator> configureCallback)
 		{
 			configureCallback(_localConfigurator);
 		}
 
-		public void ConfigureRemoteBus(Action<ServiceBusConfigurator> configureCallback)
+		public void ConfigureRemoteBus(Action<IServiceBusConfigurator> configureCallback)
 		{
 			configureCallback(_remoteConfigurator);
 		}
 
-		public override LocalRemoteTestScenario Build()
+		public override ILocalRemoteTestScenario Build()
 		{
 			IEndpointFactory endpointFactory = BuildEndpointFactory();
 

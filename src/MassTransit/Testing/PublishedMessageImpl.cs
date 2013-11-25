@@ -13,8 +13,9 @@
 namespace MassTransit.Testing
 {
 	using System;
+	using Context;
 
-	public class PublishedMessageImpl<T> :
+    public class PublishedMessageImpl<T> :
 		PublishedMessage<T>
 		where T : class
 	{
@@ -31,7 +32,7 @@ namespace MassTransit.Testing
 			get { return _context; }
 		}
 
-		ISendContext PublishedMessage.Context
+		ISendContext IPublishedMessage.Context
 		{
 			get { return Context; }
 		}

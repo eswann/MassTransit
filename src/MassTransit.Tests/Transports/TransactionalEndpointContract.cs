@@ -15,6 +15,7 @@ namespace MassTransit.Tests.Transports
 	using System;
 	using System.Transactions;
 	using MassTransit.Transports;
+	using Messages;
 	using NUnit.Framework;
 
 	public abstract class TransactionalEndpointContract<TTransportFactory>

@@ -12,6 +12,7 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Tests.Diagnostics
 {
+    using Context;
     using Magnum.Extensions;
     using Magnum.TestFramework;
     using MassTransit.Diagnostics;
@@ -21,9 +22,9 @@ namespace MassTransit.Tests.Diagnostics
     [Scenario]
     public class When_tracing_messages_on_the_bus
     {
-        FutureMessage<ReceivedMessageTraceList> _future;
-        ReceivedMessageTraceList _list;
-        HandlerTest<BusTestScenario, InputMessage> _test;
+        FutureMessage<IReceivedMessageTraceList> _future;
+        IReceivedMessageTraceList _list;
+        HandlerTest<IBusTestScenario, InputMessage> _test;
 
         [When]
         public void A_consumer_is_being_tested()
@@ -42,7 +43,7 @@ namespace MassTransit.Tests.Diagnostics
             _test.Received.Any<InputMessage>().ShouldBeTrue();
             _test.Sent.Any<OutputMessage>().ShouldBeTrue();
 
-            _future = new FutureMessage<ReceivedMessageTraceList>();
+            _future = new FutureMessage<IReceivedMessageTraceList>();
             _test.Scenario.Bus.GetMessageTrace(_test.Scenario.Bus.ControlBus.Endpoint, _future.Set);
 
             _future.IsAvailable(8.Seconds()).ShouldBeTrue();
@@ -63,7 +64,7 @@ namespace MassTransit.Tests.Diagnostics
             _list.Messages.ShouldNotBeNull();
             _list.Messages.Count.ShouldEqual(2);
 
-            ReceivedMessageTraceDetail message = _list.Messages[0];
+            IReceivedMessageTraceDetail message = _list.Messages[0];
 
             message.ContentType.ShouldEqual("application/vnd.masstransit+xml");
             message.DestinationAddress.ShouldEqual(_test.Scenario.Bus.Endpoint.Address.Uri);

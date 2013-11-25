@@ -10,13 +10,12 @@
 // under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR 
 // CONDITIONS OF ANY KIND, either express or implied. See the License for the 
 // specific language governing permissions and limitations under the License.
-namespace MassTransit
+namespace MassTransit.Services.HealthMonitoring.Configuration
 {
-	using BusConfigurators;
-	using BusServiceConfigurators;
-	using Services.HealthMonitoring.Configuration;
+    using MassTransit.BusConfigurators;
+    using MassTransit.BusServiceConfigurators;
 
-	public static class HealthClientConfiguratorExtensions
+    public static class HealthClientConfiguratorExtensions
 	{
 		/// <summary>
 		/// Specifies that the service bus will be using health monitoring. This means that
@@ -25,7 +24,7 @@ namespace MassTransit
 		/// </summary>
 		/// <param name="configurator">Configurator that the extension method is invoked upon.</param>
 		/// <param name="heartbeatInterval">The heartbeat interval in seconds (one heartbeat evey n seconds)</param>
-		public static void UseHealthMonitoring(this ServiceBusConfigurator configurator, int heartbeatInterval)
+		public static void UseHealthMonitoring(this IServiceBusConfigurator configurator, int heartbeatInterval)
 		{
 			var serviceConfigurator = new HealthClientConfigurator();
 			serviceConfigurator.SetHeartbeatInterval(heartbeatInterval);

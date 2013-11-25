@@ -21,6 +21,7 @@ namespace MassTransit.Tests.Load
 	using Magnum;
 	using Magnum.Extensions;
 	using Magnum.TestFramework;
+	using MassTransit.Subscriptions;
 	using Messages;
 	using TestFramework;
 

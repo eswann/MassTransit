@@ -16,6 +16,7 @@ namespace MassTransit.RequestResponse.Configurators
     using System;
     using System.Threading;
     using System.Threading.Tasks;
+    using Context;
 
     public class TaskRequestConfiguratorImpl<TRequest> :
         RequestConfiguratorBase<TRequest>,

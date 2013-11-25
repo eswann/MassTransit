@@ -19,7 +19,7 @@ namespace MassTransit.Transports.RabbitMq.Configuration.Configurators
     /// Configures SSL/TLS for RabbitMQ. See http://www.rabbitmq.com/ssl.html
     /// for details on how to set up RabbitMQ for SSL.
     /// </summary>
-    public interface SslConnectionFactoryConfigurator
+    public interface ISslConnectionFactoryConfigurator
     {
         void SetServerName(string serverName);
         void SetCertificatePath(string certificatePath);

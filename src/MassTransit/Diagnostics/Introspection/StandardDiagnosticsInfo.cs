@@ -19,7 +19,7 @@ namespace MassTransit.Diagnostics.Introspection
 
     public class StandardDiagnosticsInfo
     {
-        public void WriteCommonItems(DiagnosticsProbe probe)
+        public void WriteCommonItems(IDiagnosticsProbe probe)
         {
             AddHostValues(probe);
             AddOperatingSystemValues(probe);
@@ -27,13 +27,13 @@ namespace MassTransit.Diagnostics.Introspection
             AddRunningInFullTrustValue(probe);
         }
 
-        static void AddHostValues(DiagnosticsProbe probe)
+        static void AddHostValues(IDiagnosticsProbe probe)
         {
             probe.Add("host.machine_name", Environment.MachineName);
             probe.Add("net.version", Environment.Version);
         }
 
-        static void AddProcessValues(DiagnosticsProbe probe)
+        static void AddProcessValues(IDiagnosticsProbe probe)
         {
             probe.Add("process.id", Process.GetCurrentProcess().Id);
 #if NET40
@@ -41,7 +41,7 @@ namespace MassTransit.Diagnostics.Introspection
 #endif
         }
 
-        static void AddOperatingSystemValues(DiagnosticsProbe probe)
+        static void AddOperatingSystemValues(IDiagnosticsProbe probe)
         {
             probe.Add("os.version", Environment.OSVersion);
 #if NET40
@@ -49,7 +49,7 @@ namespace MassTransit.Diagnostics.Introspection
 #endif
         }
 
-        static void AddRunningInFullTrustValue(DiagnosticsProbe probe)
+        static void AddRunningInFullTrustValue(IDiagnosticsProbe probe)
         {
             probe.Add("process.fulltrust", IsRunningInFullTrust());
         }

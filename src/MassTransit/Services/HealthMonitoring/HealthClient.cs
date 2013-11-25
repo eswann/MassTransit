@@ -13,6 +13,7 @@
 namespace MassTransit.Services.HealthMonitoring
 {
     using System;
+    using Context;
     using Diagnostics.Introspection;
     using Logging;
     using Magnum.Extensions;
@@ -23,7 +24,7 @@ namespace MassTransit.Services.HealthMonitoring
     public class HealthClient :
         IBusService,
         Consumes<PingEndpoint>.All,
-        DiagnosticsSource
+        IDiagnosticsSource
     {
         readonly int _heartbeatIntervalInMilliseconds;
         readonly int _heartbeatIntervalInSeconds;
@@ -69,7 +70,7 @@ namespace MassTransit.Services.HealthMonitoring
             _bus.ControlBus.Context().Respond(response);
         }
 
-        public void Inspect(DiagnosticsProbe probe)
+        public void Inspect(IDiagnosticsProbe probe)
         {
             probe.Add("health_client", "on");
             probe.Add("health_client.interval", _heartbeatIntervalInSeconds);

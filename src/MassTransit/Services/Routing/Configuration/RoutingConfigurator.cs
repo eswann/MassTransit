@@ -19,7 +19,7 @@ namespace MassTransit.Services.Routing.Configuration
 	using Util;
 
 	public class RoutingConfigurator :
-		BusServiceConfigurator
+		IBusServiceConfigurator
 	{
 		readonly IList<Func<IServiceBus, UnsubscribeAction>> _routes = new List<Func<IServiceBus, UnsubscribeAction>>();
 
@@ -28,9 +28,9 @@ namespace MassTransit.Services.Routing.Configuration
 			get { return typeof (RoutingService); }
 		}
 
-		public BusServiceLayer Layer
+		public IBusServiceLayer Layer
 		{
-			get { return BusServiceLayer.Session; }
+			get { return IBusServiceLayer.Session; }
 		}
 
 		public IBusService Create(IServiceBus bus)

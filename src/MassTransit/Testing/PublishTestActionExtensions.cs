@@ -14,66 +14,67 @@ namespace MassTransit.Testing
 {
 	using System;
 	using ActionConfigurators;
+	using Context;
 	using TestInstanceConfigurators;
 
 	public static class PublishTestActionExtensions
 	{
-		public static void Publish<TMessage>(this TestInstanceConfigurator<BusTestScenario> configurator, TMessage message)
+		public static void Publish<TMessage>(this TestInstanceConfigurator<IBusTestScenario> configurator, TMessage message)
 			where TMessage : class
 		{
-			var actionConfigurator = new PublishTestActionConfigurator<BusTestScenario, TMessage>(x => x.Bus, message);
+			var actionConfigurator = new PublishTestActionConfigurator<IBusTestScenario, TMessage>(x => x.Bus, message);
 
 			configurator.AddActionConfigurator(actionConfigurator);
 		}
 
-		public static void Publish<TMessage>(this TestInstanceConfigurator<BusTestScenario> configurator, TMessage message,
+		public static void Publish<TMessage>(this TestInstanceConfigurator<IBusTestScenario> configurator, TMessage message,
 		                                     Action<IPublishContext<TMessage>> callback)
 			where TMessage : class
 		{
-			var actionConfigurator = new PublishTestActionConfigurator<BusTestScenario, TMessage>(x => x.Bus, message,
+			var actionConfigurator = new PublishTestActionConfigurator<IBusTestScenario, TMessage>(x => x.Bus, message,
 				(scenario, context) => callback(context));
 
 			configurator.AddActionConfigurator(actionConfigurator);
 		}
 
-		public static void Publish<TMessage>(this TestInstanceConfigurator<BusTestScenario> configurator, TMessage message,
-		                                     Action<BusTestScenario, IPublishContext<TMessage>> callback)
+		public static void Publish<TMessage>(this TestInstanceConfigurator<IBusTestScenario> configurator, TMessage message,
+		                                     Action<IBusTestScenario, IPublishContext<TMessage>> callback)
 			where TMessage : class
 		{
-			var actionConfigurator = new PublishTestActionConfigurator<BusTestScenario, TMessage>(x => x.Bus, message,
+			var actionConfigurator = new PublishTestActionConfigurator<IBusTestScenario, TMessage>(x => x.Bus, message,
 				callback);
 
 			configurator.AddActionConfigurator(actionConfigurator);
 		}
 
-		public static void Publish<TMessage>(this TestInstanceConfigurator<LocalRemoteTestScenario> configurator,
+		public static void Publish<TMessage>(this TestInstanceConfigurator<ILocalRemoteTestScenario> configurator,
 		                                     TMessage message)
 			where TMessage : class
 		{
-			var actionConfigurator = new PublishTestActionConfigurator<LocalRemoteTestScenario, TMessage>(x => x.LocalBus,
+			var actionConfigurator = new PublishTestActionConfigurator<ILocalRemoteTestScenario, TMessage>(x => x.LocalBus,
 				message);
 
 			configurator.AddActionConfigurator(actionConfigurator);
 		}
 
-		public static void Publish<TMessage>(this TestInstanceConfigurator<LocalRemoteTestScenario> configurator,
+		public static void Publish<TMessage>(this TestInstanceConfigurator<ILocalRemoteTestScenario> configurator,
 		                                     TMessage message,
 		                                     Action<IPublishContext<TMessage>> callback)
 			where TMessage : class
 		{
-			var actionConfigurator = new PublishTestActionConfigurator<LocalRemoteTestScenario, TMessage>(x => x.LocalBus,
+			var actionConfigurator = new PublishTestActionConfigurator<ILocalRemoteTestScenario, TMessage>(x => x.LocalBus,
 				message,
 				(scenario, context) => callback(context));
 
 			configurator.AddActionConfigurator(actionConfigurator);
 		}
 
-		public static void Publish<TMessage>(this TestInstanceConfigurator<LocalRemoteTestScenario> configurator,
+		public static void Publish<TMessage>(this TestInstanceConfigurator<ILocalRemoteTestScenario> configurator,
 		                                     TMessage message,
-		                                     Action<LocalRemoteTestScenario, IPublishContext<TMessage>> callback)
+		                                     Action<ILocalRemoteTestScenario, IPublishContext<TMessage>> callback)
 			where TMessage : class
 		{
-			var actionConfigurator = new PublishTestActionConfigurator<LocalRemoteTestScenario, TMessage>(x => x.LocalBus,
+			var actionConfigurator = new PublishTestActionConfigurator<ILocalRemoteTestScenario, TMessage>(x => x.LocalBus,
 				message,
 				callback);
 

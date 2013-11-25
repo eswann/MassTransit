@@ -76,7 +76,7 @@ namespace MassTransit.Transports.RabbitMq.Tests
         SelectiveConsumer _consumer;
         const int TotalMsgs = 10;
 
-        protected override void ConfigureServiceBus(Uri uri, ServiceBusConfigurator configurator)
+        protected override void ConfigureServiceBus(Uri uri, IServiceBusConfigurator configurator)
         {
             base.ConfigureServiceBus(uri, configurator);
 

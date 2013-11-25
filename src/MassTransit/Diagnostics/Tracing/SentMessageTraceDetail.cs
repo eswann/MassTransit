@@ -15,13 +15,22 @@ namespace MassTransit.Diagnostics.Tracing
     using System;
 
     /// <summary>
-	/// A message that was sent while a message was being received
-	/// </summary>
-	public interface SentMessageTraceDetail :
-		MessageTraceDetail
-	{
-		Uri Address { get; }
+    /// A message that was sent while a message was being received
+    /// </summary>
+    public interface ISentMessageTraceDetail :
+        IMessageTraceDetail
+    {
+        Uri Address { get; }
 
-		string DeclaringMessageType { get; }
+        string DeclaringMessageType { get; }
+    }
+
+    public class SentMessageTraceDetail :
+		MessageTraceDetail,
+		ISentMessageTraceDetail
+	{
+		public Uri Address { get; set; }
+
+		public string DeclaringMessageType { get; set; }
 	}
 }

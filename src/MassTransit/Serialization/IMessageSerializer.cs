@@ -13,6 +13,7 @@
 namespace MassTransit.Serialization
 {
     using System.IO;
+    using Context;
 
     /// <summary>
     /// Message Serialization implementors should handle the nitty-gritty

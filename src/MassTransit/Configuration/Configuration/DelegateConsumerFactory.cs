@@ -14,6 +14,7 @@ namespace MassTransit.Configuration
 {
     using System;
     using System.Collections.Generic;
+    using Context;
     using Exceptions;
     using Pipeline;
 

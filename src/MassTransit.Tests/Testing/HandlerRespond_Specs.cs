@@ -12,13 +12,14 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Tests.Testing
 {
-	using Magnum.TestFramework;
+    using Context;
+    using Magnum.TestFramework;
 	using MassTransit.Testing;
 
 	[Scenario]
 	public class When_a_handler_responds_to_a_message
 	{
-		HandlerTest<A> _test;
+		IHandlerTest<A> _test;
 
 		[When]
 		public void A_handler_responds_to_a_message()
@@ -65,7 +66,7 @@ namespace MassTransit.Tests.Testing
 	[Scenario]
 	public class When_a_handler_responds_to_a_message_using_context
 	{
-		HandlerTest<A> _test;
+		IHandlerTest<A> _test;
 
 		[When]
 		public void A_handler_responds_to_a_message_using_context()

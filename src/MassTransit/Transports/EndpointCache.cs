@@ -68,7 +68,7 @@ namespace MassTransit.Transports
             }
         }
 
-        public void Inspect(DiagnosticsProbe probe)
+        public void Inspect(IDiagnosticsProbe probe)
         {
             _endpointFactory.Inspect(probe);
         }

@@ -14,31 +14,42 @@ namespace MassTransit.Diagnostics.Tracing
 {
     using System;
 
-    public interface ReceiverTraceDetail
+    public interface IReceiverTraceDetail
+    {
+        /// <summary>
+        /// The message type consumed by the receiver
+        /// </summary>
+        string MessageType { get; }
+
+        /// <summary>
+        /// The type of receiver that consumed the message
+        /// </summary>
+        string ReceiverType { get; }
+
+        /// <summary>
+        /// Correlation information related to the receiver (saga Id, etc.)
+        /// </summary>
+        string CorrelationId { get; }
+
+        /// <summary>
+        /// The time the receiver started processing the message, relative to the receive time
+        /// </summary>
+        DateTime StartTime { get; }
+
+        /// <summary>
+        /// The time at which the receiver was done processing the message
+        /// </summary>
+        TimeSpan Duration { get; }
+    }
+
+    public class ReceiverTraceDetail :
+		IReceiverTraceDetail
 	{
-		/// <summary>
-		/// The message type consumed by the receiver
-		/// </summary>
-		string MessageType { get; }
+		public string MessageType { get; set; }
+		public string ReceiverType { get; set; }
+		public DateTime StartTime { get; set; }
+		public TimeSpan Duration { get; set; }
 
-		/// <summary>
-		/// The type of receiver that consumed the message
-		/// </summary>
-		string ReceiverType { get; }
-
-		/// <summary>
-		/// Correlation information related to the receiver (saga Id, etc.)
-		/// </summary>
-		string CorrelationId { get; }
-
-		/// <summary>
-		/// The time the receiver started processing the message, relative to the receive time
-		/// </summary>
-		DateTime StartTime { get; }
-
-		/// <summary>
-		/// The time at which the receiver was done processing the message
-		/// </summary>
-		TimeSpan Duration { get; }
+		public string CorrelationId { get; set; }
 	}
 }

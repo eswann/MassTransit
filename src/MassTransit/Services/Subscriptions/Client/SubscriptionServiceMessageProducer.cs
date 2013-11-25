@@ -14,6 +14,7 @@ namespace MassTransit.Services.Subscriptions.Client
 {
     using System;
     using System.Threading;
+    using Context;
     using Logging;
     using MassTransit.Subscriptions.Coordinator;
     using MassTransit.Subscriptions.Messages;

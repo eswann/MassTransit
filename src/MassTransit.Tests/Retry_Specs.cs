@@ -12,7 +12,8 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Tests
 {
-	using Magnum.Extensions;
+    using Context;
+    using Magnum.Extensions;
 	using Messages;
 	using NUnit.Framework;
 	using TestFramework;

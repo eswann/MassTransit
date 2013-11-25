@@ -26,7 +26,7 @@ namespace MassTransit.SubscriptionConnectors
     /// Interface implemented by objects that tie an inbound pipeline together with
     /// consumers (by means of calling a consumer factory).
     /// </summary>
-    public interface ConsumerConnector
+    public interface IConsumerConnector
     {
         UnsubscribeAction Connect<TConsumer>(IInboundPipelineConfigurator configurator,
                                              IConsumerFactory<TConsumer> consumerFactory)
@@ -34,10 +34,10 @@ namespace MassTransit.SubscriptionConnectors
     }
 
     public class ConsumerConnector<T> :
-        ConsumerConnector
+        IConsumerConnector
         where T : class
     {
-        readonly IEnumerable<ConsumerSubscriptionConnector> _connectors;
+        readonly IEnumerable<IConsumerSubscriptionConnector> _connectors;
 
         public ConsumerConnector()
         {
@@ -47,8 +47,8 @@ namespace MassTransit.SubscriptionConnectors
                 throw new ConfigurationException("A saga cannot be registered as a consumer");
 
             if (interfaces.Implements(typeof (InitiatedBy<>))
-                || interfaces.Implements(typeof (Orchestrates<>))
-                || interfaces.Implements(typeof (Observes<,>)))
+                || interfaces.Implements(typeof (IOrchestrate<>))
+                || interfaces.Implements(typeof (IObserve<,>)))
                 throw new ConfigurationException("InitiatedBy, Orchestrates, and Observes can only be used with sagas");
 
             _connectors = ConsumesSelectedContext()
@@ -59,7 +59,7 @@ namespace MassTransit.SubscriptionConnectors
                 .ToList();
         }
 
-        public IEnumerable<ConsumerSubscriptionConnector> Connectors
+        public IEnumerable<IConsumerSubscriptionConnector> Connectors
         {
             get { return _connectors; }
         }
@@ -72,54 +72,54 @@ namespace MassTransit.SubscriptionConnectors
                 .Aggregate<UnsubscribeAction, UnsubscribeAction>(() => true, (seed, x) => () => seed() && x());
         }
 
-        static IEnumerable<ConsumerSubscriptionConnector> ConsumesContext()
+        static IEnumerable<IConsumerSubscriptionConnector> ConsumesContext()
         {
             return MessageInterfaceTypeReflector<T>.GetConsumesContextTypes()
                 .Select(CreateContextConnector);
         }
 
-        static ConsumerSubscriptionConnector CreateContextConnector(MessageInterfaceType x)
+        static IConsumerSubscriptionConnector CreateContextConnector(MessageInterfaceType x)
         {
-            return (ConsumerSubscriptionConnector)
+            return (IConsumerSubscriptionConnector)
                    FastActivator.Create(typeof (ContextConsumerSubscriptionConnector<,>),
                        new[] {typeof (T), x.MessageType});
         }
 
-        static IEnumerable<ConsumerSubscriptionConnector> ConsumesSelectedContext()
+        static IEnumerable<IConsumerSubscriptionConnector> ConsumesSelectedContext()
         {
             return MessageInterfaceTypeReflector<T>.GetConsumesSelectedContextTypes()
                 .Select(CreateSelectedContextConnector);
         }
 
-        static ConsumerSubscriptionConnector CreateSelectedContextConnector(MessageInterfaceType x)
+        static IConsumerSubscriptionConnector CreateSelectedContextConnector(MessageInterfaceType x)
         {
-            return (ConsumerSubscriptionConnector)
+            return (IConsumerSubscriptionConnector)
                    FastActivator.Create(typeof (SelectedContextConsumerSubscriptionConnector<,>),
                        new[] {typeof (T), x.MessageType});
         }
 
-        static IEnumerable<ConsumerSubscriptionConnector> ConsumesAll()
+        static IEnumerable<IConsumerSubscriptionConnector> ConsumesAll()
         {
             return MessageInterfaceTypeReflector<T>.GetConsumesAllTypes()
                 .Select(CreateConnector);
         }
 
-        static ConsumerSubscriptionConnector CreateConnector(MessageInterfaceType x)
+        static IConsumerSubscriptionConnector CreateConnector(MessageInterfaceType x)
         {
-            return (ConsumerSubscriptionConnector)
+            return (IConsumerSubscriptionConnector)
                    FastActivator.Create(typeof (ConsumerSubscriptionConnector<,>),
                        new[] {typeof (T), x.MessageType});
         }
 
-        static IEnumerable<ConsumerSubscriptionConnector> ConsumesSelected()
+        static IEnumerable<IConsumerSubscriptionConnector> ConsumesSelected()
         {
             return MessageInterfaceTypeReflector<T>.GetConsumesSelectedTypes()
                 .Select(CreateSelectedConnector);
         }
 
-        static ConsumerSubscriptionConnector CreateSelectedConnector(MessageInterfaceType x)
+        static IConsumerSubscriptionConnector CreateSelectedConnector(MessageInterfaceType x)
         {
-            return (ConsumerSubscriptionConnector)
+            return (IConsumerSubscriptionConnector)
                    FastActivator.Create(typeof (SelectedConsumerSubscriptionConnector<,>),
                        new[] {typeof (T), x.MessageType});
         }

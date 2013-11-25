@@ -15,7 +15,7 @@ namespace MassTransit.Context
 	using System;
 
 	public class ThreadStaticContextStorageProvider :
-		ContextStorageProvider
+		IContextStorageProvider
 	{
 		[ThreadStatic]
 		static IConsumeContext _consumeContext;

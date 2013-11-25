@@ -10,19 +10,20 @@
 // under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR 
 // CONDITIONS OF ANY KIND, either express or implied. See the License for the 
 // specific language governing permissions and limitations under the License.
-namespace MassTransit.Testing
+namespace MassTransit.Transports.RabbitMq.Testing
 {
-	using System;
-	using Advanced;
-	using Magnum.Extensions;
-	using ScenarioBuilders;
+    using System;
+    using Configuration;
+    using MassTransit.Advanced;
+    using Magnum.Extensions;
+    using MassTransit.Testing.ScenarioBuilders;
 
-	/// <summary>
+    /// <summary>
 	/// A RabbitMQ bus scenario builder. Will consume off
 	/// 'rabbitmq://localhost/mt_client', and use RabbitMQ routing. Timeout = 100 ms.
 	/// </summary>
 	public class RabbitMqBusScenarioBuilder :
-		BusScenarioBuilderImpl
+		BusScenarioBuilder
 	{
 		const string DefaultUri = "rabbitmq://localhost/mt_client";
 

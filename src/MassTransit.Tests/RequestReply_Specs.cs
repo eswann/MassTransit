@@ -27,7 +27,7 @@ namespace MassTransit.Tests
 		static readonly TimeSpan _timeout = TimeSpan.FromSeconds(8);
 
 
-		protected override void ConfigureRemoteBus(ServiceBusConfigurator configurator)
+		protected override void ConfigureRemoteBus(IServiceBusConfigurator configurator)
 		{
 			base.ConfigureRemoteBus(configurator);
 

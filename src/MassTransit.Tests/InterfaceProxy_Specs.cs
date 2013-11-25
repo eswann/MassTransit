@@ -36,7 +36,7 @@ namespace MassTransit.Tests
             _received.IsAvailable(8.Seconds());
         }
 
-        protected override void ConfigureLocalBus(ServiceBusConfigurator configurator)
+        protected override void ConfigureLocalBus(IServiceBusConfigurator configurator)
         {
             base.ConfigureLocalBus(configurator);
 
@@ -95,7 +95,7 @@ namespace MassTransit.Tests
             _received.IsAvailable(8.Seconds());
         }
 
-        protected override void ConfigureLocalBus(ServiceBusConfigurator configurator)
+        protected override void ConfigureLocalBus(IServiceBusConfigurator configurator)
         {
             base.ConfigureLocalBus(configurator);
 

@@ -17,6 +17,7 @@ namespace MassTransit.Services.HealthMonitoring
     using Magnum.Extensions;
     using Messages;
     using Saga;
+    using Saga.Configuration;
     using Server;
 
 	/// <summary>

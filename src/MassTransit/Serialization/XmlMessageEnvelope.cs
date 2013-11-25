@@ -14,6 +14,7 @@ namespace MassTransit.Serialization
 {
     using System;
     using System.Xml.Serialization;
+    using Context;
 
     /// <summary>
     ///   The envelope that is used to wrap messages serialized using Xml

@@ -32,14 +32,14 @@ namespace MassTransit.Tests
 			RemoteControlBus = RemoteBus.ControlBus;
 		}
 
-		protected override void ConfigureLocalBus(ServiceBusConfigurator configurator)
+		protected override void ConfigureLocalBus(IServiceBusConfigurator configurator)
 		{
 			base.ConfigureLocalBus(configurator);
 
 			configurator.UseControlBus();
 		}
 
-		protected override void ConfigureRemoteBus(ServiceBusConfigurator configurator)
+		protected override void ConfigureRemoteBus(IServiceBusConfigurator configurator)
 		{
 			base.ConfigureRemoteBus(configurator);
 

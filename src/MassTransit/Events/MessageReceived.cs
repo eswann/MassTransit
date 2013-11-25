@@ -13,8 +13,9 @@
 namespace MassTransit.Events
 {
 	using System;
+	using Context;
 
-	public class MessageReceived
+    public class MessageReceived
 	{
 		public TimeSpan ConsumeDuration { get; set; }
 		public IReceiveContext Context { get; set; }

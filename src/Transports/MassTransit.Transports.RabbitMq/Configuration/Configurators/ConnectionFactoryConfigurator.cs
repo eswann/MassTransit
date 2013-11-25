@@ -16,10 +16,10 @@ namespace MassTransit.Transports.RabbitMq.Configuration.Configurators
     using MassTransit.Configurators;
 
 
-    public interface ConnectionFactoryConfigurator :
-        Configurator
+    public interface IConnectionFactoryConfigurator :
+        IConfigurator
     {
-        void UseSsl(Action<SslConnectionFactoryConfigurator> configureSsl);
+        void UseSsl(Action<ISslConnectionFactoryConfigurator> configureSsl);
         void SetRequestedHeartbeat(ushort requestedHeartbeat);
         void SetUsername(string username);
         void SetPassword(string password);

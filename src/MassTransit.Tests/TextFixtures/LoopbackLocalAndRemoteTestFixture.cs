@@ -42,7 +42,7 @@ namespace MassTransit.Tests.TextFixtures
         protected Uri LocalUri;
         protected Uri RemoteUri;
 
-        protected virtual void ConfigureLocalBus(ServiceBusConfigurator configurator)
+        protected virtual void ConfigureLocalBus(IServiceBusConfigurator configurator)
         {
             LocalUri = new Uri("loopback://localhost/mt_client");
             configurator.ReceiveFrom(LocalUri);
@@ -53,7 +53,7 @@ namespace MassTransit.Tests.TextFixtures
                 });
         }
 
-        protected virtual void ConfigureRemoteBus(ServiceBusConfigurator configurator)
+        protected virtual void ConfigureRemoteBus(IServiceBusConfigurator configurator)
         {
             RemoteUri = new Uri("loopback://localhost/mt_server");
             configurator.ReceiveFrom(RemoteUri);

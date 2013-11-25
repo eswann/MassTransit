@@ -13,24 +13,25 @@
 namespace MassTransit.Diagnostics.Introspection
 {
     using System.Linq;
+    using Context;
     using Messages;
 
     public class IntrospectionBusService :
         IBusService,
-        Consumes<GetBusStatus>.Context
+        Consumes<IGetBusStatus>.Context
     {
         IServiceBus _bus;
         IServiceBus _controlBus;
         UnsubscribeAction _unsubscribe;
 
-        public void Consume(IConsumeContext<GetBusStatus> context)
+        public void Consume(IConsumeContext<IGetBusStatus> context)
         {
-            DiagnosticsProbe probe = _bus.Probe();
+            IDiagnosticsProbe probe = _bus.Probe();
 
-            context.Respond(new BusStatusImpl
+            context.Respond(new BusStatus
                 {
                     Entries = probe.Entries
-                        .Select(x => (BusStatusEntry) new BusStatusEntryImpl(x.Context, x.Key, x.Value))
+                        .Select(x => (IBusStatusEntry) new BusStatusEntry(x.Context, x.Key, x.Value))
                         .ToArray(),
                 });
         }

@@ -26,6 +26,7 @@ namespace MassTransit
     using Monitoring;
     using Pipeline;
     using Pipeline.Configuration;
+    using Pipeline.Inspectors;
     using Stact;
     using Threading;
     using Util;
@@ -313,7 +314,7 @@ namespace MassTransit
             return EndpointCache.GetEndpoint(address);
         }
 
-        public void Inspect(DiagnosticsProbe probe)
+        public void Inspect(IDiagnosticsProbe probe)
         {
             new StandardDiagnosticsInfo().WriteCommonItems(probe);
 
@@ -372,7 +373,7 @@ namespace MassTransit
             _started = true;
         }
 
-        public void AddService(BusServiceLayer layer, IBusService service)
+        public void AddService(IBusServiceLayer layer, IBusService service)
         {
             _serviceContainer.AddService(layer, service);
         }

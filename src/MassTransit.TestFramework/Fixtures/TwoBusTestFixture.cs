@@ -84,7 +84,7 @@ namespace MassTransit.TestFramework.Fixtures
 		/// you will not get the subscription loopback router.
 		/// </summary>
 		/// <param name="configurator"></param>
-		protected virtual void ConfigureLocalBus(ServiceBusConfigurator configurator)
+		protected virtual void ConfigureLocalBus(IServiceBusConfigurator configurator)
 		{
 			configurator.AddSubscriptionObserver((bus, coordinator) =>
 				{
@@ -98,7 +98,7 @@ namespace MassTransit.TestFramework.Fixtures
 		/// you will not get the subscription loopback router.
 		/// </summary>
 		/// <param name="configurator"></param>
-		protected virtual void ConfigureRemoteBus(ServiceBusConfigurator configurator)
+		protected virtual void ConfigureRemoteBus(IServiceBusConfigurator configurator)
 		{
 			configurator.AddSubscriptionObserver((bus, coordinator) =>
 				{

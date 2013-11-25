@@ -12,6 +12,8 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Tests.Configuration
 {
+    using MassTransit.Diagnostics;
+    using MassTransit.Services.HealthMonitoring.Configuration;
     using NUnit.Framework;
 
     [TestFixture]

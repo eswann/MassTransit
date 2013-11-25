@@ -22,7 +22,7 @@ namespace MassTransit.Tests.Testing
 	public class When_a_state_machine_saga_is_being_tested
 	{
 		Guid _sagaId;
-		SagaTest<BusTestScenario, TestSaga> _test;
+		SagaTest<IBusTestScenario, TestSaga> _test;
 		string _testValueA;
 
 		[When]

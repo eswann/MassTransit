@@ -13,18 +13,19 @@
 namespace MassTransit.Saga.SubscriptionConnectors
 {
 	using System;
+	using Context;
 	using MassTransit.Pipeline;
 	using MassTransit.Pipeline.Configuration;
 	using MassTransit.Pipeline.Sinks;
 
-	public interface SagaSubscriptionConnector :
-		SagaConnector
+	public interface ISagaSubscriptionConnector :
+		ISagaConnector
 	{
 		Type MessageType { get; }
 	}
 
 	public abstract class SagaSubscriptionConnector<TSaga, TMessage> :
-		SagaSubscriptionConnector
+		ISagaSubscriptionConnector
 		where TSaga : class, ISaga, Consumes<TMessage>.All
 		where TMessage : class
 	{

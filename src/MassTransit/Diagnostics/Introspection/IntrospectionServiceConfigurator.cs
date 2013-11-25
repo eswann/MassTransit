@@ -16,16 +16,16 @@ namespace MassTransit.Diagnostics.Introspection
     using BusServiceConfigurators;
 
     public class IntrospectionServiceConfigurator :
-        BusServiceConfigurator
+        IBusServiceConfigurator
     {
         public Type ServiceType
         {
             get { return typeof (IntrospectionBusService); }
         }
 
-        public BusServiceLayer Layer
+        public IBusServiceLayer Layer
         {
-            get { return BusServiceLayer.Presentation; }
+            get { return IBusServiceLayer.Presentation; }
         }
 
         public IBusService Create(IServiceBus bus)

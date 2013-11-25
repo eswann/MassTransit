@@ -13,6 +13,7 @@
 namespace MassTransit.TestFramework
 {
     using System;
+    using Context;
     using Magnum.Extensions;
     using Magnum.TestFramework;
     using MassTransit.Transports;

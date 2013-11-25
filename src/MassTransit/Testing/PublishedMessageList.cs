@@ -15,11 +15,11 @@ namespace MassTransit.Testing
 	using System;
 	using System.Collections.Generic;
 
-	public interface PublishedMessageList :
-		IEnumerable<PublishedMessage>
+	public interface IPublishedMessageList :
+		IEnumerable<IPublishedMessage>
 	{
 		bool Any();
-		bool Any(Func<PublishedMessage, bool> filter);
+		bool Any(Func<IPublishedMessage, bool> filter);
 
 		bool Any<T>()
 			where T : class;

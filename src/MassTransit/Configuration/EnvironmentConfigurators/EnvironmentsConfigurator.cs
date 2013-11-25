@@ -1,4 +1,4 @@
-// Copyright 2007-2011 Chris Patterson, Dru Sellers, Travis Smith, et. al.
+﻿// Copyright 2007-2011 Chris Patterson, Dru Sellers, Travis Smith, et. al.
 //  
 // Licensed under the Apache License, Version 2.0 (the "License"); you may not use 
 // this file except in compliance with the License. You may obtain a copy of the 
@@ -13,23 +13,74 @@
 namespace MassTransit.EnvironmentConfigurators
 {
 	using System;
+	using System.Collections.Generic;
 	using Configuration;
 	using Configurators;
+	using System.Linq;
+	using Magnum.Extensions;
 
-	public interface EnvironmentsConfigurator :
-		Configurator
+    public interface IEnvironmentsConfigurator :
+        IConfigurator
+    {
+        /// <summary>
+        /// Add an environment to the configuration
+        /// </summary>
+        /// <param name="environmentName">The name of the environment</param>
+        /// <param name="environmentFactory">The factory to create the environment class instance</param>
+        void Add(string environmentName, Func<IServiceBusEnvironment> environmentFactory);
+
+        /// <summary>
+        /// Selects the current environment, which determines the environment class(es) that will be executed.
+        /// </summary>
+        /// <param name="environmentName">The name of the current environment</param>
+        void Select(string environmentName);
+    }
+
+    public class EnvironmentsConfiguratorImpl :
+		IEnvironmentsConfigurator
 	{
-		/// <summary>
-		/// Add an environment to the configuration
-		/// </summary>
-		/// <param name="environmentName">The name of the environment</param>
-		/// <param name="environmentFactory">The factory to create the environment class instance</param>
-		void Add(string environmentName, Func<IServiceBusEnvironment> environmentFactory);
+		readonly IDictionary<string, Func<IServiceBusEnvironment>> _environments;
+		string _currentEnvironment;
 
-		/// <summary>
-		/// Selects the current environment, which determines the environment class(es) that will be executed.
-		/// </summary>
-		/// <param name="environmentName">The name of the current environment</param>
-		void Select(string environmentName);
+		public EnvironmentsConfiguratorImpl()
+		{
+			_environments = new Dictionary<string, Func<IServiceBusEnvironment>>();
+		}
+
+		public IEnumerable<IValidationResult> Validate()
+		{
+			if (_currentEnvironment == null)
+			{
+			    var msg = "A current enviroment was not specified. Known options are '{0}'";
+			    var knownEnvironments = _environments.Select(kvp => kvp.Key).Aggregate((l, r) => l + ", " + r);
+			    
+				yield return this.Failure("Current", msg.FormatWith(knownEnvironments));
+			}
+		}
+
+
+		public void Add(string environmentName, Func<IServiceBusEnvironment> environmentFactory)
+		{
+			_environments[environmentName.ToLowerInvariant()] = () => environmentFactory();
+		}
+
+		public void Select(string environmentName)
+		{
+			_currentEnvironment = environmentName;
+		}
+
+		public IServiceBusEnvironment GetCurrentEnvironment()
+		{
+			ConfigurationResultImpl.CompileResults(Validate());
+
+			string environment = _currentEnvironment.ToLowerInvariant();
+
+			if (_environments.ContainsKey(environment))
+			{
+				return _environments[environment]();
+			}
+
+			return null;
+		}
 	}
 }

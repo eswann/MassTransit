@@ -19,7 +19,7 @@ namespace MassTransit.Testing.ScenarioBuilders
 	/// in-memory bus.
 	/// </summary>
 	public class LoopbackBusScenarioBuilder :
-		BusScenarioBuilderImpl
+		BusScenarioBuilder
 	{
 		const string DefaultUri = "loopback://localhost/mt_client";
 

@@ -18,7 +18,7 @@ namespace MassTransit.Tests.Testing
 	[Scenario]
 	public class Using_the_handler_test_factory
 	{
-		HandlerTest<A> _test;
+		IHandlerTest<A> _test;
 
 		[When]
 		public void Setup()
@@ -88,7 +88,7 @@ namespace MassTransit.Tests.Testing
 	[Scenario]
 	public class Using_the_handler_on_a_remote_bus
 	{
-		HandlerTest<A> _test;
+		IHandlerTest<A> _test;
 
 		[When]
 		public void Setup()
@@ -159,7 +159,7 @@ namespace MassTransit.Tests.Testing
 	[Scenario]
 	public class Publishing_to_a_handler_test
 	{
-		HandlerTest<A> _test;
+		IHandlerTest<A> _test;
 
 		[When]
 		public void Setup()

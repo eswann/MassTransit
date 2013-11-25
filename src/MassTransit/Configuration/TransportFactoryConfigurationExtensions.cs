@@ -21,20 +21,20 @@ namespace MassTransit
 	public static class TransportFactoryConfigurationExtensions
 	{
 		public static T AddTransportFactory<T>(this T configurator, ITransportFactory transportFactory)
-			where T : EndpointFactoryConfigurator
+			where T : IEndpointFactoryConfigurator
 		{
 			return AddTransportFactory(configurator, () => transportFactory);
 		}
 
-		public static EndpointFactoryConfigurator AddTransportFactory<TTransportFactory>(
-			this EndpointFactoryConfigurator configurator)
+		public static IEndpointFactoryConfigurator AddTransportFactory<TTransportFactory>(
+			this IEndpointFactoryConfigurator configurator)
 			where TTransportFactory : class, ITransportFactory, new()
 		{
 			return AddTransportFactory(configurator, () => new TTransportFactory());
 		}
 
-		public static EndpointFactoryConfigurator AddTransportFactory<TTransportFactory>(
-			this EndpointFactoryConfigurator configurator, Action<TTransportFactory> configureFactory)
+		public static IEndpointFactoryConfigurator AddTransportFactory<TTransportFactory>(
+			this IEndpointFactoryConfigurator configurator, Action<TTransportFactory> configureFactory)
 			where TTransportFactory : class, ITransportFactory, new()
 		{
 			return AddTransportFactory(configurator, () =>
@@ -46,15 +46,15 @@ namespace MassTransit
 				});
 		}
 
-		public static ServiceBusConfigurator AddTransportFactory<TTransportFactory>(
-			this ServiceBusConfigurator configurator)
+		public static IServiceBusConfigurator AddTransportFactory<TTransportFactory>(
+			this IServiceBusConfigurator configurator)
 			where TTransportFactory : class, ITransportFactory, new()
 		{
 			return AddTransportFactory(configurator, () => new TTransportFactory());
 		}
 
-		public static ServiceBusConfigurator AddTransportFactory<TTransportFactory>(
-			this ServiceBusConfigurator configurator, Action<TTransportFactory> configureFactory)
+		public static IServiceBusConfigurator AddTransportFactory<TTransportFactory>(
+			this IServiceBusConfigurator configurator, Action<TTransportFactory> configureFactory)
 			where TTransportFactory : class, ITransportFactory, new()
 		{
 			return AddTransportFactory(configurator, () =>
@@ -67,13 +67,13 @@ namespace MassTransit
 		}
 
 		public static T AddTransportFactory<T>(this T configurator, Type transportFactoryType)
-			where T : EndpointFactoryConfigurator
+			where T : IEndpointFactoryConfigurator
 		{
 			return AddTransportFactory(configurator, () => (ITransportFactory) FastActivator.Create(transportFactoryType));
 		}
 
 		public static T AddTransportFactory<T, TTransport>(this T configurator, Func<TTransport> transportFactoryFactory)
-			where T : EndpointFactoryConfigurator
+			where T : IEndpointFactoryConfigurator
 			where TTransport : class, ITransportFactory
 		{
 			var transportFactoryConfigurator = new TransportFactoryConfigurator<TTransport>(transportFactoryFactory);

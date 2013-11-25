@@ -24,7 +24,7 @@ namespace MassTransit.Tests.Subscriptions
     public class A_consumer_with_two_message_contracts :
         LoopbackLocalAndRemoteTestFixture
     {
-        protected override void ConfigureRemoteBus(ServiceBusConfigurator configurator)
+        protected override void ConfigureRemoteBus(IServiceBusConfigurator configurator)
         {
             base.ConfigureRemoteBus(configurator);
 

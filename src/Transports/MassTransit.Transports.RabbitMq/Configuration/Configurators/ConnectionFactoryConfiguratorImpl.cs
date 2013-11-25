@@ -19,26 +19,26 @@ namespace MassTransit.Transports.RabbitMq.Configuration.Configurators
 	using MassTransit.Configurators;
 
 	public class ConnectionFactoryConfiguratorImpl :
-		ConnectionFactoryConfigurator,
-		RabbitMqTransportFactoryBuilderConfigurator
+		IConnectionFactoryConfigurator,
+		IRabbitMqTransportFactoryBuilderConfigurator
 	{
 		readonly IRabbitMqEndpointAddress _address;
 
-		readonly List<ConnectionFactoryBuilderConfigurator> _configurators;
+		readonly List<IConnectionFactoryBuilderConfigurator> _configurators;
 
 		public ConnectionFactoryConfiguratorImpl(IRabbitMqEndpointAddress address)
 		{
 			_address = address;
-			_configurators = new List<ConnectionFactoryBuilderConfigurator>();
+			_configurators = new List<IConnectionFactoryBuilderConfigurator>();
 		}
 
 
-		public IEnumerable<ValidationResult> Validate()
+		public IEnumerable<IValidationResult> Validate()
 		{
 			return _configurators.SelectMany(x => x.Validate());
 		}
 
-		public void UseSsl(Action<SslConnectionFactoryConfigurator> configureSsl)
+		public void UseSsl(Action<ISslConnectionFactoryConfigurator> configureSsl)
 		{
 			var configurator = new SslConnectionFactoryConfiguratorImpl();
 

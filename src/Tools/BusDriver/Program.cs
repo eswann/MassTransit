@@ -18,6 +18,7 @@ namespace BusDriver
 	using Magnum.Caching;
 	using MassTransit.Log4NetIntegration.Logging;
 	using MassTransit.Logging;
+	using MassTransit.Transports.RabbitMq.Configuration;
 	using log4net.Appender;
 	using log4net.Config;
 	using log4net.Core;

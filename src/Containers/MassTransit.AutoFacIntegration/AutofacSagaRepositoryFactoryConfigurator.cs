@@ -16,16 +16,17 @@ namespace MassTransit.AutofacIntegration
 	using Autofac;
 	using Magnum.Reflection;
 	using Saga;
+	using Saga.Configuration;
 	using SubscriptionConfigurators;
 	using Util;
 
 	public class AutofacSagaRepositoryFactoryConfigurator
 	{
-		readonly SubscriptionBusServiceConfigurator _configurator;
+		readonly ISubscriptionBusServiceConfigurator _configurator;
         readonly ILifetimeScope _scope;
 	    string _name;
 
-	    public AutofacSagaRepositoryFactoryConfigurator(SubscriptionBusServiceConfigurator configurator, ILifetimeScope scope, string name)
+	    public AutofacSagaRepositoryFactoryConfigurator(ISubscriptionBusServiceConfigurator configurator, ILifetimeScope scope, string name)
 		{
             _scope = scope;
 	        _name = name;

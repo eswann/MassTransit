@@ -13,8 +13,9 @@
 namespace MassTransit.Saga
 {
 	using System;
+	using Context;
 
-	/// <summary>
+    /// <summary>
 	/// A saga policy defines how the pipeline should handle messages when being routed 
 	/// to the saga. Checks are made for the existence of a saga, whether the message should
 	/// create a new saga, or otherwise

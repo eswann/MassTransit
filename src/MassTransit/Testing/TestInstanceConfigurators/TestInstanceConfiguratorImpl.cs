@@ -24,15 +24,15 @@ namespace MassTransit.Testing.TestInstanceConfigurators
 	using Scenarios;
 
 	public abstract class TestInstanceConfiguratorImpl<TScenario>
-		where TScenario : TestScenario
+		where TScenario : ITestScenario
 	{
 		readonly IList<TestActionConfigurator<TScenario>> _actionConfigurators;
-		readonly IList<ScenarioBuilderConfigurator<TScenario>> _configurators;
-		Func<ScenarioBuilder<TScenario>> _builderFactory;
+		readonly IList<IScenarioBuilderConfigurator<TScenario>> _configurators;
+		Func<IScenarioBuilder<TScenario>> _builderFactory;
 
-		protected TestInstanceConfiguratorImpl(Func<ScenarioBuilder<TScenario>> scenarioBuilderFactory)
+		protected TestInstanceConfiguratorImpl(Func<IScenarioBuilder<TScenario>> scenarioBuilderFactory)
 		{
-			_configurators = new List<ScenarioBuilderConfigurator<TScenario>>();
+			_configurators = new List<IScenarioBuilderConfigurator<TScenario>>();
 			_actionConfigurators = new List<TestActionConfigurator<TScenario>>();
 
 			_builderFactory = scenarioBuilderFactory;
@@ -43,17 +43,17 @@ namespace MassTransit.Testing.TestInstanceConfigurators
 			_actionConfigurators.Add(action);
 		}
 
-		public void UseScenarioBuilder(Func<ScenarioBuilder<TScenario>> contextBuilderFactory)
+		public void UseScenarioBuilder(Func<IScenarioBuilder<TScenario>> contextBuilderFactory)
 		{
 			_builderFactory = contextBuilderFactory;
 		}
 
-		public void AddConfigurator(ScenarioBuilderConfigurator<TScenario> configurator)
+		public void AddConfigurator(IScenarioBuilderConfigurator<TScenario> configurator)
 		{
 			_configurators.Add(configurator);
 		}
 
-		public virtual IEnumerable<TestConfiguratorResult> Validate()
+		public virtual IEnumerable<ITestConfiguratorResult> Validate()
 		{
 			return _configurators.SelectMany(x => x.Validate())
 				.Concat(_actionConfigurators.SelectMany(x => x.Validate()));
@@ -61,7 +61,7 @@ namespace MassTransit.Testing.TestInstanceConfigurators
 
 		protected TScenario BuildTestScenario()
 		{
-			ScenarioBuilder<TScenario> builder = _builderFactory();
+			IScenarioBuilder<TScenario> builder = _builderFactory();
 
 			builder = _configurators.Aggregate(builder, (current, configurator) => configurator.Configure(current));
 

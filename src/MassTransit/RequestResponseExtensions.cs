@@ -13,6 +13,7 @@
 namespace MassTransit
 {
     using System;
+    using RequestResponse;
     using RequestResponse.Configurators;
 
     public static class RequestResponseExtensions

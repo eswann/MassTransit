@@ -21,7 +21,7 @@ namespace MassTransit
 		/// Create a control bus using the default settings and associate it with the ServiceBus being configured.
 		/// </summary>
 		/// <param name="configurator"></param>
-		public static void UseControlBus(this ServiceBusConfigurator configurator)
+		public static void UseControlBus(this IServiceBusConfigurator configurator)
 		{
 			UseControlBus(configurator, x => { });
 		}
@@ -32,7 +32,7 @@ namespace MassTransit
 		/// </summary>
 		/// <param name="configurator"></param>
 		/// <param name="configure"></param>
-		public static void UseControlBus(this ServiceBusConfigurator configurator, Action<ControlBusConfigurator> configure)
+		public static void UseControlBus(this IServiceBusConfigurator configurator, Action<IControlBusConfigurator> configure)
 		{
 			var controlBusConfigurator = new ControlBusConfiguratorImpl();
 

@@ -23,7 +23,7 @@ namespace MassTransit.Tests.Saga.StateMachine
 		SagaStateMachine<RegisterUserStateMachine>,
 		ISaga,
 		InitiatedBy<RegisterUser>,
-		Orchestrates<UserValidated>
+		IOrchestrate<UserValidated>
 	{
 		static RegisterUserStateMachine()
 		{

@@ -14,9 +14,26 @@ namespace MassTransit.Context
 {
     using System;
 
-    public interface EndpointObjectSender
+    public interface IEndpointObjectSender
     {
         void Send(IEndpoint endpoint, object message);
         void Send(IEndpoint endpoint, object message, Action<ISendContext> contextCallback);
+    }
+
+    public class EndpointObjectSender<TMessage> :
+        IEndpointObjectSender
+        where TMessage : class
+    {
+        public void Send(IEndpoint endpoint, object message)
+        {
+            var msg = message as TMessage;
+            endpoint.Send(msg);
+        }
+
+        public void Send(IEndpoint endpoint, object message, Action<ISendContext> contextCallback)
+        {
+            var msg = message as TMessage;
+            endpoint.Send(msg, context => contextCallback(context));
+        }
     }
 }

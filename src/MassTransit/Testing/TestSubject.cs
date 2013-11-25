@@ -15,16 +15,16 @@ namespace MassTransit.Testing
 	using System;
 	using Scenarios;
 
-	public interface TestSubject<TSubject> :
+	public interface ITestSubject<TSubject> :
 		IDisposable
 		where TSubject : class
 	{
 	}
 
 	public interface TestSubject<TScenario, TSubject> :
-		TestSubject<TSubject>
+		ITestSubject<TSubject>
 		where TSubject : class
-		where TScenario : TestScenario
+		where TScenario : ITestScenario
 	{
 		void Prepare(TScenario scenario);
 	}

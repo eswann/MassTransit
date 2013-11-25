@@ -24,7 +24,7 @@ namespace MassTransit
 	/// <para>This interface should not be used in most situations and is typically an internal
 	/// use thing.</para>
 	/// 
-	/// <para>Have a look at <see cref="BusServiceLayer"/> for the different levels the service can live in.</para>
+	/// <para>Have a look at <see cref="IBusServiceLayer"/> for the different levels the service can live in.</para>
 	/// </summary>
 	public interface IBusService : IDisposable
 	{

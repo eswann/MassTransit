@@ -25,7 +25,7 @@ namespace MassTransit.Saga.SubscriptionConnectors
     using Util;
 
     public class PropertySagaSubscriptionConnector<TSaga, TMessage> :
-        SagaSubscriptionConnector
+        ISagaSubscriptionConnector
         where TSaga : SagaStateMachine<TSaga>, ISaga
         where TMessage : class
     {
@@ -39,7 +39,7 @@ namespace MassTransit.Saga.SubscriptionConnectors
             IEnumerable<State> states,
             ISagaPolicyFactory policyFactory,
             Expression<Func<TSaga, bool>> removeExpression,
-            EventBinder<TSaga> eventBinder)
+            IEventBinder<TSaga> eventBinder)
         {
             _sagaRepository = sagaRepository;
             _dataEvent = dataEvent;
@@ -75,7 +75,7 @@ namespace MassTransit.Saga.SubscriptionConnectors
             return sink;
         }
 
-        static Func<TMessage, Guid> GetCorrelationIdSelector(EventBinder<TSaga> binder)
+        static Func<TMessage, Guid> GetCorrelationIdSelector(IEventBinder<TSaga> binder)
         {
             Func<TMessage, Guid> correlationIdSelector = binder.GetCorrelationIdSelector<TMessage>();
             if (correlationIdSelector != null)

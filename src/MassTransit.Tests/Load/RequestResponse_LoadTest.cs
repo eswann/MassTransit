@@ -14,6 +14,7 @@ namespace MassTransit.Tests.Load
 {
 	using System.Diagnostics;
 	using System.Threading;
+	using Context;
 	using Magnum.Extensions;
 	using NUnit.Framework;
 	using Tests.Messages;

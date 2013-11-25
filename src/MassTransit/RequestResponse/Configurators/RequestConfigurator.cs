@@ -13,6 +13,7 @@
 namespace MassTransit.RequestResponse.Configurators
 {
     using System;
+    using Context;
 
     public interface RequestConfigurator
     {

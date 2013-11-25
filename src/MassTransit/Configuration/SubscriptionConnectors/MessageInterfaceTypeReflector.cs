@@ -14,6 +14,7 @@ namespace MassTransit.SubscriptionConnectors
 {
     using System.Collections.Generic;
     using System.Linq;
+    using Context;
 
     /// <summary>
     /// Helper class for providing the message reflection for consumers.

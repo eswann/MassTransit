@@ -22,7 +22,7 @@ namespace MassTransit.Tests.Testing
 	public class When_a_saga_is_being_tested
 	{
 		Guid _sagaId;
-		SagaTest<BusTestScenario, TestSaga> _test;
+		SagaTest<IBusTestScenario, TestSaga> _test;
 		string _testValueA;
 
 		[When]
@@ -95,8 +95,8 @@ namespace MassTransit.Tests.Testing
 		class TestSaga :
 			ISaga,
 			InitiatedBy<A>,
-			Orchestrates<B>,
-			Observes<C, TestSaga>
+			IOrchestrate<B>,
+			IObserve<C, TestSaga>
 		{
 			protected TestSaga()
 			{

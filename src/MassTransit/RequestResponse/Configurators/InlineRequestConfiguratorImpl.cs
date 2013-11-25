@@ -14,6 +14,7 @@ namespace MassTransit.RequestResponse.Configurators
 {
     using System;
     using Advanced;
+    using Context;
 
     public class InlineRequestConfiguratorImpl<TRequest> :
         RequestConfiguratorBase<TRequest>,

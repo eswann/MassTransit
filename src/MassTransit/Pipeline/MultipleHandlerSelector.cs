@@ -15,8 +15,9 @@ namespace MassTransit.Pipeline
 	using System;
 	using System.Collections.Generic;
 	using System.Linq;
+	using Context;
 
-	/// <summary>
+    /// <summary>
 	/// Returns zero to many handlers for the message, aligns with the pipeline sink requirements
 	/// </summary>
 	/// <typeparam name="TMessage"></typeparam>

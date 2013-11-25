@@ -10,11 +10,12 @@
 // under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR 
 // CONDITIONS OF ANY KIND, either express or implied. See the License for the 
 // specific language governing permissions and limitations under the License.
-namespace MassTransit.Testing
+namespace MassTransit.Transports.RabbitMq.Testing
 {
-	using TestInstanceConfigurators;
+    using MassTransit.Testing;
+    using MassTransit.Testing.TestInstanceConfigurators;
 
-	/// <summary>
+    /// <summary>
 	/// Extensions for configuring a test RabbitMQ instance that can be used
 	/// in the test. See <see cref="RabbitMqBusScenarioBuilder"/> docs.
 	/// </summary>
@@ -60,7 +61,7 @@ namespace MassTransit.Testing
 		///</code>
 		/// </summary>
 		/// <param name="configurator">The configurator that is passed via the lambda that you are calling this method from.</param>
-		public static void UseRabbitMqBusScenario(this TestInstanceConfigurator<BusTestScenario> configurator)
+		public static void UseRabbitMqBusScenario(this TestInstanceConfigurator<IBusTestScenario> configurator)
 		{
 			configurator.UseScenarioBuilder(() => new RabbitMqBusScenarioBuilder());
 		}

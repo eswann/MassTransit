@@ -31,11 +31,11 @@ namespace MassTransit
 		/// <param name="instance">The instance to subscribe.</param>
 		/// <returns>An instance subscription configurator.</returns>
 		[NotNull]
-		public static InstanceSubscriptionConfigurator Instance(
-			[NotNull] this SubscriptionBusServiceConfigurator configurator,
+		public static IInstanceSubscriptionConfigurator Instance(
+			[NotNull] this ISubscriptionBusServiceConfigurator configurator,
 			[NotNull] object instance)
 		{
-			var instanceConfigurator = new InstanceSubscriptionConfiguratorImpl(instance);
+			var instanceConfigurator = new InstanceSubscriptionConfigurator(instance);
 
 			var busServiceConfigurator = new SubscriptionBusServiceBuilderConfiguratorImpl(instanceConfigurator);
 
@@ -56,7 +56,7 @@ namespace MassTransit
 		{
 			Guard.AgainstNull(instance, "instance", "A null instance cannot be subscribed");
 
-			InstanceConnector connector = InstanceConnectorCache.GetInstanceConnector(instance.GetType());
+			IInstanceConnector connector = InstanceConnectorCache.GetInstanceConnector(instance.GetType());
 
 			return bus.Configure(x => connector.Connect(x, instance));
 		}
@@ -74,7 +74,7 @@ namespace MassTransit
 		{
 			Guard.AgainstNull(instance, "instance", "A null instance cannot be subscribed");
 
-			InstanceConnector connector = InstanceConnectorCache.GetInstanceConnector<T>();
+			IInstanceConnector connector = InstanceConnectorCache.GetInstanceConnector<T>();
 
 			return bus.Configure(x => connector.Connect(x, instance));
 		}

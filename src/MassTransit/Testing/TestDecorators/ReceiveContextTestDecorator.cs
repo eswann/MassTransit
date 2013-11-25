@@ -23,9 +23,9 @@ namespace MassTransit.Testing.TestDecorators
         IReceiveContext
     {
         readonly IReceiveContext _context;
-        readonly EndpointTestScenarioImpl _scenario;
+        readonly EndpointTestScenario _scenario;
 
-        public ReceiveContextTestDecorator(IReceiveContext context, EndpointTestScenarioImpl scenario)
+        public ReceiveContextTestDecorator(IReceiveContext context, EndpointTestScenario scenario)
         {
             _context = context;
             _scenario = scenario;

@@ -20,16 +20,16 @@ namespace MassTransit.Testing
     using Magnum.Extensions;
 
     public class PublishedMessageListImpl :
-        PublishedMessageList,
+        IPublishedMessageList,
         IDisposable
     {
-        readonly HashSet<PublishedMessage> _messages;
+        readonly HashSet<IPublishedMessage> _messages;
         readonly AutoResetEvent _published;
         readonly TimeSpan _timeout = 12.Seconds();
 
         public PublishedMessageListImpl()
         {
-            _messages = new HashSet<PublishedMessage>(new MessageIdEqualityComparer());
+            _messages = new HashSet<IPublishedMessage>(new MessageIdEqualityComparer());
             _published = new AutoResetEvent(false);
         }
 
@@ -40,7 +40,7 @@ namespace MassTransit.Testing
             }
         }
 
-        public IEnumerator<PublishedMessage> GetEnumerator()
+        public IEnumerator<IPublishedMessage> GetEnumerator()
         {
             lock (_messages)
                 return _messages.ToList().GetEnumerator();
@@ -62,7 +62,7 @@ namespace MassTransit.Testing
             return Any(x => typeof(T).IsAssignableFrom(x.MessageType));
         }
 
-        public bool Any(Func<PublishedMessage, bool> filter)
+        public bool Any(Func<IPublishedMessage, bool> filter)
         {
             bool any;
             lock (_messages)
@@ -80,7 +80,7 @@ namespace MassTransit.Testing
             return true;
         }
 
-        public void Add(PublishedMessage message)
+        public void Add(IPublishedMessage message)
         {
             lock (_messages)
             {
@@ -90,14 +90,14 @@ namespace MassTransit.Testing
         }
 
         class MessageIdEqualityComparer :
-            IEqualityComparer<PublishedMessage>
+            IEqualityComparer<IPublishedMessage>
         {
-            public bool Equals(PublishedMessage x, PublishedMessage y)
+            public bool Equals(IPublishedMessage x, IPublishedMessage y)
             {
                 return x.Equals(y);
             }
 
-            public int GetHashCode(PublishedMessage message)
+            public int GetHashCode(IPublishedMessage message)
             {
                 return message.Context.GetHashCode();
             }

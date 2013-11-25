@@ -28,7 +28,7 @@ namespace MassTransit.Builders
     {
         static readonly ILog _log = Logger.Get(typeof (ControlBusBuilderImpl));
 
-        readonly IList<BusServiceConfigurator> _busServiceConfigurators;
+        readonly IList<IBusServiceConfigurator> _busServiceConfigurators;
         readonly IList<Action<ServiceBus>> _postCreateActions;
         readonly BusSettings _settings;
 
@@ -38,9 +38,9 @@ namespace MassTransit.Builders
 
             _settings = settings;
             _postCreateActions = new List<Action<ServiceBus>>();
-            _busServiceConfigurators = new List<BusServiceConfigurator>();
+            _busServiceConfigurators = new List<IBusServiceConfigurator>();
 
-            var subscriptionCoordinatorConfigurator = new SubscriptionRouterConfiguratorImpl(_settings.Network);
+            var subscriptionCoordinatorConfigurator = new SubscriptionRouterConfigurator(_settings.Network);
             subscriptionCoordinatorConfigurator.SetNetwork(settings.Network);
             subscriptionCoordinatorConfigurator.Configure(this);
         }
@@ -85,7 +85,7 @@ namespace MassTransit.Builders
             _postCreateActions.Add(postCreateAction);
         }
 
-        public void AddBusServiceConfigurator(BusServiceConfigurator configurator)
+        public void AddBusServiceConfigurator(IBusServiceConfigurator configurator)
         {
             _busServiceConfigurators.Add(configurator);
         }
@@ -113,7 +113,7 @@ namespace MassTransit.Builders
 
         void RunBusServiceConfigurators(ServiceBus bus)
         {
-            foreach (BusServiceConfigurator busServiceConfigurator in _busServiceConfigurators)
+            foreach (IBusServiceConfigurator busServiceConfigurator in _busServiceConfigurators)
             {
                 try
                 {

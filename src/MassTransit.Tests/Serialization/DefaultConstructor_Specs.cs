@@ -20,7 +20,7 @@ namespace MassTransit.Tests.Serialization
     {
         A _received;
         A _sent;
-        HandlerTest<A> _test;
+        IHandlerTest<A> _test;
 
         [When]
         public void A_message_has_no_default_constructor()

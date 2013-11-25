@@ -19,7 +19,7 @@ namespace MassTransit.Transports.RabbitMq.Configuration.Configurators
 
 
     public class RequestedHeartbeatConnectionFactoryConfigurator :
-        ConnectionFactoryBuilderConfigurator
+        IConnectionFactoryBuilderConfigurator
     {
         readonly ushort _requestedHeartbeat;
 
@@ -34,7 +34,7 @@ namespace MassTransit.Transports.RabbitMq.Configuration.Configurators
             return builder;
         }
 
-        public IEnumerable<ValidationResult> Validate()
+        public IEnumerable<IValidationResult> Validate()
         {
             yield break;
         }

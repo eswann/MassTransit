@@ -15,7 +15,7 @@ namespace MassTransit.Saga.SubscriptionConfigurators
 	using MassTransit.SubscriptionConfigurators;
 
 	public interface SagaSubscriptionConfigurator<TSaga> :
-		SubscriptionConfigurator<SagaSubscriptionConfigurator<TSaga>>
+		ISubscriptionConfigurator<SagaSubscriptionConfigurator<TSaga>>
 		where TSaga : class, ISaga
 	{
 	}

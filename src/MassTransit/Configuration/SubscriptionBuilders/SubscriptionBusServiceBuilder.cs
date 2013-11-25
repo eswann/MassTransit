@@ -12,13 +12,37 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.SubscriptionBuilders
 {
-	public interface SubscriptionBusServiceBuilder
+	using System.Collections.Generic;
+	using Subscriptions;
+
+    public interface ISubscriptionBusServiceBuilder
+    {
+        /// <summary>
+        /// Add a subscription builder to the service so that it is subscribed when
+        /// the bus is started.
+        /// </summary>
+        /// <param name="builder"></param>
+        void AddSubscriptionBuilder(SubscriptionBuilder builder);
+    }
+
+	public class SubscriptionBusServiceBuilder :
+		ISubscriptionBusServiceBuilder
 	{
-		/// <summary>
-		/// Add a subscription builder to the service so that it is subscribed when
-		/// the bus is started.
-		/// </summary>
-		/// <param name="builder"></param>
-		void AddSubscriptionBuilder(SubscriptionBuilder builder);
+		readonly IList<SubscriptionBuilder> _builders;
+
+		public SubscriptionBusServiceBuilder()
+		{
+			_builders = new List<SubscriptionBuilder>();
+		}
+
+		public void AddSubscriptionBuilder(SubscriptionBuilder builder)
+		{
+			_builders.Add(builder);
+		}
+
+		public IBusService Build()
+		{
+			return new SubscriptionBusService(_builders);
+		}
 	}
 }

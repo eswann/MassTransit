@@ -15,6 +15,7 @@ namespace MassTransit.Saga.Pipeline
 	using System;
 	using System.Collections.Generic;
 	using System.Linq.Expressions;
+	using Context;
 	using Magnum.Extensions;
 
 	public class PropertySagaMessageSink<TSaga, TMessage> :

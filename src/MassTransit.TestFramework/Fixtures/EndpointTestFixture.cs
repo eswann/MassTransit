@@ -46,7 +46,7 @@ namespace MassTransit.TestFramework.Fixtures
 		{
 			if (EndpointFactoryConfigurator != null)
 			{
-				ConfigurationResult result = ConfigurationResultImpl.CompileResults(EndpointFactoryConfigurator.Validate());
+				IConfigurationResult result = ConfigurationResultImpl.CompileResults(EndpointFactoryConfigurator.Validate());
 
 				try
 				{
@@ -101,7 +101,7 @@ namespace MassTransit.TestFramework.Fixtures
 
 			var defaultSettings = new EndpointFactoryDefaultSettings();
 
-			EndpointFactoryConfigurator = new EndpointFactoryConfiguratorImpl(defaultSettings);
+			EndpointFactoryConfigurator = new EndpointFactoryConfigurator(defaultSettings);
 			EndpointFactoryConfigurator.AddTransportFactory<TTransportFactory>();
 			EndpointFactoryConfigurator.SetPurgeOnStartup(true);
 		}
@@ -124,7 +124,7 @@ namespace MassTransit.TestFramework.Fixtures
 		/// starts running (i.e. in the c'tor) to configure the endpoint factory.
 		/// </summary>
 		/// <param name="configure">The action that configures the endpoint factory configurator.</param>
-		protected void ConfigureEndpointFactory(Action<EndpointFactoryConfigurator> configure)
+		protected void ConfigureEndpointFactory(Action<IEndpointFactoryConfigurator> configure)
 		{
 			if (EndpointFactoryConfigurator == null)
 				throw new ConfigurationException("The endpoint factory configurator has already been executed.");
@@ -132,11 +132,11 @@ namespace MassTransit.TestFramework.Fixtures
 			configure(EndpointFactoryConfigurator);
 		}
 
-		protected void ConnectSubscriptionService(ServiceBusConfigurator configurator,
+		protected void ConnectSubscriptionService(IServiceBusConfigurator configurator,
 		                                          ISubscriptionService subscriptionService)
 		{
-			configurator.AddService(BusServiceLayer.Session, () => new SubscriptionPublisher(subscriptionService));
-			configurator.AddService(BusServiceLayer.Session, () => new SubscriptionConsumer(subscriptionService));
+			configurator.AddService(IBusServiceLayer.Session, () => new SubscriptionPublisher(subscriptionService));
+			configurator.AddService(IBusServiceLayer.Session, () => new SubscriptionConsumer(subscriptionService));
 		}
 
 		/// <summary>
@@ -155,7 +155,7 @@ namespace MassTransit.TestFramework.Fixtures
 		/// <summary>
 		/// Set this property to have custom [<see cref="TestFixtureSetUpAttribute"/>] logic.
 		/// </summary>
-		protected EndpointFactoryConfigurator EndpointFactoryConfigurator;
+		protected IEndpointFactoryConfigurator EndpointFactoryConfigurator;
 		EndpointCache _endpointCache;
 
 		void TeardownBuses()
@@ -166,7 +166,7 @@ namespace MassTransit.TestFramework.Fixtures
 
 		/// <summary>
 		/// Gets the list of buses that are created in this test fixture. Call 
-		/// <see cref="SetupServiceBus(System.Uri,System.Action{MassTransit.BusConfigurators.ServiceBusConfigurator})"/>
+		/// <see cref="SetupServiceBus(System.Uri,System.Action{IServiceBusConfigurator})"/>
 		/// to create more of them
 		/// </summary>
 		protected IList<IServiceBus> Buses { get; private set; }
@@ -184,7 +184,7 @@ namespace MassTransit.TestFramework.Fixtures
 		/// <param name="configure">The configuration action, that allows you to configure the new
 		/// bus as you please.</param>
 		/// <returns>The new service bus that was configured.</returns>
-		protected virtual IServiceBus SetupServiceBus(Uri uri, Action<ServiceBusConfigurator> configure)
+		protected virtual IServiceBus SetupServiceBus(Uri uri, Action<IServiceBusConfigurator> configure)
 		{
 			IServiceBus bus = ServiceBusFactory.New(x =>
 				{
@@ -199,7 +199,7 @@ namespace MassTransit.TestFramework.Fixtures
 		}
 
 		/// <summary>
-		/// See <see cref="SetupServiceBus(System.Uri,System.Action{MassTransit.BusConfigurators.ServiceBusConfigurator})"/>.
+		/// See <see cref="SetupServiceBus(System.Uri,System.Action{IServiceBusConfigurator})"/>.
 		/// </summary>
 		/// <param name="uri">The uri to set the service bus up at.</param>
 		/// <returns>The service bus instance.</returns>
@@ -217,7 +217,7 @@ namespace MassTransit.TestFramework.Fixtures
 		/// </summary>
 		/// <param name="uri">The uri that is passed from the configuration lambda of the bus.</param>
 		/// <param name="configurator">The service bus configurator.</param>
-		protected virtual void ConfigureServiceBus(Uri uri, ServiceBusConfigurator configurator)
+		protected virtual void ConfigureServiceBus(Uri uri, IServiceBusConfigurator configurator)
 		{
 		}
 	}

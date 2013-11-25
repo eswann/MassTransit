@@ -25,7 +25,7 @@
 
         Future<A> _received;
 
-        protected override void ConfigureLocalBus(ServiceBusConfigurator configurator)
+        protected override void ConfigureLocalBus(IServiceBusConfigurator configurator)
         {
             base.ConfigureLocalBus(configurator);
 
@@ -35,7 +35,7 @@
             configurator.Subscribe(s => s.Handler<A>(message => _received.Complete(message)));
         }
 
-        protected override void ConfigureRabbitMq(RabbitMqTransportFactoryConfigurator configurator)
+        protected override void ConfigureRabbitMq(IRabbitMqTransportFactoryConfigurator configurator)
         {
             base.ConfigureRabbitMq(configurator);
         }

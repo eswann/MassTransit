@@ -14,6 +14,7 @@ namespace MassTransit.Tests
 {
     using System;
     using System.Collections.Generic;
+    using Context;
     using Magnum.Extensions;
     using Magnum.TestFramework;
     using Messages;

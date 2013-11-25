@@ -15,8 +15,8 @@ namespace MassTransit.Saga.SubscriptionConnectors
 	using System;
 	using MassTransit.SubscriptionConnectors;
 
-	public interface SagaWorkerSubscriptionConnector :
-		InstanceSubscriptionConnector
+	public interface ISagaWorkerSubscriptionConnector :
+		IInstanceSubscriptionConnector
 	{
 		Type SagaType { get; }
 	}

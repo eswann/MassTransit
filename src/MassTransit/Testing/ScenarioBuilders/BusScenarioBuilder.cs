@@ -14,21 +14,75 @@ namespace MassTransit.Testing.ScenarioBuilders
 {
 	using System;
 	using BusConfigurators;
+	using Diagnostics;
+	using Magnum.Extensions;
+	using Scenarios;
 	using SubscriptionConfigurators;
+	using Transports;
 
-	public interface BusScenarioBuilder :
-		EndpointScenarioBuilder<BusTestScenario>
+    public interface IBusScenarioBuilder :
+    IEndpointScenarioBuilder<IBusTestScenario>
+    {
+        /// <summary>
+        /// Configure any bus-specific items as part of building the test scenario
+        /// </summary>
+        /// <param name="configureCallback"></param>
+        void ConfigureBus(Action<IServiceBusConfigurator> configureCallback);
+
+        /// <summary>
+        /// Configure the subscriptions for a test using this scenario.
+        /// </summary>
+        /// <param name="configureCallback"></param>
+        void ConfigureSubscriptions(Action<ISubscriptionBusServiceConfigurator> configureCallback);
+    }
+
+	/// <summary>
+	/// Implementation for the test scenario, but abstract for others to customize it. Sets some defaults in the c'tor, which you
+	/// can override with the <see cref="ConfigureBus"/> and <see cref="ConfigureSubscriptions"/> methods.
+	/// </summary>
+	public abstract class BusScenarioBuilder :
+		EndpointScenarioBuilder<IBusTestScenario>,
+		IBusScenarioBuilder
 	{
-		/// <summary>
-		/// Configure any bus-specific items as part of building the test scenario
-		/// </summary>
-		/// <param name="configureCallback"></param>
-		void ConfigureBus(Action<ServiceBusConfigurator> configureCallback);
+		readonly ServiceBusConfiguratorImpl _configurator;
+		readonly ServiceBusDefaultSettings _settings;
 
 		/// <summary>
-		/// Configure the subscriptions for a test using this scenario.
+		/// c'tor
 		/// </summary>
-		/// <param name="configureCallback"></param>
-		void ConfigureSubscriptions(Action<SubscriptionBusServiceConfigurator> configureCallback);
+		/// <param name="uri">The uri to receive from during the scenario.</param>
+		protected BusScenarioBuilder(Uri uri)
+		{
+			_settings = new ServiceBusDefaultSettings();
+			_settings.ConcurrentConsumerLimit = 1;
+			_settings.ReceiveTimeout = 50.Milliseconds();
+
+			_configurator = new ServiceBusConfiguratorImpl(_settings);
+			_configurator.ReceiveFrom(uri);
+		}
+
+		public void ConfigureBus(Action<IServiceBusConfigurator> configureCallback)
+		{
+			configureCallback(_configurator);
+		}
+
+		public void ConfigureSubscriptions(Action<ISubscriptionBusServiceConfigurator> configureCallback)
+		{
+			_configurator.Subscribe(configureCallback);
+		}
+
+		public override IBusTestScenario Build()
+		{
+			IEndpointFactory endpointFactory = BuildEndpointFactory();
+
+			var scenario = new BusTestScenario(endpointFactory);
+
+			_configurator.ChangeSettings(x => { x.EndpointCache = scenario.EndpointCache; });
+			_configurator.EnableMessageTracing();
+
+			scenario.Bus = _configurator.CreateServiceBus();
+
+			return scenario;
+		}
 	}
 }

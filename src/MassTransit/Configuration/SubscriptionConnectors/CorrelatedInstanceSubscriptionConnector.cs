@@ -13,12 +13,13 @@
 namespace MassTransit.SubscriptionConnectors
 {
 	using System;
+	using Context;
 	using Pipeline;
 	using Pipeline.Configuration;
 	using Pipeline.Sinks;
 
 	public class CorrelatedInstanceSubscriptionConnector<TConsumer, TMessage, TKey> :
-		InstanceSubscriptionConnector
+		IInstanceSubscriptionConnector
 		where TConsumer : class, Consumes<TMessage>.For<TKey>
 		where TMessage : class, CorrelatedBy<TKey>
 	{

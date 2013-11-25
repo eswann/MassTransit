@@ -22,9 +22,9 @@ namespace MassTransit.Testing.TestDecorators
 		IEndpointFactory
 	{
 		readonly IEndpointFactory _endpointFactory;
-		readonly EndpointTestScenarioImpl _testContext;
+		readonly EndpointTestScenario _testContext;
 
-		public EndpointFactoryTestDecorator(IEndpointFactory endpointFactory, EndpointTestScenarioImpl testContext)
+		public EndpointFactoryTestDecorator(IEndpointFactory endpointFactory, EndpointTestScenario testContext)
 		{
 			_endpointFactory = endpointFactory;
 			_testContext = testContext;
@@ -46,7 +46,7 @@ namespace MassTransit.Testing.TestDecorators
 			return endpointTestDecorator;
 		}
 
-	    public void Inspect(DiagnosticsProbe probe)
+	    public void Inspect(IDiagnosticsProbe probe)
 	    {
 	        _endpointFactory.Inspect(probe);
 	    }

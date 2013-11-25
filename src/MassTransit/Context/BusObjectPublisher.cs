@@ -14,9 +14,26 @@ namespace MassTransit.Context
 {
     using System;
 
-    public interface BusObjectPublisher
+    public interface IBusObjectPublisher
     {
         void Publish(IServiceBus bus, object message);
         void Publish(IServiceBus bus, object message, Action<IPublishContext> contextCallback);
+    }
+
+    public class BusObjectPublisher<TMessage> :
+        IBusObjectPublisher
+        where TMessage : class
+    {
+        public void Publish(IServiceBus bus, object message)
+        {
+            var msg = message as TMessage;
+            bus.Publish(msg);
+        }
+
+        public void Publish(IServiceBus bus, object message, Action<IPublishContext> contextCallback)
+        {
+            var msg = message as TMessage;
+            bus.Publish(msg, context => contextCallback(context));
+        }
     }
 }

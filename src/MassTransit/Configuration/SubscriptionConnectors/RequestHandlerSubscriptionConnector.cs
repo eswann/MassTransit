@@ -13,6 +13,7 @@
 namespace MassTransit.SubscriptionConnectors
 {
     using System;
+    using Context;
     using Pipeline;
     using Pipeline.Configuration;
     using Pipeline.Sinks;

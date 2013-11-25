@@ -16,55 +16,55 @@ namespace MassTransit.Testing
 
 	public static class TestConfiguratorResultExtensions
 	{
-		public static TestConfiguratorResult Failure(this TestConfigurator configurator, string message)
+		public static ITestConfiguratorResult Failure(this ITestConfigurator configurator, string message)
 		{
 			return new TestConfiguratorResultImpl(TestConfiguratorResultDisposition.Failure, message);
 		}
 
-		public static TestConfiguratorResult Failure(this TestConfigurator configurator, string key, string message)
+		public static ITestConfiguratorResult Failure(this ITestConfigurator configurator, string key, string message)
 		{
 			return new TestConfiguratorResultImpl(TestConfiguratorResultDisposition.Failure, key, message);
 		}
 
-		public static TestConfiguratorResult Failure(this TestConfigurator configurator, string key, string value,
+		public static ITestConfiguratorResult Failure(this ITestConfigurator configurator, string key, string value,
 		                                             string message)
 		{
 			return new TestConfiguratorResultImpl(TestConfiguratorResultDisposition.Failure, key, value, message);
 		}
 
-		public static TestConfiguratorResult Warning(this TestConfigurator configurator, string message)
+		public static ITestConfiguratorResult Warning(this ITestConfigurator configurator, string message)
 		{
 			return new TestConfiguratorResultImpl(TestConfiguratorResultDisposition.Warning, message);
 		}
 
-		public static TestConfiguratorResult Warning(this TestConfigurator configurator, string key, string message)
+		public static ITestConfiguratorResult Warning(this ITestConfigurator configurator, string key, string message)
 		{
 			return new TestConfiguratorResultImpl(TestConfiguratorResultDisposition.Warning, key, message);
 		}
 
-		public static TestConfiguratorResult Warning(this TestConfigurator configurator, string key, string value,
+		public static ITestConfiguratorResult Warning(this ITestConfigurator configurator, string key, string value,
 		                                             string message)
 		{
 			return new TestConfiguratorResultImpl(TestConfiguratorResultDisposition.Warning, key, value, message);
 		}
 
-		public static TestConfiguratorResult Success(this TestConfigurator configurator, string message)
+		public static ITestConfiguratorResult Success(this ITestConfigurator configurator, string message)
 		{
 			return new TestConfiguratorResultImpl(TestConfiguratorResultDisposition.Success, message);
 		}
 
-		public static TestConfiguratorResult Success(this TestConfigurator configurator, string key, string message)
+		public static ITestConfiguratorResult Success(this ITestConfigurator configurator, string key, string message)
 		{
 			return new TestConfiguratorResultImpl(TestConfiguratorResultDisposition.Success, key, message);
 		}
 
-		public static TestConfiguratorResult Success(this TestConfigurator configurator, string key, string value,
+		public static ITestConfiguratorResult Success(this ITestConfigurator configurator, string key, string value,
 		                                             string message)
 		{
 			return new TestConfiguratorResultImpl(TestConfiguratorResultDisposition.Success, key, value, message);
 		}
 
-		public static TestConfiguratorResult WithParentKey(this TestConfiguratorResult result, string parentKey)
+		public static ITestConfiguratorResult WithParentKey(this ITestConfiguratorResult result, string parentKey)
 		{
 			//string key = result.Key.Contains(".") ? result.Key.Substring(result.Key.IndexOf('.')) : "";
 

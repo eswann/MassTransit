@@ -18,13 +18,13 @@ namespace MassTransit.Containers.Tests.Scenarios
 
 
     public class SimpleConsumer :
-        Consumes<SimpleMessageInterface>.All
+        Consumes<ISimpleMessage>.All
     {
         static readonly ManualResetEvent _consumerCreated = new ManualResetEvent(false);
         static SimpleConsumer _lastConsumer;
         readonly ISimpleConsumerDependency _dependency;
         readonly ManualResetEvent _received;
-        SimpleMessageInterface _lastMessage;
+        ISimpleMessage _lastMessage;
 
         public SimpleConsumer(ISimpleConsumerDependency dependency)
         {
@@ -37,7 +37,7 @@ namespace MassTransit.Containers.Tests.Scenarios
             _consumerCreated.Set();
         }
 
-        public SimpleMessageInterface Last
+        public ISimpleMessage Last
         {
             get
             {
@@ -64,7 +64,7 @@ namespace MassTransit.Containers.Tests.Scenarios
             }
         }
 
-        public void Consume(SimpleMessageInterface message)
+        public void Consume(ISimpleMessage message)
         {
             _dependency.DoSomething();
 

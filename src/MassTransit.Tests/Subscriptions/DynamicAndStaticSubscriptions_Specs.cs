@@ -3,6 +3,7 @@
     using System.Linq;
     using Magnum.Extensions;
     using Magnum.TestFramework;
+    using MassTransit.Subscriptions;
     using NUnit.Framework;
     using TextFixtures;
     using MassTransit.Testing;
@@ -22,7 +23,7 @@
             _receivedC = new FutureMessage<C>();
         }
 
-        protected override void ConfigureRemoteBus(BusConfigurators.ServiceBusConfigurator configurator)
+        protected override void ConfigureRemoteBus(BusConfigurators.IServiceBusConfigurator configurator)
         {
             base.ConfigureRemoteBus(configurator);
 

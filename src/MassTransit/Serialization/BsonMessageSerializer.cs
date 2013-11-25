@@ -16,6 +16,7 @@ namespace MassTransit.Serialization
     using System.Collections.Generic;
     using System.Globalization;
     using System.IO;
+    using Context;
     using Custom;
     using Newtonsoft.Json;
     using Newtonsoft.Json.Bson;

@@ -20,20 +20,20 @@ namespace MassTransit.BusServiceConfigurators
 	using Magnum.Extensions;
 
 	public class DefaultBusServiceConfigurator<TService> :
-		BusServiceConfigurator,
+		IBusServiceConfigurator,
 		BusBuilderConfigurator
 		where TService : IBusService
 	{
 		readonly Func<IServiceBus, TService> _serviceFactory;
-	    readonly BusServiceLayer _layer;
+	    readonly IBusServiceLayer _layer;
 
-		public DefaultBusServiceConfigurator(BusServiceLayer layer, Func<IServiceBus, TService> serviceFactory)
+		public DefaultBusServiceConfigurator(IBusServiceLayer layer, Func<IServiceBus, TService> serviceFactory)
 		{
 			_serviceFactory = serviceFactory;
 			_layer = layer;
 		}
 
-		public IEnumerable<ValidationResult> Validate()
+		public IEnumerable<IValidationResult> Validate()
 		{
 			if (_serviceFactory == null)
 				yield return this.Failure("BusServiceFactory", "The bus service factory for '{0}' was null."
@@ -52,7 +52,7 @@ namespace MassTransit.BusServiceConfigurators
 			get { return typeof (TService); }
 		}
 
-		public BusServiceLayer Layer
+		public IBusServiceLayer Layer
 		{
 			get { return _layer; }
 		}

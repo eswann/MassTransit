@@ -20,13 +20,13 @@ namespace MassTransit.Testing.TestInstanceConfigurators
 	using Scenarios;
 
 	public interface TestInstanceConfigurator<TScenario> :
-		TestInstanceConfigurator
-		where TScenario : TestScenario
+		ITestInstanceConfigurator
+		where TScenario : ITestScenario
 	{
-		void UseScenarioBuilder(Func<ScenarioBuilder<TScenario>> scenarioBuilderFactory);
+		void UseScenarioBuilder(Func<IScenarioBuilder<TScenario>> scenarioBuilderFactory);
 
 		void AddActionConfigurator(TestActionConfigurator<TScenario> action);
 
-		void AddConfigurator(ScenarioBuilderConfigurator<TScenario> configurator);
+		void AddConfigurator(IScenarioBuilderConfigurator<TScenario> configurator);
 	}
 }

@@ -39,7 +39,7 @@ namespace MassTransit.Tests.Subscriptions
         List<int> receivedMessages = new List<int>();
 
 
-        protected override void ConfigureRemoteBus(ServiceBusConfigurator configurator)
+        protected override void ConfigureRemoteBus(IServiceBusConfigurator configurator)
         {
             base.ConfigureRemoteBus(configurator);
 

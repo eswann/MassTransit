@@ -16,7 +16,7 @@ namespace MassTransit.Services.HealthMonitoring.Configuration
 	using BusServiceConfigurators;
 
 	public class HealthClientConfigurator :
-		BusServiceConfigurator
+		IBusServiceConfigurator
 	{
 		int _intervalInSeconds;
 
@@ -25,9 +25,9 @@ namespace MassTransit.Services.HealthMonitoring.Configuration
 			get { return typeof (HealthClient); }
 		}
 
-		public BusServiceLayer Layer
+		public IBusServiceLayer Layer
 		{
-			get { return BusServiceLayer.Session; }
+			get { return IBusServiceLayer.Session; }
 		}
 
 		public IBusService Create(IServiceBus bus)

@@ -12,9 +12,44 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Containers.Tests.Scenarios
 {
-    public interface AnotherMessageConsumer :
-        Consumes<AnotherMessageInterface>.All
+    using System;
+    using System.Threading;
+    using Magnum.Extensions;
+
+    public interface IAnotherMessageConsumer :
+        Consumes<IAnotherMessageInterface>.All
     {
-        AnotherMessageInterface Last { get; }
+        IAnotherMessageInterface Last { get; }
+    }
+
+    public class AnotherMessageConsumer :
+       IAnotherMessageConsumer
+    {
+        readonly ManualResetEvent _received;
+        IAnotherMessageInterface _last;
+
+        public AnotherMessageConsumer()
+        {
+            Console.WriteLine("AnotherMessageConsumer()");
+
+            _received = new ManualResetEvent(false);
+        }
+
+        public IAnotherMessageInterface Last
+        {
+            get
+            {
+                if (_received.WaitOne(8.Seconds()))
+                    return _last;
+
+                throw new TimeoutException("Timeout waiting for message to be consumed");
+            }
+        }
+
+        public void Consume(IAnotherMessageInterface message)
+        {
+            _last = message;
+            _received.Set();
+        }
     }
 }

@@ -20,7 +20,7 @@ namespace MassTransit.Saga.SubscriptionConnectors
 	using Magnum.Reflection;
 
 	public class StateMachineSagaConnector<T> :
-		IEnumerable<SagaSubscriptionConnector>
+		IEnumerable<ISagaSubscriptionConnector>
 		where T : SagaStateMachine<T>, ISaga
 	{
 		readonly ISagaPolicyFactory _policyFactory;
@@ -32,7 +32,7 @@ namespace MassTransit.Saga.SubscriptionConnectors
 			_policyFactory = new SagaPolicyFactory();
 		}
 
-		public IEnumerator<SagaSubscriptionConnector> GetEnumerator()
+		public IEnumerator<ISagaSubscriptionConnector> GetEnumerator()
 		{
 			T instance = FastActivator<T>.Create(Guid.Empty);
 
@@ -43,7 +43,7 @@ namespace MassTransit.Saga.SubscriptionConnectors
 				.Select(
 					x =>
 						{
-							return (SagaEventConnectorFactory) FastActivator.Create(typeof (SagaEventConnectorFactory<,>),
+							return (ISagaEventConnectorFactory) FastActivator.Create(typeof (SagaEventConnectorFactory<,>),
 								new[] {typeof (T), x.SagaEvent.MessageType},
 								new object[] {_sagaRepository, _policyFactory, x.SagaEvent.Event, x.States});
 						})

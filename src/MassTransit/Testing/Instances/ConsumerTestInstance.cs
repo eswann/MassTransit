@@ -21,7 +21,7 @@ namespace MassTransit.Testing.Instances
 		TestInstance<TScenario>,
 		ConsumerTest<TScenario, TConsumer>
 		where TConsumer : class, IConsumer
-	    where TScenario : TestScenario
+	    where TScenario : ITestScenario
 	{
 		readonly ConsumerTestSubjectImpl<TScenario, TConsumer> _subject;
 

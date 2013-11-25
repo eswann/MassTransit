@@ -13,6 +13,7 @@
 namespace MassTransit
 {
 	using System;
+	using Context;
 	using Pipeline;
 	using SubscriptionConfigurators;
 	using SubscriptionConnectors;
@@ -27,11 +28,11 @@ namespace MassTransit
 		/// <param name="configurator"></param>
 		/// <param name="handler"></param>
 		/// <returns></returns>
-		public static HandlerSubscriptionConfigurator<T> Handler<T>(this SubscriptionBusServiceConfigurator configurator,
+		public static IHandlerSubscriptionConfigurator<T> Handler<T>(this ISubscriptionBusServiceConfigurator configurator,
 		                                                            Action<T> handler)
 			where T : class
 		{
-			var handlerConfigurator = new HandlerSubscriptionConfiguratorImpl<T>(handler);
+			var handlerConfigurator = new HandlerSubscriptionConfigurator<T>(handler);
 
 			var busServiceConfigurator = new SubscriptionBusServiceBuilderConfiguratorImpl(handlerConfigurator);
 
@@ -40,11 +41,11 @@ namespace MassTransit
 			return handlerConfigurator;
 		}
 
-		public static HandlerSubscriptionConfigurator<T> Handler<T>(this SubscriptionBusServiceConfigurator configurator,
+		public static IHandlerSubscriptionConfigurator<T> Handler<T>(this ISubscriptionBusServiceConfigurator configurator,
 		                                                            Action<IConsumeContext<T>, T> handler)
 			where T : class
 		{
-			var handlerConfigurator = new HandlerSubscriptionConfiguratorImpl<T>(handler);
+			var handlerConfigurator = new HandlerSubscriptionConfigurator<T>(handler);
 
 			var busServiceConfigurator = new SubscriptionBusServiceBuilderConfiguratorImpl(handlerConfigurator);
 

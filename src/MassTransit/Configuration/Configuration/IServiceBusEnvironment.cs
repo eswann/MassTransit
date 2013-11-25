@@ -25,6 +25,6 @@ namespace MassTransit.Configuration
 		/// name that is specified.
 		/// </summary>
 		/// <param name="configurator"></param>
-		void Configure(ServiceBusConfigurator configurator);
+		void Configure(IServiceBusConfigurator configurator);
 	}
 }

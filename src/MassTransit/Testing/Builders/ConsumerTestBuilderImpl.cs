@@ -20,7 +20,7 @@ namespace MassTransit.Testing.Builders
 	public class ConsumerTestBuilderImpl<TScenario, TConsumer> :
 		ConsumerTestBuilder<TScenario, TConsumer>
 		where TConsumer : class, IConsumer
-	    where TScenario : TestScenario
+	    where TScenario : ITestScenario
 	{
 		readonly IList<TestAction<TScenario>> _actions;
 		readonly TScenario _scenario;

@@ -14,29 +14,82 @@ namespace MassTransit.Testing.ScenarioBuilders
 {
 	using System;
 	using EndpointConfigurators;
+	using Exceptions;
+	using Magnum.Extensions;
+	using MassTransit.Configurators;
 	using Scenarios;
+	using Serialization;
+	using Transports;
+	using Transports.Loopback;
 
-	/// <summary>
-	/// And endpoint scenario builder implementation ties together the scenario 
-	/// with the underlying infrastructure.
-	/// </summary>
-	/// <typeparam name="TScenario">See <see cref="BusTestScenario"/>, <see cref="EndpointTestScenario"/> and <see cref="TestScenario"/>
-	/// for feeding as the generic parameter.</typeparam>
-	public interface EndpointScenarioBuilder<TScenario> :
-		ScenarioBuilder<TScenario>
-		where TScenario : TestScenario
+    /// <summary>
+    /// And endpoint scenario builder implementation ties together the scenario 
+    /// with the underlying infrastructure.
+    /// </summary>
+    /// <typeparam name="TScenario">See <see cref="IBusTestScenario"/>, <see cref="IEndpointTestScenario"/> and <see cref="ITestScenario"/>
+    /// for feeding as the generic parameter.</typeparam>
+    public interface IEndpointScenarioBuilder<TScenario> :
+        IScenarioBuilder<TScenario>
+        where TScenario : ITestScenario
+    {
+        /// <summary>
+        /// Endpoint scenario builders may call this method to configure the endpoint factory. Call this method
+        /// to customize how the endpoint uris are built. Example:
+        /// <code>
+        /// ConfigureEndpointFactory(x =>
+        ///    {
+        ///    	x.UseRabbitMq();
+        ///    });
+        /// </code>
+        /// </summary>
+        /// <param name="configureCallback"></param>
+        void ConfigureEndpointFactory(Action<IEndpointFactoryConfigurator> configureCallback);
+    }
+
+	public abstract class EndpointScenarioBuilder<TScenario> :
+		IEndpointScenarioBuilder<TScenario>
+		where TScenario : ITestScenario
 	{
-		/// <summary>
-		/// Endpoint scenario builders may call this method to configure the endpoint factory. Call this method
-		/// to customize how the endpoint uris are built. Example:
-		/// <code>
-		/// ConfigureEndpointFactory(x =>
-		///    {
-		///    	x.UseRabbitMq();
-		///    });
-		/// </code>
-		/// </summary>
-		/// <param name="configureCallback"></param>
-		void ConfigureEndpointFactory(Action<EndpointFactoryConfigurator> configureCallback);
+		readonly IEndpointFactoryConfigurator _endpointFactoryConfigurator;
+
+		public EndpointScenarioBuilder()
+		{
+			var settings = new EndpointFactoryDefaultSettings
+				{
+					CreateMissingQueues = true,
+					CreateTransactionalQueues = false,
+					PurgeOnStartup = true,
+					RequireTransactional = false,
+					Serializer = new XmlMessageSerializer(),
+					TransactionTimeout = 30.Seconds()
+				};
+
+			_endpointFactoryConfigurator = new EndpointFactoryConfigurator(settings);
+
+			_endpointFactoryConfigurator.AddTransportFactory<LoopbackTransportFactory>();
+		}
+
+		public void ConfigureEndpointFactory(Action<IEndpointFactoryConfigurator> configureCallback)
+		{
+			configureCallback(_endpointFactoryConfigurator);
+		}
+
+		protected IEndpointFactory BuildEndpointFactory()
+		{
+			IConfigurationResult result = ConfigurationResultImpl.CompileResults(_endpointFactoryConfigurator.Validate());
+
+			IEndpointFactory endpointFactory;
+			try
+			{
+				endpointFactory = _endpointFactoryConfigurator.CreateEndpointFactory();
+			}
+			catch (Exception ex)
+			{
+				throw new ConfigurationException(result, "An exception was thrown during endpoint cache creation", ex);
+			}
+			return endpointFactory;
+		}
+
+		public abstract TScenario Build();
 	}
 }

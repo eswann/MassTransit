@@ -15,7 +15,7 @@ namespace MassTransit.Diagnostics.Introspection
     using Messages;
 
     public class GetBusStatusImpl :
-        GetBusStatus
+        IGetBusStatus
     {
     }
 }

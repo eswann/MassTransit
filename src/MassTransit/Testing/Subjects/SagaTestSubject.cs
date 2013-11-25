@@ -15,18 +15,18 @@ namespace MassTransit.Testing.Subjects
 	using Saga;
 
 	public interface SagaTestSubject<TSaga> :
-		TestSubject<TSaga>,
-		SagaList<TSaga>
+		ITestSubject<TSaga>,
+		ISagaList<TSaga>
 		where TSaga : class, ISaga
 	{
 		/// <summary>
 		/// The messages that were received by the handler
 		/// </summary>
-		ReceivedMessageList Received { get; }
+		IReceivedMessageList Received { get; }
 
 		/// <summary>
 		/// The sagas that were created during the test
 		/// </summary>
-		SagaList<TSaga> Created { get; }
+		ISagaList<TSaga> Created { get; }
 	}
 }

@@ -23,7 +23,7 @@ namespace MassTransit
     public static class SerializerConfigurationExtensions
     {
         public static T UseJsonSerializer<T>(this T configurator)
-            where T : EndpointFactoryConfigurator
+            where T : IEndpointFactoryConfigurator
         {
             configurator.SetDefaultSerializer<JsonMessageSerializer>();
 
@@ -32,7 +32,7 @@ namespace MassTransit
 
         public static T ConfigureJsonSerializer<T>(this T configurator,
             Func<JsonSerializerSettings, JsonSerializerSettings> configure)
-            where T : EndpointFactoryConfigurator
+            where T : IEndpointFactoryConfigurator
         {
             JsonMessageSerializer.SerializerSettings = configure(JsonMessageSerializer.SerializerSettings);
 
@@ -41,7 +41,7 @@ namespace MassTransit
 
         public static T ConfigureJsonDeserializer<T>(this T configurator,
             Func<JsonSerializerSettings, JsonSerializerSettings> configure)
-            where T : EndpointFactoryConfigurator
+            where T : IEndpointFactoryConfigurator
         {
             JsonMessageSerializer.DeserializerSettings = configure(JsonMessageSerializer.DeserializerSettings);
 
@@ -49,7 +49,7 @@ namespace MassTransit
         }
 
         public static T UseBsonSerializer<T>(this T configurator)
-            where T : EndpointFactoryConfigurator
+            where T : IEndpointFactoryConfigurator
         {
             configurator.SetDefaultSerializer<BsonMessageSerializer>();
 
@@ -57,7 +57,7 @@ namespace MassTransit
         }
 
         public static T UseXmlSerializer<T>(this T configurator)
-            where T : EndpointFactoryConfigurator
+            where T : IEndpointFactoryConfigurator
         {
             configurator.SetDefaultSerializer<XmlMessageSerializer>();
 
@@ -65,7 +65,7 @@ namespace MassTransit
         }
 
         public static T UseVersionOneXmlSerializer<T>(this T configurator)
-            where T : EndpointFactoryConfigurator
+            where T : IEndpointFactoryConfigurator
         {
             configurator.SetDefaultSerializer<VersionOneXmlMessageSerializer>();
 
@@ -73,7 +73,7 @@ namespace MassTransit
         }
 
         public static T UseBinarySerializer<T>(this T configurator)
-            where T : EndpointFactoryConfigurator
+            where T : IEndpointFactoryConfigurator
         {
             configurator.SetDefaultSerializer<BinaryMessageSerializer>();
 
@@ -84,7 +84,7 @@ namespace MassTransit
         /// Support the receipt of messages serialized by the JsonMessageSerializer
         /// </summary>
         public static T SupportJsonSerializer<T>(this T configurator)
-            where T : EndpointFactoryConfigurator
+            where T : IEndpointFactoryConfigurator
         {
             configurator.SupportMessageSerializer<JsonMessageSerializer>();
 
@@ -92,7 +92,7 @@ namespace MassTransit
         }
 
         public static T SupportBsonSerializer<T>(this T configurator)
-            where T : EndpointFactoryConfigurator
+            where T : IEndpointFactoryConfigurator
         {
             configurator.SupportMessageSerializer<BsonMessageSerializer>();
 
@@ -100,7 +100,7 @@ namespace MassTransit
         }
 
         public static T SupportXmlSerializer<T>(this T configurator)
-            where T : EndpointFactoryConfigurator
+            where T : IEndpointFactoryConfigurator
         {
             configurator.SupportMessageSerializer<XmlMessageSerializer>();
 
@@ -108,7 +108,7 @@ namespace MassTransit
         }
 
         public static T SupportVersionOneXmlSerializer<T>(this T configurator)
-            where T : EndpointFactoryConfigurator
+            where T : IEndpointFactoryConfigurator
         {
             configurator.SupportMessageSerializer<VersionOneXmlMessageSerializer>();
 
@@ -116,22 +116,22 @@ namespace MassTransit
         }
 
         public static T SupportBinarySerializer<T>(this T configurator)
-            where T : EndpointFactoryConfigurator
+            where T : IEndpointFactoryConfigurator
         {
             configurator.SupportMessageSerializer<BinaryMessageSerializer>();
 
             return configurator;
         }
 
-        public static ServiceBusConfigurator SupportMessageSerializer<TSerializer>(
-            this ServiceBusConfigurator configurator)
+        public static IServiceBusConfigurator SupportMessageSerializer<TSerializer>(
+            this IServiceBusConfigurator configurator)
             where TSerializer : IMessageSerializer, new()
         {
             return SupportMessageSerializer(configurator, () => new TSerializer());
         }
 
-        public static EndpointFactoryConfigurator SupportMessageSerializer<TSerializer>(
-            this EndpointFactoryConfigurator configurator)
+        public static IEndpointFactoryConfigurator SupportMessageSerializer<TSerializer>(
+            this IEndpointFactoryConfigurator configurator)
             where TSerializer : IMessageSerializer, new()
         {
             return SupportMessageSerializer(configurator, () => new TSerializer());
@@ -139,7 +139,7 @@ namespace MassTransit
 
 
         static T SetDefaultSerializer<T>(this T configurator, Func<IMessageSerializer> serializerFactory)
-            where T : EndpointFactoryConfigurator
+            where T : IEndpointFactoryConfigurator
         {
             var serializerConfigurator = new DefaultSerializerEndpointFactoryConfigurator(serializerFactory);
 
@@ -149,7 +149,7 @@ namespace MassTransit
         }
 
         static T SupportMessageSerializer<T>(this T configurator, Func<IMessageSerializer> serializerFactory)
-            where T : EndpointFactoryConfigurator
+            where T : IEndpointFactoryConfigurator
         {
             var serializerConfigurator = new AddSerializerEndpointFactoryConfigurator(serializerFactory);
 
@@ -164,8 +164,8 @@ namespace MassTransit
         /// <typeparam name="TSerializer"></typeparam>
         /// <param name="configurator"></param>
         /// <returns></returns>
-        public static EndpointFactoryConfigurator SetDefaultSerializer<TSerializer>(
-            this EndpointFactoryConfigurator configurator)
+        public static IEndpointFactoryConfigurator SetDefaultSerializer<TSerializer>(
+            this IEndpointFactoryConfigurator configurator)
             where TSerializer : IMessageSerializer, new()
         {
             return SetDefaultSerializer(configurator, () => new TSerializer());
@@ -177,7 +177,7 @@ namespace MassTransit
         /// <typeparam name="TSerializer"></typeparam>
         /// <param name="configurator"></param>
         /// <returns></returns>
-        public static ServiceBusConfigurator SetDefaultSerializer<TSerializer>(this ServiceBusConfigurator configurator)
+        public static IServiceBusConfigurator SetDefaultSerializer<TSerializer>(this IServiceBusConfigurator configurator)
             where TSerializer : IMessageSerializer, new()
         {
             return SetDefaultSerializer(configurator, () => new TSerializer());
@@ -191,7 +191,7 @@ namespace MassTransit
         /// <returns></returns>
         public static T SetDefaultSerializer<T>(this T configurator,
             Type serializerType)
-            where T : EndpointFactoryConfigurator
+            where T : IEndpointFactoryConfigurator
         {
             return SetDefaultSerializer(configurator, () => (IMessageSerializer)FastActivator.Create(serializerType));
         }
@@ -204,22 +204,22 @@ namespace MassTransit
         /// <returns></returns>
         public static T SetDefaultSerializer<T>(this T configurator,
             IMessageSerializer serializer)
-            where T : EndpointFactoryConfigurator
+            where T : IEndpointFactoryConfigurator
         {
             return SetDefaultSerializer(configurator, () => serializer);
         }
 
         // -----------------------------------------------------------------------
 
-        public static ServiceBusConfigurator SetSupportedMessageSerializers<T>(
-            this ServiceBusConfigurator configurator)
+        public static IServiceBusConfigurator SetSupportedMessageSerializers<T>(
+            this IServiceBusConfigurator configurator)
             where T : ISupportedMessageSerializers, new()
         {
             return SetSupportedMessageSerializers(configurator, () => new T());
         }
         
-        public static EndpointFactoryConfigurator SetSupportedMessageSerializers<T>(
-            this EndpointFactoryConfigurator configurator)
+        public static IEndpointFactoryConfigurator SetSupportedMessageSerializers<T>(
+            this IEndpointFactoryConfigurator configurator)
             where T : ISupportedMessageSerializers, new()
         {
             return SetSupportedMessageSerializers(configurator, () => new T());
@@ -233,13 +233,13 @@ namespace MassTransit
         /// <returns></returns>
         public static T SetSupportedMessageSerializers<T>(this T configurator,
             ISupportedMessageSerializers supportedSerializer)
-            where T : EndpointFactoryConfigurator
+            where T : IEndpointFactoryConfigurator
         {
             return SetSupportedMessageSerializers(configurator, () => supportedSerializer);
         }
 
         static T SetSupportedMessageSerializers<T>(this T configurator, Func<ISupportedMessageSerializers> supportedSerializers)
-           where T : EndpointFactoryConfigurator
+           where T : IEndpointFactoryConfigurator
         {
             var serializerConfigurator = new SetSupportedMessageSerializersEndpointFactoryConfigurator(supportedSerializers);
 

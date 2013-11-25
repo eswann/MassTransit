@@ -14,6 +14,7 @@ namespace MassTransit.RequestResponse.Configurators
 {
     using System;
     using System.Threading;
+    using Context;
 
     public interface InlineRequestConfigurator<TRequest> :
         RequestConfigurator<TRequest>

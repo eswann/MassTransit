@@ -14,8 +14,9 @@ namespace MassTransit.Saga
 {
 	using System;
 	using System.Collections.Generic;
+	using Context;
 
-	public class CorrelatedSagaLocator<TMessage> :
+    public class CorrelatedSagaLocator<TMessage> :
 		ISagaLocator<TMessage>
 		where TMessage : class, CorrelatedBy<Guid>
 	{

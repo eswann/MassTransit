@@ -22,7 +22,7 @@ namespace MassTransit.BusConfigurators
 	/// A thing that configures the thing that builds the bus.
 	/// </summary>
 	public interface BusBuilderConfigurator :
-		Configurator
+		IConfigurator
 	{
 		/// <summary>
 		/// Pays the bus builder a visit and return a new builder

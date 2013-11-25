@@ -20,7 +20,7 @@ namespace MassTransit.Context
     /// </summary>
     public static class ContextStorage
     {
-        static ContextStorageProvider _provider;
+        static IContextStorageProvider _provider;
 
         public static IConsumeContext CurrentConsumeContext
         {
@@ -34,7 +34,7 @@ namespace MassTransit.Context
             }
         }
 
-        static ContextStorageProvider Provider
+        static IContextStorageProvider Provider
         {
             get { return _provider ?? (_provider = GetDefaultProvider()); }
         }
@@ -111,7 +111,7 @@ namespace MassTransit.Context
             return contextCallback(context);
         }
 
-        static ContextStorageProvider GetDefaultProvider()
+        static IContextStorageProvider GetDefaultProvider()
         {
             if (HttpContext.Current != null)
                 return new HttpContextContextStorageProvider();

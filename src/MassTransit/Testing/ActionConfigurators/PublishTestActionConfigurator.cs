@@ -16,13 +16,14 @@ namespace MassTransit.Testing.ActionConfigurators
 	using System.Collections.Generic;
 	using Builders;
 	using Configurators;
+	using Context;
 	using Scenarios;
 	using TestActions;
 
 	public class PublishTestActionConfigurator<TScenario, TMessage> :
 		TestActionConfigurator<TScenario>
 		where TMessage : class
-		where TScenario : TestScenario
+		where TScenario : ITestScenario
 	{
 		readonly Func<TScenario, IServiceBus> _busAccessor;
 		readonly Action<TScenario, IPublishContext<TMessage>> _callback;
@@ -42,7 +43,7 @@ namespace MassTransit.Testing.ActionConfigurators
 			_callback = callback;
 		}
 
-		public IEnumerable<TestConfiguratorResult> Validate()
+		public IEnumerable<ITestConfiguratorResult> Validate()
 		{
 			if (_message == null)
 				yield return this.Failure("Message", "The message instance to send must not be null.");

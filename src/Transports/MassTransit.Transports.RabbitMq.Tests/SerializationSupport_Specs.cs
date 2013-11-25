@@ -1,5 +1,6 @@
 ﻿namespace MassTransit.Transports.RabbitMq.Tests
 {
+    using Context;
     using Magnum.Extensions;
     using NUnit.Framework;
     using TestFramework;
@@ -37,7 +38,7 @@
             _requestReceived.WaitUntilCompleted(8.Seconds()).ShouldBeTrue();
         }
 
-        protected override void ConfigureLocalBus(BusConfigurators.ServiceBusConfigurator configurator)
+        protected override void ConfigureLocalBus(BusConfigurators.IServiceBusConfigurator configurator)
         {
             base.ConfigureLocalBus(configurator);
 
@@ -47,7 +48,7 @@
             configurator.Subscribe(s => s.Handler<B>(_responseReceived.Complete));
         }
 
-        protected override void ConfigureRemoteBus(BusConfigurators.ServiceBusConfigurator configurator)
+        protected override void ConfigureRemoteBus(BusConfigurators.IServiceBusConfigurator configurator)
         {
             base.ConfigureRemoteBus(configurator);
 

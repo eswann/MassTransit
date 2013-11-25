@@ -23,8 +23,8 @@ namespace MassTransit
     {
         static readonly ILog _log = Logger.Get(typeof(ConsumerSubscriptionExtensions));
 
-        public static ConsumerSubscriptionConfigurator<TConsumer> InterceptingConsumer<TConsumer>(
-            [NotNull] this SubscriptionBusServiceConfigurator configurator,
+        public static IConsumerSubscriptionConfigurator<TConsumer> InterceptingConsumer<TConsumer>(
+            [NotNull] this ISubscriptionBusServiceConfigurator configurator,
             [NotNull] IConsumerFactory<TConsumer> consumerFactory, [NotNull] Action<Action> interceptor)
             where TConsumer : class, IConsumer
         {
@@ -37,8 +37,8 @@ namespace MassTransit
             return configurator.Consumer(interceptingConsumerFactory);
         }
 
-        public static ConsumerSubscriptionConfigurator<TConsumer> InterceptingConsumer<TConsumer>(
-            [NotNull] this SubscriptionBusServiceConfigurator configurator, [NotNull] Action<Action> interceptor)
+        public static IConsumerSubscriptionConfigurator<TConsumer> InterceptingConsumer<TConsumer>(
+            [NotNull] this ISubscriptionBusServiceConfigurator configurator, [NotNull] Action<Action> interceptor)
             where TConsumer : class, IConsumer, new()
         {
             if (_log.IsDebugEnabled)
@@ -53,8 +53,8 @@ namespace MassTransit
             return configurator.Consumer(interceptingConsumerFactory);
         }
 
-        public static ConsumerSubscriptionConfigurator<TConsumer> InterceptingConsumer<TConsumer>(
-            [NotNull] this SubscriptionBusServiceConfigurator configurator, [NotNull] Func<TConsumer> consumerFactory,
+        public static IConsumerSubscriptionConfigurator<TConsumer> InterceptingConsumer<TConsumer>(
+            [NotNull] this ISubscriptionBusServiceConfigurator configurator, [NotNull] Func<TConsumer> consumerFactory,
             [NotNull] Action<Action> interceptor)
             where TConsumer : class, IConsumer
         {
@@ -81,7 +81,7 @@ namespace MassTransit
             var interceptingConsumerFactory = new InterceptingConsumerFactory<TConsumer>(delegateConsumerFactory,
                 interceptor);
 
-            ConsumerConnector connector = ConsumerConnectorCache.GetConsumerConnector<TConsumer>();
+            IConsumerConnector connector = ConsumerConnectorCache.GetConsumerConnector<TConsumer>();
 
             return bus.Configure(x => connector.Connect(x, interceptingConsumerFactory));
         }
@@ -97,7 +97,7 @@ namespace MassTransit
 
             var interceptingConsumerFactory = new InterceptingConsumerFactory<TConsumer>(delegateConsumerFactory,
                 interceptor);
-            ConsumerConnector connector = ConsumerConnectorCache.GetConsumerConnector<TConsumer>();
+            IConsumerConnector connector = ConsumerConnectorCache.GetConsumerConnector<TConsumer>();
 
             return bus.Configure(x => connector.Connect(x, interceptingConsumerFactory));
         }
@@ -111,7 +111,7 @@ namespace MassTransit
 
             var interceptingConsumerFactory = new InterceptingConsumerFactory<TConsumer>(consumerFactory,
                 interceptor);
-            ConsumerConnector connector = ConsumerConnectorCache.GetConsumerConnector<TConsumer>();
+            IConsumerConnector connector = ConsumerConnectorCache.GetConsumerConnector<TConsumer>();
 
             return bus.Configure(x => connector.Connect(x, interceptingConsumerFactory));
         }

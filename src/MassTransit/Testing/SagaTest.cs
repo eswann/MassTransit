@@ -17,7 +17,7 @@ namespace MassTransit.Testing
 	using Subjects;
 
 	public interface SagaTest<TSaga> :
-		TestInstance
+		ITestInstance
 		where TSaga : class, ISaga
 	{
 		SagaTestSubject<TSaga> Saga { get; }
@@ -26,7 +26,7 @@ namespace MassTransit.Testing
 	public interface SagaTest<TScenario, TConsumer> :
 		SagaTest<TConsumer>
 		where TConsumer : class, ISaga
-		where TScenario : TestScenario
+		where TScenario : ITestScenario
 	{
 		TScenario Scenario { get; }
 	}

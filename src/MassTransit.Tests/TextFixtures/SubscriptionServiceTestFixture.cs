@@ -17,6 +17,7 @@ namespace MassTransit.Tests.TextFixtures
 	using BusConfigurators;
 	using Magnum.Extensions;
 	using MassTransit.Saga;
+	using MassTransit.Services.Subscriptions.Configuration;
 	using MassTransit.Services.Subscriptions.Server;
 	using MassTransit.Transports;
 	using NUnit.Framework;
@@ -87,11 +88,11 @@ namespace MassTransit.Tests.TextFixtures
 		}
 
 
-		protected virtual void ConfigureLocalBus(ServiceBusConfigurator configurator)
+		protected virtual void ConfigureLocalBus(IServiceBusConfigurator configurator)
 		{
 		}
 
-		protected virtual void ConfigureRemoteBus(ServiceBusConfigurator configurator)
+		protected virtual void ConfigureRemoteBus(IServiceBusConfigurator configurator)
 		{
 		}
 

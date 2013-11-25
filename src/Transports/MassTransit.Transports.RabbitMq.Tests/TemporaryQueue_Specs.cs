@@ -14,6 +14,7 @@ namespace MassTransit.Transports.RabbitMq.Tests
 {
     using System.Threading;
     using BusConfigurators;
+    using Context;
     using Magnum.Extensions;
     using NUnit.Framework;
 
@@ -36,7 +37,7 @@ namespace MassTransit.Transports.RabbitMq.Tests
             Assert.IsTrue(responseReceived.WaitOne(8.Seconds()), "No Response");
         }
 
-        protected override void ConfigureRemoteBus(ServiceBusConfigurator configurator)
+        protected override void ConfigureRemoteBus(IServiceBusConfigurator configurator)
         {
             base.ConfigureRemoteBus(configurator);
 

@@ -16,8 +16,8 @@ namespace MassTransit.Testing.Scenarios
 	using Transports;
 
 	public class LocalRemoteTestScenarioImpl :
-		EndpointTestScenarioImpl,
-		LocalRemoteTestScenario
+		EndpointTestScenario,
+		ILocalRemoteTestScenario
 	{
 		bool _disposed;
 		IServiceBus _localBus;

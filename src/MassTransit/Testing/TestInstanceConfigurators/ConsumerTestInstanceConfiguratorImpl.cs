@@ -25,14 +25,14 @@ namespace MassTransit.Testing.TestInstanceConfigurators
 		TestInstanceConfiguratorImpl<TScenario>,
 		ConsumerTestInstanceConfigurator<TScenario, TConsumer>
 		where TConsumer : class, IConsumer
-	    where TScenario : TestScenario
+	    where TScenario : ITestScenario
 	{
 		readonly IList<ConsumerTestBuilderConfigurator<TScenario, TConsumer>> _configurators;
 
 		Func<TScenario, ConsumerTestBuilder<TScenario, TConsumer>> _builderFactory;
 		IConsumerFactory<TConsumer> _consumerFactory;
 
-		public ConsumerTestInstanceConfiguratorImpl(Func<ScenarioBuilder<TScenario>> scenarioBuilderFactory)
+		public ConsumerTestInstanceConfiguratorImpl(Func<IScenarioBuilder<TScenario>> scenarioBuilderFactory)
 			: base(scenarioBuilderFactory)
 		{
 			_configurators = new List<ConsumerTestBuilderConfigurator<TScenario, TConsumer>>();
@@ -55,13 +55,13 @@ namespace MassTransit.Testing.TestInstanceConfigurators
 			_consumerFactory = consumerFactory;
 		}
 
-		public new IEnumerable<TestConfiguratorResult> Validate()
+		public new IEnumerable<ITestConfiguratorResult> Validate()
 		{
 			if (_consumerFactory == null)
 				yield return this.Failure("ConsumerFactory", "The consumer factory must be configured (using ConstructedBy)");
 
-			IEnumerable<TestConfiguratorResult> results = base.Validate().Concat(_configurators.SelectMany(x => x.Validate()));
-			foreach (TestConfiguratorResult result in results)
+			IEnumerable<ITestConfiguratorResult> results = base.Validate().Concat(_configurators.SelectMany(x => x.Validate()));
+			foreach (ITestConfiguratorResult result in results)
 			{
 				yield return result;
 			}

@@ -16,6 +16,7 @@ namespace MassTransit.Tests.Serialization
     using BusConfigurators;
     using Magnum.TestFramework;
     using MassTransit.Transports;
+    using MassTransit.Transports.Loopback;
     using TestFramework;
     using TextFixtures;
     using Util;
@@ -24,7 +25,7 @@ namespace MassTransit.Tests.Serialization
     public class When_a_message_deserialization_exception_occurs
         : LoopbackTestFixture
     {
-        protected override void ConfigureLocalBus(ServiceBusConfigurator configurator)
+        protected override void ConfigureLocalBus(IServiceBusConfigurator configurator)
         {
             base.ConfigureLocalBus(configurator);
 

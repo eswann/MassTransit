@@ -14,17 +14,32 @@ namespace MassTransit.Diagnostics.Tracing
 {
     using System.Collections.Generic;
 
-    public interface ReceivedMessageTraceDetail :
-		MessageTraceDetail
-	{
-		/// <summary>
-		/// The receivers that processed the message
-		/// </summary>
-		IList<ReceiverTraceDetail> Receivers { get; }
+    public interface IReceivedMessageTraceDetail :
+    IMessageTraceDetail
+    {
+        /// <summary>
+        /// The receivers that processed the message
+        /// </summary>
+        IList<IReceiverTraceDetail> Receivers { get; }
 
-		/// <summary>
-		/// The messages that were sent while the message was being received
-		/// </summary>
-		IList<SentMessageTraceDetail> SentMessages { get; }
+        /// <summary>
+        /// The messages that were sent while the message was being received
+        /// </summary>
+        IList<ISentMessageTraceDetail> SentMessages { get; }
+    }
+
+    public class ReceivedMessageTraceDetail :
+		MessageTraceDetail,
+		IReceivedMessageTraceDetail
+	{
+		public ReceivedMessageTraceDetail()
+		{
+			Receivers = new List<IReceiverTraceDetail>();
+			SentMessages = new List<ISentMessageTraceDetail>();
+		}
+
+		public IList<ISentMessageTraceDetail> SentMessages { get; set; }
+
+		public IList<IReceiverTraceDetail> Receivers { get; set; }
 	}
 }

@@ -15,11 +15,11 @@ namespace MassTransit.Testing
 	using System;
 	using System.Collections.Generic;
 
-	public interface SentMessageList :
-		IEnumerable<SentMessage>
+	public interface ISentMessageList :
+		IEnumerable<ISentMessage>
 	{
 		bool Any();
-		bool Any(Func<SentMessage, bool> filter);
+		bool Any(Func<ISentMessage, bool> filter);
 
 		bool Any<T>()
 			where T : class;

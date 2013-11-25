@@ -1,8 +1,8 @@
-namespace MassTransit.Tests
+namespace MassTransit.Tests.Messages
 {
-	using System;
+    using System;
 
-	[Serializable]
+    [Serializable]
 	public class UpdateAcceptedMessage
 	{
 	}

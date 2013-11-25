@@ -59,7 +59,7 @@ namespace MassTransit.Tests
 
         class Squid :
             InitiatedBy<X>,
-            Orchestrates<Y>
+            IOrchestrate<Y>
         {
             public void Consume(Y message)
             {
@@ -120,7 +120,7 @@ namespace MassTransit.Tests
 
             //now that we have the IConsumers we need to slot them into buckets
             var observers = from ob in consumerTypes
-                            where ob.Implements(typeof (Observes<,>))
+                            where ob.Implements(typeof (IObserve<,>))
                             select ob;
 
 
@@ -129,7 +129,7 @@ namespace MassTransit.Tests
                             select i;
 
             var orchestrates = from i in consumerTypes
-                               where i.Implements(typeof (Orchestrates<>))
+                               where i.Implements(typeof (IOrchestrate<>))
                                where NotInitiator(i, initiates)
                                select i;
 

@@ -22,7 +22,7 @@ namespace MassTransit.Testing.Instances
 		TestInstance<TScenario>,
 		SagaTest<TScenario, TSaga>
 		where TSaga : class, ISaga
-		where TScenario : TestScenario
+		where TScenario : ITestScenario
 	{
 		readonly SagaTestSubjectImpl<TScenario, TSaga> _subject;
 

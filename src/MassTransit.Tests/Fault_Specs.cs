@@ -13,6 +13,7 @@
 namespace MassTransit.Tests
 {
 	using System;
+	using Context;
 	using Magnum.Extensions;
 	using Magnum.TestFramework;
 	using NUnit.Framework;
