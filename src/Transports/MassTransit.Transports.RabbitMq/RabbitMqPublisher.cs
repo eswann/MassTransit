@@ -18,7 +18,7 @@ namespace MassTransit.Transports.RabbitMq
 
 
     public class RabbitMqPublisher :
-        ConnectionBinding<RabbitMqConnection>
+        IConnectionBinding<RabbitMqConnection>
     {
         readonly IRabbitMqEndpointAddress _address;
         readonly object _bindings = new object();

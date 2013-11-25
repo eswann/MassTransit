@@ -16,13 +16,13 @@ namespace MassTransit.Transports
 	using System.Threading;
 
 	public class ReconnectPolicy :
-		ConnectionPolicy
+		IConnectionPolicy
 	{
-		readonly ConnectionHandler _connectionHandler;
-		readonly ConnectionPolicyChain _policyChain;
+		readonly IConnectionHandler _connectionHandler;
+		readonly IConnectionPolicyChain _policyChain;
 		readonly TimeSpan _reconnectDelay;
 
-		public ReconnectPolicy(ConnectionHandler connectionHandler, ConnectionPolicyChain policyChain, TimeSpan reconnectDelay)
+		public ReconnectPolicy(IConnectionHandler connectionHandler, IConnectionPolicyChain policyChain, TimeSpan reconnectDelay)
 		{
 			_connectionHandler = connectionHandler;
 			_policyChain = policyChain;

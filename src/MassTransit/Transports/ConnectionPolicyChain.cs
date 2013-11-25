@@ -13,13 +13,63 @@
 namespace MassTransit.Transports
 {
 	using System;
+	using System.Collections.Generic;
 
-	public interface ConnectionPolicyChain
+    public interface IConnectionPolicyChain
+    {
+        void Push(IConnectionPolicy policy);
+
+        void Pop(IConnectionPolicy policy);
+
+        void Next(Action callback);
+    }
+
+	public class ConnectionPolicyChain :
+		IConnectionPolicyChain
 	{
-		void Push(ConnectionPolicy policy);
+		readonly Stack<IConnectionPolicy> _policies;
 
-		void Pop(ConnectionPolicy policy);
+		public ConnectionPolicyChain(IConnectionHandler connectionHandler)
+		{
+			_policies = new Stack<IConnectionPolicy>();
+			_policies.Push(new DefaultConnectionPolicy(connectionHandler));
+		}
 
-		void Next(Action callback);
+		public void Push(IConnectionPolicy policy)
+		{
+			lock (_policies)
+				_policies.Push(policy);
+		}
+
+		public void Pop(IConnectionPolicy policy)
+		{
+			lock (_policies)
+				if (_policies.Peek() == policy)
+					_policies.Pop();
+		}
+
+		public void Next(Action callback)
+		{
+			IConnectionPolicy policy;
+
+			lock (_policies)
+				policy = _policies.Peek();
+
+			policy.Execute(callback);
+		}
+
+		public void Execute(Action callback)
+		{
+			Next(callback);
+		}
+
+		public void Set(IConnectionPolicy connectionPolicy)
+		{
+			lock (_policies)
+			{
+				_policies.Clear();
+				_policies.Push(connectionPolicy);
+			}
+		}
 	}
 }

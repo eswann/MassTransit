@@ -18,7 +18,7 @@ namespace MassTransit.Transports.RabbitMq
     using RabbitMQ.Client;
 
     public class RabbitMqConnection :
-        Connection
+        Transports.IConnection
     {
         static readonly ILog _log = Logger.Get(typeof (RabbitMqConnection));
         readonly ConnectionFactory _connectionFactory;

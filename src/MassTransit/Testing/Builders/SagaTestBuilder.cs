@@ -20,7 +20,7 @@ namespace MassTransit.Testing.Builders
 		where TSaga : class, ISaga
 		where TScenario : ITestScenario
 	{
-		SagaTest<TScenario, TSaga> Build();
+		ISagaTest<TScenario, TSaga> Build();
 
 		void SetSagaRepository(ISagaRepository<TSaga> sagaRepository);
 	}

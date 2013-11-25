@@ -16,6 +16,6 @@ namespace MassTransit.Transports.RabbitMq.Configuration.Builders
 
 	public interface RabbitMqTransportFactoryBuilder
 	{
-		void AddConnectionFactoryBuilder(Uri uri, ConnectionFactoryBuilder connectionFactoryBuilder);
+		void AddConnectionFactoryBuilder(Uri uri, IConnectionFactoryBuilder connectionFactoryBuilder);
 	}
 }

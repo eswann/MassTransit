@@ -10,24 +10,15 @@
 // under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR 
 // CONDITIONS OF ANY KIND, either express or implied. See the License for the 
 // specific language governing permissions and limitations under the License.
-namespace MassTransit.Testing
+
+namespace MassTransit.Transports
 {
-	using Saga;
-	using Scenarios;
-	using Subjects;
+	using System;
 
-	public interface SagaTest<TSaga> :
-		ITestInstance
-		where TSaga : class, ISaga
+	public interface IConnection :
+		IDisposable
 	{
-		SagaTestSubject<TSaga> Saga { get; }
-	}
-
-	public interface SagaTest<TScenario, TConsumer> :
-		SagaTest<TConsumer>
-		where TConsumer : class, ISaga
-		where TScenario : ITestScenario
-	{
-		TScenario Scenario { get; }
+		void Connect();
+		void Disconnect();
 	}
 }

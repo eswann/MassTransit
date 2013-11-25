@@ -18,14 +18,14 @@ namespace MassTransit.Transports
     using Magnum.Extensions;
 
     public class DefaultConnectionPolicy :
-        ConnectionPolicy
+        IConnectionPolicy
     {
-        readonly ConnectionHandler _connectionHandler;
+        readonly IConnectionHandler _connectionHandler;
         readonly TimeSpan _reconnectDelay;
         readonly ILog _log = Logger.Get(typeof(DefaultConnectionPolicy));
         readonly ReaderWriterLockSlim _connectionLock = new ReaderWriterLockSlim(LockRecursionPolicy.SupportsRecursion);
 
-        public DefaultConnectionPolicy(ConnectionHandler connectionHandler)
+        public DefaultConnectionPolicy(IConnectionHandler connectionHandler)
         {
             _connectionHandler = connectionHandler;
             _reconnectDelay = 10.Seconds();

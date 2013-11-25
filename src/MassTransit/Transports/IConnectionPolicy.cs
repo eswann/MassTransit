@@ -12,11 +12,10 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Transports
 {
+	using System;
 
-	public interface ConnectionBinding<T>
-		where T : Connection
+	public interface IConnectionPolicy
 	{
-		void Bind(T connection);
-		void Unbind(T connection);
+		void Execute(Action callback);
 	}
 }

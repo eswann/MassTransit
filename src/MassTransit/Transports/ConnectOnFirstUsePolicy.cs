@@ -15,12 +15,12 @@ namespace MassTransit.Transports
 	using System;
 
 	public class ConnectOnFirstUsePolicy :
-		ConnectionPolicy
+		IConnectionPolicy
 	{
-		readonly ConnectionHandler _connectionHandler;
-		readonly ConnectionPolicyChain _policyChain;
+		readonly IConnectionHandler _connectionHandler;
+		readonly IConnectionPolicyChain _policyChain;
 
-		public ConnectOnFirstUsePolicy(ConnectionHandler connectionHandler, ConnectionPolicyChain policyChain)
+		public ConnectOnFirstUsePolicy(IConnectionHandler connectionHandler, IConnectionPolicyChain policyChain)
 		{
 			_connectionHandler = connectionHandler;
 			_policyChain = policyChain;

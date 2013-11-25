@@ -34,7 +34,7 @@ namespace MassTransit.Testing.Builders
 			_actions = new List<TestAction<TScenario>>();
 		}
 
-		public SagaTest<TScenario, TSaga> Build()
+		public ISagaTest<TScenario, TSaga> Build()
 		{
 			if(_sagaRepository == null)
 			{

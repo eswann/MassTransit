@@ -28,7 +28,7 @@ namespace MassTransit.Transports.RabbitMq.Configuration.Configurators
             _requestedHeartbeat = requestedHeartbeat;
         }
 
-        public ConnectionFactoryBuilder Configure(ConnectionFactoryBuilder builder)
+        public IConnectionFactoryBuilder Configure(IConnectionFactoryBuilder builder)
         {
             builder.Add(Configure);
             return builder;

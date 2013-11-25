@@ -64,18 +64,18 @@ namespace MassTransit.Transports.RabbitMq.Configuration.Configurators
 
 	    public RabbitMqTransportFactoryBuilder Configure(RabbitMqTransportFactoryBuilder builder)
 		{
-			ConnectionFactoryBuilder connectionFactoryBuilder = CreateBuilder();
+			IConnectionFactoryBuilder connectionFactoryBuilder = CreateBuilder();
 
 			builder.AddConnectionFactoryBuilder(_address.Uri, connectionFactoryBuilder);
 
 			return builder;
 		}
 
-		public ConnectionFactoryBuilder CreateBuilder()
+		public IConnectionFactoryBuilder CreateBuilder()
 		{
-			var connectionFactoryBuilder = new ConnectionFactoryBuilderImpl(_address);
+			var connectionFactoryBuilder = new ConnectionFactoryBuilder(_address);
 
-			_configurators.Aggregate((ConnectionFactoryBuilder) connectionFactoryBuilder,
+			_configurators.Aggregate((IConnectionFactoryBuilder) connectionFactoryBuilder,
 				(seed, configurator) => configurator.Configure(seed));
 			return connectionFactoryBuilder;
 		}

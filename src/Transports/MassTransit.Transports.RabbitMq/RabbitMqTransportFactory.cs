@@ -27,28 +27,28 @@ namespace MassTransit.Transports.RabbitMq
     public class RabbitMqTransportFactory :
         ITransportFactory
     {
-        readonly Cache<ConnectionFactory, ConnectionFactoryBuilder> _connectionFactoryBuilders;
-        readonly Cache<ConnectionFactory, ConnectionHandler<RabbitMqConnection>> _inboundConnections;
+        readonly Cache<ConnectionFactory, IConnectionFactoryBuilder> _connectionFactoryBuilders;
+        readonly Cache<ConnectionFactory, IConnectionHandler<RabbitMqConnection>> _inboundConnections;
         readonly ILog _log = Logger.Get<RabbitMqTransportFactory>();
         readonly IMessageNameFormatter _messageNameFormatter;
-        readonly Cache<ConnectionFactory, ConnectionHandler<RabbitMqConnection>> _outboundConnections;
+        readonly Cache<ConnectionFactory, IConnectionHandler<RabbitMqConnection>> _outboundConnections;
         bool _disposed;
 
         public RabbitMqTransportFactory(
-            IEnumerable<KeyValuePair<Uri, ConnectionFactoryBuilder>> connectionFactoryBuilders)
+            IEnumerable<KeyValuePair<Uri, IConnectionFactoryBuilder>> connectionFactoryBuilders)
         {
-            _inboundConnections = new ConcurrentCache<ConnectionFactory, ConnectionHandler<RabbitMqConnection>>(
+            _inboundConnections = new ConcurrentCache<ConnectionFactory, IConnectionHandler<RabbitMqConnection>>(
                 new ConnectionFactoryEquality());
 
-            _outboundConnections = new ConcurrentCache<ConnectionFactory, ConnectionHandler<RabbitMqConnection>>(
+            _outboundConnections = new ConcurrentCache<ConnectionFactory, IConnectionHandler<RabbitMqConnection>>(
                 new ConnectionFactoryEquality());
 
-            Dictionary<ConnectionFactory, ConnectionFactoryBuilder> builders = connectionFactoryBuilders
-                .Select(x => new KeyValuePair<ConnectionFactory, ConnectionFactoryBuilder>(
+            Dictionary<ConnectionFactory, IConnectionFactoryBuilder> builders = connectionFactoryBuilders
+                .Select(x => new KeyValuePair<ConnectionFactory, IConnectionFactoryBuilder>(
                                  RabbitMqEndpointAddress.Parse(x.Key).ConnectionFactory, x.Value))
                 .ToDictionary(x => x.Key, x => x.Value);
 
-            _connectionFactoryBuilders = new ConcurrentCache<ConnectionFactory, ConnectionFactoryBuilder>(builders,
+            _connectionFactoryBuilders = new ConcurrentCache<ConnectionFactory, IConnectionFactoryBuilder>(builders,
                 new ConnectionFactoryEquality());
 
             _messageNameFormatter = new RabbitMqMessageNameFormatter();
@@ -56,12 +56,12 @@ namespace MassTransit.Transports.RabbitMq
 
         public RabbitMqTransportFactory()
         {
-            _inboundConnections = new ConcurrentCache<ConnectionFactory, ConnectionHandler<RabbitMqConnection>>(
+            _inboundConnections = new ConcurrentCache<ConnectionFactory, IConnectionHandler<RabbitMqConnection>>(
                 new ConnectionFactoryEquality());
-            _outboundConnections = new ConcurrentCache<ConnectionFactory, ConnectionHandler<RabbitMqConnection>>(
+            _outboundConnections = new ConcurrentCache<ConnectionFactory, IConnectionHandler<RabbitMqConnection>>(
                 new ConnectionFactoryEquality());
             _connectionFactoryBuilders =
-                new ConcurrentCache<ConnectionFactory, ConnectionFactoryBuilder>(new ConnectionFactoryEquality());
+                new ConcurrentCache<ConnectionFactory, IConnectionFactoryBuilder>(new ConnectionFactoryEquality());
             _messageNameFormatter = new RabbitMqMessageNameFormatter();
         }
 
@@ -102,7 +102,7 @@ namespace MassTransit.Transports.RabbitMq
 
             EnsureProtocolIsCorrect(address.Uri);
 
-            ConnectionHandler<RabbitMqConnection> connectionHandler = GetConnection(_inboundConnections, address);
+            IConnectionHandler<RabbitMqConnection> connectionHandler = GetConnection(_inboundConnections, address);
 
             return new InboundRabbitMqTransport(address, connectionHandler, settings.PurgeExistingMessages,
                 _messageNameFormatter);
@@ -117,7 +117,7 @@ namespace MassTransit.Transports.RabbitMq
 
             EnsureProtocolIsCorrect(address.Uri);
 
-            ConnectionHandler<RabbitMqConnection> connectionHandler = GetConnection(_outboundConnections, address);
+            IConnectionHandler<RabbitMqConnection> connectionHandler = GetConnection(_outboundConnections, address);
 
             return new OutboundRabbitMqTransport(address, connectionHandler, false);
         }
@@ -131,7 +131,7 @@ namespace MassTransit.Transports.RabbitMq
 
             EnsureProtocolIsCorrect(address.Uri);
 
-            ConnectionHandler<RabbitMqConnection> connection = GetConnection(_outboundConnections, address);
+            IConnectionHandler<RabbitMqConnection> connection = GetConnection(_outboundConnections, address);
 
             return new OutboundRabbitMqTransport(address, connection, true);
         }
@@ -172,8 +172,8 @@ namespace MassTransit.Transports.RabbitMq
             return _inboundConnections.Count() + _outboundConnections.Count;
         }
 
-        ConnectionHandler<RabbitMqConnection> GetConnection(
-            Cache<ConnectionFactory, ConnectionHandler<RabbitMqConnection>> cache, IRabbitMqEndpointAddress address)
+        IConnectionHandler<RabbitMqConnection> GetConnection(
+            Cache<ConnectionFactory, IConnectionHandler<RabbitMqConnection>> cache, IRabbitMqEndpointAddress address)
         {
             ConnectionFactory factory = SanitizeConnectionFactory(address);
 
@@ -182,7 +182,7 @@ namespace MassTransit.Transports.RabbitMq
                     if (_log.IsDebugEnabled)
                         _log.DebugFormat("Creating RabbitMQ connection: {0}", address.Uri);
 
-                    ConnectionFactoryBuilder builder = _connectionFactoryBuilders.Get(factory, __ =>
+                    IConnectionFactoryBuilder builder = _connectionFactoryBuilders.Get(factory, __ =>
                         {
                             if (_log.IsDebugEnabled)
                                 _log.DebugFormat("Using default configurator for connection: {0}", address.Uri);
@@ -201,7 +201,7 @@ namespace MassTransit.Transports.RabbitMq
                     }
 
                     var connection = new RabbitMqConnection(connectionFactory);
-                    var connectionHandler = new ConnectionHandlerImpl<RabbitMqConnection>(connection);
+                    var connectionHandler = new ConnectionHandler<RabbitMqConnection>(connection);
                     return connectionHandler;
                 });
         }

@@ -35,7 +35,7 @@ namespace MassTransit.Tests.Saga
         }
 
         Guid systemId;
-        SagaTest<IBusTestScenario, CustomerRegistrationSaga> test;
+        ISagaTest<IBusTestScenario, CustomerRegistrationSaga> test;
 
         [TestFixtureSetUp]
         public void A_state_machine_saga_is_being_tested()

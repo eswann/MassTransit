@@ -61,7 +61,7 @@ namespace MassTransit.Testing.TestInstanceConfigurators
 			return base.Validate().Concat(_configurators.SelectMany(x => x.Validate()));
 		}
 
-		public SagaTest<TScenario, TSaga> Build()
+		public ISagaTest<TScenario, TSaga> Build()
 		{
 			TScenario context = BuildTestScenario();
 

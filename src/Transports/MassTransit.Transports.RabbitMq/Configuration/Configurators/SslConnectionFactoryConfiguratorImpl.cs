@@ -51,7 +51,7 @@ namespace MassTransit.Transports.RabbitMq.Configuration.Configurators
         ///            {fail_if_no_peer_cert,false}]}
         /// The last 2 lines are the important ones.
         /// </remarks>
-        public ConnectionFactoryBuilder Configure(ConnectionFactoryBuilder builder)
+        public IConnectionFactoryBuilder Configure(IConnectionFactoryBuilder builder)
         {
             builder.Add(connectionFactory =>
                 {

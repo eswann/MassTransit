@@ -84,7 +84,6 @@
       <Link>SolutionVersion.cs</Link>
     </Compile>
     <Compile Include="Configuration\Builders\ConnectionFactoryBuilder.cs" />
-    <Compile Include="Configuration\Builders\ConnectionFactoryBuilderImpl.cs" />
     <Compile Include="Configuration\Builders\RabbitMqTransportFactoryBuilder.cs" />
     <Compile Include="Configuration\Builders\RabbitMqTransportFactoryBuilderImpl.cs" />
     <Compile Include="Configuration\Configurators\ConnectionFactoryBuilderConfigurator.cs" />

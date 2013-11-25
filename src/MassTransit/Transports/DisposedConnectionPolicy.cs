@@ -16,7 +16,7 @@ namespace MassTransit.Transports
 	using System.Threading;
 
 	public class DisposedConnectionPolicy :
-		ConnectionPolicy
+		IConnectionPolicy
 	{
 		public void Execute(Action callback)
 		{

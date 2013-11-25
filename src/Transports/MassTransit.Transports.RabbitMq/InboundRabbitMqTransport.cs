@@ -28,7 +28,7 @@ namespace MassTransit.Transports.RabbitMq
         static readonly ILog _log = Logger.Get(typeof(InboundRabbitMqTransport));
 
         readonly IRabbitMqEndpointAddress _address;
-        readonly ConnectionHandler<RabbitMqConnection> _connectionHandler;
+        readonly IConnectionHandler<RabbitMqConnection> _connectionHandler;
         readonly IMessageNameFormatter _messageNameFormatter;
         readonly bool _purgeExistingMessages;
         RabbitMqConsumer _consumer;
@@ -36,7 +36,7 @@ namespace MassTransit.Transports.RabbitMq
         RabbitMqPublisher _publisher;
 
         public InboundRabbitMqTransport(IRabbitMqEndpointAddress address,
-            ConnectionHandler<RabbitMqConnection> connectionHandler,
+            IConnectionHandler<RabbitMqConnection> connectionHandler,
             bool purgeExistingMessages,
             IMessageNameFormatter messageNameFormatter)
         {

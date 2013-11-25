@@ -24,7 +24,7 @@ namespace MassTransit.Threading
 	/// The default consumer pool that enqueues consumes on the thread pool.
 	/// </summary>
 	public class ThreadPoolConsumerPool :
-		ConsumerPool
+		IConsumerPool
 	{
 		static readonly ILog _log = Logger.Get(typeof (ThreadPoolConsumerPool));
 

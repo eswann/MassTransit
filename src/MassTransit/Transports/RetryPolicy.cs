@@ -15,11 +15,11 @@ namespace MassTransit.Transports
     using System;
 
     class RetryPolicy :
-        ConnectionPolicy
+        IConnectionPolicy
     {
-        readonly ConnectionPolicyChain _policyChain;
+        readonly IConnectionPolicyChain _policyChain;
 
-        public RetryPolicy(ConnectionPolicyChain policyChain)
+        public RetryPolicy(IConnectionPolicyChain policyChain)
         {
             _policyChain = policyChain;
         }

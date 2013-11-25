@@ -30,6 +30,6 @@ namespace MassTransit.Transports.RabbitMq.Configuration.Configurators
 		/// </summary>
 		/// <param name="builder">The builder</param>
 		/// <returns>An updated builder</returns>
-		ConnectionFactoryBuilder Configure(ConnectionFactoryBuilder builder);
+		IConnectionFactoryBuilder Configure(IConnectionFactoryBuilder builder);
 	}
 }

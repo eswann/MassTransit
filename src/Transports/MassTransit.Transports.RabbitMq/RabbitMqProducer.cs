@@ -26,7 +26,7 @@ namespace MassTransit.Transports.RabbitMq
 
 
     public class RabbitMqProducer :
-        ConnectionBinding<RabbitMqConnection>
+        IConnectionBinding<RabbitMqConnection>
     {
 #if NET40
         readonly Cache<ulong, TaskCompletionSource<bool>> _confirms;

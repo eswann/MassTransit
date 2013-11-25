@@ -20,7 +20,7 @@ namespace MassTransit.Testing.Instances
 
 	public class SagaTestInstance<TScenario, TSaga> :
 		TestInstance<TScenario>,
-		SagaTest<TScenario, TSaga>
+		ISagaTest<TScenario, TSaga>
 		where TSaga : class, ISaga
 		where TScenario : ITestScenario
 	{

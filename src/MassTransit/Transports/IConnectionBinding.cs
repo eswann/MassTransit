@@ -10,15 +10,13 @@
 // under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR 
 // CONDITIONS OF ANY KIND, either express or implied. See the License for the 
 // specific language governing permissions and limitations under the License.
-
 namespace MassTransit.Transports
 {
-	using System;
 
-	public interface Connection :
-		IDisposable
+	public interface IConnectionBinding<T>
+		where T : IConnection
 	{
-		void Connect();
-		void Disconnect();
+		void Bind(T connection);
+		void Unbind(T connection);
 	}
 }

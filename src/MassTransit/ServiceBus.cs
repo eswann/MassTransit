@@ -41,7 +41,7 @@ namespace MassTransit
     {
         static readonly ILog _log;
 
-        ConsumerPool _consumerPool;
+        IConsumerPool _consumerPool;
         int _consumerThreadLimit = Environment.ProcessorCount*4;
         ServiceBusInstancePerformanceCounters _counters;
         volatile bool _disposed;

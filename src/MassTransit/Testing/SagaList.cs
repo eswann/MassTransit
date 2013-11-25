@@ -39,7 +39,7 @@ namespace MassTransit.Testing
 		readonly IDictionary<Guid, ISagaInstance<T>> _sagaIndex; 
 		readonly HashSet<ISagaInstance<T>> _sagas;
 		readonly AutoResetEvent _updated;
-		TimeSpan _timeout = 12.Seconds();
+	    readonly TimeSpan _timeout = 12.Seconds();
 
 		public SagaList()
 		{

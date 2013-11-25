@@ -28,11 +28,11 @@ namespace MassTransit.Transports.RabbitMq
     {
         readonly IRabbitMqEndpointAddress _address;
         readonly bool _bindToQueue;
-        readonly ConnectionHandler<RabbitMqConnection> _connectionHandler;
+        readonly IConnectionHandler<RabbitMqConnection> _connectionHandler;
         RabbitMqProducer _producer;
 
         public OutboundRabbitMqTransport(IRabbitMqEndpointAddress address,
-            ConnectionHandler<RabbitMqConnection> connectionHandler, bool bindToQueue)
+            IConnectionHandler<RabbitMqConnection> connectionHandler, bool bindToQueue)
         {
             _address = address;
             _connectionHandler = connectionHandler;
