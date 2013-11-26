@@ -191,32 +191,32 @@ namespace MassTransit.Log4NetIntegration.Logging
             get { return _log.IsFatalEnabled; }
         }
 
-        public void Log(LogLevel level, object obj)
+        public void Log(LogLevel level, object message)
         {
             if (level == LogLevel.Fatal)
-                Fatal(obj);
+                Fatal(message);
             else if (level == LogLevel.Error)
-                Error(obj);
+                Error(message);
             else if (level == LogLevel.Warn)
-                Warn(obj);
+                Warn(message);
             else if (level == LogLevel.Info)
-                Info(obj);
+                Info(message);
             else if (level >= LogLevel.Debug)
-                Debug(obj);
+                Debug(message);
         }
 
-        public void Log(LogLevel level, object obj, Exception exception)
+        public void Log(LogLevel level, object message, Exception exception)
         {
             if (level == LogLevel.Fatal)
-                Fatal(obj, exception);
+                Fatal(message, exception);
             else if (level == LogLevel.Error)
-                Error(obj, exception);
+                Error(message, exception);
             else if (level == LogLevel.Warn)
-                Warn(obj, exception);
+                Warn(message, exception);
             else if (level == LogLevel.Info)
-                Info(obj, exception);
+                Info(message, exception);
             else if (level >= LogLevel.Debug)
-                Debug(obj, exception);
+                Debug(message, exception);
         }
 
         public void Log(LogLevel level, LogOutputProvider messageProvider)

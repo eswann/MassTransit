@@ -14,7 +14,7 @@ namespace MassTransit.Transports.RabbitMq.Configuration.Builders
 {
     using System;
     using System.Collections.Generic;
-    using PublisherConfirm;
+    using Publish;
 
     public interface IRabbitMqTransportFactoryBuilder
     {

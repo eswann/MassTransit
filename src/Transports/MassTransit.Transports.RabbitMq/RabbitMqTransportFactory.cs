@@ -21,7 +21,7 @@ namespace MassTransit.Transports.RabbitMq
     using Logging;
     using Magnum.Caching;
     using Magnum.Extensions;
-    using PublisherConfirm;
+    using Publish;
     using RabbitMQ.Client;
 
 

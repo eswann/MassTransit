@@ -371,20 +371,20 @@ namespace MassTransit.Logging.Tracing
             LogInternal(LogLevel.Fatal, string.Format(formatProvider, format, args), null);
         }
 
-        public void Log(LogLevel level, object obj)
+        public void Log(LogLevel level, object message)
         {
             if (_level < level)
                 return;
 
-            LogInternal(level, obj, null);
+            LogInternal(level, message, null);
         }
 
-        public void Log(LogLevel level, object obj, Exception exception)
+        public void Log(LogLevel level, object message, Exception exception)
         {
             if (_level < level)
                 return;
 
-            LogInternal(level, obj, exception);
+            LogInternal(level, message, exception);
         }
 
         public void Log(LogLevel level, LogOutputProvider messageProvider)

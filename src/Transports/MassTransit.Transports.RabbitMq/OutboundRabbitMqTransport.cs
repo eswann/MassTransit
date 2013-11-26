@@ -17,7 +17,7 @@ namespace MassTransit.Transports.RabbitMq
     using System.IO;
     using Context;
     using Magnum;
-    using PublisherConfirm;
+    using Publish;
     using RabbitMQ.Client;
     using RabbitMQ.Client.Exceptions;
     using System.Linq;

@@ -61,14 +61,14 @@ namespace MassTransit.NLogIntegration.Logging
             get { return _log.IsFatalEnabled; }
         }
 
-        public void Log(MassTransit.Logging.LogLevel level, object obj)
+        public void Log(MassTransit.Logging.LogLevel level, object message)
         {
-            _log.Log(GetNLogLevel(level), obj);
+            _log.Log(GetNLogLevel(level), message);
         }
 
-        public void Log(MassTransit.Logging.LogLevel level, object obj, Exception exception)
+        public void Log(MassTransit.Logging.LogLevel level, object message, Exception exception)
         {
-            _log.LogException(GetNLogLevel(level), obj == null ? "" : obj.ToString(), exception);
+            _log.LogException(GetNLogLevel(level), message == null ? "" : message.ToString(), exception);
         }
 
         public void Log(MassTransit.Logging.LogLevel level, LogOutputProvider messageProvider)
@@ -87,14 +87,14 @@ namespace MassTransit.NLogIntegration.Logging
             _log.Log(GetNLogLevel(level), format, args);
         }
 
-        public void Debug(object obj)
+        public void Debug(object message)
         {
-            _log.Log(NLog.LogLevel.Debug, obj);
+            _log.Log(NLog.LogLevel.Debug, message);
         }
 
-        public void Debug(object obj, Exception exception)
+        public void Debug(object message, Exception exception)
         {
-            _log.LogException(NLog.LogLevel.Debug, obj == null ? "" : obj.ToString(), exception);
+            _log.LogException(NLog.LogLevel.Debug, message == null ? "" : message.ToString(), exception);
         }
 
         public void Debug(LogOutputProvider messageProvider)
@@ -102,14 +102,14 @@ namespace MassTransit.NLogIntegration.Logging
             _log.Debug(ToGenerator(messageProvider));
         }
 
-        public void Info(object obj)
+        public void Info(object message)
         {
-            _log.Log(NLog.LogLevel.Info, obj);
+            _log.Log(NLog.LogLevel.Info, message);
         }
 
-        public void Info(object obj, Exception exception)
+        public void Info(object message, Exception exception)
         {
-            _log.LogException(NLog.LogLevel.Info, obj == null ? "" : obj.ToString(), exception);
+            _log.LogException(NLog.LogLevel.Info, message == null ? "" : message.ToString(), exception);
         }
 
         public void Info(LogOutputProvider messageProvider)
@@ -117,14 +117,14 @@ namespace MassTransit.NLogIntegration.Logging
             _log.Info(ToGenerator(messageProvider));
         }
 
-        public void Warn(object obj)
+        public void Warn(object message)
         {
-            _log.Log(NLog.LogLevel.Warn, obj);
+            _log.Log(NLog.LogLevel.Warn, message);
         }
 
-        public void Warn(object obj, Exception exception)
+        public void Warn(object message, Exception exception)
         {
-            _log.LogException(NLog.LogLevel.Warn, obj == null ? "" : obj.ToString(), exception);
+            _log.LogException(NLog.LogLevel.Warn, message == null ? "" : message.ToString(), exception);
         }
 
         public void Warn(LogOutputProvider messageProvider)
@@ -132,14 +132,14 @@ namespace MassTransit.NLogIntegration.Logging
             _log.Warn(ToGenerator(messageProvider));
         }
 
-        public void Error(object obj)
+        public void Error(object message)
         {
-            _log.Log(NLog.LogLevel.Error, obj);
+            _log.Log(NLog.LogLevel.Error, message);
         }
 
-        public void Error(object obj, Exception exception)
+        public void Error(object message, Exception exception)
         {
-            _log.LogException(NLog.LogLevel.Error, obj == null ? "" : obj.ToString(), exception);
+            _log.LogException(NLog.LogLevel.Error, message == null ? "" : message.ToString(), exception);
         }
 
         public void Error(LogOutputProvider messageProvider)
@@ -147,14 +147,14 @@ namespace MassTransit.NLogIntegration.Logging
             _log.Error(ToGenerator(messageProvider));
         }
 
-        public void Fatal(object obj)
+        public void Fatal(object message)
         {
-            _log.Log(NLog.LogLevel.Fatal, obj);
+            _log.Log(NLog.LogLevel.Fatal, message);
         }
 
-        public void Fatal(object obj, Exception exception)
+        public void Fatal(object message, Exception exception)
         {
-            _log.LogException(NLog.LogLevel.Fatal, obj == null ? "" : obj.ToString(), exception);
+            _log.LogException(NLog.LogLevel.Fatal, message == null ? "" : message.ToString(), exception);
         }
 
         public void Fatal(LogOutputProvider messageProvider)
