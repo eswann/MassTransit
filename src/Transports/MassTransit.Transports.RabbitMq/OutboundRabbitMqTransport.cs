@@ -13,12 +13,11 @@
 namespace MassTransit.Transports.RabbitMq
 {
     using System;
-    using System.Collections;
     using System.Globalization;
     using System.IO;
     using Context;
-    using Exceptions;
     using Magnum;
+    using PublisherConfirm;
     using RabbitMQ.Client;
     using RabbitMQ.Client.Exceptions;
     using System.Linq;
@@ -27,16 +26,18 @@ namespace MassTransit.Transports.RabbitMq
         IOutboundTransport
     {
         readonly IRabbitMqEndpointAddress _address;
-        readonly bool _bindToQueue;
+        readonly IPublisherConfirmSettings _publisherConfirmSettings;
         readonly IConnectionHandler<RabbitMqConnection> _connectionHandler;
+        
         RabbitMqProducer _producer;
 
         public OutboundRabbitMqTransport(IRabbitMqEndpointAddress address,
-            IConnectionHandler<RabbitMqConnection> connectionHandler, bool bindToQueue)
+            IPublisherConfirmSettings publisherConfirmSettings,
+            IConnectionHandler<RabbitMqConnection> connectionHandler)
         {
             _address = address;
             _connectionHandler = connectionHandler;
-            _bindToQueue = bindToQueue;
+            _publisherConfirmSettings = publisherConfirmSettings;
         }
 
         public IEndpointAddress Address
@@ -56,6 +57,7 @@ namespace MassTransit.Transports.RabbitMq
 
                         properties.SetPersistent(true);
                         properties.MessageId = context.MessageId ?? properties.MessageId ?? NewId.Next().ToString();
+                        properties.CorrelationId = context.CorrelationId ?? "";
                         if (context.ExpirationTime.HasValue)
                         {
                             DateTime value = context.ExpirationTime.Value;
@@ -72,22 +74,11 @@ namespace MassTransit.Transports.RabbitMq
                             properties.Headers = context.Headers.ToDictionary(entry => entry.Key, entry => (object)entry.Value);
                             properties.Headers["Content-Type"]=context.ContentType;
 
-#if NET40
-                            var task = _producer.PublishAsync(_address.Name, properties, body.ToArray());
-                            task.Wait();
-#else
                             _producer.Publish(_address.Name, properties, body.ToArray());
-#endif
 
                             _address.LogSent(context.MessageId ?? properties.MessageId ?? "", context.MessageType);
                         }
                     }
-#if NET40
-                    catch (AggregateException ex)
-                    {
-                        throw new TransportException(_address.Uri, "Publisher did not confirm message", ex.InnerException);
-                    }
-#endif
                     catch (AlreadyClosedException ex)
                     {
                         throw new InvalidConnectionException(_address.Uri, "Connection was already closed", ex);
@@ -113,7 +104,7 @@ namespace MassTransit.Transports.RabbitMq
             if (_producer != null)
                 return;
 
-            _producer = new RabbitMqProducer(_address);
+            _producer = new RabbitMqProducer(_address, _publisherConfirmSettings);
 
             _connectionHandler.AddBinding(_producer);
         }

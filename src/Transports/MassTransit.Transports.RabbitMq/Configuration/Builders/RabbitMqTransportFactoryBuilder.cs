@@ -12,34 +12,44 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Transports.RabbitMq.Configuration.Builders
 {
-	using System;
-	using System.Collections.Generic;
+    using System;
+    using System.Collections.Generic;
+    using PublisherConfirm;
 
     public interface IRabbitMqTransportFactoryBuilder
     {
         void AddConnectionFactoryBuilder(Uri uri, IConnectionFactoryBuilder connectionFactoryBuilder);
+
+        void SetPublisherConfirmSettings(IPublisherConfirmSettings publisherConfirmSettings);
     }
 
-	public class RabbitMqTransportFactoryBuilder :
-		IRabbitMqTransportFactoryBuilder
-	{
-		readonly IDictionary<Uri, IConnectionFactoryBuilder> _connectionFactoryBuilders;
+    public class RabbitMqTransportFactoryBuilder :
+        IRabbitMqTransportFactoryBuilder
+    {
+        readonly IDictionary<Uri, IConnectionFactoryBuilder> _connectionFactoryBuilders;
+        IPublisherConfirmSettings _publisherConfirmSettings = new PublisherConfirmSettings();
 
-		public RabbitMqTransportFactoryBuilder()
-		{
-			_connectionFactoryBuilders = new Dictionary<Uri, IConnectionFactoryBuilder>();
-		}
+        public RabbitMqTransportFactoryBuilder()
+        {
+            _connectionFactoryBuilders = new Dictionary<Uri, IConnectionFactoryBuilder>();
+        }
 
-		public void AddConnectionFactoryBuilder(Uri uri, IConnectionFactoryBuilder connectionFactoryBuilder)
-		{
-			_connectionFactoryBuilders[uri] = connectionFactoryBuilder;
-		}
+        public void AddConnectionFactoryBuilder(Uri uri, IConnectionFactoryBuilder connectionFactoryBuilder)
+        {
+            _connectionFactoryBuilders[uri] = connectionFactoryBuilder;
+        }
 
-		public RabbitMqTransportFactory Build()
-		{
-			var factory = new RabbitMqTransportFactory(_connectionFactoryBuilders);
 
-			return factory;
-		}
-	}
+        public void SetPublisherConfirmSettings(IPublisherConfirmSettings publisherConfirmSettings)
+        {
+            _publisherConfirmSettings = publisherConfirmSettings;
+        }
+
+        public RabbitMqTransportFactory Build()
+        {
+            var factory = new RabbitMqTransportFactory(_connectionFactoryBuilders, _publisherConfirmSettings);
+
+            return factory;
+        }
+    }
 }

@@ -13,7 +13,7 @@
 namespace MassTransit.Transports.RabbitMq.Configuration
 {
     using System;
-    using MassTransit.Transports.RabbitMq.Configuration.Configurators;
+    using Configurators;
 
     public static class RabbitMqTransportFactoryExtensions
 	{
@@ -25,5 +25,13 @@ namespace MassTransit.Transports.RabbitMq.Configuration
 
 			configurator.AddConfigurator(hostConfigurator);
 		}
+
+        public static void UsePublisherConfirms(this RabbitMqTransportFactoryConfigurator configurator,
+           Action<ulong, string> registerMessageAction, Action<ulong, bool> acktion, Action<ulong, bool> nacktion)
+        {
+            var hostConfigurator = new PublisherConfirmFactoryConfigurator(true, registerMessageAction, acktion, nacktion);
+
+            configurator.AddConfigurator(hostConfigurator);
+        }
 	}
 }

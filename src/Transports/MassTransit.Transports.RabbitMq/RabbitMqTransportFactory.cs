@@ -21,6 +21,7 @@ namespace MassTransit.Transports.RabbitMq
     using Logging;
     using Magnum.Caching;
     using Magnum.Extensions;
+    using PublisherConfirm;
     using RabbitMQ.Client;
 
 
@@ -31,12 +32,14 @@ namespace MassTransit.Transports.RabbitMq
         readonly Cache<ConnectionFactory, IConnectionHandler<RabbitMqConnection>> _inboundConnections;
         readonly ILog _log = Logger.Get<RabbitMqTransportFactory>();
         readonly IMessageNameFormatter _messageNameFormatter;
+        readonly IPublisherConfirmSettings _publisherConfirmSettings;
         readonly Cache<ConnectionFactory, IConnectionHandler<RabbitMqConnection>> _outboundConnections;
         bool _disposed;
 
-        public RabbitMqTransportFactory(
-            IEnumerable<KeyValuePair<Uri, IConnectionFactoryBuilder>> connectionFactoryBuilders)
+        public RabbitMqTransportFactory(IEnumerable<KeyValuePair<Uri, IConnectionFactoryBuilder>> connectionFactoryBuilders, 
+            IPublisherConfirmSettings publisherConfirmSettings)
         {
+            _publisherConfirmSettings = publisherConfirmSettings;
             _inboundConnections = new ConcurrentCache<ConnectionFactory, IConnectionHandler<RabbitMqConnection>>(
                 new ConnectionFactoryEquality());
 
@@ -56,6 +59,7 @@ namespace MassTransit.Transports.RabbitMq
 
         public RabbitMqTransportFactory()
         {
+            _publisherConfirmSettings = new PublisherConfirmSettings();
             _inboundConnections = new ConcurrentCache<ConnectionFactory, IConnectionHandler<RabbitMqConnection>>(
                 new ConnectionFactoryEquality());
             _outboundConnections = new ConcurrentCache<ConnectionFactory, IConnectionHandler<RabbitMqConnection>>(
@@ -119,7 +123,7 @@ namespace MassTransit.Transports.RabbitMq
 
             IConnectionHandler<RabbitMqConnection> connectionHandler = GetConnection(_outboundConnections, address);
 
-            return new OutboundRabbitMqTransport(address, connectionHandler, false);
+            return new OutboundRabbitMqTransport(address, _publisherConfirmSettings, connectionHandler);
         }
 
         public IOutboundTransport BuildError(ITransportSettings settings)
@@ -133,7 +137,7 @@ namespace MassTransit.Transports.RabbitMq
 
             IConnectionHandler<RabbitMqConnection> connection = GetConnection(_outboundConnections, address);
 
-            return new OutboundRabbitMqTransport(address, connection, true);
+            return new OutboundRabbitMqTransport(address, _publisherConfirmSettings, connection);
         }
 
         public IMessageNameFormatter MessageNameFormatter
