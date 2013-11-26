@@ -5,11 +5,12 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Reflection;
+    using Logging;
     using Newtonsoft.Json;
 
     public class UnconfirmedMessageSqlRepository : IUnconfirmedMessageRepository
     {
-        private readonly ILogger _logger = LoggingService.LoggerFor<UnconfirmedMessageSqlRepository>();
+        static readonly ILog _logger = Logger.Get<UnconfirmedMessageSqlRepository>();
         private readonly IPublishSettings _publishSettings;
         private static readonly Assembly _messagesAssembly = typeof(IMessage).Assembly;
         private readonly ConcurrentDictionary<string, Type> _cachedTypes = new ConcurrentDictionary<string, Type>();

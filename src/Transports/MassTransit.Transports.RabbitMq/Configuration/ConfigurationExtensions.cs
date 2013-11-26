@@ -1,6 +1,7 @@
-﻿namespace MassTransit.Transports.RabbitMq.Publish
+﻿namespace MassTransit.Transports.RabbitMq.Configuration
 {
     using MassTransit.BusConfigurators;
+    using Publish;
 
     public static class ConfigurationExtensions
     {

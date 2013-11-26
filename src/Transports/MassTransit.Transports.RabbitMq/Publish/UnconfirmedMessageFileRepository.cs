@@ -7,11 +7,13 @@
     using System.IO;
     using System.Linq;
     using System.Reflection;
+    using Logging;
     using Newtonsoft.Json;
 
     public class UnconfirmedMessageFileRepository : IUnconfirmedMessageRepository
     {
-        private readonly ILogger _logger = LoggingService.LoggerFor<UnconfirmedMessageFileRepository>();
+        private static readonly ILog _logger = Logger.Get<UnconfirmedMessageFileRepository>();
+
 
         private static readonly object _directoryLock = new object();
         private readonly string _filePath;
