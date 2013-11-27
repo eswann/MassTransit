@@ -19,7 +19,7 @@ namespace MassTransit.Services.Timeout.Messages
 	/// </summary>
     [Serializable]
     public class CancelTimeout :
-        CorrelatedBy<Guid>
+        IAmCorrelatedBy<Guid>
     {
         /*
         /// <summary>

@@ -15,7 +15,7 @@ namespace MassTransit.Tests.Load.Messages
 	using System;
 
 	public interface First :
-		CorrelatedBy<Guid>
+		IAmCorrelatedBy<Guid>
 	{
 		DateTime CreatedAt { get; }
 	}

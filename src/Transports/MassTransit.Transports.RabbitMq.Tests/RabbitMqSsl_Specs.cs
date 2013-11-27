@@ -15,6 +15,7 @@ namespace MassTransit.Transports.RabbitMq.Tests
     using System;
     using System.Net;
     using Configuration;
+    using Configuration.Extensions;
     using Magnum.TestFramework;
     using NUnit.Framework;
 

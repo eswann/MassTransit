@@ -23,7 +23,7 @@ namespace MassTransit.Transports.RabbitMq.Tests
 
 	    public When_converting_a_type_to_a_message_name()
 	    {
-	        _formatter = new RabbitMqMessageNameFormatter();
+	        _formatter = new MessageNameFormatter();
 	    }
 
 	    [Then]

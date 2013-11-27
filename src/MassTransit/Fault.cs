@@ -107,8 +107,8 @@ namespace MassTransit
     [Serializable]
     public class Fault<TMessage, TKey> :
         Fault<TMessage>,
-        CorrelatedBy<TKey>
-        where TMessage : class, CorrelatedBy<TKey>
+        IAmCorrelatedBy<TKey>
+        where TMessage : class, IAmCorrelatedBy<TKey>
     {
         /// <summary>
         /// Creates a new Fault message for the failed correlated message

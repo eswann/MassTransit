@@ -15,7 +15,7 @@ namespace MassTransit.Tests.Messages
 	using System;
 
 	public class ResponseMessage :
-		CorrelatedBy<Guid>
+		IAmCorrelatedBy<Guid>
 	{
 		private readonly Guid _correlationId;
 

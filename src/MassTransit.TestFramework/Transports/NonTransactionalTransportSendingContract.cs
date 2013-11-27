@@ -28,7 +28,7 @@ namespace MassTransit.TestFramework.Transports
         public void SetUp()
         {
             _serializer = new XmlMessageSerializer();
-            _address = new EndpointAddress(Address);
+            _address = new MassTransit.EndpointAddress(Address);
             _settings = new TransportSettings(_address)
                 {
                     CreateIfMissing = true,
@@ -49,7 +49,7 @@ namespace MassTransit.TestFramework.Transports
         IOutboundTransport _transport;
         readonly ITransportFactory _factory;
         IMessageSerializer _serializer;
-        EndpointAddress _address;
+        MassTransit.EndpointAddress _address;
         TransportSettings _settings;
         IInboundTransport _inboundTransport;
 

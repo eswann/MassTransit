@@ -14,6 +14,7 @@ namespace MassTransit.Transports.RabbitMq.Testing
 {
     using System;
     using Configuration;
+    using Configuration.Extensions;
     using MassTransit.Advanced;
     using Magnum.Extensions;
     using MassTransit.Testing.ScenarioBuilders;

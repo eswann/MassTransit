@@ -13,8 +13,7 @@
 namespace MassTransit.Transports
 {
 
-	public interface IConnectionBinding<T>
-		where T : IConnection
+	public interface IConnectionBinding<T> where T : ITransportConnection
 	{
 		void Bind(T connection);
 		void Unbind(T connection);

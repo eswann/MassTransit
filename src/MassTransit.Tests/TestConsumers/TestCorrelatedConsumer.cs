@@ -17,7 +17,7 @@ namespace MassTransit.Tests.TestConsumers
 	public class TestCorrelatedConsumer<TMessage, TKey> :
 		TestConsumerBase<TMessage>,
 		Consumes<TMessage>.For<TKey>
-		where TMessage : class, CorrelatedBy<Guid>
+		where TMessage : class, IAmCorrelatedBy<Guid>
 	{
 		readonly TKey _correlationId;
 

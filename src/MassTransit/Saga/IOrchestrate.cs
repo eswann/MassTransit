@@ -21,7 +21,7 @@ namespace MassTransit.Saga
     /// <typeparam name="TMessage">The type of message to consume</typeparam>
     public interface IOrchestrate<TMessage> :
         Consumes<TMessage>.All
-        where TMessage : class, CorrelatedBy<Guid>
+        where TMessage : class, IAmCorrelatedBy<Guid>
     {
     }
 }

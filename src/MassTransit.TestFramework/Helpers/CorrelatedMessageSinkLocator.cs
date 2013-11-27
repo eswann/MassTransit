@@ -33,7 +33,7 @@ namespace MassTransit.TestFramework.Helpers
 		public bool Success { get; private set; }
 
 		public bool Inspect<T, TMessage, TKey>(CorrelatedMessageSinkRouter<T, TMessage, TKey> sink)
-			where TMessage : class, CorrelatedBy<TKey>
+			where TMessage : class, IAmCorrelatedBy<TKey>
 			where T : class
 		{
 			if (typeof (TMessage) == _messageType && typeof (TKey) == _keyType)

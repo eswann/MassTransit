@@ -83,7 +83,7 @@ namespace MassTransit
             if (type.Namespace.StartsWith("System."))
                 return false;
 
-            if (type.IsGenericType && type.GetGenericTypeDefinition() == typeof(CorrelatedBy<>))
+            if (type.IsGenericType && type.GetGenericTypeDefinition() == typeof(IAmCorrelatedBy<>))
                 return false;
 
             return true;

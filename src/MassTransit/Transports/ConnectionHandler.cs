@@ -32,7 +32,7 @@ namespace MassTransit.Transports
     /// <typeparam name="T"></typeparam>
     public interface IConnectionHandler<T> :
         IDisposable
-        where T : IConnection
+        where T : ITransportConnection
     {
         void Use(Action<T> callback);
 
@@ -43,7 +43,7 @@ namespace MassTransit.Transports
     public class ConnectionHandler<T> :
         IConnectionHandler<T>,
         IConnectionHandler
-        where T : IConnection
+        where T : ITransportConnection
     {
         readonly HashSet<IConnectionBinding<T>> _bindings;
         readonly T _connection;

@@ -41,8 +41,7 @@ namespace MassTransit.Testing.Scenarios
         IEndpointFactory EndpointFactory { get; }
     }
 
-	public abstract class EndpointTestScenario :
-		IEndpointTestScenario
+	public abstract class EndpointTestScenario : IEndpointTestScenario
 	{
 		readonly EndpointCache _endpointCache;
 		readonly IDictionary<Uri, EndpointTestDecorator> _endpoints;

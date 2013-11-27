@@ -76,8 +76,8 @@ namespace MassTransit.Tests.Groups
 
 	public static class OIUWERO
 	{
-		public static CorrelatedMessageGroup<TKey> CombineWith<TMessage, TKey>(this CorrelatedBy<TKey> message, params TMessage[] messages)
-			where TMessage : CorrelatedBy<TKey>
+		public static CorrelatedMessageGroup<TKey> CombineWith<TMessage, TKey>(this IAmCorrelatedBy<TKey> message, params TMessage[] messages)
+			where TMessage : IAmCorrelatedBy<TKey>
 		{
 			var group = new CorrelatedMessageGroup<TKey> {message};
 
@@ -95,13 +95,13 @@ namespace MassTransit.Tests.Groups
 
 
 		public void Add<TMessage>(TMessage message) 
-			where TMessage : CorrelatedBy<TKey>
+			where TMessage : IAmCorrelatedBy<TKey>
 		{
 			_messages.Add(message);
 		}
 
 		public void AddRange<TMessage>(IEnumerable<TMessage> messages)
-			where TMessage : CorrelatedBy<TKey>
+			where TMessage : IAmCorrelatedBy<TKey>
 		{
 			foreach (var message in messages)
 			{
@@ -110,7 +110,7 @@ namespace MassTransit.Tests.Groups
 		}
 
 		public CorrelatedMessageGroup<TKey> CombineWith<TMessage>(params TMessage[] messages)
-			where TMessage : CorrelatedBy<TKey>
+			where TMessage : IAmCorrelatedBy<TKey>
 		{
 			AddRange(messages);
 
@@ -145,7 +145,7 @@ namespace MassTransit.Tests.Groups
 
 	[Serializable]
 	public class AddOrderItem :
-		CorrelatedBy<Guid>
+		IAmCorrelatedBy<Guid>
 	{
 		private readonly Guid _transactionId;
 
@@ -162,7 +162,7 @@ namespace MassTransit.Tests.Groups
 
 	[Serializable]
 	public class CreateOrder : 
-		CorrelatedBy<Guid>
+		IAmCorrelatedBy<Guid>
 	{
 		private readonly Guid _transactionId;
 

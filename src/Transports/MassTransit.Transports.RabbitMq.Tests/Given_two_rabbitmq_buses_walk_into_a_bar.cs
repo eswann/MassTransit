@@ -16,6 +16,7 @@ namespace MassTransit.Transports.RabbitMq.Tests
     using BusConfigurators;
     using Configuration;
     using Configuration.Configurators;
+    using Configuration.Extensions;
     using Magnum.TestFramework;
     using NUnit.Framework;
 
@@ -59,7 +60,7 @@ namespace MassTransit.Transports.RabbitMq.Tests
         {
         }
 
-        protected virtual void ConfigureRabbitMq(IRabbitMqTransportFactoryConfigurator configurator)
+        protected virtual void ConfigureRabbitMq(ITransportFactoryConfigurator configurator)
         {
         }
 

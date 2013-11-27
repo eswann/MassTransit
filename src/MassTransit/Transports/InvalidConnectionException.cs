@@ -14,11 +14,10 @@ namespace MassTransit.Transports
 {
 	using System;
 	using System.Runtime.Serialization;
-	using Exceptions;
+	using MassTransit.Exceptions;
 
-	[Serializable]
-	public class InvalidConnectionException :
-		TransportException
+    [Serializable]
+	public class InvalidConnectionException : TransportException
 	{
 		public InvalidConnectionException()
 		{

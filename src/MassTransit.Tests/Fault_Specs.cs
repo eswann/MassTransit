@@ -86,7 +86,7 @@ namespace MassTransit.Tests
 		}
 
 		public class Hello :
-			CorrelatedBy<Guid>
+			IAmCorrelatedBy<Guid>
 		{
 			protected Hello()
 			{

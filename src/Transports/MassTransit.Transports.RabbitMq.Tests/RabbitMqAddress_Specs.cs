@@ -13,6 +13,7 @@
 namespace MassTransit.Transports.RabbitMq.Tests
 {
     using System;
+    using Exceptions;
     using Magnum.TestFramework;
     using NUnit.Framework;
 
@@ -157,7 +158,7 @@ namespace MassTransit.Transports.RabbitMq.Tests
         {
         }
 
-        [Then, ExpectedException(typeof(RabbitMqAddressException))]
+        [Then, ExpectedException(typeof(AddressException))]
         
         public void TheQueue()
         {
@@ -308,7 +309,7 @@ namespace MassTransit.Transports.RabbitMq.Tests
         [Then]
         public void ShouldNotHaveATtl()
         {
-            _addr.QueueArguments()["x-message-ttl"].ShouldBeNull();
+            _addr.QueueArguments().ContainsKey("x-message-ttl").ShouldBeFalse();
         }
 
         [Then]
@@ -442,7 +443,7 @@ namespace MassTransit.Transports.RabbitMq.Tests
         [Then]
         public void ShouldNotBeHa()
         {
-            _addr.QueueArguments()["x-ha-policy"].ShouldBeNull();
+            _addr.QueueArguments().ContainsKey("x-ha-policy").ShouldBeFalse();
         }
 
         [Then]

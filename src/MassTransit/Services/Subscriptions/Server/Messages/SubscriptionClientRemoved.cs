@@ -16,7 +16,7 @@ namespace MassTransit.Services.Subscriptions.Server.Messages
 
 	[Serializable]
 	public class SubscriptionClientRemoved : 
-		CorrelatedBy<Guid>
+		IAmCorrelatedBy<Guid>
 	{
 		public Guid CorrelationId { get; set; }
 		public Uri ControlUri { get; set; }

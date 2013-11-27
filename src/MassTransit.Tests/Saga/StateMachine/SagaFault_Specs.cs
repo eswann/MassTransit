@@ -126,7 +126,7 @@ namespace MassTransit.Tests.Saga.StateMachine
 	}
 
 	public class CreateCustomerMessage :
-		CorrelatedBy<Guid>
+		IAmCorrelatedBy<Guid>
 	{
 		public Guid CorrelationId
 		{
@@ -134,7 +134,7 @@ namespace MassTransit.Tests.Saga.StateMachine
 		}
 	}
 
-	public class AgencyCreatedMessage : CorrelatedBy<Guid>
+	public class AgencyCreatedMessage : IAmCorrelatedBy<Guid>
 	{
 		public Guid CorrelationId
 		{
@@ -142,7 +142,7 @@ namespace MassTransit.Tests.Saga.StateMachine
 		}
 	}
 
-	public class CreateAgencyMessage : CorrelatedBy<Guid>
+	public class CreateAgencyMessage : IAmCorrelatedBy<Guid>
 	{
 		public Guid CorrelationId
 		{
@@ -150,7 +150,7 @@ namespace MassTransit.Tests.Saga.StateMachine
 		}
 	}
 
-	public class UpdateAccountMessage : CorrelatedBy<Guid>
+	public class UpdateAccountMessage : IAmCorrelatedBy<Guid>
 	{
 		public Guid CorrelationId
 		{
@@ -158,7 +158,7 @@ namespace MassTransit.Tests.Saga.StateMachine
 		}
 	}
 
-	public class CustomerCreatedMessage : CorrelatedBy<Guid>
+	public class CustomerCreatedMessage : IAmCorrelatedBy<Guid>
 	{
 		public bool CreateAgency { get; set; }
 
@@ -168,7 +168,7 @@ namespace MassTransit.Tests.Saga.StateMachine
 		}
 	}
 
-	public class InitiateCreateAccountMessage : CorrelatedBy<Guid>
+	public class InitiateCreateAccountMessage : IAmCorrelatedBy<Guid>
 	{
 		public Guid CorrelationId
 		{

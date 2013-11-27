@@ -24,6 +24,6 @@ namespace MassTransit.Pipeline
 			where TMessage : class;
 
 		UnsubscribeAction SubscribedTo<TMessage, TKey>(TKey correlationId, Uri endpointUri)
-			where TMessage : class, CorrelatedBy<TKey>;
+			where TMessage : class, IAmCorrelatedBy<TKey>;
 	}
 }

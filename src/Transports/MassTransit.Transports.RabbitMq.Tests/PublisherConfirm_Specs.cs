@@ -35,7 +35,7 @@
             configurator.Subscribe(s => s.Handler<A>(message => _received.Complete(message)));
         }
 
-        protected override void ConfigureRabbitMq(IRabbitMqTransportFactoryConfigurator configurator)
+        protected override void ConfigureRabbitMq(ITransportFactoryConfigurator configurator)
         {
             base.ConfigureRabbitMq(configurator);
         }

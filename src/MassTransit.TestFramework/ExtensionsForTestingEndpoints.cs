@@ -98,13 +98,13 @@ namespace MassTransit.TestFramework
         }
 
         public static void ShouldContain<TMessage>(this IEndpoint endpoint, TMessage expectedMessage)
-            where TMessage : class, CorrelatedBy<Guid>
+            where TMessage : class, IAmCorrelatedBy<Guid>
         {
             endpoint.ShouldContain(expectedMessage, TimeSpan.Zero);
         }
 
         public static void ShouldContain<TMessage>(this IEndpoint endpoint, TMessage expectedMessage, TimeSpan timeout)
-            where TMessage : class, CorrelatedBy<Guid>
+            where TMessage : class, IAmCorrelatedBy<Guid>
         {
             var future = new Future<TMessage>();
 
@@ -154,7 +154,7 @@ namespace MassTransit.TestFramework
         }
 
         public static void ShouldNotContain<TMessage>(this IEndpoint endpoint, TMessage expectedMessage)
-            where TMessage : class, CorrelatedBy<Guid>
+            where TMessage : class, IAmCorrelatedBy<Guid>
         {
             endpoint.Receive(context =>
                 {

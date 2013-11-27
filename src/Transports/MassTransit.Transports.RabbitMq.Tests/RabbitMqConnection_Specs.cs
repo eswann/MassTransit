@@ -19,7 +19,7 @@ namespace MassTransit.Transports.RabbitMq.Tests
 
 	public class RabbitMqConnection_Specs
 	{
-		RabbitMqConnection _conn = new RabbitMqConnection(
+		TransportConnection _conn = new TransportConnection(
 			TestFactory.ConnectionFactory());
 
 		[When]

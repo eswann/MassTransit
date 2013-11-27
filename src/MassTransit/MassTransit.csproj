@@ -76,6 +76,9 @@
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\packages\Newtonsoft.Json.5.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="RabbitMQ.Client">
+      <HintPath>..\packages\RabbitMQ.Client.3.2.1\lib\net30\RabbitMQ.Client.dll</HintPath>
+    </Reference>
     <Reference Include="Stact" Condition="'$(TargetFrameworkVersion)' == 'v4.0'">
       <HintPath>..\packages\Stact.1.1.1\lib\NET40\Stact.dll</HintPath>
     </Reference>
@@ -556,12 +559,26 @@
     <Compile Include="Testing\TransportFactoryTestExtensions.cs" />
     <Compile Include="Threading\IConsumerPool.cs" />
     <Compile Include="Threading\ThreadPoolConsumerPool.cs" />
+    <Compile Include="Transports\Configuration\Builders\ConnectionFactoryBuilder.cs" />
+    <Compile Include="Transports\Configuration\Builders\TransportFactoryBuilder.cs" />
+    <Compile Include="Transports\Configuration\Configurators\ConnectionFactoryBuilderConfigurator.cs" />
+    <Compile Include="Transports\Configuration\Configurators\ConnectionFactoryConfigurator.cs" />
+    <Compile Include="Transports\Configuration\Configurators\PasswordConnectionFactoryConfigurator.cs" />
+    <Compile Include="Transports\Configuration\Configurators\PublisherConfirmFactoryConfigurator.cs" />
+    <Compile Include="Transports\Configuration\Configurators\ITransportFactoryBuilderConfigurator.cs" />
+    <Compile Include="Transports\Configuration\Configurators\TransportFactoryConfigurator.cs" />
+    <Compile Include="Transports\Configuration\Configurators\RequestedHeartbeatConnectionFactoryConfigurator.cs" />
+    <Compile Include="Transports\Configuration\Configurators\SslConnectionFactoryConfigurator.cs" />
+    <Compile Include="Transports\Configuration\Configurators\UsernameConnectionFactoryConfigurator.cs" />
+    <Compile Include="Transports\Configuration\Extensions\RabbitClientExtensions.cs" />
+    <Compile Include="Transports\Configuration\Extensions\TransportServiceBusExtensions.cs" />
+    <Compile Include="Transports\Configuration\Extensions\TransportFactoryExtensions.cs" />
+    <Compile Include="Transports\ExchangeBinding.cs" />
     <Compile Include="Transports\IConnectionBinding.cs" />
     <Compile Include="Transports\ConnectionHandler.cs" />
     <Compile Include="Transports\ConnectionPolicyChain.cs" />
     <Compile Include="Transports\ConnectOnFirstUsePolicy.cs" />
     <Compile Include="Transports\DefaultConnectionPolicy.cs" />
-    <Compile Include="Transports\IConnection.cs" />
     <Compile Include="Transports\IConnectionPolicy.cs" />
     <Compile Include="Transports\DefaultMessageNameFormatter.cs" />
     <Compile Include="Transports\DisposedConnectionPolicy.cs" />
@@ -569,13 +586,34 @@
     <Compile Include="Transports\IInboundMessageTracker.cs" />
     <Compile Include="Transports\IInboundTransport.cs" />
     <Compile Include="Transports\IMessageNameFormatter.cs" />
+    <Compile Include="Transports\InboundTransport.cs" />
     <Compile Include="Transports\InvalidConnectionException.cs" />
     <Compile Include="Transports\IOutboundTransport.cs" />
+    <Compile Include="Transports\IRabbitMqEndpointAddress.cs" />
     <Compile Include="Transports\ITransport.cs" />
+    <Compile Include="Transports\Management\IEndpointManagement.cs" />
+    <Compile Include="Transports\Management\EndpointManagement.cs" />
     <Compile Include="Transports\MessageName.cs" />
+    <Compile Include="Exceptions\MessageNotConfirmedException.cs" />
     <Compile Include="Transports\MessageTrackerFactory.cs" />
+    <Compile Include="Transports\OutboundTransport.cs" />
+    <Compile Include="Transports\Publish\IPublisherConfirmSettings.cs" />
+    <Compile Include="Transports\Publish\PublishEndpointInterceptor.cs" />
+    <Compile Include="Transports\Publish\PublishEndpointSinkLocator.cs" />
+    <Compile Include="Transports\Publish\PublisherConfirmSettings.cs" />
+    <Compile Include="Exceptions\AddressException.cs" />
+    <Compile Include="Transports\RabbitMqEndpointAddress.cs" />
+    <Compile Include="Transports\TransportConnection.cs" />
+    <Compile Include="Transports\Consumer.cs" />
+    <Compile Include="Transports\RabbitMqExtensions.cs" />
+    <Compile Include="Transports\MessageNameFormatter.cs" />
+    <Compile Include="Producer.cs" />
+    <Compile Include="Transports\Publisher.cs" />
+    <Compile Include="Transports\SubscriptionBinder.cs" />
+    <Compile Include="Transports\TransportFactory.cs" />
     <Compile Include="Transports\ReconnectPolicy.cs" />
     <Compile Include="Transports\RetryPolicy.cs" />
+    <Compile Include="Transports\Testing\BusTestScenarioExtensions.cs" />
     <Compile Include="Transports\TransportSettings.cs" />
     <Compile Include="Transports\EndpointCacheExtensions.cs" />
     <Compile Include="Transports\EndpointFactory.cs" />
@@ -583,7 +621,7 @@
     <Compile Include="Transports\IEndpointSettings.cs" />
     <Compile Include="Transports\ITransportFactory.cs" />
     <Compile Include="Consumes.cs" />
-    <Compile Include="CorrelatedBy.cs" />
+    <Compile Include="IAmCorrelatedBy.cs" />
     <Compile Include="Exceptions\ConventionException.cs" />
     <Compile Include="Exceptions\MessageException.cs" />
     <Compile Include="Exceptions\ShutDownException.cs" />
@@ -625,8 +663,7 @@
     <Compile Include="Events\ThreadPoolEvent.cs" />
     <Compile Include="Exceptions\AbstractUriException.cs" />
     <Compile Include="Exceptions\TransportException.cs" />
-    <Compile Include="IEndpointAddress.cs" />
-    <Compile Include="Transports\Endpoint.cs" />
+    <Compile Include="Endpoint.cs" />
     <Compile Include="Events\ConsumeCompleted.cs" />
     <Compile Include="Events\ReceiveCompleted.cs" />
     <Compile Include="Events\MessageConsumed.cs" />
@@ -813,6 +850,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Pipeline\Configuration\Subscribers\" />
+    <Folder Include="Transports\Exceptions\" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
@@ -833,6 +871,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="Transports\README.md" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />

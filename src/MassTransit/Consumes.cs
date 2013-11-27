@@ -93,7 +93,7 @@ namespace MassTransit
 		/// <typeparam name="TCorrelationId">The type of the CorrelationId to match</typeparam>
 		public interface For<TCorrelationId> :
 			All,
-			CorrelatedBy<TCorrelationId>
+			IAmCorrelatedBy<TCorrelationId>
 		{
 		}
 

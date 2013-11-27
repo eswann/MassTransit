@@ -16,7 +16,7 @@ namespace MassTransit.Tests.Messages
 
     [Serializable]
 	public class RequestMessage :
-		CorrelatedBy<Guid>
+		IAmCorrelatedBy<Guid>
 	{
     	public RequestMessage()
     	{

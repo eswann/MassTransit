@@ -66,7 +66,7 @@ namespace MassTransit.Services.Subscriptions
 		}
 
 		public UnsubscribeAction SubscribedTo<TMessage, TKey>(TKey correlationId, Uri endpointUri)
-			where TMessage : class, CorrelatedBy<TKey>
+			where TMessage : class, IAmCorrelatedBy<TKey>
 		{
 			if (endpointUri == _bus.Endpoint.Address.Uri)
 				return () => true;

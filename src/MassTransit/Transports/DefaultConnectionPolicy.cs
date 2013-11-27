@@ -17,8 +17,7 @@ namespace MassTransit.Transports
     using Logging;
     using Magnum.Extensions;
 
-    public class DefaultConnectionPolicy :
-        IConnectionPolicy
+    public class DefaultConnectionPolicy : IConnectionPolicy
     {
         readonly IConnectionHandler _connectionHandler;
         readonly TimeSpan _reconnectDelay;

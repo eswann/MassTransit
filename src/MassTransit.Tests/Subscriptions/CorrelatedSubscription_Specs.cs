@@ -51,7 +51,7 @@ namespace MassTransit.Tests.Subscriptions
 		}
 
 		public class IncomingMessage :
-			CorrelatedBy<string>
+			IAmCorrelatedBy<string>
 		{
 			public string CorrelationId { get; set; }
 		}

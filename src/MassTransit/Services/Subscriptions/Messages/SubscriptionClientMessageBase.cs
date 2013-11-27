@@ -16,7 +16,7 @@ namespace MassTransit.Services.Subscriptions.Messages
 
 	[Serializable]
 	public class SubscriptionClientMessageBase :
-		CorrelatedBy<Guid>
+		IAmCorrelatedBy<Guid>
 	{
 		protected SubscriptionClientMessageBase(Guid clientId, Uri controlUri, Uri dataUri)
 		{

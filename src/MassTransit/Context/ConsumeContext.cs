@@ -182,7 +182,7 @@ namespace MassTransit.Context
 
             Type correlationType = typeof(TMessage).GetInterfaces()
                 .Where(x => x.IsGenericType)
-                .Where(x => x.GetGenericTypeDefinition() == typeof(CorrelatedBy<>))
+                .Where(x => x.GetGenericTypeDefinition() == typeof(IAmCorrelatedBy<>))
                 .Select(x => x.GetGenericArguments()[0])
                 .DefaultIfEmpty(null)
                 .FirstOrDefault();
@@ -212,7 +212,7 @@ namespace MassTransit.Context
 
         [UsedImplicitly]
         void CreateAndSendCorrelatedFault<T, TKey>(T message, Exception exception)
-            where T : class, CorrelatedBy<TKey>
+            where T : class, IAmCorrelatedBy<TKey>
         {
             var fault = new Fault<T, TKey>(message, exception);
             var bus = Bus;

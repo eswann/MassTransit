@@ -70,7 +70,7 @@ namespace MassTransit.Tests
         }
 
         public interface IProxyMe :
-            CorrelatedBy<Guid>
+            IAmCorrelatedBy<Guid>
         {
             int IntValue { get; }
             string StringValue { get; }
@@ -129,7 +129,7 @@ namespace MassTransit.Tests
         }
 
         public interface IProxyMe :
-            CorrelatedBy<Guid>
+            IAmCorrelatedBy<Guid>
         {
             int IntValue { get; }
             string StringValue { get; }

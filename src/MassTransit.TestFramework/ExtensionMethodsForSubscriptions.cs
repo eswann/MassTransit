@@ -138,7 +138,7 @@ namespace MassTransit.TestFramework
 		}
 
 		public static void ShouldHaveCorrelatedSubscriptionFor<TMessage, TKey>(this IServiceBus bus, string correlationId)
-			where TMessage : CorrelatedBy<TKey>
+			where TMessage : IAmCorrelatedBy<TKey>
 		{
 			DateTime giveUpAt = DateTime.Now + Timeout;
 

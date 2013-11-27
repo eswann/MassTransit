@@ -3,6 +3,7 @@
     using System;
     using System.Threading;
     using Configuration;
+    using Configuration.Extensions;
     using Magnum.Extensions;
     using NUnit.Framework;
 

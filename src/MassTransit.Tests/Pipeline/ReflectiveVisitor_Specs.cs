@@ -77,7 +77,7 @@ namespace MassTransit.Tests.Pipeline
 		}
 
 		public bool Visit<TMessage, TKey>(TestCorrelatedConsumer<TMessage, TKey> obj)
-			where TMessage : class, CorrelatedBy<Guid>
+			where TMessage : class, IAmCorrelatedBy<Guid>
 		{
 			Trace.WriteLine(string.Format("TestCorrelatedConsumer<TMessage,TKey> - {0}({1})", typeof (TMessage).FullName, typeof (TKey).FullName));
 

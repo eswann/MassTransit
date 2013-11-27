@@ -143,7 +143,7 @@ namespace MassTransit.EndpointConfigurators
 
         public IEndpointConfigurator SetErrorAddress(Uri uri)
         {
-            _errorAddress = new EndpointAddress(uri);
+            _errorAddress = new MassTransit.EndpointAddress(uri);
             return this;
         }
 

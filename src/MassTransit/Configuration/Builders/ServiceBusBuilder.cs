@@ -38,8 +38,7 @@ namespace MassTransit.Builders
         void UseControlBus(IControlBus controlBus);
     }
 
-    public class ServiceBusBuilder :
-        IServiceBusBuilder
+    public class ServiceBusBuilder : IServiceBusBuilder
     {
         static readonly ILog _log = Logger.Get<ServiceBusBuilder>();
         readonly IList<IBusServiceConfigurator> _busServiceConfigurators;

@@ -12,7 +12,7 @@ namespace MassTransit.Tests
         public void SimpleMessage()
         {
             var urn = new MessageUrn(typeof (Ping));
-            Assert.AreEqual(urn.AbsolutePath, "message:MassTransit.TestFramework.Examples.Messages:Ping");
+            Assert.AreEqual(urn.AbsolutePath, "message:MassTransit.Tests.Examples.Messages:Ping");
         }
 
         [Test]
@@ -34,7 +34,7 @@ namespace MassTransit.Tests
         public void ClosedGenericMessage()
         {
             var urn = new MessageUrn(typeof (G<Ping>));
-            var expected = new Uri("urn:message:MassTransit.Tests:G[[MassTransit.TestFramework.Examples.Messages:Ping]]");
+            var expected = new Uri("urn:message:MassTransit.Tests:G[[MassTransit.Tests.Examples.Messages:Ping]]");
             Assert.AreEqual(expected.AbsolutePath,urn.AbsolutePath) ;
         }
 

@@ -60,7 +60,7 @@ namespace MassTransit.Pipeline.Configuration
 		}
 
 		public UnsubscribeAction SubscribedTo<TMessage, TKey>(TKey correlationId)
-			where TMessage : class, CorrelatedBy<TKey>
+			where TMessage : class, IAmCorrelatedBy<TKey>
 		{
 			UnsubscribeAction result = () => true;
 

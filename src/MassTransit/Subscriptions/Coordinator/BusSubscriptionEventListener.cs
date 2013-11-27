@@ -44,7 +44,7 @@ namespace MassTransit.Subscriptions.Coordinator
         }
 
         public UnsubscribeAction SubscribedTo<TMessage, TKey>(TKey correlationId)
-            where TMessage : class, CorrelatedBy<TKey>
+            where TMessage : class, IAmCorrelatedBy<TKey>
         {
             return Subscribe<TMessage>(string.Format("{0}", correlationId));
         }

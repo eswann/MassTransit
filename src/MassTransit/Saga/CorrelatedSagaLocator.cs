@@ -18,7 +18,7 @@ namespace MassTransit.Saga
 
     public class CorrelatedSagaLocator<TMessage> :
 		ISagaLocator<TMessage>
-		where TMessage : class, CorrelatedBy<Guid>
+		where TMessage : class, IAmCorrelatedBy<Guid>
 	{
 		public IEnumerable<Guid> Find(IConsumeContext<TMessage> context)
 		{

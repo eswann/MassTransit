@@ -52,12 +52,12 @@ namespace MassTransit.Tests.Saga.StateMachine
         public IServiceBus Bus { get; set; }
     }
 
-    public class First : CorrelatedBy<Guid>
+    public class First : IAmCorrelatedBy<Guid>
     {
         public Guid CorrelationId { get; set; }
     }
 
-    public class Second : CorrelatedBy<Guid>
+    public class Second : IAmCorrelatedBy<Guid>
     {
         public Guid CorrelationId { get; set; }
     }

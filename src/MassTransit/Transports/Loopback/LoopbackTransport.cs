@@ -25,8 +25,7 @@ namespace MassTransit.Transports.Loopback
     /// that takes care of subscribing the buses in the process
     /// depending on what subscriptions are made.
     /// </summary>
-    public class LoopbackTransport :
-        IDuplexTransport
+    public class LoopbackTransport : IDuplexTransport
     {
         readonly object _messageReadLock = new object();
         readonly object _messageWriteLock = new object();

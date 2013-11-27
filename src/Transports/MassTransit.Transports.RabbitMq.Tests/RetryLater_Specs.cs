@@ -16,6 +16,7 @@ namespace MassTransit.Transports.RabbitMq.Tests
     using System.Diagnostics;
     using System.Threading;
     using Configuration;
+    using Configuration.Extensions;
     using NUnit.Framework;
 
     [TestFixture]

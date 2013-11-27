@@ -16,7 +16,7 @@ namespace MassTransit.Services.HealthMonitoring.Messages
 
 	[Serializable]
 	public class EndpointMessageBase :
-		CorrelatedBy<Guid>
+		IAmCorrelatedBy<Guid>
 	{
 		public Uri ControlUri { get; set; }
 		public Uri DataUri { get; set; }

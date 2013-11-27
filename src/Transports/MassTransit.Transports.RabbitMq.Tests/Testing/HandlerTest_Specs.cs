@@ -14,7 +14,7 @@ namespace MassTransit.Transports.RabbitMq.Tests.Testing
 {
 	using Magnum.TestFramework;
 	using MassTransit.Testing;
-	using RabbitMq.Testing;
+	using Transports.Testing;
 
     [Scenario, NotYetImplemented("This is broken because RabbitMQ does not have subscriptions")]
 	public class Using_the_handler_test_factory
@@ -27,7 +27,7 @@ namespace MassTransit.Transports.RabbitMq.Tests.Testing
 			_test = TestFactory.ForHandler<A>()
 				.New(x =>
 					{
-						x.UseRabbitMqBusScenario();
+						x.UseBusScenario();
 
 						x.Send(new A());
 						x.Send(new B());

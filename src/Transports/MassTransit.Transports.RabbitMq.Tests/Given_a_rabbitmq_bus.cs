@@ -15,12 +15,13 @@ namespace MassTransit.Transports.RabbitMq.Tests
 	using System;
 	using BusConfigurators;
 	using Configuration;
+	using Configuration.Extensions;
 	using Magnum.TestFramework;
 	using TestFramework.Fixtures;
 
 	[Scenario]
 	public abstract class Given_a_rabbitmq_bus :
-		LocalTestFixture<RabbitMqTransportFactory>
+		LocalTestFixture<TransportFactory>
 	{
 		protected Given_a_rabbitmq_bus()
 		{

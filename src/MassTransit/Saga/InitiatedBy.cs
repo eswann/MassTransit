@@ -21,7 +21,7 @@ namespace MassTransit.Saga
     /// <typeparam name="TMessage"></typeparam>
     public interface InitiatedBy<TMessage> :
         IOrchestrate<TMessage>
-        where TMessage : class, CorrelatedBy<Guid>
+        where TMessage : class, IAmCorrelatedBy<Guid>
     {
     }
 }

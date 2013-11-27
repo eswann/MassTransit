@@ -17,8 +17,7 @@ namespace MassTransit.Transports
 	/// bi-directional communication.
 	/// </summary>
 	public interface IDuplexTransport :
-		IInboundTransport,
-		IOutboundTransport
+		IInboundTransport, IOutboundTransport
 	{
 		IInboundTransport InboundTransport { get; }
 		IOutboundTransport OutboundTransport { get; }

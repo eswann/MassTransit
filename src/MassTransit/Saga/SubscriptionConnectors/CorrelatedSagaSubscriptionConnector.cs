@@ -26,7 +26,7 @@ namespace MassTransit.Saga.SubscriptionConnectors
 	public class CorrelatedSagaSubscriptionConnector<TSaga, TMessage> :
 		ISagaSubscriptionConnector
 		where TSaga : SagaStateMachine<TSaga>, ISaga
-		where TMessage : class, CorrelatedBy<Guid>
+		where TMessage : class, IAmCorrelatedBy<Guid>
 	{
 		readonly DataEvent<TSaga, TMessage> _dataEvent;
 		readonly ISagaPolicy<TSaga, TMessage> _policy;

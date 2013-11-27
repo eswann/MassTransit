@@ -16,8 +16,7 @@ namespace MassTransit.Transports
     using System.Text;
     using Magnum.Caching;
 
-    public class DefaultMessageNameFormatter :
-        IMessageNameFormatter
+    public class DefaultMessageNameFormatter : IMessageNameFormatter
     {
         readonly Cache<Type, string> _cache;
         readonly string _genericArgumentSeparator;

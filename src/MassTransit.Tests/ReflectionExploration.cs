@@ -72,14 +72,14 @@ namespace MassTransit.Tests
             }
         }
 
-        class X : CorrelatedBy<Guid>
+        class X : IAmCorrelatedBy<Guid>
         {
             public Guid CorrelationId
             {
                 get { return Guid.Empty; }
             }
         }
-        class Y : CorrelatedBy<Guid>
+        class Y : IAmCorrelatedBy<Guid>
         {
             public Guid CorrelationId
             {

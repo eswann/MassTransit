@@ -27,7 +27,7 @@ namespace MassTransit.Pipeline
 	{
 		public static IEnumerable<Action<IConsumeContext<TMessage>>> ForInitiatedBy<TInstance, TMessage>(TInstance instance)
 			where TInstance : InitiatedBy<TMessage>
-			where TMessage : class, CorrelatedBy<Guid>
+			where TMessage : class, IAmCorrelatedBy<Guid>
 		{
 			yield return x =>
 				{
@@ -41,7 +41,7 @@ namespace MassTransit.Pipeline
 		public static IEnumerable<Action<IConsumeContext<TMessage>>> ForDataEvent<TInstance, TMessage>(TInstance instance,
 		                                                                                               Event<TMessage> eevent)
 			where TInstance : SagaStateMachine<TInstance>
-			where TMessage : class, CorrelatedBy<Guid>
+			where TMessage : class, IAmCorrelatedBy<Guid>
 		{
 			yield return x =>
 				{

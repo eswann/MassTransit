@@ -23,8 +23,7 @@ namespace MassTransit.Transports
 	/// Action{IReceiveContext} that can be gotten from the lookup function 
 	/// passed to the <see cref="Receive"/> method.
 	/// </summary>
-	public interface IInboundTransport :
-		ITransport
+	public interface IInboundTransport : ITransport
 	{
 		/// <summary>
 		/// Implementors should take messages from the inbound transport technology,

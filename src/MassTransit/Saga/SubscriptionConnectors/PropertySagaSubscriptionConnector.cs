@@ -87,7 +87,7 @@ namespace MassTransit.Saga.SubscriptionConnectors
             if (exp != null)
                 return exp.Compile();
 
-            if (typeof(TMessage).Implements<CorrelatedBy<Guid>>())
+            if (typeof(TMessage).Implements<IAmCorrelatedBy<Guid>>())
             {
                 Type genericType = typeof(Correlated<>).MakeGenericType(typeof(TSaga), typeof(TMessage), typeof(TMessage));
                 
@@ -101,7 +101,7 @@ namespace MassTransit.Saga.SubscriptionConnectors
 
         class Correlated<T> :
             ICorrelated<T>
-            where T : CorrelatedBy<Guid>
+            where T : IAmCorrelatedBy<Guid>
         {
             public Func<T, Guid> CorrelationIdSelector
             {

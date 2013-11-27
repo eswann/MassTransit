@@ -59,7 +59,7 @@ namespace MassTransit.Services.Subscriptions
 		}
 
 		public UnsubscribeAction SubscribedTo<TMessage, TKey>(TKey correlationId)
-			where TMessage : class, CorrelatedBy<TKey>
+			where TMessage : class, IAmCorrelatedBy<TKey>
 		{
 			return _service.SubscribedTo<TMessage, TKey>(correlationId, _bus.Endpoint.Address.Uri);
 		}

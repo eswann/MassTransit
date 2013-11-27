@@ -15,7 +15,7 @@ namespace MassTransit.Tests.Saga
 	using System;
 
 	public class SimpleSagaMessageBase :
-		CorrelatedBy<Guid>
+		IAmCorrelatedBy<Guid>
 	{
 		public SimpleSagaMessageBase()
 		{

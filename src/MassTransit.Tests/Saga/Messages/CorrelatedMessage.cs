@@ -16,7 +16,7 @@ namespace MassTransit.Tests.Saga.Messages
 
 	[Serializable]
 	public class CorrelatedMessage :
-		CorrelatedBy<Guid>
+		IAmCorrelatedBy<Guid>
 	{
 		public CorrelatedMessage(Guid correlationId)
 		{

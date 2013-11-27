@@ -53,7 +53,7 @@ namespace BusDriver
 			{
 				try
 				{
-					ITransportSettings settings = new TransportSettings(new EndpointAddress(uri));
+					ITransportSettings settings = new TransportSettings(new MassTransit.EndpointAddress(uri));
 					transport = transportFactory.BuildInbound(settings);
 
                     _inboundTransports.Add(uri.ToString().ToLowerInvariant(), transport);
@@ -84,7 +84,7 @@ namespace BusDriver
 			{
 				try
 				{
-					ITransportSettings settings = new TransportSettings(new EndpointAddress(uri));
+					ITransportSettings settings = new TransportSettings(new MassTransit.EndpointAddress(uri));
 					transport = transportFactory.BuildOutbound(settings);
 
                     _outboundTransports.Add(uri.ToString().ToLowerInvariant(), transport);

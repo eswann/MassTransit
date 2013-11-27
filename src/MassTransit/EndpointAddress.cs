@@ -17,13 +17,33 @@ namespace MassTransit
     using Magnum;
     using Util;
 
+    /// <summary>
+    /// Identifies an endpoint
+    /// </summary>
+    public interface IEndpointAddress
+    {
+        /// <summary>
+        /// The URI used to access the endpoint
+        /// </summary>
+        Uri Uri { get; }
+
+        /// <summary>
+        /// True if the endpoint is local to this machine
+        /// </summary>
+        bool IsLocal { get; }
+
+        /// <summary>
+        /// Was transactional requested by the Uri
+        /// </summary>
+        bool IsTransactional { get; }
+    }
+
     public class EndpointAddress :
         IEndpointAddress
     {
         protected static readonly string LocalMachineName = Environment.MachineName.ToLowerInvariant();
         static IEndpointAddress _null;
         Func<bool> _isLocal;
-        bool _isTransactional;
         Uri _uri;
 
         public EndpointAddress([NotNull] Uri uri)
@@ -34,7 +54,7 @@ namespace MassTransit
 
             _isLocal = () => DetermineIfEndpointIsLocal(uri);
 
-            _isTransactional = CheckForTransactionalHint(uri, false);
+            IsTransactional = CheckForTransactionalHint(uri, false);
         }
 
         public EndpointAddress([NotNull] string uriString)
@@ -52,7 +72,7 @@ namespace MassTransit
 
             _isLocal = () => DetermineIfEndpointIsLocal(_uri);
 
-            _isTransactional = CheckForTransactionalHint(_uri, false);
+            IsTransactional = CheckForTransactionalHint(_uri, false);
         }
 
         public static IEndpointAddress Null
@@ -76,11 +96,7 @@ namespace MassTransit
             get { return Uri.AbsolutePath.Substring(1); }
         }
 
-        public bool IsTransactional
-        {
-            get { return _isTransactional; }
-            protected set { _isTransactional = value; }
-        }
+        public bool IsTransactional { get; protected set; }
 
         public override string ToString()
         {
@@ -90,9 +106,9 @@ namespace MassTransit
         protected virtual bool DetermineIfEndpointIsLocal(Uri uri)
         {
             string hostName = uri.Host;
-            bool local = string.Compare(hostName, ".") == 0 ||
-                         string.Compare(hostName, "localhost", true) == 0 ||
-                         string.Compare(uri.Host, LocalMachineName, true) == 0;
+            bool local = String.CompareOrdinal(hostName, ".") == 0 ||
+                         String.Compare(hostName, "localhost", StringComparison.OrdinalIgnoreCase) == 0 ||
+                         String.Compare(uri.Host, LocalMachineName, StringComparison.OrdinalIgnoreCase) == 0;
 
             Interlocked.Exchange(ref _isLocal, () => local);
 

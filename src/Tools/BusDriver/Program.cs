@@ -18,7 +18,8 @@ namespace BusDriver
 	using Magnum.Caching;
 	using MassTransit.Log4NetIntegration.Logging;
 	using MassTransit.Logging;
-	using MassTransit.Transports.RabbitMq.Configuration;
+	using MassTransit.Transports;
+	using MassTransit.Transports.Configuration.Extensions;
 	using log4net.Appender;
 	using log4net.Config;
 	using log4net.Core;
@@ -28,9 +29,8 @@ namespace BusDriver
 	using Magnum.Extensions;
 	using MassTransit;
 	using MassTransit.Transports.Loopback;
-	using MassTransit.Transports.RabbitMq;
 
-	class Program
+    class Program
 	{
 		static readonly ILog _log = Logger.Get(typeof (Program));
 	    static ConsoleAppender _appender;
@@ -82,7 +82,7 @@ namespace BusDriver
 			{
 				Transports = new TransportCache();
 				Transports.AddTransportFactory(new LoopbackTransportFactory());
-				Transports.AddTransportFactory(new RabbitMqTransportFactory());
+				Transports.AddTransportFactory(new TransportFactory());
 
 				string line = CommandLine.GetUnparsedCommandLine().Trim();
 				if (line.IsNotEmpty())
@@ -177,7 +177,7 @@ namespace BusDriver
 					Console.Out.Flush();
 
 					line = Console.ReadLine();
-					if (line.Trim().Length == 0)
+					if (line == null || line.Trim().Length == 0)
 						continue;
 
 					keepGoing = ProcessLine(line);

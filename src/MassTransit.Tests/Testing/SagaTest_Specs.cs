@@ -133,20 +133,20 @@ namespace MassTransit.Tests.Testing
 		}
 
 		class A :
-			CorrelatedBy<Guid>
+			IAmCorrelatedBy<Guid>
 		{
 			public string Value { get; set; }
 			public Guid CorrelationId { get; set; }
 		}
 
 		class Aa :
-			CorrelatedBy<Guid>
+			IAmCorrelatedBy<Guid>
 		{
 			public Guid CorrelationId { get; set; }
 		}
 
 		class B :
-			CorrelatedBy<Guid>
+			IAmCorrelatedBy<Guid>
 		{
 			public Guid CorrelationId { get; set; }
 		}

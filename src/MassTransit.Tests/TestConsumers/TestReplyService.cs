@@ -18,8 +18,8 @@ namespace MassTransit.Tests.TestConsumers
 	public class TestReplyService<TMessage, TKey, TReplyMessage> :
 		TestConsumerBase<TMessage>,
 		Consumes<TMessage>.All
-		where TMessage : class, CorrelatedBy<TKey>
-		where TReplyMessage : class, CorrelatedBy<TKey>
+		where TMessage : class, IAmCorrelatedBy<TKey>
+		where TReplyMessage : class, IAmCorrelatedBy<TKey>
 	{
 		public override void Consume(TMessage message)
 		{

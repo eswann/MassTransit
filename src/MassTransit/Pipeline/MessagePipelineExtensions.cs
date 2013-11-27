@@ -191,7 +191,7 @@ namespace MassTransit.Pipeline
 	    public static UnsubscribeAction ConnectEndpoint<TMessage, TKey>(this IOutboundMessagePipeline pipeline,
 		                                                                TKey correlationId,
 		                                                                IEndpoint endpoint)
-			where TMessage : class, CorrelatedBy<TKey>
+			where TMessage : class, IAmCorrelatedBy<TKey>
 		{
 			var correlatedConfigurator = new OutboundCorrelatedMessageRouterConfigurator(pipeline);
 

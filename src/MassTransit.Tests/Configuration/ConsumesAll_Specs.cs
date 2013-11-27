@@ -297,7 +297,7 @@ namespace MassTransit.Tests.Configuration
 			{
 			}
 
-			Guid CorrelatedBy<Guid>.CorrelationId
+			Guid IAmCorrelatedBy<Guid>.CorrelationId
 			{
 				get { return default(Guid); }
 			}
@@ -306,7 +306,7 @@ namespace MassTransit.Tests.Configuration
 			{
 			}
 
-			int CorrelatedBy<int>.CorrelationId
+			int IAmCorrelatedBy<int>.CorrelationId
 			{
 				get { return default(int); }
 			}
@@ -315,7 +315,7 @@ namespace MassTransit.Tests.Configuration
 			{
 			}
 
-			string CorrelatedBy<string>.CorrelationId
+			string IAmCorrelatedBy<string>.CorrelationId
 			{
 				get { return default(string); }
 			}
@@ -324,14 +324,14 @@ namespace MassTransit.Tests.Configuration
 			{
 			}
 
-			long CorrelatedBy<long>.CorrelationId
+			long IAmCorrelatedBy<long>.CorrelationId
 			{
 				get { return default(long); }
 			}
 		}
 
 
-		class A : CorrelatedBy<Guid>
+		class A : IAmCorrelatedBy<Guid>
 		{
 			public Guid CorrelationId
 			{
@@ -339,7 +339,7 @@ namespace MassTransit.Tests.Configuration
 			}
 		}
 
-		class B : CorrelatedBy<int>
+		class B : IAmCorrelatedBy<int>
 		{
 			public int CorrelationId
 			{
@@ -347,7 +347,7 @@ namespace MassTransit.Tests.Configuration
 			}
 		}
 
-		class D<T> : CorrelatedBy<string>
+		class D<T> : IAmCorrelatedBy<string>
 		{
 			public string CorrelationId
 			{
@@ -355,7 +355,7 @@ namespace MassTransit.Tests.Configuration
 			}
 		}
 
-		interface IC : CorrelatedBy<long>
+		interface IC : IAmCorrelatedBy<long>
 		{
 		}
 	}

@@ -54,7 +54,7 @@ namespace MassTransit.Subscriptions.Coordinator
         {
             Type correlationType = messageType.GetInterfaces()
                 .Where(x => x.IsGenericType)
-                .Where(x => x.GetGenericTypeDefinition() == typeof (CorrelatedBy<>))
+                .Where(x => x.GetGenericTypeDefinition() == typeof (IAmCorrelatedBy<>))
                 .Select(x => x.GetGenericArguments()[0])
                 .FirstOrDefault();
 
@@ -77,7 +77,7 @@ namespace MassTransit.Subscriptions.Coordinator
 
         [UsedImplicitly]
         EndpointSubscriptionConnector CreateCorrelatedConnector<TMessage, TKey>(IServiceBus bus)
-            where TMessage : class, CorrelatedBy<TKey>
+            where TMessage : class, IAmCorrelatedBy<TKey>
         {
             return new EndpointSubscriptionConnector<TMessage, TKey>(bus, GetKeyConverter<TKey>());
         }

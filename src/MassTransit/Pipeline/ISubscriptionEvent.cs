@@ -29,6 +29,6 @@ namespace MassTransit.Pipeline
 		/// <typeparam name="TKey">Type of correlation key </typeparam>
 		/// <returns>The corresponding action for unsubscription</returns>
 		UnsubscribeAction SubscribedTo<TMessage, TKey>(TKey correlationId)
-			where TMessage : class, CorrelatedBy<TKey>;
+			where TMessage : class, IAmCorrelatedBy<TKey>;
 	}
 }

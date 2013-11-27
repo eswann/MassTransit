@@ -30,7 +30,7 @@ namespace MassTransit.Transports.RabbitMq.Tests
         [SetUp]
         public void Setup()
         {
-            _factory = new RabbitMqTransportFactory();
+            _factory = new TransportFactory();
         }
 
         [TearDown]
@@ -50,7 +50,7 @@ namespace MassTransit.Transports.RabbitMq.Tests
         [Test]
         public void EndpointSendAndReceive()
         {
-            using (var management = new RabbitMqEndpointManagement(_queue))
+            using (var management = new EndpointManagement(_queue))
             {
                 management.BindQueue(_queue.Name, _exchange.Name, ExchangeType.Fanout, "", null);
             }
@@ -85,7 +85,7 @@ namespace MassTransit.Transports.RabbitMq.Tests
         [Test]
         public void TransportSendAndReceive()
         {
-            using (var management = new RabbitMqEndpointManagement(_queue))
+            using (var management = new EndpointManagement(_queue))
             {
                 management.BindQueue(_queue.Name, _exchange.Name, ExchangeType.Fanout, "", null);
             }
@@ -129,7 +129,7 @@ namespace MassTransit.Transports.RabbitMq.Tests
         readonly IRabbitMqEndpointAddress _error =
             RabbitMqEndpointAddress.Parse("rabbitmq://guest:guest@localhost:5672/mt/mt-unit-tests-error");
 
-        RabbitMqTransportFactory _factory;
+        TransportFactory _factory;
     }
 
 

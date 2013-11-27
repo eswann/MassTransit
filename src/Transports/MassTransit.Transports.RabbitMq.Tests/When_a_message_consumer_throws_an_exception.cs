@@ -69,7 +69,7 @@ namespace MassTransit.Transports.RabbitMq.Tests
         }
 
         class A :
-            CorrelatedBy<Guid>
+            IAmCorrelatedBy<Guid>
         {
             public string StringA { get; set; }
 

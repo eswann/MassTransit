@@ -21,7 +21,7 @@ namespace MassTransit.SubscriptionConnectors
 	public class CorrelatedInstanceSubscriptionConnector<TConsumer, TMessage, TKey> :
 		IInstanceSubscriptionConnector
 		where TConsumer : class, Consumes<TMessage>.For<TKey>
-		where TMessage : class, CorrelatedBy<TKey>
+		where TMessage : class, IAmCorrelatedBy<TKey>
 	{
 		public Type MessageType
 		{

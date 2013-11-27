@@ -16,7 +16,7 @@ namespace MassTransit.Services.Subscriptions.Messages
 
     [Serializable]
     public abstract class SubscriptionChange :
-        CorrelatedBy<Guid>
+        IAmCorrelatedBy<Guid>
     {
         protected SubscriptionChange()
         {

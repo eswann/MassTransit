@@ -15,7 +15,7 @@ namespace MassTransit.Tests.Examples.Sagas.Messages
 	using System;
 
 	public class StartSimpleSaga :
-		CorrelatedBy<Guid>
+		IAmCorrelatedBy<Guid>
 	{
 		public Guid CorrelationId { get; set; }
 

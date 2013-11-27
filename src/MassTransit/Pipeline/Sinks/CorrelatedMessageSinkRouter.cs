@@ -22,7 +22,7 @@ namespace MassTransit.Pipeline.Sinks
 	/// <typeparam name="T">The input type of the router</typeparam>
 	public class CorrelatedMessageSinkRouter<T, TMessage, TKey> :
 		MessageRouter<T>
-		where TMessage : class, CorrelatedBy<TKey>
+		where TMessage : class, IAmCorrelatedBy<TKey>
 		where T : class
 	{
 		readonly TKey _correlationId;

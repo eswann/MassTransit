@@ -17,7 +17,7 @@ namespace MassTransit.Tests.Examples.Messages
     [Serializable]
 	public class Pong :
 		IEquatable<Pong>,
-		CorrelatedBy<Guid>
+		IAmCorrelatedBy<Guid>
 	{
 		private Guid _id;
 

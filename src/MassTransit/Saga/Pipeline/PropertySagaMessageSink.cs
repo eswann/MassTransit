@@ -20,7 +20,7 @@ namespace MassTransit.Saga.Pipeline
 
 	public class PropertySagaMessageSink<TSaga, TMessage> :
 		SagaMessageSinkBase<TSaga, TMessage>
-		where TSaga : class, ISaga, CorrelatedBy<Guid>, Consumes<TMessage>.All
+		where TSaga : class, ISaga, IAmCorrelatedBy<Guid>, Consumes<TMessage>.All
 		where TMessage : class
 	{
 		public PropertySagaMessageSink(ISagaRepository<TSaga> repository,

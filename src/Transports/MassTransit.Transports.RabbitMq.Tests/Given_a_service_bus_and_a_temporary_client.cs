@@ -3,6 +3,7 @@ namespace MassTransit.Transports.RabbitMq.Tests
     using System;
     using BusConfigurators;
     using Configuration;
+    using Configuration.Extensions;
     using Magnum.TestFramework;
     using NUnit.Framework;
 

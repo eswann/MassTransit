@@ -16,7 +16,7 @@ namespace MassTransit.Services.HealthMonitoring.Messages
 
 	[Serializable]
 	public class PingEndpoint :
-		CorrelatedBy<Guid>
+		IAmCorrelatedBy<Guid>
 	{
 		public PingEndpoint(Guid correlationId)
 		{

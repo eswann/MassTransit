@@ -16,7 +16,7 @@ namespace MassTransit.Services.Timeout.Messages
 
 	[Serializable]
 	public class TimeoutCancelled :
-		CorrelatedBy<Guid>
+		IAmCorrelatedBy<Guid>
 	{
 		public int Tag { get; set; }
 		public Guid CorrelationId { get; set; }

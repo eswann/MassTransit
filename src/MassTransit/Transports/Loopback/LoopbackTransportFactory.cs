@@ -59,7 +59,7 @@ namespace MassTransit.Transports.Loopback
 
         public IEndpointAddress GetAddress(Uri uri, bool transactional)
         {
-            return new EndpointAddress(uri);
+            return new MassTransit.EndpointAddress(uri);
         }
 
         public void Dispose()

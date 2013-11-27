@@ -42,7 +42,7 @@ namespace MassTransit.Subscriptions.Coordinator
 
     public class EndpointSubscriptionConnector<TMessage, TKey> :
         EndpointSubscriptionConnector
-        where TMessage : class, CorrelatedBy<TKey>
+        where TMessage : class, IAmCorrelatedBy<TKey>
     {
         readonly IServiceBus _bus;
         readonly Func<string, TKey> _converter;

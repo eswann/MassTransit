@@ -15,7 +15,7 @@ namespace MassTransit.Containers.Tests.Scenarios
     using System;
 
     public class SecondSagaMessage :
-        CorrelatedBy<Guid>
+        IAmCorrelatedBy<Guid>
     {
         public Guid CorrelationId { get; set; }
     }

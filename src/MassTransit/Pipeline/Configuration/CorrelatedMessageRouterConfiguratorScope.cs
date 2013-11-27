@@ -19,14 +19,14 @@ namespace MassTransit.Pipeline.Configuration
 
     public class InboundCorrelatedMessageRouterConfiguratorScope<TMessage, TKey> :
         PipelineInspectorBase<InboundCorrelatedMessageRouterConfiguratorScope<TMessage, TKey>>
-        where TMessage : class, CorrelatedBy<TKey>
+        where TMessage : class, IAmCorrelatedBy<TKey>
     {
         public CorrelatedMessageRouter<IConsumeContext<TMessage>, TMessage, TKey> Router { get; private set; }
 
         [UsedImplicitly]
         public bool Inspect<T, TM, TK>(CorrelatedMessageRouter<T, TM, TK> router)
             where T : class, IMessageContext<TM>
-            where TM : class, CorrelatedBy<TK>
+            where TM : class, IAmCorrelatedBy<TK>
         {
             if (typeof (T) == typeof (IConsumeContext<TMessage>) && typeof (TM) == typeof (TMessage) &&
                 typeof (TK) == typeof (TKey))

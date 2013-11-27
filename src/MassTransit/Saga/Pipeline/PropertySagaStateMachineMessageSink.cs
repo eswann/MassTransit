@@ -23,7 +23,7 @@ namespace MassTransit.Saga.Pipeline
 
 	public class PropertySagaStateMachineMessageSink<TSaga, TMessage> :
 		SagaMessageSinkBase<TSaga, TMessage>
-		where TSaga : SagaStateMachine<TSaga>, ISaga, CorrelatedBy<Guid>
+		where TSaga : SagaStateMachine<TSaga>, ISaga, IAmCorrelatedBy<Guid>
 		where TMessage : class
 	{
 		static readonly ILog _log =
