@@ -319,10 +319,6 @@
     <Content Include="loopback.castle.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <EmbeddedResource Include="Saga\RegisterUserSaga.hbm.xml" />
-    <Content Include="Saga\saga.nhibernate.cfg.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="subscriptions.castle.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
