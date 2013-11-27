@@ -1,7 +1,7 @@
-namespace Burrows.Serialization.Custom
-{
-    using System.IO;
+using System.IO;
 
+namespace Burrows.Serialization
+{
     /// <summary>
 	/// A stream that doesn't close the inner stream when <see cref="Close"/> is called.
 	/// </summary>

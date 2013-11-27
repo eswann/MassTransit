@@ -310,11 +310,8 @@ namespace Burrows.Endpoints
                                         // seems like this might be unnecessary if we are going to reprocess the message
                                         receiveContext.ExecuteFaultActions(faultActions);
                                     }
-                                    else if(!receiveContext.IsTransactional)
-                                    {
-                                        SaveMessageToInboundTransport(receiveContext);
-                                    }
-
+                                    SaveMessageToInboundTransport(receiveContext);
+                                    
                                     throw;
                                 }
                             };

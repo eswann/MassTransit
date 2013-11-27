@@ -32,7 +32,6 @@ namespace Burrows.Context
         private readonly IList<IPublished> _published;
         private readonly IList<IReceived> _received;
         private readonly IList<ISent> _sent;
-        private readonly bool _transactional;
         Stream _bodyStream;
         readonly Stopwatch _timer;
         IMessageTypeConverter _typeConverter;
@@ -49,11 +48,10 @@ namespace Burrows.Context
             _received = new List<IReceived>();
         }
 
-        ReceiveContext(Stream bodyStream, bool transactional)
+        ReceiveContext(Stream bodyStream)
             : this()
         {
             _bodyStream = bodyStream;
-            _transactional = transactional;
         }
 
         /// <summary>
@@ -152,11 +150,6 @@ namespace Burrows.Context
 
         public Guid Id { get; private set; }
 
-        public bool IsTransactional
-        {
-            get { return _transactional; }
-        }
-
         public void ExecuteFaultActions(IEnumerable<Action> faultActions)
         {
             try
@@ -239,18 +232,11 @@ namespace Burrows.Context
         /// which in turn contains both payload and meta-data/out-of-band data.
         /// </summary>
         /// <param name="bodyStream">Body stream to create receive context from</param>
-        /// <param name="transactional">True if the transport is transactional and will roll back failed messages </param>
         /// <returns>The receive context</returns>
-        [NotNull]
-        public static ReceiveContext FromBodyStream(Stream bodyStream, bool transactional)
-        {
-            return new ReceiveContext(bodyStream, transactional);
-        }
-
         [NotNull]
         public static ReceiveContext FromBodyStream(Stream bodyStream)
         {
-            return new ReceiveContext(bodyStream, false);
+            return new ReceiveContext(bodyStream);
         }
 
         /// <summary>
@@ -260,7 +246,7 @@ namespace Burrows.Context
         [NotNull]
         public static ReceiveContext Empty()
         {
-            return new ReceiveContext(null, false);
+            return new ReceiveContext(null);
         }
     }
 }

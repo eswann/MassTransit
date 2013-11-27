@@ -33,14 +33,9 @@ namespace Burrows.Endpoints
         /// </summary>
         bool IsLocal { get; }
 
-        /// <summary>
-        /// Was transactional requested by the Uri
-        /// </summary>
-        bool IsTransactional { get; }
     }
 
-    public class EndpointAddress :
-        IEndpointAddress
+    public class EndpointAddress : IEndpointAddress
     {
         protected static readonly string LocalMachineName = Environment.MachineName.ToLowerInvariant();
         static IEndpointAddress _null;
@@ -54,8 +49,6 @@ namespace Burrows.Endpoints
             _uri = uri;
 
             _isLocal = () => DetermineIfEndpointIsLocal(uri);
-
-            IsTransactional = CheckForTransactionalHint(uri, false);
         }
 
         public EndpointAddress([NotNull] string uriString)
@@ -72,8 +65,6 @@ namespace Burrows.Endpoints
             }
 
             _isLocal = () => DetermineIfEndpointIsLocal(_uri);
-
-            IsTransactional = CheckForTransactionalHint(_uri, false);
         }
 
         public static IEndpointAddress Null
@@ -97,8 +88,6 @@ namespace Burrows.Endpoints
             get { return Uri.AbsolutePath.Substring(1); }
         }
 
-        public bool IsTransactional { get; protected set; }
-
         public override string ToString()
         {
             return _uri.ToString();
@@ -116,9 +105,5 @@ namespace Burrows.Endpoints
             return local;
         }
 
-        protected static bool CheckForTransactionalHint(Uri uri, bool defaultTransactional)
-        {
-            return uri.Query.GetValueFromQueryString("tx", defaultTransactional);
-        }
     }
 }

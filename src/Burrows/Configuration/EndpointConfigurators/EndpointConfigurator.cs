@@ -17,7 +17,6 @@ namespace Burrows.EndpointConfigurators
 {
     using System;
     using System.Collections.Generic;
-    using System.Transactions;
     using Builders;
     using Configurators;
     using Magnum.Extensions;
@@ -60,11 +59,6 @@ namespace Burrows.EndpointConfigurators
         IEndpointConfigurator PurgeExistingMessages();
 
         /// <summary>
-        /// Creates the endpoint as transactional if it needs to be created
-        /// </summary>
-        IEndpointConfigurator CreateTransactional();
-
-        /// <summary>
         /// Creates the endpoint if it is missing
         /// </summary>
         IEndpointConfigurator CreateIfMissing();
@@ -82,20 +76,6 @@ namespace Burrows.EndpointConfigurators
         /// <returns></returns>
         IEndpointConfigurator SetInboundMessageTrackerFactory(MessageTrackerFactory messageTrackerFactory);
 
-
-        /// <summary>
-        /// Sets the transaction timeout for the endpoint
-        /// </summary>
-        /// <param name="timeout"></param>
-        /// <returns></returns>
-        IEndpointConfigurator SetTransactionTimeout(TimeSpan timeout);
-
-        /// <summary>
-        /// Sets the isolation level for the endpoint if it is transactional
-        /// </summary>
-        /// <param name="isolationLevel"></param>
-        /// <returns></returns>
-        IEndpointConfigurator SetIsolationLevel(IsolationLevel isolationLevel);
     }
 
 
@@ -146,24 +126,6 @@ namespace Burrows.EndpointConfigurators
         public IEndpointConfigurator SetInboundMessageTrackerFactory(MessageTrackerFactory messageTrackerFactory)
         {
             _settings.TrackerFactory = messageTrackerFactory;
-            return this;
-        }
-
-        public IEndpointConfigurator SetTransactionTimeout(TimeSpan timeout)
-        {
-            _settings.TransactionTimeout = timeout;
-            return this;
-        }
-
-        public IEndpointConfigurator SetIsolationLevel(IsolationLevel isolationLevel)
-        {
-            _settings.IsolationLevel = isolationLevel;
-            return this;
-        }
-
-        public IEndpointConfigurator CreateTransactional()
-        {
-            _settings.Transactional = true;
             return this;
         }
 

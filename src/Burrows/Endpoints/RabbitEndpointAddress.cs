@@ -66,7 +66,6 @@ namespace Burrows.Endpoints
         private readonly bool _durable = true;
         private readonly bool _exclusive;
         private readonly bool _isHighAvailable;
-        private readonly bool _isTransactional;
         private readonly string _name;
         private readonly Uri _uri;
         Func<bool> _isLocal;
@@ -84,7 +83,6 @@ namespace Burrows.Endpoints
 
             _name = name;
 
-            _isTransactional = uri.Query.GetValueFromQueryString("tx", false);
             _isLocal = () => DetermineIfEndpointIsLocal(uri);
 
             _ttl = uri.Query.GetValueFromQueryString("ttl", 0);
@@ -134,11 +132,6 @@ namespace Burrows.Endpoints
         public bool IsLocal
         {
             get { return _isLocal(); }
-        }
-
-        public bool IsTransactional
-        {
-            get { return _isTransactional; }
         }
 
         public bool Durable

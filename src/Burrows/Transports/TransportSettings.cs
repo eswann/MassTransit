@@ -15,25 +15,16 @@ using Burrows.Endpoints;
 
 namespace Burrows.Transports
 {
-    using System;
-    using System.Transactions;
     using Magnum;
-    using Magnum.Extensions;
     using Util;
 
-    public class TransportSettings :
-		ITransportSettings
+    public class TransportSettings : ITransportSettings
 	{
 		public TransportSettings([NotNull] IEndpointAddress address)
 		{
 			Guard.AgainstNull(address, "address");
 
 			Address = address;
-
-			Transactional = Address.IsTransactional;
-			RequireTransactional = false;
-			TransactionTimeout = 30.Seconds();
-			IsolationLevel = IsolationLevel.Serializable;
 
 			CreateIfMissing = true;
 			PurgeExistingMessages = false;
@@ -46,11 +37,6 @@ namespace Burrows.Transports
 
 			Address = address;
 
-			Transactional = source.Transactional;
-			RequireTransactional = source.RequireTransactional;
-			TransactionTimeout = source.TransactionTimeout;
-			IsolationLevel = source.IsolationLevel;
-
 			CreateIfMissing = source.CreateIfMissing;
 			PurgeExistingMessages = source.PurgeExistingMessages;
 		}
@@ -59,28 +45,6 @@ namespace Burrows.Transports
 		/// The address of the endpoint
 		/// </summary>
 		public IEndpointAddress Address { get; private set; }
-
-		/// <summary>
-		/// True if the endpoint should be transactional. If Transactional is true and the endpoint already
-		/// exists and is not transactional, an exception will be thrown.
-		/// </summary>
-		public bool Transactional { get; set; }
-
-		/// <summary>
-		/// if the transactional queue is requested and required it will throw an exception if the queue 
-		/// exists and is not transactional
-		/// </summary>
-		public bool RequireTransactional { get; set; }
-
-		/// <summary>
-		/// The timeout for the transaction if System.Transactions is supported
-		/// </summary>
-		public TimeSpan TransactionTimeout { get; set; }
-
-	    /// <summary>
-	    /// The isolation level to use with the transaction if a transactional transport is used
-	    /// </summary>
-	    public IsolationLevel IsolationLevel { get; set; }
 
 	    /// <summary>
 		/// The transport should be created if it was not found

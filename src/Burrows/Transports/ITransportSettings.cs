@@ -31,30 +31,8 @@ namespace Burrows.Transports
 		bool CreateIfMissing { get; }
 
 		/// <summary>
-		/// The isolation level to use with the transaction if a transactional transport is used
-		/// </summary>
-		IsolationLevel IsolationLevel { get; }
-
-		/// <summary>
 		/// If the transport should purge any existing messages before reading from the queue
 		/// </summary>
 		bool PurgeExistingMessages { get; }
-
-		/// <summary>
-		/// if the transactional queue is requested and required it will throw an exception if the queue 
-		/// exists and is not transactional
-		/// </summary>
-		bool RequireTransactional { get; }
-
-		/// <summary>
-		/// The timeout for the transaction if System.Transactions is supported
-		/// </summary>
-		TimeSpan TransactionTimeout { get; }
-
-		/// <summary>
-		/// True if the endpoint should be transactional. If Transactional is true and the endpoint already
-		/// exists and is not transactional, an exception will be thrown.
-		/// </summary>
-		bool Transactional { get; }
 	}
 }

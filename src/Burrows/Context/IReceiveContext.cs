@@ -35,11 +35,6 @@ namespace Burrows.Context
         Guid Id { get; }
 
         /// <summary>
-        /// True if the transport is transactional and will leave the message on the queue if an exception is thrown
-        /// </summary>
-        bool IsTransactional { get; }
-
-        /// <summary>
         ///  The original message id that was consumed
         /// </summary>
         string OriginalMessageId { get; }

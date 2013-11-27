@@ -18,7 +18,6 @@ namespace Burrows.Serialization
     using System.IO;
     using System.Runtime.Serialization;
     using Context;
-    using Custom;
     using Newtonsoft.Json;
     using Newtonsoft.Json.Converters;
     using Newtonsoft.Json.Linq;

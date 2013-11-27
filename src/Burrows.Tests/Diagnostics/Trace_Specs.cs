@@ -65,7 +65,7 @@ namespace Burrows.Tests.Diagnostics
 
             IReceivedMessageTraceDetail message = _list.Messages[0];
 
-            message.ContentType.ShouldEqual("application/vnd.masstransit+xml");
+            message.ContentType.ShouldEqual("application/vnd.masstransit+json");
             message.DestinationAddress.ShouldEqual(_test.Scenario.Bus.Endpoint.Address.Uri);
             message.ResponseAddress.ShouldEqual(_test.Scenario.Bus.Endpoint.Address.Uri);
         }
