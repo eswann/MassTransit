@@ -30,7 +30,7 @@ namespace Burrows.TestFramework.Transports
         [SetUp]
         public void SetUp()
         {
-            _serializer = new XmlMessageSerializer();
+            _serializer = new JsonMessageSerializer();
             _address = new EndpointAddress(Address);
             _settings = new TransportSettings(_address)
                 {

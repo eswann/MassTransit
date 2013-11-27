@@ -86,7 +86,7 @@ namespace Burrows.Tests.Serialization
 		                                 Action<IConsumeContext> checkHeaderAction)
 		{
 			byte[] data;
-			var serializer = new XmlMessageSerializer();
+			var serializer = new JsonMessageSerializer();
 
 			var message = new PingMessage();
 
@@ -112,17 +112,6 @@ namespace Burrows.Tests.Serialization
 		}
 	}
 
-	[TestFixture]
-	public class WhenUsingCustomXmlAndHeaders :
-		Setting_the_message_expiration<XmlMessageSerializer>
-	{
-	}
-
-	[TestFixture]
-	public class WhenUsingBinaryAndHeaders :
-		Setting_the_message_expiration<BinaryMessageSerializer>
-	{
-	}
 
 	[TestFixture]
 	public class WhenUsingJsonAndHeaders :
@@ -130,9 +119,4 @@ namespace Burrows.Tests.Serialization
 	{
 	}
 
-	[TestFixture]
-	public class WhenUsingBsonAndHeaders :
-		Setting_the_message_expiration<BsonMessageSerializer>
-	{
-	}
 }

@@ -36,13 +36,6 @@ namespace Burrows.EndpointConfigurators
         IEndpointConfigurator UseSerializer(IMessageSerializer serializer);
 
         /// <summary>
-        /// Specify the supported serializers for this endpoint (overrides the defaults)
-        /// </summary>
-        /// <param name="serializers"></param>
-        /// <returns></returns>
-        IEndpointConfigurator UseSupportedSerializers(ISupportedMessageSerializers serializers);
-
-        /// <summary>
         /// Overrides the default error address with a new error address
         /// </summary>
         /// <param name="uri"></param>
@@ -135,12 +128,6 @@ namespace Burrows.EndpointConfigurators
         public IEndpointConfigurator UseSerializer(IMessageSerializer serializer)
         {
             _settings.Serializer = serializer;
-            return this;
-        }
-
-        public IEndpointConfigurator UseSupportedSerializers(ISupportedMessageSerializers serializers)
-        {
-            _settings.SupportedSerializers = serializers;
             return this;
         }
 

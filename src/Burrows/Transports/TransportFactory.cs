@@ -152,7 +152,7 @@ namespace Burrows.Transports
             }
         }
 
-        public IEndpointAddress GetAddress(Uri uri, bool transactional)
+        public IEndpointAddress GetAddress(Uri uri)
         {
             return RabbitEndpointAddress.Parse(uri);
         }

@@ -18,11 +18,9 @@ namespace Burrows.Testing.ScenarioBuilders
     using System;
     using EndpointConfigurators;
     using Exceptions;
-    using Magnum.Extensions;
     using Burrows.Configurators;
     using Scenarios;
     using Serialization;
-    using Transports;
     using Transports.Loopback;
 
     /// <summary>
@@ -60,11 +58,8 @@ namespace Burrows.Testing.ScenarioBuilders
 			var settings = new EndpointFactoryDefaultSettings
 				{
 					CreateMissingQueues = true,
-					CreateTransactionalQueues = false,
 					PurgeOnStartup = true,
-					RequireTransactional = false,
-					Serializer = new XmlMessageSerializer(),
-					TransactionTimeout = 30.Seconds()
+					Serializer = new JsonMessageSerializer(),
 				};
 
 			_endpointFactoryConfigurator = new EndpointFactoryConfigurator(settings);

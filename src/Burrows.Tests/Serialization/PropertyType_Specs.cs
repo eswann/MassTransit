@@ -18,7 +18,7 @@ namespace Burrows.Tests.Serialization
 
     [TestFixture]
     public class Serializing_a_property_of_type_char :
-        SerializationTest<XmlMessageSerializer>
+        SerializationTest<JsonMessageSerializer>
     {
         public class PropertyOfChar
         {
@@ -74,7 +74,7 @@ namespace Burrows.Tests.Serialization
 
     [TestFixture]
     public class Serializing_a_string_with_an_escaped_character :
-        SerializationTest<XmlMessageSerializer>
+        SerializationTest<JsonMessageSerializer>
     {
         public class SimpleMessage
         {

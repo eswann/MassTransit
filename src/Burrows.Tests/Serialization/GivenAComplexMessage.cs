@@ -65,21 +65,6 @@
         }
     }
 
-
-    [TestFixture]
-    public class WhenUsingTheCustomXmlOnComplexMessage :
-        GivenAComplexMessage<XmlMessageSerializer>
-    {
-
-    }
-
-    [TestFixture]
-    public class WhenUsingTheBinaryOnComplexMessage :
-        GivenAComplexMessage<BinaryMessageSerializer>
-    {
-
-    }
-
     [TestFixture]
     public class WhenUsingJsonOnComplexMessage :
         GivenAComplexMessage<JsonMessageSerializer>
@@ -87,10 +72,4 @@
 
     }
 
-	[TestFixture]
-    public class WhenUsingBsonOnComplexMessage :
-        GivenAComplexMessage<BsonMessageSerializer>
-    {
-
-    }
 }

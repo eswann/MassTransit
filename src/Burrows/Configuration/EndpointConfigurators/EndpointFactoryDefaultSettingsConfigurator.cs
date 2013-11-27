@@ -12,7 +12,6 @@
 // specific language governing permissions and limitations under the License.
 namespace Burrows.EndpointConfigurators
 {
-    using System;
     using Serialization;
 
     public interface IEndpointFactoryDefaultSettingsConfigurator
@@ -23,22 +22,10 @@ namespace Burrows.EndpointConfigurators
         void SetDefaultSerializer(IMessageSerializer serializerFactory);
 
         /// <summary>
-        /// Sets the default transaction timeout for transactional queue operations
-        /// </summary>
-        /// <param name="transactionTimeout"></param>
-        void SetDefaultTransactionTimeout(TimeSpan transactionTimeout);
-
-        /// <summary>
         /// Sets the flag indicating that missing queues should be created
         /// </summary>
         /// <param name="createMissingQueues"></param>
         void SetCreateMissingQueues(bool createMissingQueues);
-
-        /// <summary>
-        /// When creating queues, attempt to create transactional queues if available
-        /// </summary>
-        /// <param name="createTransactionalQueues"></param>
-        void SetCreateTransactionalQueues(bool createTransactionalQueues);
 
         /// <summary>
         /// Specifies if the input queue should be purged on startup
@@ -62,19 +49,9 @@ namespace Burrows.EndpointConfigurators
 			_defaults.Serializer = defaultSerializer;
 		}
 
-		public void SetDefaultTransactionTimeout(TimeSpan transactionTimeout)
-		{
-			_defaults.TransactionTimeout = transactionTimeout;
-		}
-
 		public void SetCreateMissingQueues(bool createMissingQueues)
 		{
 			_defaults.CreateMissingQueues = createMissingQueues;
-		}
-
-		public void SetCreateTransactionalQueues(bool createTransactionalQueues)
-		{
-			_defaults.CreateTransactionalQueues = createTransactionalQueues;
 		}
 
 		public void SetPurgeOnStartup(bool purgeOnStartup)

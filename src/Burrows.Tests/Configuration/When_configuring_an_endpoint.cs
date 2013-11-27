@@ -35,7 +35,7 @@ namespace Burrows.Tests.Configuration
 					x.AddTransportFactory<LoopbackTransportFactory>();
 					x.ConfigureEndpoint("loopback://localhost/mt_client", y =>
 						{
-							y.UseSerializer<VersionOneXmlMessageSerializer>()
+							y.UseSerializer<JsonMessageSerializer>()
 								.DiscardFaultingMessages();
 						});
 					x.ConfigureEndpoint("loopback://localhost/mt_other", y => { y.SetErrorAddress("loopback://localhost/mt_error"); });
@@ -72,7 +72,7 @@ namespace Burrows.Tests.Configuration
 			IMessageSerializer serializer = endpointClass.Serializer;
 
 			serializer.ShouldNotBeNull();
-			serializer.ShouldBeAnInstanceOf<VersionOneXmlMessageSerializer>();
+            serializer.ShouldBeAnInstanceOf<JsonMessageSerializer>();
 		}
 
 		[Then]
@@ -98,7 +98,7 @@ namespace Burrows.Tests.Configuration
 			IMessageSerializer serializer = endpointClass.Serializer;
 
 			serializer.ShouldNotBeNull();
-			serializer.ShouldBeAnInstanceOf<XmlMessageSerializer>();
+            serializer.ShouldBeAnInstanceOf<JsonMessageSerializer>();
 		}
 
 		[Then]

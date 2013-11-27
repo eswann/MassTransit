@@ -10,6 +10,10 @@
 // under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR 
 // CONDITIONS OF ANY KIND, either express or implied. See the License for the 
 // specific language governing permissions and limitations under the License.
+
+using System;
+using Burrows.Util;
+
 namespace Burrows.Serialization
 {
     using Context;
@@ -73,6 +77,16 @@ namespace Burrows.Serialization
             {
                 envelope.Headers[header.Key] = header.Value;
             }
+        }
+
+        public static string ToStringOrNull(this Uri uri)
+        {
+            return uri == null ? null : uri.ToString();
+        }
+
+        public static Uri ToUriOrNull(this string uriString)
+        {
+            return string.IsNullOrEmpty(uriString) ? null : uriString.ToUri();
         }
     }
 }

@@ -17,7 +17,6 @@ namespace Burrows.Builders
 {
     using System;
     using System.Collections.Generic;
-    using System.Transactions;
     using EndpointConfigurators;
     using Serialization;
     using Transports;
@@ -38,22 +37,10 @@ namespace Burrows.Builders
         void SetDefaultSerializer(IMessageSerializer serializerFactory);
 
         /// <summary>
-        /// Sets the default transaction timeout for transactional queue operations
-        /// </summary>
-        /// <param name="transactionTimeout"></param>
-        void SetDefaultTransactionTimeout(TimeSpan transactionTimeout);
-
-        /// <summary>
         /// Sets the flag indicating that missing queues should be created
         /// </summary>
         /// <param name="createMissingQueues"></param>
         void SetCreateMissingQueues(bool createMissingQueues);
-
-        /// <summary>
-        /// When creating queues, attempt to create transactional queues if available
-        /// </summary>
-        /// <param name="createTransactionalQueues"></param>
-        void SetCreateTransactionalQueues(bool createTransactionalQueues);
 
         /// <summary>
         /// Specifies if the input queue should be purged on startup
@@ -73,17 +60,6 @@ namespace Burrows.Builders
         /// </summary>
         void AddTransportFactory(ITransportFactory transportFactory);
 
-        /// <summary>
-        /// Add a message serializer to the builder so that messages with other serialization types
-        /// can be received without conflicts
-        /// </summary>
-        /// <param name="serializer"></param>
-        void AddMessageSerializer(IMessageSerializer serializer);
-
-        /// <summary>
-        /// Sets the default isolation level for transports that perform transactional operations
-        /// </summary>
-        void SetDefaultIsolationLevel(IsolationLevel isolationLevel);
 
         /// <summary>
         /// Sets the default retry limit for inbound messages
@@ -95,10 +71,6 @@ namespace Burrows.Builders
         /// </summary>
         void SetDefaultInboundMessageTrackerFactory(MessageTrackerFactory messageTrackerFactory);
 
-        /// <summary>
-        /// Sets the supported message serializers for all endpoints
-        /// </summary>
-        void SetSupportedMessageSerializers(ISupportedMessageSerializers supportedSerializers);
     }
 
     public class EndpointFactoryBuilder :
@@ -106,7 +78,6 @@ namespace Burrows.Builders
     {
         private readonly EndpointFactoryDefaultSettings _defaults;
         private readonly IDictionary<Uri, IEndpointBuilder> _endpointBuilders;
-        private readonly SupportedMessageSerializers _messageSerializers;
         private readonly IDictionary<string, ITransportFactory> _transportFactories;
 
         public EndpointFactoryBuilder([NotNull] IEndpointFactoryDefaultSettings defaults)
@@ -120,9 +91,6 @@ namespace Burrows.Builders
 
             _defaults = new EndpointFactoryDefaultSettings(defaults);
 
-            _messageSerializers = new SupportedMessageSerializers(_defaults.Serializer);
-
-            _defaults.SupportedSerializers = _messageSerializers;
         }
 
         public IEndpointFactory Build()
@@ -135,18 +103,6 @@ namespace Burrows.Builders
         public void SetDefaultSerializer(IMessageSerializer defaultSerializer)
         {
             _defaults.Serializer = defaultSerializer;
-
-            AddMessageSerializer(defaultSerializer);
-        }
-
-        public void SetDefaultTransactionTimeout(TimeSpan transactionTimeout)
-        {
-            _defaults.TransactionTimeout = transactionTimeout;
-        }
-
-        public void SetDefaultIsolationLevel(IsolationLevel isolationLevel)
-        {
-            _defaults.IsolationLevel = isolationLevel;
         }
 
         public void SetDefaultRetryLimit(int retryLimit)
@@ -164,19 +120,9 @@ namespace Burrows.Builders
             _defaults.CreateMissingQueues = createMissingQueues;
         }
 
-        public void SetCreateTransactionalQueues(bool createTransactionalQueues)
-        {
-            _defaults.CreateTransactionalQueues = createTransactionalQueues;
-        }
-
         public void SetPurgeOnStartup(bool purgeOnStartup)
         {
             _defaults.PurgeOnStartup = purgeOnStartup;
-        }
-
-        public void SetSupportedMessageSerializers(ISupportedMessageSerializers supportedSerializers)
-        {
-            _defaults.SupportedSerializers = supportedSerializers;
         }
 
         public void AddEndpointBuilder(Uri uri, IEndpointBuilder endpointBuilder)
@@ -189,11 +135,6 @@ namespace Burrows.Builders
             string scheme = transportFactory.Scheme.ToLowerInvariant();
 
             _transportFactories[scheme] = transportFactory;
-        }
-
-        public void AddMessageSerializer(IMessageSerializer serializer)
-        {
-            _messageSerializers.AddSerializer(serializer);
         }
     }
 }

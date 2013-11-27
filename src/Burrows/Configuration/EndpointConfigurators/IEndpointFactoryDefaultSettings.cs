@@ -15,8 +15,6 @@ using Burrows.Endpoints;
 
 namespace Burrows.EndpointConfigurators
 {
-    using System;
-    using System.Transactions;
     using Serialization;
     using Transports;
     using Util;
@@ -25,13 +23,8 @@ namespace Burrows.EndpointConfigurators
     {
         MessageTrackerFactory TrackerFactory { get; }
         IMessageSerializer Serializer { get; }
-        ISupportedMessageSerializers SupportedSerializers { get; }
         bool CreateMissingQueues { get; }
-        bool CreateTransactionalQueues { get; }
         bool PurgeOnStartup { get; }
-        TimeSpan TransactionTimeout { get; }
-        bool RequireTransactional { get; }
-        IsolationLevel IsolationLevel { get; }
         int RetryLimit { get; }
 
         [NotNull]

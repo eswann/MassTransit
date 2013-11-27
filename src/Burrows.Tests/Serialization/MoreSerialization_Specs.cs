@@ -24,11 +24,7 @@ namespace Burrows.Tests.Serialization
     using Burrows.Services.Subscriptions.Messages;
     using NUnit.Framework;
 
-    [TestFixture(typeof(XmlMessageSerializer))]
     [TestFixture(typeof(JsonMessageSerializer))]
-    [TestFixture(typeof(BsonMessageSerializer))]
-    [TestFixture(typeof(VersionOneXmlMessageSerializer))]
-    [TestFixture(typeof(BinaryMessageSerializer))]
     public class MoreSerialization_Specs<TSerializer> :
         SerializationSpecificationBase<TSerializer> where TSerializer : IMessageSerializer, new()
     {

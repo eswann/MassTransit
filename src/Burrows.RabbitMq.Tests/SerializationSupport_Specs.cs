@@ -43,7 +43,6 @@
             base.ConfigureLocalBus(configurator);
 
             configurator.UseJsonSerializer();
-            configurator.SupportXmlSerializer();
 
             configurator.Subscribe(s => s.Handler<B>(_responseReceived.Complete));
         }
@@ -52,8 +51,7 @@
         {
             base.ConfigureRemoteBus(configurator);
 
-            configurator.UseXmlSerializer();
-            configurator.SupportJsonSerializer();
+            configurator.UseJsonSerializer();
 
             configurator.Subscribe(s => s.Handler<A>((context, message) =>
                 {

@@ -60,7 +60,7 @@ namespace Burrows.Transports.Loopback
             get { return _messageNameFormatter; }
         }
 
-        public IEndpointAddress GetAddress(Uri uri, bool transactional)
+        public IEndpointAddress GetAddress(Uri uri)
         {
             return new EndpointAddress(uri);
         }

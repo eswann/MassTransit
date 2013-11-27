@@ -159,19 +159,6 @@ namespace Burrows.Tests.Serialization
 		}
 	}
 
-	[TestFixture]
-	[Explicit]
-	public class For_the_binary_message_serializer :
-		When_sending_a_message_using_the_specified_serializer<BinaryMessageSerializer>
-	{
-	}
-
-	[TestFixture]
-	[Explicit]
-	public class For_the_custom_xml_message_serializer :
-		When_sending_a_message_using_the_specified_serializer<XmlMessageSerializer>
-	{
-	}
 
 	[TestFixture]
 	[Explicit]
@@ -180,10 +167,4 @@ namespace Burrows.Tests.Serialization
 	{
 	}
 
-	[TestFixture]
-	[Explicit]
-	public class For_the_bson_message_serializer :
-		When_sending_a_message_using_the_specified_serializer<BsonMessageSerializer>
-	{
-	}
 }

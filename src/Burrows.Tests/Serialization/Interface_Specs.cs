@@ -55,29 +55,10 @@ namespace Burrows.Tests.Serialization
 		}
 	}
 
-	[TestFixture]
-	public class WhenUsingCustomXml :
-		Deserializing_an_interface<XmlMessageSerializer>
-	{
-		
-	}
-
-	[TestFixture][Explicit("the built in binary serializer doesn't support this feature")]
-	public class WhenUsingBinary :
-		Deserializing_an_interface<BinaryMessageSerializer>
-	{
-	}
 
 	[TestFixture]
 	public class WhenUsingJson :
 		Deserializing_an_interface<JsonMessageSerializer>
-	{
-		
-	}
-
-	[TestFixture]
-	public class WhenUsingBson :
-		Deserializing_an_interface<BsonMessageSerializer>
 	{
 		
 	}

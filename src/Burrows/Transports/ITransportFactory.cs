@@ -32,6 +32,6 @@ namespace Burrows.Transports
         /// </summary>
         IMessageNameFormatter MessageNameFormatter { get; }
 
-        IEndpointAddress GetAddress(Uri uri, bool transactional);
+        IEndpointAddress GetAddress(Uri uri);
     }
 }

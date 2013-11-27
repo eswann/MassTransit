@@ -26,15 +26,7 @@ namespace Burrows
 			return configurator;
 		}
 
-		public static IEndpointFactoryConfigurator SetCreateTransactionalQueues(this IEndpointFactoryConfigurator configurator,
-		                                                                       bool value)
-		{
-			var builderConfigurator = new DelegateEndpointFactoryBuilderConfigurator(x => x.SetCreateTransactionalQueues(value));
-
-			configurator.AddEndpointFactoryConfigurator(builderConfigurator);
-
-			return configurator;
-		}
+	
 
 		public static IEndpointFactoryConfigurator SetPurgeOnStartup(this IEndpointFactoryConfigurator configurator, bool value)
 		{

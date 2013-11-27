@@ -61,20 +61,6 @@ namespace Burrows.Tests.Serialization
             }
         }
     }
- 
-    [TestFixture]
-    public class WhenUsingTheXmlOnSimpleMessage :
-        GivenASimpleMessage<XmlMessageSerializer>
-    {
-        
-    }
-
-    [TestFixture]
-    public class WhenUsingTheBinaryOnSimpleMessage :
-        GivenASimpleMessage<BinaryMessageSerializer>
-    {
-        
-    }
 
     [TestFixture]
     public class WhenUsingJsonOnSimpleMessage :
@@ -83,10 +69,4 @@ namespace Burrows.Tests.Serialization
         
     }
 
-	[TestFixture]
-    public class WhenUsingBsonOnSimpleMessage :
-        GivenASimpleMessage<BsonMessageSerializer>
-    {
-        
-    }
 }

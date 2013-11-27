@@ -47,95 +47,6 @@ namespace Burrows
             return configurator;
         }
 
-        public static T UseBsonSerializer<T>(this T configurator)
-            where T : IEndpointFactoryConfigurator
-        {
-            configurator.SetDefaultSerializer<BsonMessageSerializer>();
-
-            return configurator;
-        }
-
-        public static T UseXmlSerializer<T>(this T configurator)
-            where T : IEndpointFactoryConfigurator
-        {
-            configurator.SetDefaultSerializer<XmlMessageSerializer>();
-
-            return configurator;
-        }
-
-        public static T UseVersionOneXmlSerializer<T>(this T configurator)
-            where T : IEndpointFactoryConfigurator
-        {
-            configurator.SetDefaultSerializer<VersionOneXmlMessageSerializer>();
-
-            return configurator;
-        }
-
-        public static T UseBinarySerializer<T>(this T configurator)
-            where T : IEndpointFactoryConfigurator
-        {
-            configurator.SetDefaultSerializer<BinaryMessageSerializer>();
-
-            return configurator;
-        }
-
-        /// <summary>
-        /// Support the receipt of messages serialized by the JsonMessageSerializer
-        /// </summary>
-        public static T SupportJsonSerializer<T>(this T configurator)
-            where T : IEndpointFactoryConfigurator
-        {
-            configurator.SupportMessageSerializer<JsonMessageSerializer>();
-
-            return configurator;
-        }
-
-        public static T SupportBsonSerializer<T>(this T configurator)
-            where T : IEndpointFactoryConfigurator
-        {
-            configurator.SupportMessageSerializer<BsonMessageSerializer>();
-
-            return configurator;
-        }
-
-        public static T SupportXmlSerializer<T>(this T configurator)
-            where T : IEndpointFactoryConfigurator
-        {
-            configurator.SupportMessageSerializer<XmlMessageSerializer>();
-
-            return configurator;
-        }
-
-        public static T SupportVersionOneXmlSerializer<T>(this T configurator)
-            where T : IEndpointFactoryConfigurator
-        {
-            configurator.SupportMessageSerializer<VersionOneXmlMessageSerializer>();
-
-            return configurator;
-        }
-
-        public static T SupportBinarySerializer<T>(this T configurator)
-            where T : IEndpointFactoryConfigurator
-        {
-            configurator.SupportMessageSerializer<BinaryMessageSerializer>();
-
-            return configurator;
-        }
-
-        public static IServiceBusConfigurator SupportMessageSerializer<TSerializer>(
-            this IServiceBusConfigurator configurator)
-            where TSerializer : IMessageSerializer, new()
-        {
-            return SupportMessageSerializer(configurator, () => new TSerializer());
-        }
-
-        public static IEndpointFactoryConfigurator SupportMessageSerializer<TSerializer>(
-            this IEndpointFactoryConfigurator configurator)
-            where TSerializer : IMessageSerializer, new()
-        {
-            return SupportMessageSerializer(configurator, () => new TSerializer());
-        }
-
 
         static T SetDefaultSerializer<T>(this T configurator, Func<IMessageSerializer> serializerFactory)
             where T : IEndpointFactoryConfigurator
@@ -147,15 +58,6 @@ namespace Burrows
             return configurator;
         }
 
-        static T SupportMessageSerializer<T>(this T configurator, Func<IMessageSerializer> serializerFactory)
-            where T : IEndpointFactoryConfigurator
-        {
-            var serializerConfigurator = new AddSerializerEndpointFactoryConfigurator(serializerFactory);
-
-            configurator.AddEndpointFactoryConfigurator(serializerConfigurator);
-
-            return configurator;
-        }
 
         /// <summary>
         /// Sets the default message serializer for endpoints
@@ -207,44 +109,6 @@ namespace Burrows
         {
             return SetDefaultSerializer(configurator, () => serializer);
         }
-
-        // -----------------------------------------------------------------------
-
-        public static IServiceBusConfigurator SetSupportedMessageSerializers<T>(
-            this IServiceBusConfigurator configurator)
-            where T : ISupportedMessageSerializers, new()
-        {
-            return SetSupportedMessageSerializers(configurator, () => new T());
-        }
-        
-        public static IEndpointFactoryConfigurator SetSupportedMessageSerializers<T>(
-            this IEndpointFactoryConfigurator configurator)
-            where T : ISupportedMessageSerializers, new()
-        {
-            return SetSupportedMessageSerializers(configurator, () => new T());
-        }
-
-        /// <summary>
-        /// Sets the default message serializer for endpoints
-        /// </summary>
-        /// <param name="configurator"></param>
-        /// <param name="supportedSerializer"></param>
-        /// <returns></returns>
-        public static T SetSupportedMessageSerializers<T>(this T configurator,
-            ISupportedMessageSerializers supportedSerializer)
-            where T : IEndpointFactoryConfigurator
-        {
-            return SetSupportedMessageSerializers(configurator, () => supportedSerializer);
-        }
-
-        static T SetSupportedMessageSerializers<T>(this T configurator, Func<ISupportedMessageSerializers> supportedSerializers)
-           where T : IEndpointFactoryConfigurator
-        {
-            var serializerConfigurator = new SetSupportedMessageSerializersEndpointFactoryConfigurator(supportedSerializers);
-
-            configurator.AddEndpointFactoryConfigurator(serializerConfigurator);
-
-            return configurator;
-        }
+      
     }
 }

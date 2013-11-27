@@ -57,23 +57,20 @@ namespace Burrows.RabbitMq.Tests
                 management.BindQueue(_queue.Name, _exchange.Name, ExchangeType.Fanout, "", null);
             }
 
-            IMessageSerializer serializer = new XmlMessageSerializer();
+            IMessageSerializer serializer = new JsonMessageSerializer();
 
             var message = new BugsBunny {Food = "Carrot"};
 
             IDuplexTransport transport = _factory.BuildLoopback(new TransportSettings(_exchange));
             IOutboundTransport error = _factory.BuildError(new TransportSettings(_error));
 
-            var messageSerializers = new SupportedMessageSerializers();
-            messageSerializers.AddSerializer(serializer);
-
             var sendEndpoint = new Endpoint(_exchange, serializer, transport, error,
-                new InMemoryInboundMessageTracker(5), messageSerializers);
+                new InMemoryInboundMessageTracker(5));
             sendEndpoint.Send(message);
 
 
             var receiveEndpoint = new Endpoint(_queue, serializer, transport, error,
-                new InMemoryInboundMessageTracker(5), messageSerializers);
+                new InMemoryInboundMessageTracker(5));
             receiveEndpoint.Receive(o =>
                 {
                     return b =>

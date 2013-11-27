@@ -35,7 +35,6 @@ namespace Burrows.Endpoints
         private readonly IEndpointAddress _address;
         private readonly IMessageSerializer _serializer;
         private readonly IInboundMessageTracker _tracker;
-        private readonly ISupportedMessageSerializers _supportedSerializers;
         bool _disposed;
         private readonly string _disposedMessage;
         IOutboundTransport _errorTransport;
@@ -45,8 +44,7 @@ namespace Burrows.Endpoints
             [NotNull] IMessageSerializer serializer,
             [NotNull] IDuplexTransport transport,
             [NotNull] IOutboundTransport errorTransport,
-            [NotNull] IInboundMessageTracker messageTracker, 
-            [NotNull] ISupportedMessageSerializers supportedSerializers)
+            [NotNull] IInboundMessageTracker messageTracker)
         {
             if (address == null)
                 throw new ArgumentNullException("address");
@@ -58,14 +56,11 @@ namespace Burrows.Endpoints
                 throw new ArgumentNullException("errorTransport");
             if (messageTracker == null)
                 throw new ArgumentNullException("messageTracker");
-            if (supportedSerializers == null)
-                throw new ArgumentNullException("supportedSerializers");
 
             _address = address;
             _errorTransport = errorTransport;
             _serializer = serializer;
             _tracker = messageTracker;
-            _supportedSerializers = supportedSerializers;
             _transport = transport;
 
             _disposedMessage = string.Format("The endpoint has already been disposed: {0}", _address);
@@ -262,13 +257,7 @@ namespace Burrows.Endpoints
                         {
                             acceptContext.SetEndpoint(this);
 
-                            IMessageSerializer serializer;
-                            if (!_supportedSerializers.TryGetSerializer(acceptContext.ContentType, out serializer))
-                                throw new SerializationException(
-                                    string.Format("The content type could not be deserialized: {0}",
-                                        acceptContext.ContentType));
-
-                            serializer.Deserialize(acceptContext);
+                            Serializer.Deserialize(acceptContext);
 
                             receive = receiver(acceptContext);
                             if (receive == null)

@@ -62,8 +62,7 @@ namespace Burrows.Endpoints
                 ITransportFactory transportFactory = _transportFactories[scheme];
                 try
                 {
-                    IEndpointAddress address = transportFactory.GetAddress(requestedUri, _defaults.RequireTransactional ||
-                        (_defaults.CreateMissingQueues && _defaults.CreateTransactionalQueues));
+                    IEndpointAddress address = transportFactory.GetAddress(requestedUri);
 
                     var uriPath = new Uri(address.Uri.GetLeftPart(UriPartial.Path));
                     IEndpointBuilder builder = _endpointBuilders.Get(uriPath, key =>

@@ -109,26 +109,9 @@ namespace Burrows.Tests.Serialization
 	}
 
 	[TestFixture]
-	public class WhenUsingCustomXmlWithEncryption :
-		PreSharedKeyEncryptedSerialization_Specs<XmlMessageSerializer>
-	{
-	}
-
-	[TestFixture]
-	public class WhenUsingBinaryWithEncryption :
-		PreSharedKeyEncryptedSerialization_Specs<BinaryMessageSerializer>
-	{
-	}
-
-	[TestFixture]
 	public class WhenUsingJsonWithEncryption :
 		PreSharedKeyEncryptedSerialization_Specs<JsonMessageSerializer>
 	{
 	}
 
-	[TestFixture]
-	public class WhenUsingBsonWithEncryption :
-		PreSharedKeyEncryptedSerialization_Specs<BsonMessageSerializer>
-	{
-	}
 }

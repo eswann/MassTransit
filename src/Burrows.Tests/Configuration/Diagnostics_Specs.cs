@@ -28,7 +28,7 @@ namespace Burrows.Tests.Configuration
                 {
                     sbc.ReceiveFrom("loopback://localhost/test");
                     
-                    sbc.UseBinarySerializer();
+                    sbc.UseJsonSerializer();
                     sbc.UseHealthMonitoring(3);
                 }))
             {
