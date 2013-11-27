@@ -3,25 +3,25 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Containers", "Containers", "{6C61507E-FF16-45C8-8FE4-350069D9B4C1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Burrows", "MassTransit\Burrows.csproj", "{6EFD69FC-CBCC-4F85-AEE0-EFBA73F4D273}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Burrows", "Burrows\Burrows.csproj", "{6EFD69FC-CBCC-4F85-AEE0-EFBA73F4D273}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Burrows.Tests", "MassTransit.Tests\Burrows.Tests.csproj", "{76646B96-936B-4D31-A053-35CD630E3C68}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Burrows.Tests", "Burrows.Tests\Burrows.Tests.csproj", "{76646B96-936B-4D31-A053-35CD630E3C68}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Burrows.TestFramework", "MassTransit.TestFramework\Burrows.TestFramework.csproj", "{3C4B5F1A-69AD-415E-9F40-A7FDBD7A3012}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Burrows.TestFramework", "Burrows.TestFramework\Burrows.TestFramework.csproj", "{3C4B5F1A-69AD-415E-9F40-A7FDBD7A3012}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Burrows.AutofacIntegration", "Containers\MassTransit.AutofacIntegration\Burrows.AutofacIntegration.csproj", "{A31F2C6B-C806-46FD-A4F3-C54209DD495C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Burrows.AutofacIntegration", "Containers\Burrows.AutofacIntegration\Burrows.AutofacIntegration.csproj", "{A31F2C6B-C806-46FD-A4F3-C54209DD495C}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tools", "Tools", "{02C3B269-A00C-42D9-B4E8-EA7E6C233EBB}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusDriver", "Tools\BusDriver\BusDriver.csproj", "{910594A6-E942-4985-B248-6DDB17D316B6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Burrows.Containers.Tests", "Containers\MassTransit.Containers.Tests\Burrows.Containers.Tests.csproj", "{9CE51963-9E51-48EE-A75F-62C9CB0CF23C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Burrows.Containers.Tests", "Containers\Burrows.Containers.Tests\Burrows.Containers.Tests.csproj", "{9CE51963-9E51-48EE-A75F-62C9CB0CF23C}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Loggers", "Loggers", "{6A938565-BEE9-434C-9A1A-CD2905907554}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Burrows.Log4NetIntegration", "Loggers\MassTransit.Log4NetIntegration\Burrows.Log4NetIntegration.csproj", "{8D2BE372-A756-4676-B2EA-ED7846809BFE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Burrows.Log4NetIntegration", "Loggers\Burrows.Log4NetIntegration\Burrows.Log4NetIntegration.csproj", "{8D2BE372-A756-4676-B2EA-ED7846809BFE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Burrows.NLogIntegration", "Loggers\MassTransit.NLogIntegration\Burrows.NLogIntegration.csproj", "{F802655A-D5EC-4031-B21F-A3EECCBE02A5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Burrows.NLogIntegration", "Loggers\Burrows.NLogIntegration\Burrows.NLogIntegration.csproj", "{F802655A-D5EC-4031-B21F-A3EECCBE02A5}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{2C8A15FA-A445-4916-AAC2-3BE53AA247A7}"
 	ProjectSection(SolutionItems) = preProject
@@ -32,7 +32,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{2C8A15
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{4D626E2C-218B-47F6-BAA4-DBD792413BF4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Burrows.RabbitMq.Tests", "MassTransit.RabbitMq.Tests\Burrows.RabbitMq.Tests.csproj", "{E4C3F51F-B7CE-4521-80BC-E91A9B0F6FFD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Burrows.RabbitMq.Tests", "Burrows.RabbitMq.Tests\Burrows.RabbitMq.Tests.csproj", "{E4C3F51F-B7CE-4521-80BC-E91A9B0F6FFD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
