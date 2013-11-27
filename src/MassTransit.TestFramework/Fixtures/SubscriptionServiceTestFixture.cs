@@ -20,7 +20,7 @@ namespace MassTransit.TestFramework.Fixtures
 	using Services.Subscriptions.Configuration;
 	using Services.Subscriptions.Server;
 
-	[TestFixture]
+    [TestFixture, Ignore]
 	public class SubscriptionServiceTestFixture<TTransportFactory> :
 		EndpointTestFixture<TTransportFactory>
 		where TTransportFactory : class, ITransportFactory, new()

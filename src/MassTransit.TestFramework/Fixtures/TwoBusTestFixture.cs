@@ -25,7 +25,7 @@ namespace MassTransit.TestFramework.Fixtures
 	/// a non-loopback transport factory.</para>
 	/// </summary>
 	/// <typeparam name="TTransportFactory"></typeparam>
-	[TestFixture]
+    [TestFixture, Ignore]
 	public class TwoBusTestFixture<TTransportFactory> :
 		EndpointTestFixture<TTransportFactory>
 		where TTransportFactory : class, ITransportFactory, new()

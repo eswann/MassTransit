@@ -12,18 +12,15 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Testing.ScenarioBuilders
 {
-	using System;
-	using Advanced;
-	using BusConfigurators;
-	using Diagnostics;
-	using Magnum.Extensions;
-	using Scenarios;
-	using SubscriptionConfigurators;
-	using Transports;
-	using Transports.Configuration.Extensions;
+    using System;
+    using BusConfigurators;
+    using Diagnostics;
+    using Magnum.Extensions;
+    using Scenarios;
+    using SubscriptionConfigurators;
+    using Transports;
 
-    public interface IBusScenarioBuilder :
-    IEndpointScenarioBuilder<IBusTestScenario>
+    public interface IBusScenarioBuilder : IEndpointScenarioBuilder<IBusTestScenario>
     {
         /// <summary>
         /// Configure any bus-specific items as part of building the test scenario
@@ -38,65 +35,53 @@ namespace MassTransit.Testing.ScenarioBuilders
         void ConfigureSubscriptions(Action<ISubscriptionBusServiceConfigurator> configureCallback);
     }
 
-	/// <summary>
-	/// Implementation for the test scenario, but abstract for others to customize it. Sets some defaults in the c'tor, which you
-	/// can override with the <see cref="ConfigureBus"/> and <see cref="ConfigureSubscriptions"/> methods.
-	/// </summary>
-	public class BusScenarioBuilder :
-		EndpointScenarioBuilder<IBusTestScenario>,
-		IBusScenarioBuilder
-	{
-		readonly ServiceBusConfigurator _configurator;
-		readonly ServiceBusDefaultSettings _settings;
+    /// <summary>
+    /// Implementation for the test scenario, but abstract for others to customize it. Sets some defaults in the c'tor, which you
+    /// can override with the <see cref="ConfigureBus"/> and <see cref="ConfigureSubscriptions"/> methods.
+    /// </summary>
+    public abstract class BusScenarioBuilder :
+        EndpointScenarioBuilder<IBusTestScenario>,
+        IBusScenarioBuilder
+    {
+        readonly ServiceBusConfigurator _configurator;
+        readonly ServiceBusDefaultSettings _settings;
 
-        const string DefaultUri = "rabbitmq://localhost/mt_client";
-
-        public BusScenarioBuilder() : this(new Uri(DefaultUri))
+        /// <summary>
+        /// c'tor
+        /// </summary>
+        /// <param name="uri">The uri to receive from during the scenario.</param>
+        protected BusScenarioBuilder(Uri uri)
         {
-		}
-
-		/// <summary>
-		/// c'tor
-		/// </summary>
-		/// <param name="uri">The uri to receive from during the scenario.</param>
-		protected BusScenarioBuilder(Uri uri)
-		{
-            _settings = new ServiceBusDefaultSettings { ConcurrentConsumerLimit = 1, ReceiveTimeout = 50.Milliseconds() };
+            _settings = new ServiceBusDefaultSettings();
+            _settings.ConcurrentConsumerLimit = 1;
+            _settings.ReceiveTimeout = 50.Milliseconds();
 
             _configurator = new ServiceBusConfigurator(_settings);
             _configurator.ReceiveFrom(uri);
+        }
 
-            ConfigureEndpointFactory(x => x.UseRabbitMq());
+        public void ConfigureBus(Action<IServiceBusConfigurator> configureCallback)
+        {
+            configureCallback(_configurator);
+        }
 
-            ConfigureBus(x =>
-            {
-                x.UseRabbitMq();
-                x.SetReceiveTimeout(100.Milliseconds());
-            });
-		}
+        public void ConfigureSubscriptions(Action<ISubscriptionBusServiceConfigurator> configureCallback)
+        {
+            _configurator.Subscribe(configureCallback);
+        }
 
-		public void ConfigureBus(Action<IServiceBusConfigurator> configureCallback)
-		{
-			configureCallback(_configurator);
-		}
+        public override IBusTestScenario Build()
+        {
+            IEndpointFactory endpointFactory = BuildEndpointFactory();
 
-		public void ConfigureSubscriptions(Action<ISubscriptionBusServiceConfigurator> configureCallback)
-		{
-			_configurator.Subscribe(configureCallback);
-		}
+            var scenario = new BusTestScenario(endpointFactory);
 
-		public override IBusTestScenario Build()
-		{
-			IEndpointFactory endpointFactory = BuildEndpointFactory();
+            _configurator.ChangeSettings(x => { x.EndpointCache = scenario.EndpointCache; });
+            _configurator.EnableMessageTracing();
 
-			var scenario = new BusTestScenario(endpointFactory);
+            scenario.Bus = _configurator.CreateServiceBus();
 
-			_configurator.ChangeSettings(x => { x.EndpointCache = scenario.EndpointCache; });
-			_configurator.EnableMessageTracing();
-
-			scenario.Bus = _configurator.CreateServiceBus();
-
-			return scenario;
-		}
-	}
+            return scenario;
+        }
+    }
 }

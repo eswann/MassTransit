@@ -18,7 +18,7 @@ namespace MassTransit.TestFramework.Fixtures
 	using NUnit.Framework;
 	using Subscriptions.Coordinator;
 
-	[TestFixture]
+    [TestFixture, Ignore]
 	public class LocalAndRemoteTestFixture<TTransportFactory> :
 		EndpointTestFixture<TTransportFactory>
 		where TTransportFactory : class, ITransportFactory, new()

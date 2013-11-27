@@ -518,6 +518,7 @@
     <Compile Include="Testing\Factories\ConsumerTestFactory.cs" />
     <Compile Include="Testing\Instances\TestInstance.cs" />
     <Compile Include="Testing\Instances\ConsumerTestInstance.cs" />
+    <Compile Include="Testing\ScenarioBuilders\RabbitBusScenarioBuilder.cs" />
     <Compile Include="Testing\ScenarioConfigurators\IScenarioBuilderConfigurator.cs" />
     <Compile Include="Testing\ScenarioConfigurators\BusTestScenarioBuilderConfigurator.cs" />
     <Compile Include="Testing\ScenarioConfigurators\EndpointTestScenarioBuilderConfigurator.cs" />
@@ -613,7 +614,7 @@
     <Compile Include="Transports\TransportFactory.cs" />
     <Compile Include="Transports\ReconnectPolicy.cs" />
     <Compile Include="Transports\RetryPolicy.cs" />
-    <Compile Include="Transports\Testing\BusTestScenarioExtensions.cs" />
+    <Compile Include="Testing\ScenarioBuilders\BusTestScenarioExtensions.cs" />
     <Compile Include="Transports\TransportSettings.cs" />
     <Compile Include="Transports\EndpointCacheExtensions.cs" />
     <Compile Include="Transports\EndpointFactory.cs" />

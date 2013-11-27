@@ -18,7 +18,7 @@ namespace MassTransit.TestFramework.Fixtures
     using NUnit.Framework;
     using Saga;
 
-    [TestFixture]
+    [TestFixture, Ignore]
     public class SagaTestFixture<TSaga> :
         LocalTestFixture<LoopbackTransportFactory>
         where TSaga : class, ISaga
