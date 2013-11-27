@@ -22,6 +22,7 @@ namespace BusDriver.Commands
     using Burrows.Context;
     using Burrows.Diagnostics.Tracing;
     using Burrows.Logging;
+    using Burrows.Endpoints;
 
     public class TraceCommand :
 		Consumes<IReceivedMessageTraceList>.All,

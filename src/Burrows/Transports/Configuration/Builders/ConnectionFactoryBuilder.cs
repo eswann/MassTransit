@@ -10,6 +10,9 @@
 // under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR 
 // CONDITIONS OF ANY KIND, either express or implied. See the License for the 
 // specific language governing permissions and limitations under the License.
+
+using Burrows.Endpoints;
+
 namespace Burrows.Transports.Configuration.Builders
 {
     using System;
@@ -29,10 +32,10 @@ namespace Burrows.Transports.Configuration.Builders
     public class ConnectionFactoryBuilder :
         IConnectionFactoryBuilder
     {
-        private readonly IRabbitMqEndpointAddress _address;
+        private readonly IRabbitEndpointAddress _address;
         private readonly IList<Func<ConnectionFactory, ConnectionFactory>> _connectionFactoryConfigurators;
 
-        public ConnectionFactoryBuilder(IRabbitMqEndpointAddress address)
+        public ConnectionFactoryBuilder(IRabbitEndpointAddress address)
         {
             _address = address;
             _connectionFactoryConfigurators = new List<Func<ConnectionFactory, ConnectionFactory>>();

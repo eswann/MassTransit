@@ -10,20 +10,21 @@
 // under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR 
 // CONDITIONS OF ANY KIND, either express or implied. See the License for the 
 // specific language governing permissions and limitations under the License.
-namespace Burrows
-{
-    using System;
-    using System.Collections.Generic;
-    using System.Diagnostics;
-    using System.Runtime.Serialization;
-    using Context;
-    using Exceptions;
-    using Logging;
-    using Magnum.Reflection;
-    using Serialization;
-    using Transports;
-    using Util;
 
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Runtime.Serialization;
+using Burrows.Context;
+using Burrows.Exceptions;
+using Burrows.Logging;
+using Burrows.Transports;
+using Magnum.Reflection;
+using Burrows.Serialization;
+using Burrows.Util;
+
+namespace Burrows.Endpoints
+{
     /// <summary>
     /// See <see cref="IEndpoint"/> for docs.
     /// </summary>

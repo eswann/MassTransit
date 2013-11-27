@@ -10,12 +10,13 @@
 // under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR 
 // CONDITIONS OF ANY KIND, either express or implied. See the License for the 
 // specific language governing permissions and limitations under the License.
-namespace Burrows.Transports.Publish
-{
-    using System;
-    using Pipeline.Inspectors;
-    using Pipeline.Sinks;
 
+using System;
+using Burrows.Endpoints;
+using Burrows.Pipeline.Inspectors;
+
+namespace Burrows.Pipeline.Sinks
+{
     /// <summary>
 	/// Finds publish endpoints that consume the message type specified in the c'tor of this
 	/// class.

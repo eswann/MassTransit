@@ -113,7 +113,7 @@
     <Compile Include="Configuration\EndpointConfigurators\SetSupportedMessageSerializersEndpointFactoryConfigurator.cs" />
     <Compile Include="Configuration\ShutdownConfigurationExtensions.cs" />
     <Compile Include="Configuration\InterceptorExtensions.cs" />
-    <Compile Include="EndpointExtensions.cs" />
+    <Compile Include="Endpoints\EndpointExtensions.cs" />
     <Compile Include="IFault.cs" />
     <Compile Include="NewId\INewIdFormatter.cs" />
     <Compile Include="NewId\INewIdParser.cs" />
@@ -278,7 +278,7 @@
     <Compile Include="Diagnostics\Tracing\ReceiverTraceDetail.cs" />
     <Compile Include="Diagnostics\Tracing\GetMessageTraceList.cs" />
     <Compile Include="Diagnostics\Tracing\SentMessageTraceDetail.cs" />
-    <Compile Include="EndpointLoggerExtensions.cs" />
+    <Compile Include="Endpoints\EndpointLoggerExtensions.cs" />
     <Compile Include="Context\EndpointObjectSender.cs" />
     <Compile Include="Exceptions\MessageRetryLimitExceededException.cs" />
     <Compile Include="Exceptions\PublishException.cs" />
@@ -287,7 +287,7 @@
     <Compile Include="Exceptions\RequestFaultException.cs" />
     <Compile Include="Exceptions\RequestTimeoutException.cs" />
     <Compile Include="Exceptions\SendException.cs" />
-    <Compile Include="IOutboundMessageInterceptor.cs" />
+    <Compile Include="Pipeline\IOutboundMessageInterceptor.cs" />
     <Compile Include="Logging\ILog.cs" />
     <Compile Include="Logging\ILogger.cs" />
     <Compile Include="Logging\Logger.cs" />
@@ -354,7 +354,7 @@
     <Compile Include="IConsumer.cs" />
     <Compile Include="IConsumerFactory.cs" />
     <Compile Include="MessageUrn.cs" />
-    <Compile Include="IInboundMessageInterceptor.cs" />
+    <Compile Include="Pipeline\IInboundMessageInterceptor.cs" />
     <Compile Include="IServiceContainer.cs" />
     <Compile Include="Configuration\Builders\ServiceBusBuilder.cs" />
     <Compile Include="Pipeline\Configuration\InboundMessageRouterConfigurator.cs" />
@@ -564,13 +564,13 @@
     <Compile Include="Transports\Configuration\Configurators\ConnectionFactoryBuilderConfigurator.cs" />
     <Compile Include="Transports\Configuration\Configurators\ConnectionFactoryConfigurator.cs" />
     <Compile Include="Transports\Configuration\Configurators\PasswordConnectionFactoryConfigurator.cs" />
-    <Compile Include="Transports\Configuration\Configurators\PublisherConfirmFactoryConfigurator.cs" />
+    <Compile Include="Configuration\PublisherConfirms\PublisherConfirmFactoryConfigurator.cs" />
     <Compile Include="Transports\Configuration\Configurators\ITransportFactoryBuilderConfigurator.cs" />
     <Compile Include="Transports\Configuration\Configurators\TransportFactoryConfigurator.cs" />
     <Compile Include="Transports\Configuration\Configurators\RequestedHeartbeatConnectionFactoryConfigurator.cs" />
     <Compile Include="Transports\Configuration\Configurators\SslConnectionFactoryConfigurator.cs" />
     <Compile Include="Transports\Configuration\Configurators\UsernameConnectionFactoryConfigurator.cs" />
-    <Compile Include="Transports\Configuration\Extensions\RabbitClientExtensions.cs" />
+    <Compile Include="Transports\Rabbit\RabbitClientExtensions.cs" />
     <Compile Include="Transports\Configuration\Extensions\TransportServiceBusExtensions.cs" />
     <Compile Include="Transports\Configuration\Extensions\TransportFactoryExtensions.cs" />
     <Compile Include="Transports\ExchangeBinding.cs" />
@@ -589,36 +589,34 @@
     <Compile Include="Transports\InboundTransport.cs" />
     <Compile Include="Transports\InvalidConnectionException.cs" />
     <Compile Include="Transports\IOutboundTransport.cs" />
-    <Compile Include="Transports\IRabbitMqEndpointAddress.cs" />
     <Compile Include="Transports\ITransport.cs" />
-    <Compile Include="Transports\Management\IEndpointManagement.cs" />
-    <Compile Include="Transports\Management\EndpointManagement.cs" />
+    <Compile Include="Endpoints\IEndpointManagement.cs" />
+    <Compile Include="Endpoints\RabbitEndpointManagement.cs" />
     <Compile Include="Transports\MessageName.cs" />
     <Compile Include="Exceptions\MessageNotConfirmedException.cs" />
     <Compile Include="Transports\MessageTrackerFactory.cs" />
     <Compile Include="Transports\OutboundTransport.cs" />
     <Compile Include="Transports\Publish\IPublisherConfirmSettings.cs" />
-    <Compile Include="Transports\Publish\PublishEndpointInterceptor.cs" />
-    <Compile Include="Transports\Publish\PublishEndpointSinkLocator.cs" />
+    <Compile Include="Pipeline\RabbitPublishEndpointInterceptor.cs" />
+    <Compile Include="Pipeline\Sinks\PublishEndpointSinkLocator.cs" />
     <Compile Include="Transports\Publish\PublisherConfirmSettings.cs" />
     <Compile Include="Exceptions\AddressException.cs" />
-    <Compile Include="Transports\RabbitMqEndpointAddress.cs" />
+    <Compile Include="Endpoints\RabbitEndpointAddress.cs" />
     <Compile Include="Transports\TransportConnection.cs" />
-    <Compile Include="Transports\Consumer.cs" />
-    <Compile Include="Transports\RabbitMqExtensions.cs" />
+    <Compile Include="Endpoints\Consumer.cs" />
     <Compile Include="Transports\MessageNameFormatter.cs" />
-    <Compile Include="Producer.cs" />
-    <Compile Include="Transports\Publisher.cs" />
+    <Compile Include="Endpoints\Producer.cs" />
+    <Compile Include="Endpoints\Publisher.cs" />
     <Compile Include="Transports\SubscriptionBinder.cs" />
     <Compile Include="Transports\TransportFactory.cs" />
     <Compile Include="Transports\ReconnectPolicy.cs" />
     <Compile Include="Transports\RetryPolicy.cs" />
     <Compile Include="Testing\ScenarioBuilders\BusTestScenarioExtensions.cs" />
     <Compile Include="Transports\TransportSettings.cs" />
-    <Compile Include="Transports\EndpointCacheExtensions.cs" />
-    <Compile Include="Transports\EndpointFactory.cs" />
-    <Compile Include="Transports\IEndpointFactory.cs" />
-    <Compile Include="Transports\IEndpointSettings.cs" />
+    <Compile Include="Endpoints\EndpointCacheExtensions.cs" />
+    <Compile Include="Endpoints\EndpointFactory.cs" />
+    <Compile Include="Endpoints\IEndpointFactory.cs" />
+    <Compile Include="Endpoints\IEndpointSettings.cs" />
     <Compile Include="Transports\ITransportFactory.cs" />
     <Compile Include="Consumes.cs" />
     <Compile Include="IAmCorrelatedBy.cs" />
@@ -632,7 +630,7 @@
     <Compile Include="Services\HealthMonitoring\Messages\EndpointIsSuspect.cs" />
     <Compile Include="Services\HealthMonitoring\HealthClient.cs" />
     <Compile Include="Exceptions\EndpointException.cs" />
-    <Compile Include="IEndpoint.cs" />
+    <Compile Include="Endpoints\IEndpoint.cs" />
     <Compile Include="IServiceBus.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ServiceBus.cs" />
@@ -657,13 +655,13 @@
     <Compile Include="Util\UriExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="EndpointAddress.cs" />
+    <Compile Include="Endpoints\EndpointAddress.cs" />
     <Compile Include="Events\MessagePublished.cs" />
     <Compile Include="Events\ReceiverQueued.cs" />
     <Compile Include="Events\ThreadPoolEvent.cs" />
     <Compile Include="Exceptions\AbstractUriException.cs" />
     <Compile Include="Exceptions\TransportException.cs" />
-    <Compile Include="Endpoint.cs" />
+    <Compile Include="Endpoints\Endpoint.cs" />
     <Compile Include="Events\ConsumeCompleted.cs" />
     <Compile Include="Events\ReceiveCompleted.cs" />
     <Compile Include="Events\MessageConsumed.cs" />
@@ -679,7 +677,7 @@
     <Compile Include="Pipeline\Configuration\InboundMessageInterceptorConfigurator.cs" />
     <Compile Include="Pipeline\Configuration\InboundMessageInterceptorConfiguratorScope.cs" />
     <Compile Include="Pipeline\Sinks\InstanceMessageSinkBase.cs" />
-    <Compile Include="Pipeline\Sinks\MessageInterceptor.cs" />
+    <Compile Include="Pipeline\MessageInterceptor.cs" />
     <Compile Include="Saga\Configuration\EventInspectorResult.cs" />
     <Compile Include="Saga\Configuration\ExtensionsForSagas.cs" />
     <Compile Include="Saga\Configuration\ISagaPolicyFactory.cs" />
@@ -781,7 +779,7 @@
     <Compile Include="Services\Timeout\Messages\TimeoutRescheduled.cs" />
     <Compile Include="Services\Timeout\Messages\TimeoutScheduled.cs" />
     <Compile Include="Services\Timeout\Server\TimeoutSaga.cs" />
-    <Compile Include="Transports\EndpointSettings.cs" />
+    <Compile Include="Endpoints\EndpointSettings.cs" />
     <Compile Include="Transports\Loopback\LoopbackTransport.cs" />
     <Compile Include="Transports\InMemoryInboundMessageTracker.cs" />
     <Compile Include="Transports\NullTransport.cs" />
@@ -811,10 +809,10 @@
     <Compile Include="Services\Subscriptions\Server\SubscriptionSaga.cs" />
     <Compile Include="Services\Subscriptions\SubscriptionConsumer.cs" />
     <Compile Include="Services\Subscriptions\SubscriptionPublisher.cs" />
-    <Compile Include="IEndpointCache.cs" />
+    <Compile Include="Endpoints\IEndpointCache.cs" />
     <Compile Include="Configuration\BusServiceConfigurators\IBusServiceConfigurator.cs" />
     <Compile Include="Exceptions\ConfigurationException.cs" />
-    <Compile Include="Transports\EndpointCache.cs" />
+    <Compile Include="Endpoints\EndpointCache.cs" />
     <Compile Include="Pipeline\Configuration\CorrelatedMessageRouterConfigurator.cs" />
     <Compile Include="Pipeline\Configuration\CorrelatedMessageRouterConfiguratorScope.cs" />
     <Compile Include="Pipeline\Inspectors\PipelineInspectorBase.cs" />
@@ -850,7 +848,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Pipeline\Configuration\Subscribers\" />
-    <Folder Include="Transports\Exceptions\" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">

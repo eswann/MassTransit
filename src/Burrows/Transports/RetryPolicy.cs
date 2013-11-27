@@ -14,8 +14,7 @@ namespace Burrows.Transports
 {
     using System;
 
-    class RetryPolicy :
-        IConnectionPolicy
+    class RetryPolicy : IConnectionPolicy
     {
         private readonly IConnectionPolicyChain _policyChain;
 

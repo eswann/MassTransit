@@ -10,18 +10,20 @@
 // under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR 
 // CONDITIONS OF ANY KIND, either express or implied. See the License for the 
 // specific language governing permissions and limitations under the License.
-namespace Burrows.Transports
-{
-    using System;
-    using System.Collections.Generic;
-    using Builders;
-    using Diagnostics.Introspection;
-    using EndpointConfigurators;
-    using Exceptions;
-    using Magnum.Caching;
-    using Magnum.Extensions;
-    using Util;
 
+using System;
+using System.Collections.Generic;
+using Burrows.Builders;
+using Burrows.Diagnostics.Introspection;
+using Burrows.EndpointConfigurators;
+using Burrows.Exceptions;
+using Burrows.Transports;
+using Magnum.Caching;
+using Magnum.Extensions;
+using Burrows.Util;
+
+namespace Burrows.Endpoints
+{
     public class EndpointFactory :
         IEndpointFactory
     {

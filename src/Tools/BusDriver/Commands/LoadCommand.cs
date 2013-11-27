@@ -25,6 +25,7 @@ namespace BusDriver.Commands
     using Burrows.Exceptions;
     using Burrows.Logging;
     using Burrows.Transports;
+    using Burrows.Endpoints;
 
     public class LoadCommand :
         Command

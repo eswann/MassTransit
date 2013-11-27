@@ -18,6 +18,7 @@ namespace BusDriver
     using Burrows;
     using Burrows.Exceptions;
     using Burrows.Transports;
+    using Burrows.Endpoints;
 
     public class TransportCache :
 		IDisposable

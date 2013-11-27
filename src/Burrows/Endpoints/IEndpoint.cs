@@ -10,14 +10,15 @@
 // under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR 
 // CONDITIONS OF ANY KIND, either express or implied. See the License for the 
 // specific language governing permissions and limitations under the License.
-namespace Burrows
-{
-    using System;
-    using Context;
-    using Serialization;
-    using Transports;
-    using Util;
 
+using System;
+using Burrows.Context;
+using Burrows.Serialization;
+using Burrows.Transports;
+using Burrows.Util;
+
+namespace Burrows.Endpoints
+{
     /// <summary>
     /// <para>IEndpoint is implemented by an endpoint. An endpoint is an addressable location on the network.</para>
     /// <para>In Burrows, the endpoint ties together the inbound transport, the outbound transport,

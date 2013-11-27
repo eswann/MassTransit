@@ -10,6 +10,9 @@
 // under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR 
 // CONDITIONS OF ANY KIND, either express or implied. See the License for the 
 // specific language governing permissions and limitations under the License.
+
+using Burrows.Endpoints;
+
 namespace Burrows.RabbitMq.Tests
 {
     using System;
@@ -22,12 +25,12 @@ namespace Burrows.RabbitMq.Tests
     public class GivenAVHostAddress
     {
         public Uri Uri = new Uri("rabbitmq://some_server/thehost/queue");
-        RabbitMqEndpointAddress _addr;
+        RabbitEndpointAddress _addr;
 
         [When]
         public void WhenParsed()
         {
-            _addr = RabbitMqEndpointAddress.Parse(Uri);
+            _addr = RabbitEndpointAddress.Parse(Uri);
         }
 
         [Then]
@@ -73,12 +76,12 @@ namespace Burrows.RabbitMq.Tests
     public class GivenAnAddressWithUnderscore
     {
         public Uri Uri = new Uri("rabbitmq://some_server/thehost/the_queue");
-        RabbitMqEndpointAddress _addr;
+        RabbitEndpointAddress _addr;
 
         [When]
         public void WhenParsed()
         {
-            _addr = RabbitMqEndpointAddress.Parse(Uri);
+            _addr = RabbitEndpointAddress.Parse(Uri);
         }
 
         [Then]
@@ -99,12 +102,12 @@ namespace Burrows.RabbitMq.Tests
     public class GivenAnAddressWithPeriod
     {
         public Uri Uri = new Uri("rabbitmq://some_server/thehost/the.queue");
-        RabbitMqEndpointAddress _addr;
+        RabbitEndpointAddress _addr;
 
         [When]
         public void WhenParsed()
         {
-            _addr = RabbitMqEndpointAddress.Parse(Uri);
+            _addr = RabbitEndpointAddress.Parse(Uri);
         }
 
         [Then]
@@ -125,12 +128,12 @@ namespace Burrows.RabbitMq.Tests
     public class GivenAnAddressWithColon
     {
         public Uri Uri = new Uri("rabbitmq://some_server/thehost/the:queue");
-        RabbitMqEndpointAddress _addr;
+        RabbitEndpointAddress _addr;
 
         [When]
         public void WhenParsed()
         {
-            _addr = RabbitMqEndpointAddress.Parse(Uri);
+            _addr = RabbitEndpointAddress.Parse(Uri);
         }
 
         [Then]
@@ -151,7 +154,7 @@ namespace Burrows.RabbitMq.Tests
     public class GivenAnAddressWithSlash
     {
         public Uri Uri = new Uri("rabbitmq://some_server/thehost/the/queue");
-        RabbitMqEndpointAddress _addr;
+        RabbitEndpointAddress _addr;
 
         [When]
         public void WhenParsed()
@@ -162,7 +165,7 @@ namespace Burrows.RabbitMq.Tests
         
         public void TheQueue()
         {
-            _addr = RabbitMqEndpointAddress.Parse(Uri);
+            _addr = RabbitEndpointAddress.Parse(Uri);
         }
     }
 
@@ -171,12 +174,12 @@ namespace Burrows.RabbitMq.Tests
     public class GivenANonVHostAddress
     {
         public Uri Uri = new Uri("rabbitmq://some_server/the_queue");
-        RabbitMqEndpointAddress _addr;
+        RabbitEndpointAddress _addr;
 
         [When]
         public void WhenParsed()
         {
-            _addr = RabbitMqEndpointAddress.Parse(Uri);
+            _addr = RabbitEndpointAddress.Parse(Uri);
         }
 
         [Then]
@@ -197,12 +200,12 @@ namespace Burrows.RabbitMq.Tests
     public class GivenAPortedAddress
     {
         public Uri Uri = new Uri("rabbitmq://some_server:12/the_queue");
-        RabbitMqEndpointAddress _addr;
+        RabbitEndpointAddress _addr;
 
         [When]
         public void WhenParsed()
         {
-            _addr = RabbitMqEndpointAddress.Parse(Uri);
+            _addr = RabbitEndpointAddress.Parse(Uri);
         }
 
         [Then]
@@ -229,12 +232,12 @@ namespace Burrows.RabbitMq.Tests
     public class GivenANonPortedAddress
     {
         public Uri Uri = new Uri("rabbitmq://some_server/the_queue");
-        RabbitMqEndpointAddress _addr;
+        RabbitEndpointAddress _addr;
 
         [When]
         public void WhenParsed()
         {
-            _addr = RabbitMqEndpointAddress.Parse(Uri);
+            _addr = RabbitEndpointAddress.Parse(Uri);
         }
 
         [Then]
@@ -254,12 +257,12 @@ namespace Burrows.RabbitMq.Tests
     public class GivenAUserNameUrl
     {
         public Uri Uri = new Uri("rabbitmq://dru:mt@some_server/thehost/the_queue");
-        RabbitMqEndpointAddress _addr;
+        RabbitEndpointAddress _addr;
 
         [When]
         public void WhenParsed()
         {
-            _addr = RabbitMqEndpointAddress.Parse(Uri);
+            _addr = RabbitEndpointAddress.Parse(Uri);
         }
 
         [Then]
@@ -285,13 +288,13 @@ namespace Burrows.RabbitMq.Tests
     [Scenario]
     public class GivenAHighAvailableQueue
     {
-        RabbitMqEndpointAddress _addr;
+        RabbitEndpointAddress _addr;
         public string uri = "rabbitmq://localhost/somequeue?ha=true";
 
         [When]
         public void WhenParsed()
         {
-            _addr = RabbitMqEndpointAddress.Parse(uri);
+            _addr = RabbitEndpointAddress.Parse(uri);
         }
 
         [Then]
@@ -329,13 +332,13 @@ namespace Burrows.RabbitMq.Tests
     [Scenario]
     public class Given_a_prefetch_count
     {
-        RabbitMqEndpointAddress _addr;
+        RabbitEndpointAddress _addr;
         public string uri = "rabbitmq://localhost/somequeue?ha=true&prefetch=32";
 
         [When]
         public void WhenParsed()
         {
-            _addr = RabbitMqEndpointAddress.Parse(uri);
+            _addr = RabbitEndpointAddress.Parse(uri);
         }
 
         [Then]
@@ -373,13 +376,13 @@ namespace Burrows.RabbitMq.Tests
     [Scenario]
     public class Given_a_temporary_queue_was_requested
     {
-        RabbitMqEndpointAddress _addr;
+        RabbitEndpointAddress _addr;
         public string uri = "rabbitmq://localhost/*?temporary=true";
 
         [When]
         public void WhenParsed()
         {
-            _addr = RabbitMqEndpointAddress.Parse(uri);
+            _addr = RabbitEndpointAddress.Parse(uri);
         }
 
         [Then]
@@ -418,13 +421,13 @@ namespace Burrows.RabbitMq.Tests
     [Scenario]
     public class GivenATtl
     {
-        RabbitMqEndpointAddress _addr;
+        RabbitEndpointAddress _addr;
         public string uri = "rabbitmq://localhost/somequeue?ttl=20";
 
         [When]
         public void WhenParsed()
         {
-            _addr = RabbitMqEndpointAddress.Parse(uri);
+            _addr = RabbitEndpointAddress.Parse(uri);
         }
 
         [Then]

@@ -10,6 +10,9 @@
 // under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR 
 // CONDITIONS OF ANY KIND, either express or implied. See the License for the 
 // specific language governing permissions and limitations under the License.
+
+using Burrows.Endpoints;
+
 namespace Burrows.Transports
 {
     using System;
@@ -26,12 +29,12 @@ namespace Burrows.Transports
     public class OutboundTransport :
         IOutboundTransport
     {
-        private readonly IRabbitMqEndpointAddress _address;
+        private readonly IRabbitEndpointAddress _address;
         private readonly IPublisherConfirmSettings _publisherConfirmSettings;
         private readonly IConnectionHandler<TransportConnection> _connectionHandler;
         Producer _producer;
 
-        public OutboundTransport(IRabbitMqEndpointAddress address,
+        public OutboundTransport(IRabbitEndpointAddress address,
             IPublisherConfirmSettings publisherConfirmSettings,
             IConnectionHandler<TransportConnection> connectionHandler)
         {

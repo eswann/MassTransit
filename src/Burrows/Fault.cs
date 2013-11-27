@@ -21,9 +21,7 @@ namespace Burrows
     /// </summary>
     /// <typeparam name="TMessage">The type of message that threw the exception</typeparam>
     [Serializable]
-    public class Fault<TMessage> :
-        IFault
-        where TMessage : class
+    public class Fault<TMessage> : IFault where TMessage : class
     {
         /// <summary>
         /// Creates a new fault message for the failed message

@@ -10,33 +10,35 @@
 // under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR 
 // CONDITIONS OF ANY KIND, either express or implied. See the License for the 
 // specific language governing permissions and limitations under the License.
-namespace Burrows.Transports.Publish
-{
-    using System;
-    using System.Collections.Generic;
-    using Context;
-    using Exceptions;
-    using Magnum.Extensions;
-    using Magnum.Reflection;
-    using Pipeline.Configuration;
-    using Pipeline.Sinks;
-    using Util;
 
+using System;
+using System.Collections.Generic;
+using Burrows.Context;
+using Burrows.Endpoints;
+using Burrows.Exceptions;
+using Burrows.Pipeline.Sinks;
+using Burrows.Transports;
+using Magnum.Extensions;
+using Magnum.Reflection;
+using Burrows.Pipeline.Configuration;
+using Burrows.Util;
+
+namespace Burrows.Pipeline
+{
     /// <summary>
     /// Makes sure that the exchange for the published message is available. This ensures
     /// that we'll never get 404 exchange not found for published messages. If someone is
     /// listening to them; that's another question (there might be no queue bound to it).
     /// </summary>
-    public class PublishEndpointInterceptor :
-        IOutboundMessageInterceptor
+    public class RabbitPublishEndpointInterceptor : IOutboundMessageInterceptor
     {
         private readonly IDictionary<Type, UnsubscribeAction> _added;
-        private readonly IRabbitMqEndpointAddress _address;
+        private readonly IRabbitEndpointAddress _address;
         private readonly IServiceBus _bus;
         private readonly InboundTransport _inboundTransport;
         private readonly IMessageNameFormatter _messageNameFormatter;
 
-        public PublishEndpointInterceptor(IServiceBus bus)
+        public RabbitPublishEndpointInterceptor(IServiceBus bus)
         {
             _bus = bus;
 
@@ -47,7 +49,7 @@ namespace Burrows.Transports.Publish
 
             _messageNameFormatter = _inboundTransport.MessageNameFormatter;
 
-            _address = _inboundTransport.Address.CastAs<IRabbitMqEndpointAddress>();
+            _address = _inboundTransport.Address.CastAs<IRabbitEndpointAddress>();
 
             _added = new Dictionary<Type, UnsubscribeAction>();
         }

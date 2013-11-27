@@ -11,12 +11,13 @@
 // CONDITIONS OF ANY KIND, either express or implied. See the License for the 
 // specific language governing permissions and limitations under the License.
 
-namespace Burrows.Transports
-{
-    using System;
-    using Diagnostics.Introspection;
-    using Util;
+using System;
+using Burrows.Diagnostics.Introspection;
+using Burrows.Transports;
+using Burrows.Util;
 
+namespace Burrows.Endpoints
+{
     /// <summary>
 	/// Implementors are responsible for creating endpoints based on passed uris.
 	/// </summary>

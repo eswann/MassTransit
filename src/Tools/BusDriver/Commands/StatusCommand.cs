@@ -21,6 +21,7 @@ namespace BusDriver.Commands
     using Burrows.Diagnostics.Introspection;
     using Burrows.Diagnostics.Introspection.Messages;
     using Burrows.Logging;
+    using Burrows.Endpoints;
 
     public class StatusCommand :
         Consumes<IBusStatus>.Context,

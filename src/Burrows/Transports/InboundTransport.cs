@@ -10,6 +10,9 @@
 // under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR 
 // CONDITIONS OF ANY KIND, either express or implied. See the License for the 
 // specific language governing permissions and limitations under the License.
+
+using Burrows.Endpoints;
+
 namespace Burrows.Transports
 {
     using System;
@@ -26,7 +29,7 @@ namespace Burrows.Transports
     {
         private static readonly ILog _log = Logger.Get(typeof(InboundTransport));
 
-        private readonly IRabbitMqEndpointAddress _address;
+        private readonly IRabbitEndpointAddress _address;
         private readonly IConnectionHandler<TransportConnection> _connectionHandler;
         private readonly IMessageNameFormatter _messageNameFormatter;
         private readonly bool _purgeExistingMessages;
@@ -34,7 +37,7 @@ namespace Burrows.Transports
         bool _disposed;
         Publisher _publisher;
 
-        public InboundTransport(IRabbitMqEndpointAddress address,
+        public InboundTransport(IRabbitEndpointAddress address,
             IConnectionHandler<TransportConnection> connectionHandler,
             bool purgeExistingMessages,
             IMessageNameFormatter messageNameFormatter)
@@ -154,7 +157,7 @@ namespace Burrows.Transports
             return messageTypes;
         }
 
-        public void BindSubscriberExchange(IRabbitMqEndpointAddress address, string exchangeName)
+        public void BindSubscriberExchange(IRabbitEndpointAddress address, string exchangeName)
         {
             AddPublisherBinding();
             _connectionHandler.Use(connection =>

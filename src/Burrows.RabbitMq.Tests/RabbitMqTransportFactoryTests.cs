@@ -10,6 +10,9 @@
 // under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR 
 // CONDITIONS OF ANY KIND, either express or implied. See the License for the 
 // specific language governing permissions and limitations under the License.
+
+using Burrows.Endpoints;
+
 namespace Burrows.RabbitMq.Tests
 {
     using System;
@@ -22,7 +25,6 @@ namespace Burrows.RabbitMq.Tests
     using RabbitMQ.Client;
     using Serialization;
     using Transports;
-    using Transports.Management;
 
     [TestFixture, Explicit("integration tests and require custom configuration")]
     public class RabbitMqTransportFactoryTests
@@ -50,7 +52,7 @@ namespace Burrows.RabbitMq.Tests
         [Test]
         public void EndpointSendAndReceive()
         {
-            using (var management = new EndpointManagement(_queue))
+            using (var management = new RabbitEndpointManagement(_queue))
             {
                 management.BindQueue(_queue.Name, _exchange.Name, ExchangeType.Fanout, "", null);
             }
@@ -85,7 +87,7 @@ namespace Burrows.RabbitMq.Tests
         [Test]
         public void TransportSendAndReceive()
         {
-            using (var management = new EndpointManagement(_queue))
+            using (var management = new RabbitEndpointManagement(_queue))
             {
                 management.BindQueue(_queue.Name, _exchange.Name, ExchangeType.Fanout, "", null);
             }
@@ -120,14 +122,14 @@ namespace Burrows.RabbitMq.Tests
         }
 
         // need to configure mt vhost for this:
-        readonly IRabbitMqEndpointAddress _queue =
-            RabbitMqEndpointAddress.Parse("rabbitmq://guest:guest@localhost:5672/mt/mt-unit-tests");
+        readonly IRabbitEndpointAddress _queue =
+            RabbitEndpointAddress.Parse("rabbitmq://guest:guest@localhost:5672/mt/mt-unit-tests");
 
-        readonly IRabbitMqEndpointAddress _exchange =
-            RabbitMqEndpointAddress.Parse("rabbitmq://guest:guest@localhost:5672/mt/dru");
+        readonly IRabbitEndpointAddress _exchange =
+            RabbitEndpointAddress.Parse("rabbitmq://guest:guest@localhost:5672/mt/dru");
 
-        readonly IRabbitMqEndpointAddress _error =
-            RabbitMqEndpointAddress.Parse("rabbitmq://guest:guest@localhost:5672/mt/mt-unit-tests-error");
+        readonly IRabbitEndpointAddress _error =
+            RabbitEndpointAddress.Parse("rabbitmq://guest:guest@localhost:5672/mt/mt-unit-tests-error");
 
         TransportFactory _factory;
     }

@@ -10,15 +10,16 @@
 // under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR 
 // CONDITIONS OF ANY KIND, either express or implied. See the License for the 
 // specific language governing permissions and limitations under the License.
-namespace Burrows.Transports
-{
-    using System;
-    using Diagnostics.Introspection;
-    using Exceptions;
-    using Logging;
-    using Magnum;
-    using Magnum.Caching;
 
+using System;
+using Burrows.Diagnostics.Introspection;
+using Burrows.Exceptions;
+using Burrows.Logging;
+using Magnum;
+using Magnum.Caching;
+
+namespace Burrows.Endpoints
+{
     public class EndpointCache :
         IEndpointCache
     {

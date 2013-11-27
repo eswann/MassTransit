@@ -63,8 +63,7 @@ namespace Burrows
 		/// Declares a Consume method for the message type TMessage which is called
 		/// whenever a a message is received of the specified type.
 		/// </summary>
-		public interface All :
-			IConsumer
+		public interface All : IConsumer
 		{
 			/// <summary>
 			/// Called by the framework when a message is available to be consumed. This
@@ -79,8 +78,7 @@ namespace Burrows
 		/// Declares a Consume method for the message type TMessage wrapped in the 
 		/// consume context
 		/// </summary>
-		public interface Context :
-			Consumes<IConsumeContext<TMessage>>.All
+		public interface Context : Consumes<IConsumeContext<TMessage>>.All
 		{
 		}
 
@@ -92,8 +90,7 @@ namespace Burrows
 		/// </summary>
 		/// <typeparam name="TCorrelationId">The type of the CorrelationId to match</typeparam>
 		public interface For<TCorrelationId> :
-			All,
-			IAmCorrelatedBy<TCorrelationId>
+			All, IAmCorrelatedBy<TCorrelationId>
 		{
 		}
 
@@ -103,8 +100,7 @@ namespace Burrows
 		/// the consumer object to accept or ignore the message before it is delivered to
 		/// the consumer.
 		/// </summary>
-		public interface Selected : 
-			All
+		public interface Selected : All
 		{
 			/// <summary>
 			/// Called by the framework when a message is available. If the consumer is

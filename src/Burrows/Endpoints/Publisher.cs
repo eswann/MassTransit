@@ -10,22 +10,25 @@
 // under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR 
 // CONDITIONS OF ANY KIND, either express or implied. See the License for the 
 // specific language governing permissions and limitations under the License.
-namespace Burrows.Transports
-{
-    using System;
-    using System.Collections.Generic;
-    using RabbitMQ.Client;
 
+using System;
+using System.Collections.Generic;
+using Burrows.Transports;
+using Burrows.Transports.Rabbit;
+using RabbitMQ.Client;
+
+namespace Burrows.Endpoints
+{
     public class Publisher : IConnectionBinding<TransportConnection>
     {
-        private readonly IRabbitMqEndpointAddress _address;
+        private readonly IRabbitEndpointAddress _address;
         private readonly object _bindings = new object();
         private readonly HashSet<ExchangeBinding> _exchangeBindings;
         private readonly IDictionary<string,bool> _exchanges;
         private readonly object _lock = new object();
         IModel _channel;
 
-        public Publisher(IRabbitMqEndpointAddress address)
+        public Publisher(IRabbitEndpointAddress address)
         {
             _address = address;
             _exchangeBindings = new HashSet<ExchangeBinding>();

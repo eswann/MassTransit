@@ -10,13 +10,14 @@
 // under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR 
 // CONDITIONS OF ANY KIND, either express or implied. See the License for the 
 // specific language governing permissions and limitations under the License.
-namespace Burrows.Transports
-{
-    using System;
-    using Logging;
-    using RabbitMQ.Client;
 
-    public static class RabbitMqExtensions
+using Burrows.Logging;
+using System;
+using RabbitMQ.Client;
+
+namespace Burrows.Transports.Rabbit
+{
+    public static class RabbitClientExtensions
     {
         private static readonly ILog _log = Logger.Get<TransportFactory>();
 
@@ -79,5 +80,14 @@ namespace Burrows.Transports
                 }
             }
         }
+
+        public static Uri GetUri(this ConnectionFactory factory)
+        {
+            return new UriBuilder("rabbitmq", factory.HostName, factory.Port, factory.VirtualHost)
+            {
+                UserName = factory.UserName,
+                Password = factory.Password,
+            }.Uri;
+        } 
     }
 }

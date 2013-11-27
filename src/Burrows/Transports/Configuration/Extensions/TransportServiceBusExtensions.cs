@@ -10,6 +10,10 @@
 // under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR 
 // CONDITIONS OF ANY KIND, either express or implied. See the License for the 
 // specific language governing permissions and limitations under the License.
+
+using Burrows.Endpoints;
+using Burrows.Pipeline;
+
 namespace Burrows.Transports.Configuration.Extensions
 {
     using System;
@@ -54,7 +58,7 @@ namespace Burrows.Transports.Configuration.Extensions
                     "The bus must be receiving from a RabbitMQ endpoint to convert message types to endpoints.");
             }
 
-            var inputAddress = inboundTransport.Address.CastAs<IRabbitMqEndpointAddress>();
+            var inputAddress = inboundTransport.Address.CastAs<IRabbitEndpointAddress>();
 
             IMessageNameFormatter messageNameFormatter = inboundTransport.MessageNameFormatter;
 
@@ -122,7 +126,7 @@ namespace Burrows.Transports.Configuration.Extensions
                     var interceptorConfigurator = new OutboundMessageInterceptorConfigurator(bus.OutboundPipeline);
 
                     // make sure we publish correctly through this interceptor; works on the outgoing pipeline
-                    interceptorConfigurator.Create(new PublishEndpointInterceptor(bus));
+                    interceptorConfigurator.Create(new RabbitPublishEndpointInterceptor(bus));
                 });
 
             configurator.AddBusConfigurator(busConfigurator);

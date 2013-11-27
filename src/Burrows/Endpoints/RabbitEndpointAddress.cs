@@ -10,20 +10,51 @@
 // under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR 
 // CONDITIONS OF ANY KIND, either express or implied. See the License for the 
 // specific language governing permissions and limitations under the License.
-namespace Burrows.Transports
-{
-    using System;
-    using System.Collections.Generic;
-    using System.Text.RegularExpressions;
-    using System.Threading;
-    using Exceptions;
-    using Magnum;
-    using Magnum.Extensions;
-    using RabbitMQ.Client;
-    using Util;
 
-    public class RabbitMqEndpointAddress :
-        IRabbitMqEndpointAddress
+using System;
+using System.Collections.Generic;
+using System.Text.RegularExpressions;
+using System.Threading;
+using Burrows.Exceptions;
+using Magnum;
+using Magnum.Extensions;
+using RabbitMQ.Client;
+using Burrows.Util;
+
+namespace Burrows.Endpoints
+{
+    public interface IRabbitEndpointAddress : IEndpointAddress
+    {
+        ConnectionFactory ConnectionFactory { get; }
+        string Name { get; }
+
+        /// <summary>
+        /// The prefetch count for consumers
+        /// </summary>
+        ushort PrefetchCount { get; }
+
+        /// <summary>
+        /// If bound to a queue, the queue should be exclusive
+        /// </summary>
+        bool Exclusive { get; }
+
+        /// <summary>
+        /// If bound to a queue, the queue should be durable
+        /// </summary>
+        bool Durable { get; }
+
+        /// <summary>
+        /// If bound to a queue, the queue should automatically be deleted when connection closed
+        /// </summary>
+        bool AutoDelete { get; }
+
+        IRabbitEndpointAddress ForQueue(string name);
+
+        IDictionary<string, object> QueueArguments();
+    }
+
+    public class RabbitEndpointAddress :
+        IRabbitEndpointAddress
     {
         const string FormatErrorMsg =
             "The path can be empty, or a sequence of these characters: letters, digits, hyphen, underscore, period, or colon.";
@@ -42,7 +73,7 @@ namespace Burrows.Transports
         ushort _prefetch;
         int _ttl;
 
-        public RabbitMqEndpointAddress(Uri uri, ConnectionFactory connectionFactory, string name)
+        public RabbitEndpointAddress(Uri uri, ConnectionFactory connectionFactory, string name)
         {
             _uri = GetSanitizedUri(uri).Uri;
 
@@ -90,7 +121,7 @@ namespace Burrows.Transports
             get { return _prefetch; }
         }
 
-        public IRabbitMqEndpointAddress ForQueue(string name)
+        public IRabbitEndpointAddress ForQueue(string name)
         {
             return ForQueue(_uri, name);
         }
@@ -134,7 +165,7 @@ namespace Burrows.Transports
                        : ht;
         }
 
-        public IRabbitMqEndpointAddress ForQueue(Uri originalUri, string name)
+        public IRabbitEndpointAddress ForQueue(Uri originalUri, string name)
         {
             var uri = new Uri(originalUri.GetLeftPart(UriPartial.Path));
             if (uri.AbsolutePath.EndsWith(_name, StringComparison.InvariantCultureIgnoreCase))
@@ -143,7 +174,7 @@ namespace Burrows.Transports
                     uri.AbsolutePath.Remove(uri.AbsolutePath.Length - _name.Length) + name);
                 //builder.Query = uri.Query;
 
-                return new RabbitMqEndpointAddress(builder.Uri, _connectionFactory, name);
+                return new RabbitEndpointAddress(builder.Uri, _connectionFactory, name);
             }
 
             throw new InvalidOperationException("Uri is not properly formed");
@@ -184,12 +215,12 @@ namespace Burrows.Transports
             return local;
         }
 
-        public static RabbitMqEndpointAddress Parse(string address)
+        public static RabbitEndpointAddress Parse(string address)
         {
             return Parse(new Uri(address));
         }
 
-        public static RabbitMqEndpointAddress Parse(Uri address)
+        public static RabbitEndpointAddress Parse(Uri address)
         {
             Guard.AgainstNull(address, "address");
 
@@ -250,7 +281,7 @@ namespace Burrows.Transports
             else
                 VerifyQueueOrExchangeNameIsLegal(name);
 
-            return new RabbitMqEndpointAddress(address, connectionFactory, name);
+            return new RabbitEndpointAddress(address, connectionFactory, name);
         }
 
         static void VerifyQueueOrExchangeNameIsLegal(string path)

@@ -11,14 +11,14 @@
 // CONDITIONS OF ANY KIND, either express or implied. See the License for the 
 // specific language governing permissions and limitations under the License.
 
-namespace Burrows
-{
-    using System;
-    using Diagnostics.Introspection;
-    using Exceptions;
-    using Transports;
-    using Util;
+using System;
+using Burrows.Diagnostics.Introspection;
+using Burrows.Exceptions;
+using Burrows.Transports;
+using Burrows.Util;
 
+namespace Burrows.Endpoints
+{
     /// <summary>
     /// The endpoint factory methods used to retrieve objects implementing IEndpoint from Uris.
     /// </summary>

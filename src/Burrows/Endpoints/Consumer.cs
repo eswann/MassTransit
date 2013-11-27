@@ -10,23 +10,26 @@
 // under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR 
 // CONDITIONS OF ANY KIND, either express or implied. See the License for the 
 // specific language governing permissions and limitations under the License.
-namespace Burrows.Transports
-{
-    using System;
-    using RabbitMQ.Client;
-    using RabbitMQ.Client.Events;
-    using RabbitMQ.Util;
 
+using System;
+using Burrows.Transports;
+using Burrows.Transports.Rabbit;
+using RabbitMQ.Client;
+using RabbitMQ.Client.Events;
+using RabbitMQ.Util;
+
+namespace Burrows.Endpoints
+{
     public class Consumer : IConnectionBinding<TransportConnection>
     {
-        private readonly IRabbitMqEndpointAddress _address;
+        private readonly IRabbitEndpointAddress _address;
         private readonly object _lock = new object();
         IModel _channel;
         QueueingBasicConsumer _consumer;
         bool _purgeOnBind;
         private readonly string _consumerTag;
 
-        public Consumer(IRabbitMqEndpointAddress address, bool purgeOnBind)
+        public Consumer(IRabbitEndpointAddress address, bool purgeOnBind)
         {
             _address = address;
             _purgeOnBind = purgeOnBind;

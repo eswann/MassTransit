@@ -19,8 +19,7 @@ namespace Burrows
     using System.Text;
 
     [Serializable]
-	public class MessageUrn :
-		Uri
+	public class MessageUrn : Uri
 	{
 		[ThreadStatic]
 		static IDictionary<Type, string> _cache;

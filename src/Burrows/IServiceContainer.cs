@@ -16,8 +16,7 @@ namespace Burrows
     using Diagnostics.Introspection;
 
     public interface IServiceContainer :
-        IDisposable,
-        IDiagnosticsSource
+        IDisposable, IDiagnosticsSource
     {
         void AddService(IBusServiceLayer layer, IBusService service);
         IBusService GetService(Type type);

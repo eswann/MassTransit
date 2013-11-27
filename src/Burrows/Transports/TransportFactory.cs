@@ -10,6 +10,9 @@
 // under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR 
 // CONDITIONS OF ANY KIND, either express or implied. See the License for the 
 // specific language governing permissions and limitations under the License.
+
+using Burrows.Endpoints;
+
 namespace Burrows.Transports
 {
     using System;
@@ -46,7 +49,7 @@ namespace Burrows.Transports
 
             Dictionary<ConnectionFactory, IConnectionFactoryBuilder> builders = connectionFactoryBuilders
                 .Select(x => new KeyValuePair<ConnectionFactory, IConnectionFactoryBuilder>(
-                                 RabbitMqEndpointAddress.Parse(x.Key).ConnectionFactory, x.Value))
+                                 RabbitEndpointAddress.Parse(x.Key).ConnectionFactory, x.Value))
                 .ToDictionary(x => x.Key, x => x.Value);
 
             _connectionFactoryBuilders = new ConcurrentCache<ConnectionFactory, IConnectionFactoryBuilder>(builders,
@@ -88,7 +91,7 @@ namespace Burrows.Transports
             if (_disposed)
                 throw new ObjectDisposedException("RabbitMQTransportFactory");
 
-            RabbitMqEndpointAddress address = RabbitMqEndpointAddress.Parse(settings.Address.Uri);
+            RabbitEndpointAddress address = RabbitEndpointAddress.Parse(settings.Address.Uri);
 
             var transport = new Transport(address, () => BuildInbound(settings), () => BuildOutbound(settings));
 
@@ -100,7 +103,7 @@ namespace Burrows.Transports
             if (_disposed)
                 throw new ObjectDisposedException("RabbitMQTransportFactory");
 
-            RabbitMqEndpointAddress address = RabbitMqEndpointAddress.Parse(settings.Address.Uri);
+            RabbitEndpointAddress address = RabbitEndpointAddress.Parse(settings.Address.Uri);
 
             EnsureProtocolIsCorrect(address.Uri);
 
@@ -115,7 +118,7 @@ namespace Burrows.Transports
             if (_disposed)
                 throw new ObjectDisposedException("RabbitMQTransportFactory");
 
-            RabbitMqEndpointAddress address = RabbitMqEndpointAddress.Parse(settings.Address.Uri);
+            RabbitEndpointAddress address = RabbitEndpointAddress.Parse(settings.Address.Uri);
 
             EnsureProtocolIsCorrect(address.Uri);
 
@@ -129,7 +132,7 @@ namespace Burrows.Transports
             if (_disposed)
                 throw new ObjectDisposedException("RabbitMQTransportFactory");
 
-            RabbitMqEndpointAddress address = RabbitMqEndpointAddress.Parse(settings.Address.Uri);
+            RabbitEndpointAddress address = RabbitEndpointAddress.Parse(settings.Address.Uri);
 
             EnsureProtocolIsCorrect(address.Uri);
 
@@ -151,7 +154,7 @@ namespace Burrows.Transports
 
         public IEndpointAddress GetAddress(Uri uri, bool transactional)
         {
-            return RabbitMqEndpointAddress.Parse(uri);
+            return RabbitEndpointAddress.Parse(uri);
         }
 
         void Dispose(bool disposing)
@@ -175,7 +178,7 @@ namespace Burrows.Transports
         }
 
         IConnectionHandler<TransportConnection> GetConnection(
-            Cache<ConnectionFactory, IConnectionHandler<TransportConnection>> cache, IRabbitMqEndpointAddress address)
+            Cache<ConnectionFactory, IConnectionHandler<TransportConnection>> cache, IRabbitEndpointAddress address)
         {
             ConnectionFactory factory = SanitizeConnectionFactory(address);
 
@@ -208,7 +211,7 @@ namespace Burrows.Transports
                 });
         }
 
-        ConnectionFactory SanitizeConnectionFactory(IRabbitMqEndpointAddress address)
+        ConnectionFactory SanitizeConnectionFactory(IRabbitEndpointAddress address)
         {
             ConnectionFactory factory = address.ConnectionFactory;
 

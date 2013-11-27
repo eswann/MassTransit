@@ -10,6 +10,9 @@
 // under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR 
 // CONDITIONS OF ANY KIND, either express or implied. See the License for the 
 // specific language governing permissions and limitations under the License.
+
+using Burrows.Endpoints;
+
 namespace Burrows
 {
     using System;
@@ -36,8 +39,7 @@ namespace Burrows
     /// communicate with other service bus instances in a distributed application
     /// </summary>
     [DebuggerDisplay("{DebugDisplay}")]
-    public class ServiceBus :
-        IControlBus
+    public class ServiceBus : IControlBus
     {
         private static readonly ILog _log;
 
@@ -69,8 +71,7 @@ namespace Burrows
         /// not called and should be created using the ServiceBusConfigurator to ensure proper defaults
         /// and operation.
         /// </summary>
-        public ServiceBus(IEndpoint endpointToListenOn,
-            IEndpointCache endpointCache, bool enablePerformanceCounters)
+        public ServiceBus(IEndpoint endpointToListenOn, IEndpointCache endpointCache, bool enablePerformanceCounters)
         {
             ReceiveTimeout = TimeSpan.FromSeconds(3);
             Guard.AgainstNull(endpointToListenOn, "endpointToListenOn", "This parameter cannot be null");

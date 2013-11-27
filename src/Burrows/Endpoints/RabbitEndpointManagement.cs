@@ -10,24 +10,26 @@
 // under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR 
 // CONDITIONS OF ANY KIND, either express or implied. See the License for the 
 // specific language governing permissions and limitations under the License.
-namespace Burrows.Transports.Management
-{
-    using System.Collections.Generic;
-    using RabbitMQ.Client;
 
-    public class EndpointManagement : IEndpointManagement
+using System.Collections.Generic;
+using Burrows.Transports.Rabbit;
+using RabbitMQ.Client;
+
+namespace Burrows.Endpoints
+{
+    public class RabbitEndpointManagement : IEndpointManagement
     {
         private readonly bool _owned;
         IConnection _connection;
         bool _disposed;
 
-        public EndpointManagement(IRabbitMqEndpointAddress address)
+        public RabbitEndpointManagement(IRabbitEndpointAddress address)
             : this(address, address.ConnectionFactory.CreateConnection())
         {
             _owned = true;
         }
 
-        public EndpointManagement(IRabbitMqEndpointAddress address, IConnection connection)
+        public RabbitEndpointManagement(IRabbitEndpointAddress address, IConnection connection)
         {
             _connection = connection;
         }

@@ -10,6 +10,9 @@
 // under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR 
 // CONDITIONS OF ANY KIND, either express or implied. See the License for the 
 // specific language governing permissions and limitations under the License.
+
+using Burrows.Endpoints;
+
 namespace Burrows.Transports
 {
     using System;
@@ -56,7 +59,7 @@ namespace Burrows.Transports
 
             MessageName messageName = _messageNameFormatter.GetMessageName(messageType);
 
-            _inboundTransport.BindSubscriberExchange(RabbitMqEndpointAddress.Parse(message.EndpointUri), messageName.ToString());
+            _inboundTransport.BindSubscriberExchange(RabbitEndpointAddress.Parse(message.EndpointUri), messageName.ToString());
 
             _bindings[message.SubscriptionId] = messageName;
         }
