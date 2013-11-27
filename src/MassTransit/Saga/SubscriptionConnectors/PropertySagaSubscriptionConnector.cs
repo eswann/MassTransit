@@ -32,7 +32,7 @@ namespace MassTransit.Saga.SubscriptionConnectors
         private readonly DataEvent<TSaga, TMessage> _dataEvent;
         private readonly ISagaPolicy<TSaga, TMessage> _policy;
         private readonly ISagaRepository<TSaga> _sagaRepository;
-        Expression<Func<TSaga, TMessage, bool>> _bindExpression;
+        readonly Expression<Func<TSaga, TMessage, bool>> _bindExpression;
 
         public PropertySagaSubscriptionConnector(ISagaRepository<TSaga> sagaRepository,
             DataEvent<TSaga, TMessage> dataEvent,

@@ -12,11 +12,11 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Saga.SubscriptionConfigurators
 {
-	using System.Collections.Generic;
-	using Configurators;
-	using MassTransit.SubscriptionBuilders;
-	using MassTransit.SubscriptionConfigurators;
-	using SubscriptionBuilders;
+    using System.Collections.Generic;
+    using Configurators;
+    using MassTransit.SubscriptionBuilders;
+    using MassTransit.SubscriptionConfigurators;
+    using SubscriptionBuilders;
 
     public interface ISagaSubscriptionConfigurator<TSaga> :
     ISubscriptionConfigurator<ISagaSubscriptionConfigurator<TSaga>>

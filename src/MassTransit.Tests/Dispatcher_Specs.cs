@@ -12,13 +12,13 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Tests
 {
-	using Magnum.Extensions;
-	using Messages;
-	using NUnit.Framework;
-	using TextFixtures;
-	using TestFramework;
+    using Magnum.Extensions;
+    using Messages;
+    using NUnit.Framework;
+    using TestFramework;
+    using TextFixtures;
 
-	[TestFixture]
+    [TestFixture]
 	public class When_a_message_is_delivered_to_the_service_bus :
 		LoopbackLocalAndRemoteTestFixture
 	{
@@ -47,8 +47,8 @@ namespace MassTransit.Tests
 		[Test]
 		public void A_consumer_object_should_receive_the_message()
 		{
-			FutureMessage<PingMessage> fm = new FutureMessage<PingMessage>();
-			PingHandler handler = new PingHandler(fm);
+			var fm = new FutureMessage<PingMessage>();
+			var handler = new PingHandler(fm);
 
 			LocalBus.SubscribeInstance(handler);
 			RemoteBus.ShouldHaveSubscriptionFor<PingMessage>();

@@ -17,9 +17,9 @@ namespace MassTransit.Tests
     using Context;
     using Magnum.Extensions;
     using Magnum.TestFramework;
+    using MassTransit.Testing;
     using NUnit.Framework;
     using TextFixtures;
-    using MassTransit.Testing;
 
     [TestFixture]
     public class Putting_two_bodies_into_one_message :

@@ -12,10 +12,10 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.TestFramework
 {
-	using System;
-	using Fixtures;
+    using System;
+    using Fixtures;
 
-	public class ConsumerOf<TMessage> :
+    public class ConsumerOf<TMessage> :
 		AbstractTestConsumer<TMessage>,
 		Consumes<TMessage>.All
 		where TMessage : class

@@ -1,8 +1,8 @@
 namespace MassTransit.Serialization.Custom
 {
-	using System.IO;
+    using System.IO;
 
-	/// <summary>
+    /// <summary>
 	/// A stream that doesn't close the inner stream when <see cref="Close"/> is called.
 	/// </summary>
 	public class NonClosingStream :

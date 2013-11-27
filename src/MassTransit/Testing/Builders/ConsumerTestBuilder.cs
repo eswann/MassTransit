@@ -12,11 +12,10 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Testing.Builders
 {
-	using System.Collections.Generic;
-	using Instances;
-	using Scenarios;
-	using TestActions;
-
+    using System.Collections.Generic;
+    using Instances;
+    using Scenarios;
+    using TestActions;
 
     public interface IConsumerTestBuilder<TScenario, TConsumer> :
         ITestInstanceBuilder<TScenario>

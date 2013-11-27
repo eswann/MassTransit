@@ -12,12 +12,12 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Tests.Configuration
 {
-	using Magnum.TestFramework;
-	using MassTransit.Serialization;
-	using MassTransit.Transports;
-	using MassTransit.Transports.Loopback;
+    using Magnum.TestFramework;
+    using MassTransit.Serialization;
+    using MassTransit.Transports;
+    using MassTransit.Transports.Loopback;
 
-	[Scenario]
+    [Scenario]
 	public class When_configuring_an_endpoint
 	{
 		IEndpointCache _endpointCache;

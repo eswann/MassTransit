@@ -12,9 +12,9 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Serialization.Custom.TypeSerializers
 {
-	using System.Collections.Generic;
+    using System.Collections.Generic;
 
-	public class ListSerializer<T> :
+    public class ListSerializer<T> :
 		EnumerableSerializerBase<T>
 	{
 		public ListSerializer()

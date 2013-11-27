@@ -14,9 +14,9 @@ namespace MassTransit.Tests.Subscriptions
 {
     using Context;
     using Magnum.TestFramework;
-	using MassTransit.Testing;
+    using MassTransit.Testing;
 
-	[Scenario]
+    [Scenario]
 	public class When_the_new_subscription_system_is_used
 	{
 		ConsumerTest<IBusTestScenario, Testsumer> _test;

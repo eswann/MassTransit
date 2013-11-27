@@ -12,12 +12,12 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Pipeline
 {
-	using System;
-	using System.Collections.Generic;
-	using Context;
-	using Magnum.Concurrency;
+    using System;
+    using System.Collections.Generic;
+    using Context;
+    using Magnum.Concurrency;
 
-	/// <summary>
+    /// <summary>
 	/// An inbound message pipeline takes a consume context and maps it
 	/// to a number if actual consumers, in its <see cref="Enumerate"/> method. It
 	/// is also a place-holder for configuration regarding the consume context/its mapped

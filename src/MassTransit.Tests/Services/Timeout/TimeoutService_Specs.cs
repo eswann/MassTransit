@@ -12,20 +12,20 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Tests.Services.Timeout
 {
-	using System;
-	using System.Diagnostics;
-	using BusConfigurators;
-	using Magnum.Extensions;
-	using Magnum.TestFramework;
-	using MassTransit.Saga;
-	using MassTransit.Saga.Configuration;
-	using MassTransit.Services.Timeout.Messages;
-	using MassTransit.Services.Timeout.Server;
-	using NUnit.Framework;
-	using TestFramework;
-	using TextFixtures;
+    using System;
+    using System.Diagnostics;
+    using BusConfigurators;
+    using Magnum.Extensions;
+    using Magnum.TestFramework;
+    using MassTransit.Saga;
+    using MassTransit.Saga.Configuration;
+    using MassTransit.Services.Timeout.Messages;
+    using MassTransit.Services.Timeout.Server;
+    using NUnit.Framework;
+    using TestFramework;
+    using TextFixtures;
 
-	[TestFixture]
+    [TestFixture]
 	public class When_scheduling_two_sagas_of_the_same_timeout_id :
 		LoopbackTestFixture
 	{

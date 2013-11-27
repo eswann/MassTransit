@@ -12,9 +12,9 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Tests.TestConsumers
 {
-	using System;
+    using System;
 
-	public class TestCorrelatedConsumer<TMessage, TKey> :
+    public class TestCorrelatedConsumer<TMessage, TKey> :
 		TestConsumerBase<TMessage>,
 		Consumes<TMessage>.For<TKey>
 		where TMessage : class, IAmCorrelatedBy<Guid>

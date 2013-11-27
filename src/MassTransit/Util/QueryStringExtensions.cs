@@ -12,10 +12,10 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Util
 {
-	using System;
-	using System.Linq;
+    using System;
+    using System.Linq;
 
-	public static class QueryStringExtensions
+    public static class QueryStringExtensions
 	{
 		public static string GetValueFromQueryString(this string queryString, string key)
 		{

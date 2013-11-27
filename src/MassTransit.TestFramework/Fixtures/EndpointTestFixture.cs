@@ -12,20 +12,20 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.TestFramework.Fixtures
 {
-	using System;
-	using System.Collections.Generic;
-	using System.Linq;
-	using BusConfigurators;
-	using Configurators;
-	using EndpointConfigurators;
-	using Exceptions;
-	using Magnum.Extensions;
-	using MassTransit.Transports;
-	using NUnit.Framework;
-	using Saga;
-	using Services.Subscriptions;
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using BusConfigurators;
+    using Configurators;
+    using EndpointConfigurators;
+    using Exceptions;
+    using Magnum.Extensions;
+    using MassTransit.Transports;
+    using NUnit.Framework;
+    using Saga;
+    using Services.Subscriptions;
 
-	/// <summary>
+    /// <summary>
 	/// Test fixture that tests a single endpoint, given
 	/// a transport factory. The transport factory needs to
 	/// have a default public c'tor. The endpoint is one-to-one

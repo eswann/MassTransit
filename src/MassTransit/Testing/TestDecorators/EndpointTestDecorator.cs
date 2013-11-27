@@ -19,14 +19,13 @@ namespace MassTransit.Testing.TestDecorators
     using Serialization;
     using Transports;
 
-
     public class EndpointTestDecorator :
         IEndpoint
     {
         private readonly IEndpoint _endpoint;
         private readonly ReceivedMessageList _received;
         private readonly SentMessageList _sent;
-        EndpointTestScenario _scenario;
+        readonly EndpointTestScenario _scenario;
 
         public EndpointTestDecorator(IEndpoint endpoint, EndpointTestScenario scenario)
         {

@@ -12,15 +12,15 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Tests.Saga.StateMachine
 {
-	using System;
-	using Magnum.StateMachine;
-	using MassTransit.Saga;
-	using MassTransit.Saga.Configuration;
-	using NUnit.Framework;
-	using TestFramework;
-	using TextFixtures;
+    using System;
+    using Magnum.StateMachine;
+    using MassTransit.Saga;
+    using MassTransit.Saga.Configuration;
+    using NUnit.Framework;
+    using TestFramework;
+    using TextFixtures;
 
-	[TestFixture]
+    [TestFixture]
 	public class SagaFault_Specs :
 		LoopbackTestFixture
 	{

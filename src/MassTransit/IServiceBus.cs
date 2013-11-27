@@ -17,8 +17,8 @@ namespace MassTransit
     using System;
     using Context;
     using Diagnostics.Introspection;
-    using Util;
     using Pipeline;
+    using Util;
 
     /// <summary>
     ///   The action to call to unsubscribe a previously subscribed consumer.

@@ -16,7 +16,6 @@ namespace MassTransit.Containers.Tests.Scenarios
     using System.Threading;
     using Magnum.Extensions;
 
-
     public class SimpleConsumer :
         Consumes<ISimpleMessage>.All
     {

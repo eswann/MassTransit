@@ -14,7 +14,7 @@ namespace MassTransit.Xml
 {
     using System;
     using System.Collections.Generic;
-    using MassTransit.BusConfigurators;
+    using BusConfigurators;
 
     public class SettingsOptions
     {

@@ -11,13 +11,12 @@
 // CONDITIONS OF ANY KIND, either express or implied. See the License for the 
 // specific language governing permissions and limitations under the License.
 
-using MassTransit.Util;
-
 namespace MassTransit
 {
-	using System;
+    using System;
+    using Util;
 
-	/// <summary>
+    /// <summary>
 	/// <para>A bus service is an extension to the service bus, and is used to create services that
 	/// add functionality to the service bus, such as subscription managers, distributors, etc.</para>
 	/// 

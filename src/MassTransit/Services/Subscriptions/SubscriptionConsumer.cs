@@ -11,14 +11,12 @@
 // CONDITIONS OF ANY KIND, either express or implied. See the License for the 
 // specific language governing permissions and limitations under the License.
 
-using MassTransit.Util;
-
 namespace MassTransit.Services.Subscriptions
 {
-	using System;
-	using Pipeline;
+    using System;
+    using Pipeline;
 
-	/// <summary>
+    /// <summary>
 	/// Used by testing framework
 	/// </summary>
 	public class SubscriptionConsumer :

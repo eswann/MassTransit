@@ -16,13 +16,13 @@ namespace MassTransit
     using System.Collections.Generic;
     using System.Diagnostics;
     using System.Runtime.Serialization;
-    using MassTransit.Context;
-    using MassTransit.Logging;
+    using Context;
+    using Exceptions;
+    using Logging;
     using Magnum.Reflection;
-    using MassTransit.Exceptions;
-    using MassTransit.Serialization;
-    using MassTransit.Util;
+    using Serialization;
     using Transports;
+    using Util;
 
     /// <summary>
     /// See <see cref="IEndpoint"/> for docs.

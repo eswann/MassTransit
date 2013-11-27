@@ -17,7 +17,6 @@ namespace MassTransit.Tests.NewId_
     using NUnit.Framework;
     using NewIdProviders;
 
-
     [TestFixture]
     public class Generating_ids_over_time
     {

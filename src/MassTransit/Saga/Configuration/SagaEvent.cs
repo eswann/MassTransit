@@ -12,10 +12,10 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Saga.Configuration
 {
-	using System;
-	using Magnum.StateMachine;
+    using System;
+    using Magnum.StateMachine;
 
-	public class SagaEvent<T>
+    public class SagaEvent<T>
 		where T : SagaStateMachine<T>, ISaga
 	{
 		public Event Event { get; set; }

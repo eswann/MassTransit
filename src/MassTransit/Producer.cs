@@ -16,14 +16,14 @@ namespace MassTransit
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
-    using MassTransit.Exceptions;
-    using MassTransit.Logging;
+    using Exceptions;
+    using Logging;
     using Magnum.Caching;
     using Magnum.Extensions;
-    using MassTransit.Transports.Publish;
     using RabbitMQ.Client;
     using RabbitMQ.Client.Events;
     using Transports;
+    using Transports.Publish;
 
     public class Producer : IConnectionBinding<TransportConnection>
     {

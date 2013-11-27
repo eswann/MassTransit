@@ -12,6 +12,7 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Tests.Configuration
 {
+    using System.Diagnostics;
     using MassTransit.Diagnostics;
     using MassTransit.Services.HealthMonitoring.Configuration;
     using NUnit.Framework;
@@ -35,7 +36,7 @@ namespace MassTransit.Tests.Configuration
             }
 
             //check file
-            System.Diagnostics.Process.Start("notepad", "x.txt");
+            Process.Start("notepad", "x.txt");
         }
     }
 }

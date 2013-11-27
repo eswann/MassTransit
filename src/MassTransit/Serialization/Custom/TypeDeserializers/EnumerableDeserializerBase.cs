@@ -12,17 +12,17 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Serialization.Custom.TypeDeserializers
 {
-	using System.Collections.Generic;
-	using System.Xml;
+    using System.Collections.Generic;
+    using System.Xml;
 
-	public abstract class EnumerableDeserializerBase<T> :
+    public abstract class EnumerableDeserializerBase<T> :
 		IObjectDeserializer<T>
 	{
 		public abstract object Deserialize(IDeserializerContext context);
 
 		public virtual List<T> DeserializeAsList(IDeserializerContext context)
 		{
-			List<T> list = new List<T>();
+			var list = new List<T>();
 
 			if (ListIsEmpty(context))
 				return list;

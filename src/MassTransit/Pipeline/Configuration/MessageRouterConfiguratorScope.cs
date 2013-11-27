@@ -14,10 +14,10 @@ namespace MassTransit.Pipeline.Configuration
 {
     using Context;
     using Inspectors;
-	using Sinks;
-	using Util;
+    using Sinks;
+    using Util;
 
-	public class InboundMessageRouterConfiguratorScope<TOutput> :
+    public class InboundMessageRouterConfiguratorScope<TOutput> :
 		PipelineInspectorBase<InboundMessageRouterConfiguratorScope<TOutput>>
 		where TOutput : class
 	{

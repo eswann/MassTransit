@@ -12,13 +12,13 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Tests.Transports
 {
-	using System;
-	using System.Transactions;
-	using MassTransit.Transports;
-	using Messages;
-	using NUnit.Framework;
+    using System;
+    using System.Transactions;
+    using MassTransit.Transports;
+    using Messages;
+    using NUnit.Framework;
 
-	public abstract class TransactionalEndpointContract<TTransportFactory>
+    public abstract class TransactionalEndpointContract<TTransportFactory>
 		where TTransportFactory : class, ITransportFactory, new()
 	{
 		IEndpointCache _endpointCache;

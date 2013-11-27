@@ -12,9 +12,9 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Testing
 {
-	using Scenarios;
+    using Scenarios;
 
-	/// <summary>
+    /// <summary>
 	/// A bus test scenario tests a full service bus. see also <see cref="IEndpointTestScenario"/> and <see cref="ITestScenario"/> for documentation
 	/// and the properties on the interfaces.
 	/// </summary>

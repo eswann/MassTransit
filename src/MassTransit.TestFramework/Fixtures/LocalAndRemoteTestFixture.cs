@@ -12,11 +12,11 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.TestFramework.Fixtures
 {
-	using System;
-	using BusConfigurators;
-	using MassTransit.Transports;
-	using NUnit.Framework;
-	using Subscriptions.Coordinator;
+    using System;
+    using BusConfigurators;
+    using MassTransit.Transports;
+    using NUnit.Framework;
+    using Subscriptions.Coordinator;
 
     [TestFixture, Ignore]
 	public class LocalAndRemoteTestFixture<TTransportFactory> :

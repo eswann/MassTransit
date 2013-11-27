@@ -12,15 +12,15 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Testing.ActionConfigurators
 {
-	using System;
-	using System.Collections.Generic;
-	using Builders;
-	using Configurators;
-	using Context;
-	using Scenarios;
-	using TestActions;
+    using System;
+    using System.Collections.Generic;
+    using Builders;
+    using Configurators;
+    using Context;
+    using Scenarios;
+    using TestActions;
 
-	public class PublishTestActionConfigurator<TScenario, TMessage> :
+    public class PublishTestActionConfigurator<TScenario, TMessage> :
 		TestActionConfigurator<TScenario>
 		where TMessage : class
 		where TScenario : ITestScenario

@@ -12,15 +12,14 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Tests.Serialization
 {
-	using System;
-	using MassTransit.Pipeline;
-	using MassTransit.Pipeline.Configuration;
-	using MassTransit.Serialization;
-	using NUnit.Framework;
-	using TestConsumers;
+    using System;
+    using MassTransit.Pipeline;
+    using MassTransit.Pipeline.Configuration;
+    using MassTransit.Serialization;
+    using NUnit.Framework;
+    using TestConsumers;
 
-	
-	public abstract class Deserializing_an_interface<TSerializer> :
+    public abstract class Deserializing_an_interface<TSerializer> :
 		SerializationSpecificationBase<TSerializer> where TSerializer : IMessageSerializer, new()
 	{
 		[Test]

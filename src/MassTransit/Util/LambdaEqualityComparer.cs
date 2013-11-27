@@ -12,11 +12,11 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Util
 {
-	using System;
-	using System.Collections.Generic;
-	using System.Linq;
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
 
-	public class LambdaEqualityComparer<T> :
+    public class LambdaEqualityComparer<T> :
 		IEqualityComparer<T>
 	{
 		readonly Func<T, T, bool> _comparer;

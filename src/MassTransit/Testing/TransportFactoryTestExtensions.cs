@@ -12,11 +12,11 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Testing
 {
-	using Configurators;
-	using ScenarioConfigurators;
-	using Transports;
+    using Configurators;
+    using ScenarioConfigurators;
+    using Transports;
 
-	public static class TransportFactoryTestExtensions
+    public static class TransportFactoryTestExtensions
 	{
 		public static void AddTransportFactory<TTransportFactory>(this IScenarioConfigurator<IBusTestScenario> configurator)
 			where TTransportFactory : class, ITransportFactory, new()

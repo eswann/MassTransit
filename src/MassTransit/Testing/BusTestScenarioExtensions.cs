@@ -12,10 +12,10 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Testing
 {
-	using Configurators;
-	using ScenarioConfigurators;
+    using Configurators;
+    using ScenarioConfigurators;
 
-	/// <summary>
+    /// <summary>
 	/// Extension methods for the bus test scenarios.
 	/// </summary>
 	public static class BusTestScenarioExtensions

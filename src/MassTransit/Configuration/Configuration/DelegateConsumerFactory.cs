@@ -18,7 +18,6 @@ namespace MassTransit.Configuration
     using Exceptions;
     using Pipeline;
 
-
     public class DelegateConsumerFactory<TConsumer> :
         IConsumerFactory<TConsumer>
         where TConsumer : class

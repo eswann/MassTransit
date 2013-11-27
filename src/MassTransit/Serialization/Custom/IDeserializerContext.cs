@@ -12,9 +12,9 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Serialization.Custom
 {
-	using System.Xml;
+    using System.Xml;
 
-	public interface IDeserializerContext
+    public interface IDeserializerContext
 	{
 		object Deserialize();
 		object Deserialize(string ns);

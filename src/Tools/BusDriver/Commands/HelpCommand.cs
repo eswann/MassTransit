@@ -12,9 +12,9 @@
 // specific language governing permissions and limitations under the License.
 namespace BusDriver.Commands
 {
-	using System.IO;
-	using System.Reflection;
-	using MassTransit.Logging;
+    using System.IO;
+    using System.Reflection;
+    using MassTransit.Logging;
 
     public class HelpCommand :
 		Command

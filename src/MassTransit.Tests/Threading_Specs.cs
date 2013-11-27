@@ -5,6 +5,7 @@
     using System.Diagnostics;
     using System.Linq;
     using System.Threading;
+    using BusConfigurators;
     using Magnum.Extensions;
     using NUnit.Framework;
     using TextFixtures;
@@ -13,9 +14,9 @@
     public class When_configuring_the_thread_pool_for_a_high_number_of_consumers :
         LoopbackTestFixture
     {
-        ManualResetEvent _wait;
-        Semaphore _before;
-        Semaphore _after;
+        readonly ManualResetEvent _wait;
+        readonly Semaphore _before;
+        readonly Semaphore _after;
 
         public When_configuring_the_thread_pool_for_a_high_number_of_consumers()
         {
@@ -24,7 +25,7 @@
             _after = new Semaphore(0, 100);
         }
 
-        protected override void ConfigureLocalBus(BusConfigurators.IServiceBusConfigurator configurator)
+        protected override void ConfigureLocalBus(IServiceBusConfigurator configurator)
         {
             base.ConfigureLocalBus(configurator);
 

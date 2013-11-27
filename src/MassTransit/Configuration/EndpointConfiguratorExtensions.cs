@@ -12,14 +12,14 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit
 {
-	using System;
-	using EndpointConfigurators;
-	using Magnum.Reflection;
-	using Serialization;
-	using Transports;
-	using Util;
+    using System;
+    using EndpointConfigurators;
+    using Magnum.Reflection;
+    using Serialization;
+    using Transports;
+    using Util;
 
-	public static class EndpointConfiguratorExtensions
+    public static class EndpointConfiguratorExtensions
 	{
 		/// <summary>
 		/// Specify a serializer for this endpoint (overrides the default)

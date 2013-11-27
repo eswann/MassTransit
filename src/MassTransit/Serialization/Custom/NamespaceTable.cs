@@ -12,10 +12,10 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Serialization.Custom
 {
-	using System;
-	using System.Collections.Generic;
+    using System;
+    using System.Collections.Generic;
 
-	public class NamespaceTable
+    public class NamespaceTable
 	{
 		readonly Dictionary<string, string> _mapNamespaceToPrefix = new Dictionary<string, string>();
 		readonly HashSet<string> _prefixes = new HashSet<string>();

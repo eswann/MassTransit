@@ -12,13 +12,6 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Tests.Pipeline
 {
-	using MassTransit.Pipeline;
-	using MassTransit.Pipeline.Configuration;
-	using MassTransit.Pipeline.Inspectors;
-	using Messages;
-	using NUnit.Framework;
-	using TestConsumers;
-
 //	[TestFixture]
 //	public class When_filtering_messages_on_the_pipeline
 //	{

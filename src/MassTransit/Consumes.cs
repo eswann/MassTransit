@@ -14,10 +14,10 @@ namespace MassTransit
 {
     using Context;
     using Logging;
-    using Util;
     using Magnum.Extensions;
+    using Util;
 
-	/// <summary>
+    /// <summary>
 	/// API-oriented class.
 	/// </summary>
 	/// <typeparam name="TMessage">The message type to consume.</typeparam>

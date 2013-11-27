@@ -12,12 +12,12 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Tests.Saga
 {
-	using System;
-	using System.Linq.Expressions;
-	using Magnum.TestFramework;
-	using MassTransit.Saga.Pipeline;
+    using System;
+    using System.Linq.Expressions;
+    using Magnum.TestFramework;
+    using MassTransit.Saga.Pipeline;
 
-	[Scenario]
+    [Scenario]
 	public class When_using_correlated_messages_to_start_sagas
 	{
 		CorrelationExpressionToSagaIdVisitor<SimpleSaga, InitiateSimpleSaga> _builder;

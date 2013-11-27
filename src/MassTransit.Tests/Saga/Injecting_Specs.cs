@@ -18,7 +18,6 @@ namespace MassTransit.Tests.Saga
     using NUnit.Framework;
     using TextFixtures;
 
-
     [TestFixture]
     public class Injecting_properties_into_a_saga :
         LoopbackTestFixture

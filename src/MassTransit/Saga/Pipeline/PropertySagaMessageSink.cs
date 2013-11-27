@@ -12,13 +12,13 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Saga.Pipeline
 {
-	using System;
-	using System.Collections.Generic;
-	using System.Linq.Expressions;
-	using Context;
-	using Magnum.Extensions;
+    using System;
+    using System.Collections.Generic;
+    using System.Linq.Expressions;
+    using Context;
+    using Magnum.Extensions;
 
-	public class PropertySagaMessageSink<TSaga, TMessage> :
+    public class PropertySagaMessageSink<TSaga, TMessage> :
 		SagaMessageSinkBase<TSaga, TMessage>
 		where TSaga : class, ISaga, IAmCorrelatedBy<Guid>, Consumes<TMessage>.All
 		where TMessage : class

@@ -12,9 +12,9 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Tests.Messages
 {
-	using System;
+    using System;
 
-	[Serializable]
+    [Serializable]
 	public class SerializationTestMessage :
 		IEquatable<SerializationTestMessage>
 	{

@@ -12,9 +12,9 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Configuration
 {
-	using BusConfigurators;
+    using BusConfigurators;
 
-	/// <summary>
+    /// <summary>
 	/// Environments are used to execute environment specific configuration based
 	/// on the selection of an active environment by some external configuration.
 	/// </summary>

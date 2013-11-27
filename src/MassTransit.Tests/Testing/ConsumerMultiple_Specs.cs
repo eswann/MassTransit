@@ -14,9 +14,9 @@ namespace MassTransit.Tests.Testing
 {
     using Context;
     using Magnum.TestFramework;
-	using MassTransit.Testing;
+    using MassTransit.Testing;
 
-	[Scenario]
+    [Scenario]
 	public class When_a_consumer_with_multiple_message_consumers_is_tested
 	{
 		ConsumerTest<IBusTestScenario, Testsumer> _test;

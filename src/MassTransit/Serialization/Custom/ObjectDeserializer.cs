@@ -12,12 +12,12 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Serialization.Custom
 {
-	using System.Xml;
-	using Logging;
-	using Magnum.Reflection;
-	using Util;
+    using System.Xml;
+    using Logging;
+    using Magnum.Reflection;
+    using Util;
 
-	public class ObjectDeserializer<T> :
+    public class ObjectDeserializer<T> :
 		IObjectDeserializer<T>
 	{
 		private static readonly ILog _log = Logger.Get(typeof (ObjectDeserializer<T>));

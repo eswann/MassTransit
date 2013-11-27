@@ -12,10 +12,10 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Transports
 {
-	using System;
-	using System.Threading;
+    using System;
+    using System.Threading;
 
-	public class ReconnectPolicy :
+    public class ReconnectPolicy :
 		IConnectionPolicy
 	{
 		readonly IConnectionHandler _connectionHandler;

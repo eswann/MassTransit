@@ -12,15 +12,15 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Tests.Services.HealthMonitoring
 {
-	using System;
-	using Magnum.TestFramework;
-	using MassTransit.Services.HealthMonitoring.Messages;
-	using MassTransit.Services.HealthMonitoring.Server;
-	using MassTransit.Services.Timeout.Messages;
-	using NUnit.Framework;
-	using TestFramework;
+    using System;
+    using Magnum.TestFramework;
+    using MassTransit.Services.HealthMonitoring.Messages;
+    using MassTransit.Services.HealthMonitoring.Server;
+    using MassTransit.Services.Timeout.Messages;
+    using NUnit.Framework;
+    using TestFramework;
 
-	[TestFixture]
+    [TestFixture]
 	public class When_using_the_health_service :
 		HealthServiceTestFixture
 	{

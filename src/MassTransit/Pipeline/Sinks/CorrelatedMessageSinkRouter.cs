@@ -12,9 +12,9 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Pipeline.Sinks
 {
-	using System.Collections.Generic;
+    using System.Collections.Generic;
 
-	/// <summary>
+    /// <summary>
 	/// Routes a message to all of the connected message sinks without modification
 	/// </summary>
 	/// <typeparam name="TMessage">The type of the message to be routed</typeparam>

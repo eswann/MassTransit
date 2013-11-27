@@ -12,15 +12,15 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Tests.Configuration
 {
-	using System;
-	using System.Linq;
-	using Configurators;
-	using Exceptions;
-	using Magnum.TestFramework;
-	using NUnit.Framework;
-	using TestFramework;
+    using System;
+    using System.Linq;
+    using Configurators;
+    using Exceptions;
+    using Magnum.TestFramework;
+    using NUnit.Framework;
+    using TestFramework;
 
-	[TestFixture]
+    [TestFixture]
 	public class When_configuration_fails
 	{
 		[Test]

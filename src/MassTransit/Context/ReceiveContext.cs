@@ -31,7 +31,7 @@ namespace MassTransit.Context
         private readonly IList<ISent> _sent;
         private readonly bool _transactional;
         Stream _bodyStream;
-        Stopwatch _timer;
+        readonly Stopwatch _timer;
         IMessageTypeConverter _typeConverter;
         private readonly IList<Action> _faultActions;
 

@@ -12,12 +12,12 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Util
 {
-	using System;
-	using Exceptions;
-	using Magnum;
-	using Magnum.Extensions;
+    using System;
+    using Exceptions;
+    using Magnum;
+    using Magnum.Extensions;
 
-	/// <summary>
+    /// <summary>
 	///   Check class for verifying the condition of items included in interface contracts
 	/// </summary>
 	public static class CheckConvention

@@ -19,7 +19,6 @@ namespace MassTransit
     using Newtonsoft.Json;
     using Serialization;
 
-
     public static class SerializerConfigurationExtensions
     {
         public static T UseJsonSerializer<T>(this T configurator)

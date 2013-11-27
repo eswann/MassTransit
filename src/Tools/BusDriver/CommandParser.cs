@@ -12,12 +12,12 @@
 // specific language governing permissions and limitations under the License.
 namespace BusDriver
 {
-	using System.Linq;
-	using Commands;
-	using Magnum.CommandLineParser;
-	using Magnum.Monads.Parser;
+    using System.Linq;
+    using Commands;
+    using Magnum.CommandLineParser;
+    using Magnum.Monads.Parser;
 
-	public class CommandParser
+    public class CommandParser
 	{
 		public static bool Parse(string commandText)
 		{

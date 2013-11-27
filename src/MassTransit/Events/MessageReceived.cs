@@ -12,8 +12,8 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Events
 {
-	using System;
-	using Context;
+    using System;
+    using Context;
 
     public class MessageReceived
 	{

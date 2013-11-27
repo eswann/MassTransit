@@ -12,9 +12,9 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Services.HealthMonitoring.Messages
 {
-	using System;
+    using System;
 
-	public class EndpointNotificationBase :
+    public class EndpointNotificationBase :
 		EndpointMessageBase
 	{
 		public DateTime LastHeartbeat { get; set; }

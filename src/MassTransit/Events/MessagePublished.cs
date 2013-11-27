@@ -12,9 +12,9 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Events
 {
-	using System;
+    using System;
 
-	public class MessagePublished
+    public class MessagePublished
 	{
 		public Type MessageType { get; set; }
 

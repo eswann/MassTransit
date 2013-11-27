@@ -12,32 +12,32 @@
 // specific language governing permissions and limitations under the License.
 namespace BusDriver
 {
-	using System;
-	using System.Collections.Generic;
-	using System.Threading;
-	using Magnum.Caching;
-	using MassTransit.Log4NetIntegration.Logging;
-	using MassTransit.Logging;
-	using MassTransit.Transports;
-	using MassTransit.Transports.Configuration.Extensions;
-	using log4net.Appender;
-	using log4net.Config;
-	using log4net.Core;
-	using log4net.Filter;
-	using log4net.Layout;
-	using Magnum.CommandLineParser;
-	using Magnum.Extensions;
-	using MassTransit;
-	using MassTransit.Transports.Loopback;
+    using System;
+    using System.Collections.Generic;
+    using System.Threading;
+    using Magnum.Caching;
+    using Magnum.CommandLineParser;
+    using Magnum.Extensions;
+    using MassTransit;
+    using MassTransit.Log4NetIntegration.Logging;
+    using MassTransit.Logging;
+    using MassTransit.Transports;
+    using MassTransit.Transports.Configuration.Extensions;
+    using MassTransit.Transports.Loopback;
+    using log4net.Appender;
+    using log4net.Config;
+    using log4net.Core;
+    using log4net.Filter;
+    using log4net.Layout;
 
     class Program
 	{
 		static readonly ILog _log = Logger.Get(typeof (Program));
 	    static ConsoleAppender _appender;
 		static IServiceBus _bus;
-		static Uri _driverUri = new Uri("msmq://localhost/masstransit_busdriver");
+		static readonly Uri _driverUri = new Uri("msmq://localhost/masstransit_busdriver");
 		static IList<IPendingCommand> _pending;
-	    static Cache<string, IServiceBus> _buses; 
+	    static readonly Cache<string, IServiceBus> _buses; 
 
         static Program()
         {

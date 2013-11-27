@@ -12,11 +12,11 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Context
 {
-	using System;
-	using System.Runtime.Serialization;
-	using Util;
+    using System;
+    using System.Runtime.Serialization;
+    using Util;
 
-	[Serializable]
+    [Serializable]
 	public class ContextException :
 		Exception
 	{

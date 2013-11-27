@@ -12,11 +12,11 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Context
 {
-	using System.Collections.Generic;
-	using System.IO;
-	using Newtonsoft.Json;
+    using System.Collections.Generic;
+    using System.IO;
+    using Newtonsoft.Json;
 
-	public class TransportMessageHeaders
+    public class TransportMessageHeaders
 	{
 		static JsonSerializer _serializer;
 		readonly IDictionary<string, string> _headers;

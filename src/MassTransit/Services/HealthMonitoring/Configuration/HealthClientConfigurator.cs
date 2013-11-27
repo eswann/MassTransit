@@ -12,10 +12,10 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Services.HealthMonitoring.Configuration
 {
-	using System;
-	using BusServiceConfigurators;
+    using System;
+    using BusServiceConfigurators;
 
-	public class HealthClientConfigurator :
+    public class HealthClientConfigurator :
 		IBusServiceConfigurator
 	{
 		int _intervalInSeconds;

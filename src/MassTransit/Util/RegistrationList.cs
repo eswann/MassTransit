@@ -12,11 +12,11 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Util
 {
-	using System;
-	using System.Collections.Generic;
-	using Magnum.Threading;
+    using System;
+    using System.Collections.Generic;
+    using Magnum.Threading;
 
-	/// <summary>
+    /// <summary>
 	///   A multiple-readers, single-writer, disposable, list implementation.
 	/// </summary>
 	/// <typeparam name = "T"></typeparam>

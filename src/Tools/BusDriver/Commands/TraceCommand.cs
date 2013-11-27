@@ -12,16 +12,16 @@
 // specific language governing permissions and limitations under the License.
 namespace BusDriver.Commands
 {
-	using System;
-	using System.Collections.Generic;
-	using System.Linq;
-	using System.Threading;
-	using Formatting;
-	using MassTransit.Context;
-	using MassTransit.Diagnostics.Tracing;
-	using MassTransit.Logging;
-	using Magnum.Extensions;
-	using MassTransit;
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading;
+    using Formatting;
+    using Magnum.Extensions;
+    using MassTransit;
+    using MassTransit.Context;
+    using MassTransit.Diagnostics.Tracing;
+    using MassTransit.Logging;
 
     public class TraceCommand :
 		Consumes<IReceivedMessageTraceList>.All,

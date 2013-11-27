@@ -12,11 +12,11 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Serialization.Custom
 {
-	using System;
-	using System.Collections.Generic;
-	using System.Reflection;
+    using System;
+    using System.Collections.Generic;
+    using System.Reflection;
 
-	public static class ExtensionsForType
+    public static class ExtensionsForType
 	{
 		public static IEnumerable<PropertyInfo> GetAllProperties(this Type type)
 		{

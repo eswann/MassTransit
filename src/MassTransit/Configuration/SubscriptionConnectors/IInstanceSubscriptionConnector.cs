@@ -12,12 +12,12 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.SubscriptionConnectors
 {
-	using System;
-	using Pipeline;
-	using Pipeline.Configuration;
-	using Pipeline.Sinks;
+    using System;
+    using Pipeline;
+    using Pipeline.Configuration;
+    using Pipeline.Sinks;
 
-	public interface IInstanceSubscriptionConnector :
+    public interface IInstanceSubscriptionConnector :
 		IInstanceConnector
 	{
 		Type MessageType { get; }

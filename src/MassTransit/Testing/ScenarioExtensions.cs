@@ -12,12 +12,12 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Testing
 {
-	using Factories;
-	using Saga;
-	using ScenarioBuilders;
-	using Scenarios;
+    using Factories;
+    using Saga;
+    using ScenarioBuilders;
+    using Scenarios;
 
-	public static class ScenarioExtensions
+    public static class ScenarioExtensions
 	{
 		public static HandlerTestFactory<IBusTestScenario, TMessage> InSingleBusScenario<TScenario, TMessage>(
 			this IHandlerTestFactory<TScenario, TMessage> factory)

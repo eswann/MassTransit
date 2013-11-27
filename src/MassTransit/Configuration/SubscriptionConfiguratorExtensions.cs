@@ -12,11 +12,11 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit
 {
-	using System;
-	using BusConfigurators;
-	using SubscriptionConfigurators;
+    using System;
+    using BusConfigurators;
+    using SubscriptionConfigurators;
 
-	public static class SubscriptionConfiguratorExtensions
+    public static class SubscriptionConfiguratorExtensions
 	{
 		public static void Subscribe(this IServiceBusConfigurator configurator,
 									 Action<ISubscriptionBusServiceConfigurator> configure)

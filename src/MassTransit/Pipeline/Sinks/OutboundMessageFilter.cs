@@ -12,10 +12,10 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Pipeline.Sinks
 {
-	using System;
-	using System.Collections.Generic;
-	using System.Linq;
-	using Context;
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using Context;
 
     public class OutboundMessageFilter<TMessage> :
 		OutboundPipelineSink<TMessage>

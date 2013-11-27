@@ -1,9 +1,9 @@
 namespace MassTransit.SubscriptionConfigurators
 {
-	using System;
-	using System.Collections.Generic;
-	using Configurators;
-	using SubscriptionBuilders;
+    using System;
+    using System.Collections.Generic;
+    using Configurators;
+    using SubscriptionBuilders;
 
     public interface ISubscriptionRouterBuilderConfigurator :
     IConfigurator

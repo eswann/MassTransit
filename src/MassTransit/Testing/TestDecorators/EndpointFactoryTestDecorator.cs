@@ -12,13 +12,12 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Testing.TestDecorators
 {
-	using System;
-	using Diagnostics;
-	using Diagnostics.Introspection;
-	using Scenarios;
-	using Transports;
+    using System;
+    using Diagnostics.Introspection;
+    using Scenarios;
+    using Transports;
 
-	public class EndpointFactoryTestDecorator :
+    public class EndpointFactoryTestDecorator :
 		IEndpointFactory
 	{
 		readonly IEndpointFactory _endpointFactory;

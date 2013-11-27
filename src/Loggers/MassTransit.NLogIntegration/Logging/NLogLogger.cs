@@ -16,7 +16,6 @@ namespace MassTransit.NLogIntegration.Logging
     using MassTransit.Logging;
     using NLog;
     using Util;
-    using Logger = MassTransit.Logging.Logger;
 
     public class NLogLogger : ILogger
     {
@@ -39,7 +38,7 @@ namespace MassTransit.NLogIntegration.Logging
 
         public static void Use()
         {
-            Logger.UseLogger(new NLogLogger());
+            MassTransit.Logging.Logger.UseLogger(new NLogLogger());
         }
     }
 }

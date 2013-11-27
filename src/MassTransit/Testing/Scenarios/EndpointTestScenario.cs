@@ -12,13 +12,12 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Testing.Scenarios
 {
-	using System;
-	using System.Collections.Generic;
-	using Diagnostics;
-	using Diagnostics.Introspection;
-	using Magnum.Extensions;
-	using TestDecorators;
-	using Transports;
+    using System;
+    using System.Collections.Generic;
+    using Diagnostics.Introspection;
+    using Magnum.Extensions;
+    using TestDecorators;
+    using Transports;
 
     /// <summary>
     /// Adds the further feature onto <see cref="ITestScenario"/> of having 

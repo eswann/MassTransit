@@ -12,10 +12,10 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Tests.Testing
 {
-	using Magnum.TestFramework;
-	using MassTransit.Testing;
+    using Magnum.TestFramework;
+    using MassTransit.Testing;
 
-	[Scenario]
+    [Scenario]
 	public class Using_the_handler_test_factory
 	{
 		IHandlerTest<A> _test;

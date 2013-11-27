@@ -12,19 +12,19 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Serialization.Custom
 {
-	using System;
-	using System.Collections;
-	using System.Collections.Generic;
-	using System.Linq;
-	using System.Reflection;
-	using System.Runtime.Serialization;
-	using System.Xml;
-	using Logging;
-	using Magnum.Extensions;
-	using Magnum.Reflection;
-	using TypeDeserializers;
+    using System;
+    using System.Collections;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Reflection;
+    using System.Runtime.Serialization;
+    using System.Xml;
+    using Logging;
+    using Magnum.Extensions;
+    using Magnum.Reflection;
+    using TypeDeserializers;
 
-	public class DeserializerContext :
+    public class DeserializerContext :
 		IDeserializerContext
 	{
 		private readonly XmlReader _reader;

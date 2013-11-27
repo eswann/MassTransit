@@ -12,16 +12,16 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Tests.TextFixtures
 {
-	using System;
-	using Configurators;
-	using EndpointConfigurators;
-	using Exceptions;
-	using Magnum.Extensions;
-	using MassTransit.Saga;
-	using MassTransit.Transports;
-	using NUnit.Framework;
+    using System;
+    using Configurators;
+    using EndpointConfigurators;
+    using Exceptions;
+    using Magnum.Extensions;
+    using MassTransit.Saga;
+    using MassTransit.Transports;
+    using NUnit.Framework;
 
-	[TestFixture]
+    [TestFixture]
 	public abstract class EndpointTestFixture<TTransportFactory>
 		where TTransportFactory : class, ITransportFactory, new()
 	{
@@ -79,7 +79,7 @@ namespace MassTransit.Tests.TextFixtures
 			ServiceBusFactory.ConfigureDefaultSettings(x => { x.SetEndpointCache(null); });
 		}
 
-		EndpointFactoryConfigurator _endpointFactoryConfigurator;
+	    readonly EndpointFactoryConfigurator _endpointFactoryConfigurator;
 		EndpointCache _endpointCache;
 
 		protected EndpointTestFixture()

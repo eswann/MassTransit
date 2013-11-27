@@ -12,13 +12,13 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Tests.Pipeline
 {
-	using MassTransit.Pipeline;
-	using MassTransit.Pipeline.Configuration;
-	using MassTransit.Pipeline.Inspectors;
-	using Messages;
-	using NUnit.Framework;
+    using MassTransit.Pipeline;
+    using MassTransit.Pipeline.Configuration;
+    using MassTransit.Pipeline.Inspectors;
+    using Messages;
+    using NUnit.Framework;
 
-	[TestFixture]
+    [TestFixture]
 	public class When_subscription_a_component_to_the_pipeline
 	{
 		[SetUp]
@@ -32,11 +32,11 @@ namespace MassTransit.Tests.Pipeline
 		[Test]
 		public void The_appropriate_handler_should_be_added()
 		{
-			IndiscriminantConsumer<PingMessage> consumer = new IndiscriminantConsumer<PingMessage>();
+			var consumer = new IndiscriminantConsumer<PingMessage>();
 
 			_pipeline.ConnectInstance(consumer);
 
-			PingMessage message = new PingMessage();
+			var message = new PingMessage();
 
 			_pipeline.Dispatch(message, x => true);
 
@@ -48,16 +48,16 @@ namespace MassTransit.Tests.Pipeline
 		{
 			// two consumers, one for each type of message
 
-			IndiscriminantConsumer<PingMessage> pingConsumer = new IndiscriminantConsumer<PingMessage>();
-			IndiscriminantConsumer<PongMessage> pongConsumer = new IndiscriminantConsumer<PongMessage>();
+			var pingConsumer = new IndiscriminantConsumer<PingMessage>();
+			var pongConsumer = new IndiscriminantConsumer<PongMessage>();
 
 			UnsubscribeAction pingToken = _pipeline.ConnectInstance(pingConsumer);
 			UnsubscribeAction pongToken = _pipeline.ConnectInstance(pongConsumer);
 
 			PipelineViewer.Trace(_pipeline);
 
-			PingMessage pingMessage = new PingMessage();
-			PongMessage pongMessage = new PongMessage();
+			var pingMessage = new PingMessage();
+			var pongMessage = new PongMessage();
 
 			_pipeline.Dispatch(pingMessage, accept => true);
 			_pipeline.Dispatch(pongMessage, accept => true);
@@ -74,11 +74,11 @@ namespace MassTransit.Tests.Pipeline
 		[Test]
 		public void The_subscriptions_should_be_a_separate_concern_from_the_pipeline()
 		{
-			IndiscriminantConsumer<PingMessage> consumer = new IndiscriminantConsumer<PingMessage>();
+			var consumer = new IndiscriminantConsumer<PingMessage>();
 
 			_pipeline.ConnectInstance(consumer);
 
-			PingMessage message = new PingMessage();
+			var message = new PingMessage();
 
 			_pipeline.Dispatch(message, x => true);
 
@@ -88,7 +88,7 @@ namespace MassTransit.Tests.Pipeline
 		[Test]
 		public void When_nobody_wants_the_message_it_should_not_be_accepted()
 		{
-			PingMessage message = new PingMessage();
+			var message = new PingMessage();
 
 			bool accepted = false;
 
@@ -100,11 +100,11 @@ namespace MassTransit.Tests.Pipeline
 		[Test]
 		public void When_somebody_gets_the_message_it_should_be_accepted()
 		{
-			IndiscriminantConsumer<PingMessage> consumer = new IndiscriminantConsumer<PingMessage>();
+			var consumer = new IndiscriminantConsumer<PingMessage>();
 
 			_pipeline.ConnectInstance(consumer);
 
-			PingMessage message = new PingMessage();
+			var message = new PingMessage();
 
 			bool accepted = false;
 			_pipeline.Dispatch(message, x => accepted = true);

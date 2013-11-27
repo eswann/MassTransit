@@ -12,10 +12,10 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Testing.Scenarios
 {
-	using TestDecorators;
-	using Transports;
+    using TestDecorators;
+    using Transports;
 
-	public class LocalRemoteTestScenario :
+    public class LocalRemoteTestScenario :
 		EndpointTestScenario,
 		ILocalRemoteTestScenario
 	{

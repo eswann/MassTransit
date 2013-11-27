@@ -16,7 +16,6 @@ namespace MassTransit
     using System.Collections.Generic;
     using Magnum.Extensions;
 
-
     /// <summary>
     /// A fault is a system-generated message that is published when an exception occurs while processing a message.
     /// </summary>

@@ -12,10 +12,10 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Saga.Pipeline
 {
-	using System;
-	using System.Linq.Expressions;
+    using System;
+    using System.Linq.Expressions;
 
-	public class SagaFilterExpressionConverter<TSaga, TMessage> :
+    public class SagaFilterExpressionConverter<TSaga, TMessage> :
 		Util.ExpressionVisitor
 	{
 		readonly TMessage _message;

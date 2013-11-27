@@ -13,7 +13,6 @@
 namespace MassTransit.Saga
 {
     using System;
-    
 
     /// <summary>
     /// Specifies that the message type TMessage starts a new saga. 

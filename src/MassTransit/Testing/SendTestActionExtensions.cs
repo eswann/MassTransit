@@ -12,12 +12,12 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Testing
 {
-	using System;
-	using ActionConfigurators;
-	using Context;
-	using TestInstanceConfigurators;
+    using System;
+    using ActionConfigurators;
+    using Context;
+    using TestInstanceConfigurators;
 
-	public static class SendTestActionExtensions
+    public static class SendTestActionExtensions
 	{
 		public static void Send<TMessage>(this ITestInstanceConfigurator<IBusTestScenario> configurator, TMessage message)
 			where TMessage : class

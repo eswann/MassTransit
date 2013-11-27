@@ -11,15 +11,12 @@
 // CONDITIONS OF ANY KIND, either express or implied. See the License for the 
 // specific language governing permissions and limitations under the License.
 
-using MassTransit.Util;
-
 namespace MassTransit.BusConfigurators
 {
     using System;
     using System.Collections.Generic;
     using System.Diagnostics;
     using System.Linq;
-    using System.Reflection;
     using Builders;
     using Configuration;
     using Configurators;
@@ -28,7 +25,7 @@ namespace MassTransit.BusConfigurators
     using Magnum.Extensions;
     using SubscriptionConfigurators;
     using Transports;
-
+    using Util;
 
     /// <summary>
     /// <para>The configurator to call methods on, as well as extension methods on,

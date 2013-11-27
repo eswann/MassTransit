@@ -12,14 +12,14 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Testing
 {
-	using System;
-	using System.Collections.Generic;
-	using System.Linq;
-	using System.Threading;
-	using Magnum.Extensions;
-	using Pipeline;
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading;
+    using Magnum.Extensions;
+    using Pipeline;
 
-	public static class ScenarioAssertionExtensions
+    public static class ScenarioAssertionExtensions
 	{
 		public static IEnumerable<IPipelineSink<TMessage>> HasSubscription<TMessage>(this IServiceBus bus)
 			where TMessage : class

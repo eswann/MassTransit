@@ -12,12 +12,12 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Tests.Saga
 {
-	using System;
-	using System.Threading;
-	using Magnum.Extensions;
-	using Messages;
+    using System;
+    using System.Threading;
+    using Magnum.Extensions;
+    using Messages;
 
-	public class RegisterUserController :
+    public class RegisterUserController :
 		Consumes<UserRegistrationPending>.For<Guid>,
 		Consumes<UserRegistrationComplete>.For<Guid>
 	{

@@ -1,1 +1,3 @@
-[assembly: log4net.Config.XmlConfigurator(Watch = true)]
+using log4net.Config;
+
+[assembly: XmlConfigurator(Watch = true)]

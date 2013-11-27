@@ -13,7 +13,7 @@
 namespace MassTransit.Context
 {
     using System;
-    using MassTransit.Util;
+    using Util;
 
     /// <summary>
     /// Extensions methods for parameterizing message contexts

@@ -12,12 +12,12 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Tests.Subscriptions
 {
-	using MassTransit.Transports.Loopback;
-	using NUnit.Framework;
-	using TestFramework;
-	using TextFixtures;
+    using MassTransit.Transports.Loopback;
+    using NUnit.Framework;
+    using TestFramework;
+    using TextFixtures;
 
-	[TestFixture]
+    [TestFixture]
 	public class Adding_a_correlated_subscription_via_the_subscription_client :
 		SubscriptionServiceTestFixture<LoopbackTransportFactory>
 	{

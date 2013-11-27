@@ -12,12 +12,12 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Testing.Subjects
 {
-	using System;
-	using System.Linq;
-	using Context;
-	using Exceptions;
-	using Magnum.Extensions;
-	using Scenarios;
+    using System;
+    using System.Linq;
+    using Context;
+    using Exceptions;
+    using Magnum.Extensions;
+    using Scenarios;
 
     public interface IHandlerTestSubject<TMessage> :
     ITestSubject<TMessage>

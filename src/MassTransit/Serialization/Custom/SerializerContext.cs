@@ -12,18 +12,18 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Serialization.Custom
 {
-	using System;
-	using System.Collections;
-	using System.Collections.Generic;
-	using System.Linq;
-	using System.Reflection;
-	using System.Xml;
-	using Logging;
-	using Magnum.Reflection;
+    using System;
+    using System.Collections;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Reflection;
+    using System.Xml;
+    using Logging;
     using Magnum.Extensions;
-	using TypeSerializers;
+    using Magnum.Reflection;
+    using TypeSerializers;
 
-	public class SerializerContext :
+    public class SerializerContext :
 		ISerializerContext
 	{
 		private static readonly ILog _log = Logger.Get(typeof (SerializerContext));

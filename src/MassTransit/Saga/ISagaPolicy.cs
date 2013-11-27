@@ -12,8 +12,8 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Saga
 {
-	using System;
-	using Context;
+    using System;
+    using Context;
 
     /// <summary>
 	/// A saga policy defines how the pipeline should handle messages when being routed 

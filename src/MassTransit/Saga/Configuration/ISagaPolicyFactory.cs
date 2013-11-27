@@ -12,12 +12,12 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Saga.Configuration
 {
-	using System;
-	using System.Collections.Generic;
-	using System.Linq.Expressions;
-	using Magnum.StateMachine;
+    using System;
+    using System.Collections.Generic;
+    using System.Linq.Expressions;
+    using Magnum.StateMachine;
 
-	public interface ISagaPolicyFactory
+    public interface ISagaPolicyFactory
 	{
 		ISagaPolicy<TSaga, TMessage> GetPolicy<TSaga, TMessage>(IEnumerable<State> states, Func<TMessage, Guid> getNewSagaId,
 		                                                        Expression<Func<TSaga, bool>> removeExpression)

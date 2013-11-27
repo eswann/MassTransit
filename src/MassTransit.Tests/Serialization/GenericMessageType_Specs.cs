@@ -23,7 +23,7 @@ namespace MassTransit.Tests.Serialization
     public class When_sending_a_generic_message :
         LoopbackTestFixture
     {
-        FutureMessage<Message<int>> _called;
+        readonly FutureMessage<Message<int>> _called;
 
         public When_sending_a_generic_message()
         {

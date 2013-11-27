@@ -12,7 +12,7 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Configurators
 {
-	using System;
+    using System;
 
     /// <summary>
     /// Reports information about the configuration before configuring

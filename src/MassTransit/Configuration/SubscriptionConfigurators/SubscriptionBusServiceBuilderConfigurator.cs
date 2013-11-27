@@ -12,9 +12,9 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.SubscriptionConfigurators
 {
-	using System.Collections.Generic;
-	using Configurators;
-	using SubscriptionBuilders;
+    using System.Collections.Generic;
+    using Configurators;
+    using SubscriptionBuilders;
 
     public interface ISubscriptionBusServiceBuilderConfigurator :
     IConfigurator

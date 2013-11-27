@@ -12,12 +12,12 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Tests.Examples.Sagas
 {
-	using Magnum.TestFramework;
-	using MassTransit.Saga.Configuration;
-	using TestFramework;
-	using TestFramework.Fixtures;
+    using Magnum.TestFramework;
+    using MassTransit.Saga.Configuration;
+    using TestFramework;
+    using TestFramework.Fixtures;
 
-	[Scenario]
+    [Scenario]
 	public class Given_a_simple_saga_exists_and_is_waiting_for_approval :
 		SagaTestFixture<SimpleStateMachineSaga>
 	{

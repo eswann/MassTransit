@@ -12,9 +12,9 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Subscriptions.Messages
 {
-	using System;
+    using System;
 
-	public class InitializePeerHandler
+    public class InitializePeerHandler
 	{
 		public InitializePeerHandler(Guid peerId, Uri peerUri)
 		{

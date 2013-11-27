@@ -12,13 +12,13 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Saga.Configuration
 {
-	using System;
-	using System.Collections.Generic;
-	using Magnum.Collections;
-	using Magnum.Reflection;
-	using Magnum.StateMachine;
+    using System;
+    using System.Collections.Generic;
+    using Magnum.Collections;
+    using Magnum.Reflection;
+    using Magnum.StateMachine;
 
-	public class SagaStateMachineEventInspector<TSaga> :
+    public class SagaStateMachineEventInspector<TSaga> :
 		ReflectiveVisitorBase<SagaStateMachineEventInspector<TSaga>>,
 		IStateMachineInspector
 		where TSaga : SagaStateMachine<TSaga>, ISaga
@@ -68,7 +68,7 @@ namespace MassTransit.Saga.Configuration
 		public bool Inspect<T, V>(DataEvent<T, V> eevent)
 			where T : SagaStateMachine<T>, ISaga
 		{
-			SagaEvent<TSaga> sagaEvent = new SagaEvent<TSaga>(eevent, typeof (V));
+			var sagaEvent = new SagaEvent<TSaga>(eevent, typeof (V));
 
 			_events.Add(sagaEvent, _currentState);
 

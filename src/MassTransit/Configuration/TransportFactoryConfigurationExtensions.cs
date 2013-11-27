@@ -12,13 +12,13 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit
 {
-	using System;
-	using BusConfigurators;
-	using EndpointConfigurators;
-	using Magnum.Reflection;
-	using Transports;
+    using System;
+    using BusConfigurators;
+    using EndpointConfigurators;
+    using Magnum.Reflection;
+    using Transports;
 
-	public static class TransportFactoryConfigurationExtensions
+    public static class TransportFactoryConfigurationExtensions
 	{
 		public static T AddTransportFactory<T>(this T configurator, ITransportFactory transportFactory)
 			where T : IEndpointFactoryConfigurator

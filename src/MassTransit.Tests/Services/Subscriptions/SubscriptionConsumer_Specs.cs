@@ -12,15 +12,15 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Tests.Services.Subscriptions
 {
-	using System;
-	using MassTransit.Pipeline;
-	using MassTransit.Pipeline.Configuration;
-	using MassTransit.Services.Subscriptions;
-	using Messages;
-	using NUnit.Framework;
-	using Rhino.Mocks;
+    using System;
+    using MassTransit.Pipeline;
+    using MassTransit.Pipeline.Configuration;
+    using MassTransit.Services.Subscriptions;
+    using Messages;
+    using NUnit.Framework;
+    using Rhino.Mocks;
 
-	[TestFixture]
+    [TestFixture]
 	public class When_the_consumer_receives_a_subscription
 	{
 		[SetUp]

@@ -12,15 +12,15 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit
 {
-	using System;
-	using Configurators;
-	using EndpointConfigurators;
-	using Exceptions;
-	using Magnum;
-	using Transports;
-	using Util;
+    using System;
+    using Configurators;
+    using EndpointConfigurators;
+    using Exceptions;
+    using Magnum;
+    using Transports;
+    using Util;
 
-	public static class EndpointCacheFactory
+    public static class EndpointCacheFactory
 	{
 		static readonly EndpointFactoryDefaultSettings _defaultSettings = new EndpointFactoryDefaultSettings();
 

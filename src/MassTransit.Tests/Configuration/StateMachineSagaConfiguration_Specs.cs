@@ -1,14 +1,13 @@
 ﻿namespace MassTransit.Tests.Configuration
 {
-	using Examples.Sagas;
-	using Examples.Sagas.Messages;
-	using Magnum.TestFramework;
-	using MassTransit.Saga;
-	using MassTransit.Saga.Configuration;
-	using Rhino.Mocks;
-	using TestFramework;
+    using Examples.Sagas;
+    using Examples.Sagas.Messages;
+    using Magnum.TestFramework;
+    using MassTransit.Saga;
+    using Rhino.Mocks;
+    using TestFramework;
 
-	[Scenario]
+    [Scenario]
 	public class When_subscribing_a_state_machine_saga_to_the_bus
 	{
 		IServiceBus _bus;

@@ -12,14 +12,14 @@
 // specific language governing permissions and limitations under the License.
 namespace BusDriver.Commands
 {
-	using System;
-	using Formatting;
-	using Magnum.Extensions;
-	using MassTransit.Logging;
-	using MassTransit.Context;
-	using MassTransit.Transports;
+    using System;
+    using Formatting;
+    using Magnum.Extensions;
+    using MassTransit.Context;
+    using MassTransit.Logging;
+    using MassTransit.Transports;
 
-	public class RequeueCommand :
+    public class RequeueCommand :
 		Command
 	{
 		static readonly ILog _log = Logger.Get(typeof(RequeueCommand));

@@ -12,11 +12,11 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Saga
 {
-	using System;
-	using System.Linq.Expressions;
-	using Context;
-	using Exceptions;
-	using Logging;
+    using System;
+    using System.Linq.Expressions;
+    using Context;
+    using Exceptions;
+    using Logging;
 
     public class ExistingOrIgnoreSagaPolicy<TSaga, TMessage> :
 		ISagaPolicy<TSaga, TMessage>

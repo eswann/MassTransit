@@ -12,10 +12,10 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit
 {
-	using BusConfigurators;
-	using Util;
+    using BusConfigurators;
+    using Util;
 
-	public static class ServiceBusConfiguratorExtensions
+    public static class ServiceBusConfiguratorExtensions
 	{
 		/// <summary>
 		/// Specify the endpoint from which messages should be read

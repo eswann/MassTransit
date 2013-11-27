@@ -12,13 +12,13 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Saga.SubscriptionConnectors
 {
-	using System;
-	using Context;
-	using MassTransit.Pipeline;
-	using MassTransit.Pipeline.Configuration;
-	using MassTransit.Pipeline.Sinks;
+    using System;
+    using Context;
+    using MassTransit.Pipeline;
+    using MassTransit.Pipeline.Configuration;
+    using MassTransit.Pipeline.Sinks;
 
-	public interface ISagaSubscriptionConnector :
+    public interface ISagaSubscriptionConnector :
 		ISagaConnector
 	{
 		Type MessageType { get; }
@@ -51,7 +51,7 @@ namespace MassTransit.Saga.SubscriptionConnectors
 
 		public UnsubscribeAction Connect(IInboundPipelineConfigurator configurator)
 		{
-			InboundMessageRouterConfigurator routerConfigurator = new InboundMessageRouterConfigurator(configurator.Pipeline);
+			var routerConfigurator = new InboundMessageRouterConfigurator(configurator.Pipeline);
 
 			MessageRouter<IConsumeContext<TMessage>> router = routerConfigurator.FindOrCreate<TMessage>();
 

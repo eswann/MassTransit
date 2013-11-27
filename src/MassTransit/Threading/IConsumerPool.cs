@@ -12,9 +12,9 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Threading
 {
-	using System;
+    using System;
 
-	public interface IConsumerPool :
+    public interface IConsumerPool :
 		IDisposable
 	{
 		void Start();

@@ -14,11 +14,11 @@ namespace MassTransit.Tests
 {
     using Magnum.Extensions;
     using Messages;
-	using NUnit.Framework;
-	using TextFixtures;
+    using NUnit.Framework;
     using TestFramework;
+    using TextFixtures;
 
-	[TestFixture]
+    [TestFixture]
 	public class MessageQueueEndpoint_MeetsCriteria :
 		LoopbackLocalAndRemoteTestFixture
 	{
@@ -27,7 +27,7 @@ namespace MassTransit.Tests
 		[Test]
 		public void Subscring_to_an_endpoint_should_accept_and_dispatch_messages()
 		{
-            FutureMessage<PingMessage> fm=new FutureMessage<PingMessage>();
+            var fm=new FutureMessage<PingMessage>();
 			bool workDid = false;
 
 			LocalBus.SubscribeHandler<PingMessage>(

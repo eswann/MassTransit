@@ -11,14 +11,13 @@
 // CONDITIONS OF ANY KIND, either express or implied. See the License for the 
 // specific language governing permissions and limitations under the License.
 
-using MassTransit.Util;
-
 namespace MassTransit.BusConfigurators
 {
-	using Builders;
-	using Configurators;
+    using Builders;
+    using Configurators;
+    using Util;
 
-	/// <summary>
+    /// <summary>
 	/// A thing that configures the thing that builds the bus.
 	/// </summary>
 	public interface IBusBuilderConfigurator :

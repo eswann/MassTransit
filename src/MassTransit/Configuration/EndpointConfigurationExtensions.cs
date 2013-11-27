@@ -12,11 +12,11 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit
 {
-	using System;
-	using EndpointConfigurators;
-	using Util;
+    using System;
+    using EndpointConfigurators;
+    using Util;
 
-	public static class EndpointConfigurationExtensions
+    public static class EndpointConfigurationExtensions
 	{
 		/// <summary>
 		/// Returns a configurator for the specified endpoint URI

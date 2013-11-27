@@ -12,20 +12,20 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Services.Timeout
 {
-	using System;
-	using System.Linq;
-	using Exceptions;
-	using Logging;
-	using Magnum;
-	using Magnum.Extensions;
-	using Messages;
-	using Saga;
-	using Saga.Configuration;
-	using Server;
-	using Stact;
-	using Stact.Internal;
+    using System;
+    using System.Linq;
+    using Exceptions;
+    using Logging;
+    using Magnum;
+    using Magnum.Extensions;
+    using Messages;
+    using Saga;
+    using Saga.Configuration;
+    using Server;
+    using Stact;
+    using Stact.Internal;
 
-	public class TimeoutService :
+    public class TimeoutService :
 		IDisposable,
 		Consumes<TimeoutScheduled>.All,
 		Consumes<TimeoutRescheduled>.All
@@ -67,7 +67,7 @@ namespace MassTransit.Services.Timeout
 				catch (Exception ex)
 				{
 					string message = "Error in shutting down the TimeoutService: " + ex.Message;
-					ShutDownException exp = new ShutDownException(message, ex);
+					var exp = new ShutDownException(message, ex);
 					_log.Error(message, exp);
 					throw exp;
 				}

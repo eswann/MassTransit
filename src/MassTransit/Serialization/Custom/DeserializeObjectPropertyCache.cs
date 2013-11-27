@@ -12,10 +12,10 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Serialization.Custom
 {
-	using System.Collections.Generic;
-	using System.Linq;
+    using System.Collections.Generic;
+    using System.Linq;
 
-	public class DeserializeObjectPropertyCache<T> :
+    public class DeserializeObjectPropertyCache<T> :
 		IDeserializeObjectPropertyCache<T>
 	{
 		private readonly Dictionary<string, DeserializeObjectProperty<T>> _properties;

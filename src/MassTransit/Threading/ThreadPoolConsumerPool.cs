@@ -12,15 +12,14 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Threading
 {
-	using System;
-	using System.Threading;
-	using Context;
-	using Events;
-	using Logging;
-	using Magnum.Extensions;
-	using Stact;
+    using System;
+    using System.Threading;
+    using Context;
+    using Events;
+    using Logging;
+    using Stact;
 
-	/// <summary>
+    /// <summary>
 	/// The default consumer pool that enqueues consumes on the thread pool.
 	/// </summary>
 	public class ThreadPoolConsumerPool :

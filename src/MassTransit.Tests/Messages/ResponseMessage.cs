@@ -12,9 +12,9 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Tests.Messages
 {
-	using System;
+    using System;
 
-	public class ResponseMessage :
+    public class ResponseMessage :
 		IAmCorrelatedBy<Guid>
 	{
 		private readonly Guid _correlationId;

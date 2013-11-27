@@ -14,9 +14,9 @@ namespace MassTransit.Pipeline.Configuration
 {
     using Context;
     using Exceptions;
-	using Sinks;
+    using Sinks;
 
-	public class OutboundMessageRouterConfigurator
+    public class OutboundMessageRouterConfigurator
 	{
 		readonly IPipelineSink<ISendContext> _sink;
 

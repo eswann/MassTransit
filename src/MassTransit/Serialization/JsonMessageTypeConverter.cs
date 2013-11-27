@@ -19,7 +19,6 @@ namespace MassTransit.Serialization
     using Newtonsoft.Json;
     using Newtonsoft.Json.Linq;
 
-
     public class JsonMessageTypeConverter :
         IMessageTypeConverter
     {

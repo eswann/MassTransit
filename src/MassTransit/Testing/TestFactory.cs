@@ -12,12 +12,12 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Testing
 {
-	using Factories;
-	using Saga;
-	using ScenarioBuilders;
-	using TestInstanceConfigurators;
+    using Factories;
+    using Saga;
+    using ScenarioBuilders;
+    using TestInstanceConfigurators;
 
-	/// <summary>
+    /// <summary>
 	/// Factory for testing message handlers, buses and messages - received, skipped, sent and published. The builders used
 	/// with the <see cref="ITestInstanceConfigurator{TScenario}"/>, defaults to the loopback bus scenario. Use the extension methods in
 	/// <see cref="BusTestScenarioExtensions"/> to use alternative scenario builders. A builder is something that ties some component

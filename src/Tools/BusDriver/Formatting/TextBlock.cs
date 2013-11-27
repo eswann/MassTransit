@@ -12,18 +12,18 @@
 // specific language governing permissions and limitations under the License.
 namespace BusDriver.Formatting
 {
-	using System;
-	using System.Collections.Generic;
-	using System.Linq;
-	using System.Text;
-	using Magnum.Extensions;
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+    using Magnum.Extensions;
 
-	public class TextBlock :
+    public class TextBlock :
 		ITextBlock
 	{
 		readonly StringBuilder _sb;
 		int _indent;
-		int _tabWidth;
+	    readonly int _tabWidth;
 
 		public TextBlock()
 		{

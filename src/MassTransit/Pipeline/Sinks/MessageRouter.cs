@@ -12,12 +12,12 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Pipeline.Sinks
 {
-	using System;
-	using System.Collections.Generic;
-	using System.Linq;
-	using Magnum.Concurrency;
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using Magnum.Concurrency;
 
-	/// <summary>
+    /// <summary>
 	/// Routes a message to all of the connected message sinks without modification
 	/// </summary>
 	public class MessageRouter<T> :

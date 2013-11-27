@@ -12,21 +12,21 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Util
 {
-	using System;
-	using System.Collections.Generic;
-	using System.Linq;
-	using System.Linq.Expressions;
-	using System.Reflection;
-	using Magnum.Extensions;
-	using Magnum.Reflection;
-	using Saga;
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Linq.Expressions;
+    using System.Reflection;
+    using Magnum.Extensions;
+    using Magnum.Reflection;
+    using Saga;
 
-	public class IndexedSagaDictionary<TSaga>
+    public class IndexedSagaDictionary<TSaga>
 		where TSaga : class, ISaga
 	{
 		readonly Dictionary<string, IndexedSagaProperty<TSaga>> _indices;
-		IndexedSagaProperty<TSaga> _indexById;
-		object _lock = new object();
+	    readonly IndexedSagaProperty<TSaga> _indexById;
+	    readonly object _lock = new object();
 
 		public IndexedSagaDictionary()
 		{

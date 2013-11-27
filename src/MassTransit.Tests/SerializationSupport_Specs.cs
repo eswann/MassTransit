@@ -1,13 +1,13 @@
 ﻿namespace MassTransit.Tests
 {
     using System.Linq;
+    using BusConfigurators;
     using Context;
     using Magnum.Extensions;
     using Magnum.TestFramework;
     using NUnit.Framework;
     using TestFramework;
     using TextFixtures;
-
 
     [TestFixture]
     public class When_using_mixed_serialization_types :
@@ -36,7 +36,7 @@
 
         }
 
-        protected override void ConfigureLocalBus(BusConfigurators.IServiceBusConfigurator configurator)
+        protected override void ConfigureLocalBus(IServiceBusConfigurator configurator)
         {
             base.ConfigureLocalBus(configurator);
 
@@ -46,7 +46,7 @@
             configurator.Subscribe(s => s.Handler<B>(_responseReceived.Complete));
         }
 
-        protected override void ConfigureRemoteBus(BusConfigurators.IServiceBusConfigurator configurator)
+        protected override void ConfigureRemoteBus(IServiceBusConfigurator configurator)
         {
             base.ConfigureRemoteBus(configurator);
 

@@ -11,14 +11,13 @@
 // CONDITIONS OF ANY KIND, either express or implied. See the License for the 
 // specific language governing permissions and limitations under the License.
 
-using MassTransit.Util;
-
 namespace MassTransit.Transports
 {
     using System;
     using Diagnostics.Introspection;
+    using Util;
 
-	/// <summary>
+    /// <summary>
 	/// Implementors are responsible for creating endpoints based on passed uris.
 	/// </summary>
     public interface IEndpointFactory : IDiagnosticsSource, IDisposable

@@ -12,10 +12,10 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Saga
 {
-	using System;
-	using System.Linq.Expressions;
+    using System;
+    using System.Linq.Expressions;
 
-	public interface ISagaFilter<TSaga>
+    public interface ISagaFilter<TSaga>
 		where TSaga : class, ISaga
 	{
 		Func<TSaga, bool> Filter { get; }

@@ -15,7 +15,6 @@ namespace MassTransit
     using BusConfigurators;
     using Pipeline.Configuration;
 
-
     public static class InterceptorExtensions
     {
         /// <summary>

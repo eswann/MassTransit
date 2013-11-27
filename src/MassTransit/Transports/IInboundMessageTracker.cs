@@ -15,7 +15,6 @@ namespace MassTransit.Transports
     using System;
     using System.Collections.Generic;
 
-
     /// <summary>
     /// Tracks the inbound processing of messages by the endpoint. Once a message is 
     /// received successfully, it should be removed from the tracker. In the event a 

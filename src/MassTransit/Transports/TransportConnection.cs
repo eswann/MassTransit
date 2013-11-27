@@ -28,7 +28,7 @@ namespace MassTransit.Transports
     {
         private static readonly ILog _log = Logger.Get(typeof (TransportConnection));
         private readonly ConnectionFactory _connectionFactory;
-        RabbitMQ.Client.IConnection _connection;
+        IConnection _connection;
         bool _disposed;
 
         public TransportConnection(ConnectionFactory connectionFactory)
@@ -36,7 +36,7 @@ namespace MassTransit.Transports
             _connectionFactory = connectionFactory;
         }
 
-        public RabbitMQ.Client.IConnection Connection
+        public IConnection Connection
         {
             get { return _connection; }
         }

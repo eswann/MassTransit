@@ -12,10 +12,10 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Saga.Configuration
 {
-	using System.Collections.Generic;
-	using Magnum.StateMachine;
+    using System.Collections.Generic;
+    using Magnum.StateMachine;
 
-	public class EventInspectorResult<T>
+    public class EventInspectorResult<T>
 		where T : SagaStateMachine<T>, ISaga
 	{
 		public EventInspectorResult(SagaEvent<T> sagaEvent, IEnumerable<State> states)

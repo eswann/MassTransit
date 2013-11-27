@@ -13,9 +13,9 @@
 
 namespace MassTransit.Diagnostics.Introspection
 {
-	using Util;
+    using Util;
 
-	/// <summary>
+    /// <summary>
 	/// 	An item that can add further information about its configuration and current state to the diagnostics probe.
 	/// </summary>
 	public interface IDiagnosticsSource

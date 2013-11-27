@@ -12,10 +12,10 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Serialization.Custom.TypeDeserializers
 {
-	using System;
-	using System.Runtime.Serialization;
+    using System;
+    using System.Runtime.Serialization;
 
-	public class UriDeserializer :
+    public class UriDeserializer :
 		IObjectDeserializer<Uri>
 	{
 		public object Deserialize(IDeserializerContext context)
@@ -26,7 +26,7 @@ namespace MassTransit.Serialization.Custom.TypeDeserializers
 
 			try
 			{
-				Uri uri = new Uri(uriString);
+				var uri = new Uri(uriString);
 
 				return uri;
 			}

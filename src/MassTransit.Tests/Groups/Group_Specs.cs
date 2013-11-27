@@ -12,14 +12,14 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Tests.Groups
 {
-	using System;
-	using System.Collections;
-	using System.Collections.Generic;
-	using System.Linq;
-	using NUnit.Framework;
-	using TextFixtures;
+    using System;
+    using System.Collections;
+    using System.Collections.Generic;
+    using System.Linq;
+    using NUnit.Framework;
+    using TextFixtures;
 
-	[TestFixture]
+    [TestFixture]
 	public class Group_Specs :
 		LoopbackTestFixture
 	{

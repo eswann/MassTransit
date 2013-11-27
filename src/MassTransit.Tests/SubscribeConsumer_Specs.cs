@@ -12,15 +12,15 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Tests
 {
-	using Magnum.Extensions;
-	using Magnum.TestFramework;
-	using MassTransit.Pipeline;
-	using Messages;
-	using NUnit.Framework;
-	using Rhino.Mocks;
-	using TextFixtures;
+    using Magnum.Extensions;
+    using Magnum.TestFramework;
+    using MassTransit.Pipeline;
+    using Messages;
+    using NUnit.Framework;
+    using Rhino.Mocks;
+    using TextFixtures;
 
-	[TestFixture]
+    [TestFixture]
 	public class A_subscribed_consumer
 		: LoopbackTestFixture
 	{

@@ -12,13 +12,12 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.TestFramework
 {
-	using System;
-	using Fixtures;
-	using Magnum.TestFramework;
-	using MassTransit.Transports;
-	using MassTransit.Transports.Loopback;
+    using System;
+    using Fixtures;
+    using Magnum.TestFramework;
+    using MassTransit.Transports.Loopback;
 
-	[Scenario]
+    [Scenario]
 	public class Given_a_subscription_service_and_two_service_buses :
 		SubscriptionServiceTestFixture<LoopbackTransportFactory>
 	{

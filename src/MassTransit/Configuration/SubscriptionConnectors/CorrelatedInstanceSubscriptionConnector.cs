@@ -12,13 +12,13 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.SubscriptionConnectors
 {
-	using System;
-	using Context;
-	using Pipeline;
-	using Pipeline.Configuration;
-	using Pipeline.Sinks;
+    using System;
+    using Context;
+    using Pipeline;
+    using Pipeline.Configuration;
+    using Pipeline.Sinks;
 
-	public class CorrelatedInstanceSubscriptionConnector<TConsumer, TMessage, TKey> :
+    public class CorrelatedInstanceSubscriptionConnector<TConsumer, TMessage, TKey> :
 		IInstanceSubscriptionConnector
 		where TConsumer : class, Consumes<TMessage>.For<TKey>
 		where TMessage : class, IAmCorrelatedBy<TKey>

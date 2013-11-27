@@ -12,9 +12,9 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Util
 {
-	using System;
+    using System;
 
-	public class IndexedAttribute :
+    public class IndexedAttribute :
 		Attribute
 	{
 	}

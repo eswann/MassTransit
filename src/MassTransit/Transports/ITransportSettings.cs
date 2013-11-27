@@ -12,10 +12,10 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Transports
 {
-	using System;
-	using System.Transactions;
+    using System;
+    using System.Transactions;
 
-	public interface ITransportSettings
+    public interface ITransportSettings
 	{
 		/// <summary>
 		/// The address of the endpoint/transport

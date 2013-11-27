@@ -12,15 +12,15 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit
 {
-	using System;
-	using BusConfigurators;
-	using Configurators;
-	using Diagnostics;
-	using Exceptions;
-	using Magnum;
-	using Util;
+    using System;
+    using BusConfigurators;
+    using Configurators;
+    using Diagnostics;
+    using Exceptions;
+    using Magnum;
+    using Util;
 
-	/// <summary>
+    /// <summary>
 	/// The starting point to configure and create a service bus instance
 	/// </summary>
 	public static class ServiceBusFactory

@@ -12,11 +12,11 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.TestFramework.Helpers
 {
-	using System;
-	using Pipeline.Inspectors;
-	using Pipeline.Sinks;
+    using System;
+    using Pipeline.Inspectors;
+    using Pipeline.Sinks;
 
-	public class EndpointSinkLocator :
+    public class EndpointSinkLocator :
 		PipelineInspectorBase<EndpointSinkLocator>
 	{
 		private readonly Type _messageType;

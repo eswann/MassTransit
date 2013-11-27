@@ -12,10 +12,10 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Testing
 {
-	using System;
-	using Scenarios;
+    using System;
+    using Scenarios;
 
-	public interface ITestSubject<TSubject> :
+    public interface ITestSubject<TSubject> :
 		IDisposable
 		where TSubject : class
 	{

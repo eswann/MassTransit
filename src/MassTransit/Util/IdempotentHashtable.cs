@@ -12,10 +12,10 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Util
 {
-	using System.Collections;
-	using System.Collections.Generic;
+    using System.Collections;
+    using System.Collections.Generic;
 
-	public class IdempotentHashtable<K, V> :
+    public class IdempotentHashtable<K, V> :
 		IEnumerable<V>
 	{
 		private readonly IDictionary<K, V> _cache = new Dictionary<K, V>();

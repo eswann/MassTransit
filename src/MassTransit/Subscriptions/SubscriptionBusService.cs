@@ -12,12 +12,12 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Subscriptions
 {
-	using System;
-	using System.Collections.Generic;
-	using Magnum.Extensions;
-	using SubscriptionBuilders;
+    using System;
+    using System.Collections.Generic;
+    using Magnum.Extensions;
+    using SubscriptionBuilders;
 
-	/// <summary>
+    /// <summary>
 	/// Manages the subscription and un subscription of message consumers to the
 	/// service bus as part of the bus lifecycle.
 	/// 

@@ -18,7 +18,6 @@ namespace MassTransit.NewIdProviders
     using System.Linq;
     using System.Management;
 
-
     public class WmiNetworkAddressWorkerIdProvider :
         IWorkerIdProvider
     {

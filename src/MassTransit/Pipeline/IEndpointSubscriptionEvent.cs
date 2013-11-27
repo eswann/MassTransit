@@ -12,9 +12,9 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Pipeline
 {
-	using System;
+    using System;
 
-	/// <summary>
+    /// <summary>
 	/// Interface that implementors wishing to be notified on subscription events should
 	/// implement.
 	/// </summary>

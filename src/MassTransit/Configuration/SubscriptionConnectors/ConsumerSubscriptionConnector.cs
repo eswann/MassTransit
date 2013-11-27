@@ -13,10 +13,10 @@
 namespace MassTransit.SubscriptionConnectors
 {
     using System;
+    using Magnum.Extensions;
     using Pipeline;
     using Pipeline.Configuration;
     using Pipeline.Sinks;
-    using Magnum.Extensions;
 
     /// <summary>
     /// A connector for a specific message. Objects implementing this interface should be able to

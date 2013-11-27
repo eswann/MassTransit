@@ -12,11 +12,11 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit
 {
-	using System;
-	using BusConfigurators;
-	using Exceptions;
+    using System;
+    using BusConfigurators;
+    using Exceptions;
 
-	/// <summary>
+    /// <summary>
 	/// This is a static singleton instance of an IServiceBus. While it goes
 	/// against my very soul, it is here to ensure consistent usage of MassTransit
 	/// as a singleton. It is highly recommended that <see cref="ServiceBusFactory.New"/> be

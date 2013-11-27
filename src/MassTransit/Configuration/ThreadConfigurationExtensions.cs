@@ -14,7 +14,7 @@ namespace MassTransit
 {
     using BusConfigurators;
 
-	public static class ThreadConfigurationExtensions
+    public static class ThreadConfigurationExtensions
 	{
 		public static void SetConcurrentConsumerLimit(this IServiceBusConfigurator configurator, int concurrentConsumerLimit)
 		{

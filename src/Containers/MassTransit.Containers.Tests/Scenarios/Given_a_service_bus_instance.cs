@@ -16,7 +16,6 @@ namespace MassTransit.Containers.Tests.Scenarios
     using Magnum.TestFramework;
     using SubscriptionConfigurators;
 
-
     [Scenario]
     public abstract class Given_a_service_bus_instance
     {

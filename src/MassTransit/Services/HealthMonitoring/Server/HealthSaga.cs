@@ -12,16 +12,16 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Services.HealthMonitoring.Server
 {
-	using System;
-	using Logging;
-	using Magnum.Extensions;
-	using Magnum.StateMachine;
-	using Messages;
-	using Saga;
-	using Timeout.Messages;
-	using Util;
+    using System;
+    using Logging;
+    using Magnum.Extensions;
+    using Magnum.StateMachine;
+    using Messages;
+    using Saga;
+    using Timeout.Messages;
+    using Util;
 
-	public class HealthSaga :
+    public class HealthSaga :
 		SagaStateMachine<HealthSaga>,
 		ISaga
 	{

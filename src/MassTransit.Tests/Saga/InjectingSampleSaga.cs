@@ -15,7 +15,6 @@ namespace MassTransit.Tests.Saga
     using System;
     using MassTransit.Saga;
 
-
     public class InjectingSampleSaga :
         InitiatedBy<InitiateSimpleSaga>,
         ISaga

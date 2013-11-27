@@ -17,7 +17,6 @@ namespace MassTransit.Serialization
     using Newtonsoft.Json;
     using Newtonsoft.Json.Serialization;
 
-
     public class JsonContractResolver :
         CamelCasePropertyNamesContractResolver
     {

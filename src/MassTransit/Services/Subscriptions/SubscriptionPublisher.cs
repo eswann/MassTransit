@@ -12,9 +12,9 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Services.Subscriptions
 {
-	using Pipeline;
+    using Pipeline;
 
-	/// <summary>
+    /// <summary>
 	/// The subscription publisher is responsible for notifying the subscription
 	/// service about what 'actors' ('callers' so to speak) around the service bus
 	/// wants to happen: it allows the 

@@ -12,15 +12,15 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Tests
 {
-	using MassTransit.Services.Subscriptions;
-	using MassTransit.Transports.Loopback;
-	using Messages;
-	using NUnit.Framework;
-	using Rhino.Mocks;
-	using TestConsumers;
-	using TextFixtures;
+    using MassTransit.Services.Subscriptions;
+    using MassTransit.Transports.Loopback;
+    using Messages;
+    using NUnit.Framework;
+    using Rhino.Mocks;
+    using TestConsumers;
+    using TextFixtures;
 
-	[TestFixture]
+    [TestFixture]
 	public class When_a_handler_subscription_is_added :
 		EndpointTestFixture<LoopbackTransportFactory>
 	{

@@ -12,14 +12,14 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Context
 {
-	using System.Diagnostics;
+    using System.Diagnostics;
 
-	public class Published<T> :
+    public class Published<T> :
 		IPublished
 		where T : class
 	{
 		readonly IPublishContext<T> _context;
-		long _timestamp;
+	    readonly long _timestamp;
 
 		public Published(IPublishContext<T> context)
 		{

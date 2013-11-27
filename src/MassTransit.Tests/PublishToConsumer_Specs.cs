@@ -12,14 +12,14 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Tests
 {
-	using System;
-	using Messages;
-	using NUnit.Framework;
-	using TestConsumers;
-	using TestFramework;
-	using TextFixtures;
+    using System;
+    using Messages;
+    using NUnit.Framework;
+    using TestConsumers;
+    using TestFramework;
+    using TextFixtures;
 
-	[TestFixture]
+    [TestFixture]
 	public class When_a_message_is_published :
 		LoopbackLocalAndRemoteTestFixture
 	{
@@ -28,7 +28,7 @@ namespace MassTransit.Tests
 		[Test]
 		public void It_should_be_ignored_if_there_are_no_consumers()
 		{
-			PingMessage message = new PingMessage();
+			var message = new PingMessage();
 
 			LocalBus.Publish(message);
 		}
@@ -40,7 +40,7 @@ namespace MassTransit.Tests
 
 			LocalBus.ShouldHaveSubscriptionFor<PingMessage>();
 
-			PingMessage message = new PingMessage();
+			var message = new PingMessage();
 			LocalBus.Publish(message);
 
 			TestConsumerBase<PingMessage>.AnyShouldHaveReceivedMessage(message, _timeout);
@@ -49,9 +49,9 @@ namespace MassTransit.Tests
 		[Test]
 		public void It_should_be_received_by_an_interested_correlated_consumer()
 		{
-			PingMessage message = new PingMessage();
+			var message = new PingMessage();
 
-			TestCorrelatedConsumer<PingMessage, Guid> consumer = new TestCorrelatedConsumer<PingMessage, Guid>(message.CorrelationId);
+			var consumer = new TestCorrelatedConsumer<PingMessage, Guid>(message.CorrelationId);
 			RemoteBus.SubscribeInstance(consumer);
 			LocalBus.ShouldHaveSubscriptionFor<PingMessage>();
 
@@ -63,15 +63,15 @@ namespace MassTransit.Tests
 		[Test]
 		public void It_should_be_received_by_multiple_subscribed_consumers()
 		{
-			TestMessageConsumer<PingMessage> consumer = new TestMessageConsumer<PingMessage>();
+			var consumer = new TestMessageConsumer<PingMessage>();
 			RemoteBus.SubscribeInstance(consumer);
 
-			TestMessageConsumer<PingMessage> messageConsumer = new TestMessageConsumer<PingMessage>();
+			var messageConsumer = new TestMessageConsumer<PingMessage>();
 			RemoteBus.SubscribeHandler<PingMessage>(messageConsumer.MessageHandler);
 
 			LocalBus.ShouldHaveSubscriptionFor<PingMessage>();
 
-			PingMessage message = new PingMessage();
+			var message = new PingMessage();
 			LocalBus.Publish(message);
 
 			consumer.ShouldHaveReceivedMessage(message, _timeout);
@@ -95,12 +95,12 @@ namespace MassTransit.Tests
 		[Test]
 		public void It_should_be_received_by_one_subscribed_message_handler()
 		{
-			TestMessageConsumer<PingMessage> messageConsumer = new TestMessageConsumer<PingMessage>();
+			var messageConsumer = new TestMessageConsumer<PingMessage>();
 			RemoteBus.SubscribeHandler<PingMessage>(messageConsumer.MessageHandler);
 
 			LocalBus.ShouldHaveSubscriptionFor<PingMessage>();
 			
-			PingMessage message = new PingMessage();
+			var message = new PingMessage();
 			LocalBus.Publish(message);
 
 			messageConsumer.ShouldHaveReceivedMessage(message, _timeout);
@@ -109,15 +109,15 @@ namespace MassTransit.Tests
 		[Test]
 		public void It_should_not_be_received_by_an_uninterested_consumer()
 		{
-			TestMessageConsumer<PingMessage> messageConsumer = new TestMessageConsumer<PingMessage>();
+			var messageConsumer = new TestMessageConsumer<PingMessage>();
 			RemoteBus.SubscribeHandler<PingMessage>(messageConsumer.MessageHandler, x => false);
 
-			TestMessageConsumer<PingMessage> consumer = new TestMessageConsumer<PingMessage>();
+			var consumer = new TestMessageConsumer<PingMessage>();
 			RemoteBus.SubscribeInstance(consumer);
 
 			LocalBus.ShouldHaveSubscriptionFor<PingMessage>();
 			
-			PingMessage message = new PingMessage();
+			var message = new PingMessage();
 			LocalBus.Publish(message);
 
 			consumer.ShouldHaveReceivedMessage(message, _timeout);
@@ -127,12 +127,12 @@ namespace MassTransit.Tests
 		[Test]
 		public void It_should_not_be_received_by_an_uninterested_correlated_consumer()
 		{
-			TestCorrelatedConsumer<PingMessage, Guid> consumer = new TestCorrelatedConsumer<PingMessage, Guid>(Guid.NewGuid());
+			var consumer = new TestCorrelatedConsumer<PingMessage, Guid>(Guid.NewGuid());
 			RemoteBus.SubscribeInstance(consumer);
 
 			LocalBus.ShouldHaveSubscriptionFor<PingMessage>();
 			
-			PingMessage message = new PingMessage();
+			var message = new PingMessage();
 			LocalBus.Publish(message);
 
 			consumer.ShouldNotHaveReceivedMessage(message, _timeout);

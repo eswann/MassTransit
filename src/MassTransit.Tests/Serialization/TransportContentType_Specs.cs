@@ -1,10 +1,10 @@
 namespace MassTransit.Tests.Serialization
 {
-	using System.Text;
-	using Context;
-	using Magnum.TestFramework;
+    using System.Text;
+    using Context;
+    using Magnum.TestFramework;
 
-	[Scenario]
+    [Scenario]
 	public class When_a_message_is_send_using_a_transport
 	{
 		byte[] _bytes;

@@ -12,11 +12,11 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Serialization.Custom
 {
-	using System;
-	using System.Collections.Generic;
-	using System.Xml;
+    using System;
+    using System.Collections.Generic;
+    using System.Xml;
 
-	public interface IObjectSerializer
+    public interface IObjectSerializer
 	{
 		IEnumerable<Continuation<Action<XmlWriter>>> GetSerializationActions(ISerializerContext context, string localName, object value);
 	}

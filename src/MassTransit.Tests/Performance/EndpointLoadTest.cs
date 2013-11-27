@@ -12,12 +12,12 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Tests.Performance
 {
-	using System.Diagnostics;
-	using System.Threading;
-	using Magnum.Extensions;
-	using NUnit.Framework;
+    using System.Diagnostics;
+    using System.Threading;
+    using Magnum.Extensions;
+    using NUnit.Framework;
 
-	public class EndpointLoadTest
+    public class EndpointLoadTest
 	{
 		private readonly IServiceBus _bus;
 		private readonly int _messageCount;

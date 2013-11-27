@@ -12,12 +12,12 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.EnvironmentConfigurators
 {
-	using System;
-	using System.Collections.Generic;
-	using Configuration;
-	using Configurators;
-	using System.Linq;
-	using Magnum.Extensions;
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using Configuration;
+    using Configurators;
+    using Magnum.Extensions;
 
     public interface IEnvironmentsConfigurator :
         IConfigurator

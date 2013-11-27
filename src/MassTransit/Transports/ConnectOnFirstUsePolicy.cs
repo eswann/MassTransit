@@ -12,9 +12,9 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Transports
 {
-	using System;
+    using System;
 
-	public class ConnectOnFirstUsePolicy : IConnectionPolicy
+    public class ConnectOnFirstUsePolicy : IConnectionPolicy
 	{
 		readonly IConnectionHandler _connectionHandler;
 		readonly IConnectionPolicyChain _policyChain;

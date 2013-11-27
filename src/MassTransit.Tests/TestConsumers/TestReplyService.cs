@@ -12,10 +12,10 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Tests.TestConsumers
 {
-	using Context;
-	using Magnum.Reflection;
+    using Context;
+    using Magnum.Reflection;
 
-	public class TestReplyService<TMessage, TKey, TReplyMessage> :
+    public class TestReplyService<TMessage, TKey, TReplyMessage> :
 		TestConsumerBase<TMessage>,
 		Consumes<TMessage>.All
 		where TMessage : class, IAmCorrelatedBy<TKey>

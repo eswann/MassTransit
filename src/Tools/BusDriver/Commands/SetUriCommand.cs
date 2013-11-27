@@ -12,8 +12,8 @@
 // specific language governing permissions and limitations under the License.
 namespace BusDriver.Commands
 {
-	using System;
-	using MassTransit.Logging;
+    using System;
+    using MassTransit.Logging;
 
     public class SetUriCommand :
 		Command

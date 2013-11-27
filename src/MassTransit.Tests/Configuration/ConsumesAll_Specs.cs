@@ -12,14 +12,13 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Tests.Configuration
 {
-	using System;
-	using System.Linq;
-	using Magnum.TestFramework;
-	using MassTransit.Configuration;
-	using SubscriptionConnectors;
-	using Util;
+    using System;
+    using System.Linq;
+    using Magnum.TestFramework;
+    using MassTransit.Configuration;
+    using SubscriptionConnectors;
 
-	[Scenario]
+    [Scenario]
 	public class When_a_consumer_with_consumes_all_interfaces_is_inspected
 	{
 		ConsumerConnector<Consumer> _factory;

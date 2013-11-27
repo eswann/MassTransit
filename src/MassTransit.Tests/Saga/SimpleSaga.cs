@@ -12,11 +12,11 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Tests.Saga
 {
-	using System;
-	using System.Linq.Expressions;
-	using MassTransit.Saga;
+    using System;
+    using System.Linq.Expressions;
+    using MassTransit.Saga;
 
-	public class SimpleSaga :
+    public class SimpleSaga :
 		InitiatedBy<InitiateSimpleSaga>,
 		IOrchestrate<CompleteSimpleSaga>,
 		IObserve<ObservableSagaMessage,SimpleSaga>,

@@ -12,14 +12,14 @@
 // specific language governing permissions and limitations under the License.
 namespace BusDriver
 {
-	using System;
-	using System.Collections.Generic;
-	using Magnum.Extensions;
-	using MassTransit;
-	using MassTransit.Exceptions;
-	using MassTransit.Transports;
+    using System;
+    using System.Collections.Generic;
+    using Magnum.Extensions;
+    using MassTransit;
+    using MassTransit.Exceptions;
+    using MassTransit.Transports;
 
-	public class TransportCache :
+    public class TransportCache :
 		IDisposable
 	{
 		readonly IDictionary<string, ITransportFactory> _transportFactories;
@@ -53,7 +53,7 @@ namespace BusDriver
 			{
 				try
 				{
-					ITransportSettings settings = new TransportSettings(new MassTransit.EndpointAddress(uri));
+					ITransportSettings settings = new TransportSettings(new EndpointAddress(uri));
 					transport = transportFactory.BuildInbound(settings);
 
                     _inboundTransports.Add(uri.ToString().ToLowerInvariant(), transport);
@@ -84,7 +84,7 @@ namespace BusDriver
 			{
 				try
 				{
-					ITransportSettings settings = new TransportSettings(new MassTransit.EndpointAddress(uri));
+					ITransportSettings settings = new TransportSettings(new EndpointAddress(uri));
 					transport = transportFactory.BuildOutbound(settings);
 
                     _outboundTransports.Add(uri.ToString().ToLowerInvariant(), transport);

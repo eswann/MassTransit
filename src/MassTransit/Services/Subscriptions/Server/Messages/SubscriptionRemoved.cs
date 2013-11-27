@@ -12,10 +12,10 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Services.Subscriptions.Server.Messages
 {
-	using System;
-	using Subscriptions.Messages;
+    using System;
+    using Subscriptions.Messages;
 
-	[Serializable]
+    [Serializable]
 	public class SubscriptionRemoved
 	{
 		public SubscriptionInformation Subscription { get; set; }

@@ -12,11 +12,11 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Advanced
 {
-	using System;
-	using System.Collections.Generic;
-	using BusConfigurators;
+    using System;
+    using System.Collections.Generic;
+    using BusConfigurators;
 
-	public static class AdvancedBusConfiguratorExtensions
+    public static class AdvancedBusConfiguratorExtensions
 	{
 		/// <summary>
 		/// Sets the number of concurrent receive threads that can execute simultaneously. In many cases, such as when

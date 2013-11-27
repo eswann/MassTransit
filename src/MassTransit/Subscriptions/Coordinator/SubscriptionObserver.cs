@@ -14,10 +14,10 @@
 
 namespace MassTransit.Subscriptions.Coordinator
 {
-	using Messages;
-	using Util;
+    using Messages;
+    using Util;
 
-	/// <summary>
+    /// <summary>
 	/// Implemented by observers of subscriptions - subscriptions are locally published inside of the bus,
 	/// so if you're implementing a transport; implementing this interface will allow you to bind whatever
 	/// topics/queues/exchanges/etc to your inbound queue 

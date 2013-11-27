@@ -19,7 +19,6 @@ namespace MassTransit.Testing
     using System.Threading;
     using Magnum.Extensions;
 
-
     public interface IPublishedMessageList :
         IEnumerable<IPublishedMessage>
     {

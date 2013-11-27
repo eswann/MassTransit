@@ -13,9 +13,7 @@
 namespace MassTransit.Tests.Serialization
 {
     using System;
-    using System.Diagnostics;
     using System.IO;
-    using System.Text;
     using Context;
     using Magnum.TestFramework;
     using MassTransit.Serialization;
@@ -58,7 +56,7 @@ namespace MassTransit.Tests.Serialization
 
           // Trace.WriteLine(Encoding.UTF8.GetString(data));
 
-            using (MemoryStream input = new MemoryStream(data))
+            using (var input = new MemoryStream(data))
             {
 				IReceiveContext context = ReceiveContext.FromBodyStream(input);
 				serializer.Deserialize(context);

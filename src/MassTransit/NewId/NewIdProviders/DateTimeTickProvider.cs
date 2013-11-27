@@ -14,7 +14,6 @@ namespace MassTransit.NewIdProviders
 {
     using System;
 
-
     public class DateTimeTickProvider :
         ITickProvider
     {

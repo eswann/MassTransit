@@ -12,10 +12,10 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Serialization.Custom.TypeDeserializers
 {
-	using System;
-	using System.Xml;
+    using System;
+    using System.Xml;
 
-	public class DateTimeDeserializer :
+    public class DateTimeDeserializer :
 		IObjectDeserializer<DateTime>
 	{
 		public object Deserialize(IDeserializerContext context)

@@ -12,14 +12,14 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Saga.SubscriptionConnectors
 {
-	using System;
-	using System.Collections;
-	using System.Collections.Generic;
-	using System.Linq;
-	using Configuration;
-	using Magnum.Reflection;
+    using System;
+    using System.Collections;
+    using System.Collections.Generic;
+    using System.Linq;
+    using Configuration;
+    using Magnum.Reflection;
 
-	public class StateMachineSagaConnector<T> :
+    public class StateMachineSagaConnector<T> :
 		IEnumerable<ISagaSubscriptionConnector>
 		where T : SagaStateMachine<T>, ISaga
 	{

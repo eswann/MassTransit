@@ -12,12 +12,12 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Pipeline.Configuration
 {
-	using System;
-	using Context;
-	using Exceptions;
-	using Sinks;
+    using System;
+    using Context;
+    using Exceptions;
+    using Sinks;
 
-	public class InboundMessageInterceptorConfigurator
+    public class InboundMessageInterceptorConfigurator
 	{
 		readonly IInboundMessagePipeline _sink;
 

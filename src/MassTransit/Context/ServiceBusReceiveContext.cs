@@ -11,21 +11,20 @@
 // CONDITIONS OF ANY KIND, either express or implied. See the License for the 
 // specific language governing permissions and limitations under the License.
 
-using MassTransit.Util;
-
 namespace MassTransit.Context
 {
-	using System;
-	using System.Collections.Generic;
-	using System.Diagnostics;
-	using System.Threading;
-	using Events;
-	using Exceptions;
-	using Logging;
-	using Magnum;
-	using Stact;
+    using System;
+    using System.Collections.Generic;
+    using System.Diagnostics;
+    using System.Threading;
+    using Events;
+    using Exceptions;
+    using Logging;
+    using Magnum;
+    using Stact;
+    using Util;
 
-	/// <summary>
+    /// <summary>
 	/// The context keeps track of some statistics about the consumption
 	/// of the message. Both when the receive operation completes
 	/// and when the consume operation completes, does this context

@@ -12,14 +12,14 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.BusServiceConfigurators
 {
-	using System;
-	using System.Collections.Generic;
-	using Builders;
-	using BusConfigurators;
-	using Configurators;
-	using Magnum.Extensions;
+    using System;
+    using System.Collections.Generic;
+    using Builders;
+    using BusConfigurators;
+    using Configurators;
+    using Magnum.Extensions;
 
-	public class DefaultBusServiceConfigurator<TService> :
+    public class DefaultBusServiceConfigurator<TService> :
 		IBusServiceConfigurator,
 		IBusBuilderConfigurator
 		where TService : IBusService

@@ -15,8 +15,8 @@ namespace MassTransit.Context
     using System;
     using System.Collections.Generic;
     using System.IO;
-    using MassTransit.Serialization;
-    using MassTransit.Util;
+    using Serialization;
+    using Util;
 
     /// <summary>
     /// Receive context that allows receiving sinks to 

@@ -22,7 +22,6 @@ namespace MassTransit.Transports
     using Magnum.Extensions;
     using Util;
 
-
     public class EndpointFactory :
         IEndpointFactory
     {

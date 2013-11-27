@@ -29,7 +29,7 @@ namespace MassTransit.Subscriptions.Coordinator
         private readonly Guid _peerId;
         private readonly Uri _peerUri;
         long _lastMessageNumber;
-        long _timestamp;
+        readonly long _timestamp;
 
         public long Timestamp
         {

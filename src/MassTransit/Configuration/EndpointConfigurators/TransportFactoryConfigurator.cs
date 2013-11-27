@@ -12,15 +12,15 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.EndpointConfigurators
 {
-	using System;
-	using System.Collections.Generic;
-	using Builders;
-	using Configurators;
-	using Exceptions;
-	using Transports;
-	using Util;
+    using System;
+    using System.Collections.Generic;
+    using Builders;
+    using Configurators;
+    using Exceptions;
+    using Transports;
+    using Util;
 
-	public class TransportFactoryConfigurator<TTransport> :
+    public class TransportFactoryConfigurator<TTransport> :
 		IEndpointFactoryBuilderConfigurator
 		where TTransport : class, ITransportFactory
 	{

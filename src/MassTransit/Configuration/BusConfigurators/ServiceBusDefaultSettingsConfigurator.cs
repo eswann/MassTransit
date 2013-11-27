@@ -14,7 +14,6 @@ namespace MassTransit.BusConfigurators
 {
     using System;
 
-
     public interface IServiceBusDefaultSettingsConfigurator
     {
         void SetEndpointCache(IEndpointCache endpointCache);

@@ -12,13 +12,13 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Pipeline
 {
-	using System;
-	using System.Collections.Generic;
-	using Context;
-	using Magnum.StateMachine;
-	using Saga;
+    using System;
+    using System.Collections.Generic;
+    using Context;
+    using Magnum.StateMachine;
+    using Saga;
 
-	public delegate IEnumerable<Action<IConsumeContext<TMessage>>> InstanceHandlerSelector<TInstance, TMessage>(
+    public delegate IEnumerable<Action<IConsumeContext<TMessage>>> InstanceHandlerSelector<TInstance, TMessage>(
 		TInstance instance, IConsumeContext<TMessage> context)
 		where TMessage : class;
 

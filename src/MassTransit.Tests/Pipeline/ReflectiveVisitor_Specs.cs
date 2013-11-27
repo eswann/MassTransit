@@ -12,23 +12,22 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Tests.Pipeline
 {
-	using System;
-	using System.Diagnostics;
-	using System.Linq.Expressions;
-	using Magnum.Reflection;
-	using Messages;
-	using NUnit.Framework;
-	using TestConsumers;
+    using System;
+    using System.Diagnostics;
+    using Magnum.Reflection;
+    using Messages;
+    using NUnit.Framework;
+    using TestConsumers;
 
-	[TestFixture]
+    [TestFixture]
 	public class When_visiting_an_object_graph
 	{
 		[Test]
 		public void Only_a_single_method_should_dispatch_the_information()
 		{
-			MyVisitor visitor = new MyVisitor();
+			var visitor = new MyVisitor();
 
-			MyObjectGraph graph = new MyObjectGraph();
+			var graph = new MyObjectGraph();
 
 			graph.Accept(visitor);
 		}

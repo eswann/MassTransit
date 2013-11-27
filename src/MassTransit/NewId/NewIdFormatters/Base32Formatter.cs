@@ -14,14 +14,13 @@ namespace MassTransit.NewIdFormatters
 {
     using System;
 
-
     public class Base32Formatter :
         INewIdFormatter
     {
         const string LowerCaseChars = "abcdefghijklmnopqrstuvwxyz234567";
         const string UpperCaseChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ234567";
 
-        string _chars;
+        readonly string _chars;
 
         public Base32Formatter(bool upperCase = false)
         {

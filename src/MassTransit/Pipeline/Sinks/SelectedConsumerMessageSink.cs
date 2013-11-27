@@ -12,12 +12,12 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Pipeline.Sinks
 {
-	using System;
-	using System.Collections.Generic;
-	using Context;
-	using Magnum.Extensions;
+    using System;
+    using System.Collections.Generic;
+    using Context;
+    using Magnum.Extensions;
 
-	/// <summary>
+    /// <summary>
 	/// Routes messages to instances of subscribed components. A new instance of the component
 	/// is created from the container for each message received.
 	/// </summary>

@@ -12,10 +12,10 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.EndpointConfigurators
 {
-	using Builders;
-	using Configurators;
+    using Builders;
+    using Configurators;
 
-	public interface IEndpointFactoryBuilderConfigurator :
+    public interface IEndpointFactoryBuilderConfigurator :
 		IConfigurator
 	{
 		IEndpointFactoryBuilder Configure(IEndpointFactoryBuilder builder);

@@ -12,11 +12,11 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Testing.BuilderConfigurators
 {
-	using Builders;
-	using Saga;
-	using Scenarios;
+    using Builders;
+    using Saga;
+    using Scenarios;
 
-	public interface SagaTestBuilderConfigurator<TScenario, TSaga> :
+    public interface SagaTestBuilderConfigurator<TScenario, TSaga> :
 		TestBuilderConfigurator
 		where TSaga : class, ISaga
 		where TScenario : ITestScenario

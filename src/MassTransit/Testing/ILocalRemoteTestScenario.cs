@@ -12,9 +12,9 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Testing
 {
-	using Scenarios;
+    using Scenarios;
 
-	public interface ILocalRemoteTestScenario :
+    public interface ILocalRemoteTestScenario :
 		IEndpointTestScenario
 	{
 		IServiceBus LocalBus { get; }

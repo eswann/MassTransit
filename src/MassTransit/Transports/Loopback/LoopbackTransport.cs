@@ -17,7 +17,7 @@ namespace MassTransit.Transports.Loopback
     using System.Threading;
     using Context;
     using Magnum.Extensions;
-    using MassTransit.Subscriptions.Coordinator;
+    using Subscriptions.Coordinator;
 
     /// <summary>
     /// The loopback transport is a built-in transport for MassTransit that 

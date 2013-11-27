@@ -12,13 +12,13 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Testing.Subjects
 {
-	using System;
-	using System.Collections;
-	using System.Collections.Generic;
-	using Saga;
-	using Saga.Configuration;
-	using Scenarios;
-	using TestDecorators;
+    using System;
+    using System.Collections;
+    using System.Collections.Generic;
+    using Saga;
+    using Saga.Configuration;
+    using Scenarios;
+    using TestDecorators;
 
     public interface ISagaTestSubject<TSaga> :
     ITestSubject<TSaga>,
@@ -45,7 +45,7 @@ namespace MassTransit.Testing.Subjects
 		readonly ReceivedMessageList _received;
 		readonly ISagaRepository<TSaga> _sagaRepository;
 		bool _disposed;
-		SagaList<TSaga> _sagas;
+	    readonly SagaList<TSaga> _sagas;
 		UnsubscribeAction _unsubscribe;
 
 		public SagaTestSubject(ISagaRepository<TSaga> sagaRepository)

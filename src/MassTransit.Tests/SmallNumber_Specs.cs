@@ -15,7 +15,6 @@ namespace MassTransit.Tests
     using MassTransit.Testing;
     using NUnit.Framework;
 
-
     [TestFixture]
     public class When_a_small_decimal_is_serialized
     {

@@ -363,7 +363,7 @@ namespace MassTransit.Tests.Serialization
         [Test]
         public void A_collection_of_objects_should_be_properly_serialized()
         {
-            ContainerClass message = new ContainerClass
+            var message = new ContainerClass
                 {
                     Elements = new List<OuterClass>
                         {
@@ -384,7 +384,7 @@ namespace MassTransit.Tests.Serialization
         [Test]
         public void A_dictionary_of_objects_should_be_properly_serialized()
         {
-            DictionaryContainerClass message = new DictionaryContainerClass
+            var message = new DictionaryContainerClass
                 {
                     Elements = new Dictionary<string, OuterClass>
                         {
@@ -399,7 +399,7 @@ namespace MassTransit.Tests.Serialization
         [Test]
         public void A_dictionary_of_one_objects_should_be_properly_serialized()
         {
-            DictionaryContainerClass message = new DictionaryContainerClass
+            var message = new DictionaryContainerClass
                 {
                     Elements = new Dictionary<string, OuterClass>
                         {
@@ -413,7 +413,7 @@ namespace MassTransit.Tests.Serialization
         [Test]
         public void A_dictionary_of_no_objects_should_be_properly_serialized()
         {
-            DictionaryContainerClass message = new DictionaryContainerClass
+            var message = new DictionaryContainerClass
                 {
                     Elements = new Dictionary<string, OuterClass>
                         {
@@ -427,7 +427,7 @@ namespace MassTransit.Tests.Serialization
         [Test]
         public void A_primitive_array_of_objects_should_be_properly_serialized()
         {
-            PrimitiveArrayClass message = new PrimitiveArrayClass
+            var message = new PrimitiveArrayClass
                 {
                     Values = new[] {1, 2, 3, 4, 5, 6, 7, 8, 9, 10}
 
@@ -462,7 +462,7 @@ namespace MassTransit.Tests.Serialization
         [Test]
         public void An_empty_class_should_not_break_the_mold()
         {
-            EmptyClass message = new EmptyClass();
+            var message = new EmptyClass();
 
             TestSerialization(message);
         }
@@ -472,7 +472,7 @@ namespace MassTransit.Tests.Serialization
         {
             const string expected = "Dr. Cox";
 
-            PrivateSetter message = new PrivateSetter(expected);
+            var message = new PrivateSetter(expected);
 
             TestSerialization(message);
         }
@@ -507,7 +507,7 @@ namespace MassTransit.Tests.Serialization
         [Test]
         public void An_enumeration_should_be_serializable()
         {
-            EnumClass message = new EnumClass {Setting = SomeEnum.Second};
+            var message = new EnumClass {Setting = SomeEnum.Second};
 
             TestSerialization(message);
             
@@ -516,7 +516,7 @@ namespace MassTransit.Tests.Serialization
         [Test]
         public void An_empty_array_of_objects_should_be_properly_serialized()
         {
-            PrimitiveArrayClass message = new PrimitiveArrayClass
+            var message = new PrimitiveArrayClass
                 {
                     Values = new int[] {}
                 };
@@ -542,7 +542,7 @@ namespace MassTransit.Tests.Serialization
         [Test]
         public void A_nested_object_should_be_properly_serialized()
         {
-            OuterClass message = new OuterClass
+            var message = new OuterClass
                 {
                     Inner = new InnerClass {Name = "Chris"},
                 };

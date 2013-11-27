@@ -18,8 +18,8 @@ namespace MassTransit.Context
 	{
 		readonly IConsumeContext<T> _context;
 		readonly string _correlationId;
-		string _consumerType;
-		long _timestamp;
+	    readonly string _consumerType;
+	    readonly long _timestamp;
 
 		public Received(IConsumeContext<T> context, string consumerType, string correlationId, long timestamp)
 		{

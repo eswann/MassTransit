@@ -22,7 +22,7 @@ namespace MassTransit.Context
     {
         private readonly T _message;
         Action<Stream> _bodyWriter;
-        Guid _id;
+        readonly Guid _id;
         IReceiveContext _receiveContext;
 
         SendContext(Guid messageId, T message, Type declaringMessageType)

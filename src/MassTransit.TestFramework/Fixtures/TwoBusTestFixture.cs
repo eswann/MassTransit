@@ -12,13 +12,13 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.TestFramework.Fixtures
 {
-	using System;
-	using BusConfigurators;
-	using MassTransit.Transports;
-	using NUnit.Framework;
-	using Subscriptions.Coordinator; 
+    using System;
+    using BusConfigurators;
+    using MassTransit.Transports;
+    using NUnit.Framework;
+    using Subscriptions.Coordinator;
 
-	/// <summary>
+    /// <summary>
 	/// <para>WARN: this bus test fixture DOES NOT call <see cref="EndpointTestFixture{TTransportFactory}.ConfigureServiceBus"/></para>
 	/// <para>Test fixture that creates two buses, one "remote" and one "local". Of course, both are in-memory;
 	/// but this test fixture makes sure that the two buses uses the same loopback router, while still having 

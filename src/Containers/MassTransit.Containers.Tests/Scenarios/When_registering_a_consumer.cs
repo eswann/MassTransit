@@ -18,7 +18,6 @@ namespace MassTransit.Containers.Tests.Scenarios
     using Magnum.TestFramework;
     using Testing;
 
-
     [Scenario]
     public abstract class When_registering_a_consumer :
         Given_a_service_bus_instance

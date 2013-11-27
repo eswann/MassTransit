@@ -12,11 +12,11 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit
 {
-	using System;
-	using BusConfigurators;
-	using BusServiceConfigurators;
+    using System;
+    using BusConfigurators;
+    using BusServiceConfigurators;
 
-	public static class BusServiceConfigurationExtensions
+    public static class BusServiceConfigurationExtensions
 	{
         [Obsolete("Use AddService<TService>(..) instead.")]
 		public static void ConfigureService<TServiceConfigurator>(this IServiceBusConfigurator configurator, IBusServiceLayer layer,

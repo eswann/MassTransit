@@ -12,9 +12,9 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Services.Subscriptions
 {
-	using Pipeline;
+    using Pipeline;
 
-	public interface ISubscriptionService :
+    public interface ISubscriptionService :
 		IEndpointSubscriptionEvent
 	{
 		UnregisterAction Register(IEndpointSubscriptionEvent consumer);

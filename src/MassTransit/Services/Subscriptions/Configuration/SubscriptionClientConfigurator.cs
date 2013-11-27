@@ -12,10 +12,10 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Services.Subscriptions.Configuration
 {
-	using System;
-	using Client;
-	using Magnum.Extensions;
-	using MassTransit.Subscriptions.Coordinator;
+    using System;
+    using Client;
+    using Magnum.Extensions;
+    using MassTransit.Subscriptions.Coordinator;
 
     public interface ISubscriptionClientConfigurator
     {

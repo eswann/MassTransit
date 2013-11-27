@@ -13,8 +13,8 @@
 namespace MassTransit.Transports.Publish
 {
     using System;
-    using MassTransit.Pipeline.Inspectors;
-    using MassTransit.Pipeline.Sinks;
+    using Pipeline.Inspectors;
+    using Pipeline.Sinks;
 
     /// <summary>
 	/// Finds publish endpoints that consume the message type specified in the c'tor of this

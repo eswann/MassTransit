@@ -12,9 +12,9 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Tests.Saga
 {
-	using System;
+    using System;
 
-	public class SimpleSagaMessageBase :
+    public class SimpleSagaMessageBase :
 		IAmCorrelatedBy<Guid>
 	{
 		public SimpleSagaMessageBase()

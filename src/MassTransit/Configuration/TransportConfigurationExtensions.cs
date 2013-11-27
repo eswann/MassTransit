@@ -12,9 +12,9 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit
 {
-	using EndpointConfigurators;
+    using EndpointConfigurators;
 
-	public static class TransportConfigurationExtensions
+    public static class TransportConfigurationExtensions
 	{
 		public static IEndpointFactoryConfigurator SetCreateMissingQueues(this IEndpointFactoryConfigurator configurator,
 		                                                                 bool value)

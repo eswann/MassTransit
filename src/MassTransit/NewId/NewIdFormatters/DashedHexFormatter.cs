@@ -18,7 +18,7 @@ namespace MassTransit.NewIdFormatters
         private readonly int _alpha;
         private readonly char _prefix;
         private readonly char _suffix;
-        int _length;
+        readonly int _length;
 
         public DashedHexFormatter(char prefix = '\0', char suffix = '\0', bool upperCase = false)
         {

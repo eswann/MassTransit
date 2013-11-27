@@ -12,9 +12,9 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Tests.TestConsumers
 {
-	using Messages;
+    using Messages;
 
-	public class TestMessageConsumer<TMessage> :
+    public class TestMessageConsumer<TMessage> :
 		TestConsumerBase<TMessage>,
 		Consumes<TMessage>.All
 		where TMessage : class

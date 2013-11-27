@@ -19,7 +19,6 @@ namespace MassTransit.Tests.NewId_
     using NUnit.Framework;
     using NewIdProviders;
 
-
     [TestFixture]
     public class When_getting_a_network_address_for_the_id_generator
     {

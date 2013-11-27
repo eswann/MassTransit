@@ -12,13 +12,13 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Tests
 {
-	using Advanced;
-	using BusConfigurators;
-	using Magnum.Extensions;
-	using Magnum.TestFramework;
-	using MassTransit.Configuration;
+    using Advanced;
+    using BusConfigurators;
+    using Magnum.Extensions;
+    using Magnum.TestFramework;
+    using MassTransit.Configuration;
 
-	[Scenario]
+    [Scenario]
 	public class When_specifying_environments_for_a_bus
 	{
 		[Then]

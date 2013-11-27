@@ -12,12 +12,12 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit
 {
-	using System;
-	using System.Collections.Generic;
-	using Context;
-	using Pipeline;
+    using System;
+    using System.Collections.Generic;
+    using Context;
+    using Pipeline;
 
-	/// <summary>
+    /// <summary>
 	/// Maps an instance of a consumer to one or more Consume methods for the specified message type
 	/// 
 	/// The whole purpose for this interface is to allow the creator of the consumer to manage the lifecycle

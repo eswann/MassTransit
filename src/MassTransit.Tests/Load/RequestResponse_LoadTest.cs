@@ -12,15 +12,15 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Tests.Load
 {
-	using System.Diagnostics;
-	using System.Threading;
-	using Context;
-	using Magnum.Extensions;
-	using NUnit.Framework;
-	using Tests.Messages;
-	using TextFixtures;
+    using System.Diagnostics;
+    using System.Threading;
+    using Context;
+    using Magnum.Extensions;
+    using NUnit.Framework;
+    using Tests.Messages;
+    using TextFixtures;
 
-	[TestFixture]
+    [TestFixture]
 	public class RequestResponse_LoadTest :
 		LoopbackTestFixture
 	{
@@ -31,7 +31,7 @@ namespace MassTransit.Tests.Load
 
 			int responsesReceived = 0;
 
-			ManualResetEvent completed = new ManualResetEvent(false);
+			var completed = new ManualResetEvent(false);
 
 			LocalBus.SubscribeHandler<PingMessage>(x => LocalBus.Context().Respond(new PongMessage(x.CorrelationId)));
 			LocalBus.SubscribeHandler<PongMessage>(x =>
@@ -66,7 +66,7 @@ namespace MassTransit.Tests.Load
 
 	        LocalBus.SubscribeHandler<PingMessage>(x => LocalBus.Context().Respond(new PongMessage()));
 
-            ManualResetEvent completed = new ManualResetEvent(false);
+            var completed = new ManualResetEvent(false);
             int responsesReceived = 0;
 
 	        Stopwatch stopwatch = Stopwatch.StartNew();

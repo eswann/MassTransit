@@ -12,9 +12,9 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Saga.Configuration
 {
-	using System;
+    using System;
 
-	public static class ExtensionsForSagas
+    public static class ExtensionsForSagas
 	{
 		public static bool IsSagaStateMachine(this Type type)
 		{

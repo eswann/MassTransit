@@ -12,12 +12,12 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Configuration
 {
-	using System;
-	using System.Collections.Generic;
-	using Context;
-	using Pipeline;
+    using System;
+    using System.Collections.Generic;
+    using Context;
+    using Pipeline;
 
-	public class ObjectConsumerFactory<TConsumer> :
+    public class ObjectConsumerFactory<TConsumer> :
 		IConsumerFactory<TConsumer>
 		where TConsumer : class
 	{

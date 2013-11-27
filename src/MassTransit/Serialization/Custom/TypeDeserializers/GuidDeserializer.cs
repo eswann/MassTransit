@@ -12,10 +12,10 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Serialization.Custom.TypeDeserializers
 {
-	using System;
-	using System.Xml;
+    using System;
+    using System.Xml;
 
-	public class GuidDeserializer :
+    public class GuidDeserializer :
 		IObjectDeserializer<Guid>
 	{
 		public object Deserialize(IDeserializerContext context)

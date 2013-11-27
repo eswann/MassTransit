@@ -15,7 +15,6 @@ namespace MassTransit
     using System;
     using System.Collections.Generic;
 
-
     public interface IFault
     {
         /// <summary>

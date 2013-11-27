@@ -12,23 +12,22 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Tests.Serialization
 {
-	using System;
-	using System.Collections.Generic;
-	using System.Diagnostics;
-	using System.IO;
-	using System.Linq;
-	using System.Text;
-	using System.Xml.Linq;
-	using Magnum.Reflection;
-	using Magnum.TestFramework;
-	using MassTransit.Serialization;
-	using Newtonsoft.Json;
-	using Newtonsoft.Json.Converters;
-	using Newtonsoft.Json.Linq;
-	using Newtonsoft.Json.Serialization;
-	using NUnit.Framework;
+    using System;
+    using System.Collections.Generic;
+    using System.Diagnostics;
+    using System.IO;
+    using System.Linq;
+    using System.Text;
+    using System.Xml.Linq;
+    using Magnum.Reflection;
+    using Magnum.TestFramework;
+    using MassTransit.Serialization;
+    using NUnit.Framework;
+    using Newtonsoft.Json;
+    using Newtonsoft.Json.Linq;
+    using Newtonsoft.Json.Serialization;
 
-	[Scenario]
+    [Scenario]
 	public class When_serializing_messages_with_json_dot_net
 	{
 		string _body;
@@ -36,7 +35,7 @@ namespace MassTransit.Tests.Serialization
 		TestMessage _message;
 		JsonSerializer _serializer;
 		XDocument _xml;
-		static Type _proxyType = InterfaceImplementationBuilder.GetProxyFor(typeof(MessageA));
+		static readonly Type _proxyType = InterfaceImplementationBuilder.GetProxyFor(typeof(MessageA));
 		JsonSerializer _deserializer;
 
 

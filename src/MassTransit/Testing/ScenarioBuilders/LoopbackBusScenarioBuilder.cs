@@ -12,9 +12,9 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Testing.ScenarioBuilders
 {
-	using System;
+    using System;
 
-	/// <summary>
+    /// <summary>
 	/// Scenario builder for the loopback style of bus. This is basically an
 	/// in-memory bus.
 	/// </summary>

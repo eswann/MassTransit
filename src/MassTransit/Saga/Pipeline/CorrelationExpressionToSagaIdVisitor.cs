@@ -1,10 +1,10 @@
 ﻿namespace MassTransit.Saga.Pipeline
 {
-	using System;
-	using System.Linq.Expressions;
-	using System.Reflection;
+    using System;
+    using System.Linq.Expressions;
+    using System.Reflection;
 
-	/// <summary>
+    /// <summary>
 	/// Determines if a message property is compared to the CorrelationId of the saga and if so
 	/// returns an expression that can be used to return that id
 	/// </summary>

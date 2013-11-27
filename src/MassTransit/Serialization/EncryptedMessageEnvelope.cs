@@ -12,9 +12,9 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Serialization
 {
-	using System;
+    using System;
 
-	[Serializable]
+    [Serializable]
 	public class EncryptedMessageEnvelope
 	{
 		public string CipheredMessage { get; set; }

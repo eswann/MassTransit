@@ -19,7 +19,6 @@ namespace MassTransit.Tests.Subscriptions
     using TestFramework;
     using TextFixtures;
 
-
     [TestFixture]
     public class Removing_a_subscription_client :
         SubscriptionServiceTestFixture<LoopbackTransportFactory>

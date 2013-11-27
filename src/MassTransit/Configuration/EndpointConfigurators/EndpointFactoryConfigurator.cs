@@ -12,12 +12,12 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.EndpointConfigurators
 {
-	using System;
-	using System.Collections.Generic;
-	using System.Linq;
-	using Builders;
-	using Configurators;
-	using Transports;
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using Builders;
+    using Configurators;
+    using Transports;
 
     /// <summary>
 	/// Allows for the configuration of the EndpointFactory through the use of an EndpointFactoryConfigurator

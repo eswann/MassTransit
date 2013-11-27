@@ -12,15 +12,15 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Pipeline
 {
-	using System;
-	using System.IO;
-	using Configuration;
-	using Context;
-	using MassTransit.Configuration;
-	using Sinks;
-	using SubscriptionConnectors;
+    using System;
+    using System.IO;
+    using Configuration;
+    using Context;
+    using MassTransit.Configuration;
+    using Sinks;
+    using SubscriptionConnectors;
 
-	/// <summary>
+    /// <summary>
 	/// Extensions for the message pipeline.
 	/// </summary>
 	public static class MessagePipelineExtensions

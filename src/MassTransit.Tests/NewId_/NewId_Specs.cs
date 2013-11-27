@@ -17,7 +17,6 @@ namespace MassTransit.Tests.NewId_
     using NUnit.Framework;
     using NewIdProviders;
 
-
     [TestFixture]
     public class Using_the_newid_generator
     {

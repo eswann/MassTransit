@@ -12,12 +12,12 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Tests.Configuration
 {
-	using Magnum.Extensions;
-	using Magnum.TestFramework;
-	using Messages;
-	using TestFramework;
+    using Magnum.Extensions;
+    using Magnum.TestFramework;
+    using Messages;
+    using TestFramework;
 
-	[Scenario]
+    [Scenario]
 	public class When_subscribing_a_conditional_handler_to_a_bus
 	{
 		IServiceBus _bus;

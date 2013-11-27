@@ -12,9 +12,9 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Services.Timeout
 {
-	using System;
+    using System;
 
-	public class ScheduledTimeout
+    public class ScheduledTimeout
 	{
 		public virtual Guid Id { get; set; }
 		public virtual int Tag { get; set; }

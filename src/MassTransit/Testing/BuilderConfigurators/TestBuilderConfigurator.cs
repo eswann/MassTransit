@@ -12,9 +12,9 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Testing.BuilderConfigurators
 {
-	using Configurators;
+    using Configurators;
 
-	public interface TestBuilderConfigurator :
+    public interface TestBuilderConfigurator :
 		ITestConfigurator
 	{
 	}

@@ -12,13 +12,13 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Serialization.Custom
 {
-	using System;
-	using System.Reflection;
-	using System.Reflection.Emit;
-	using Magnum.Extensions;
-	using Magnum.Threading;
+    using System;
+    using System.Reflection;
+    using System.Reflection.Emit;
+    using Magnum.Extensions;
+    using Magnum.Threading;
 
-	public static class InterfaceImplementationBuilder
+    public static class InterfaceImplementationBuilder
 	{
 		private static readonly ReaderWriterLockedDictionary<Type, Type> _proxyTypes = new ReaderWriterLockedDictionary<Type, Type>();
 

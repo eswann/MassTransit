@@ -12,9 +12,9 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Pipeline
 {
-	using System;
+    using System;
 
-	public interface IPipelineInspector
+    public interface IPipelineInspector
 	{
 		bool Inspect(object sink);
 		bool Inspect(object sink, Func<bool> inspectChildSinks);

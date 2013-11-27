@@ -12,10 +12,10 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Testing.BuilderConfigurators
 {
-	using Builders;
-	using Scenarios;
+    using Builders;
+    using Scenarios;
 
-	public interface ConsumerTestBuilderConfigurator<TScenario, TConsumer> :
+    public interface ConsumerTestBuilderConfigurator<TScenario, TConsumer> :
 		TestBuilderConfigurator
 		where TConsumer : class
 		where TScenario : ITestScenario

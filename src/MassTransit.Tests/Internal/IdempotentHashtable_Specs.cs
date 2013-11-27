@@ -12,15 +12,15 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Tests.Internal
 {
-	using System;
-	using NUnit.Framework;
-	using Util;
+    using System;
+    using NUnit.Framework;
+    using Util;
 
-	[TestFixture]
+    [TestFixture]
 	public class Working_with_an_idempotent_hashtable
 	{
-		Uri a = new Uri("msmq://localhost/bob");
-		Uri b = new Uri("msmq://localhost/bill");
+	    readonly Uri a = new Uri("msmq://localhost/bob");
+	    readonly Uri b = new Uri("msmq://localhost/bill");
 
 		[Test]
 		public void Should_not_fail_when_removing_non_existent_items()

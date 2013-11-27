@@ -12,13 +12,13 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Testing.ScenarioConfigurators
 {
-	using System;
-	using System.Collections.Generic;
-	using BusConfigurators;
-	using Configurators;
-	using ScenarioBuilders;
+    using System;
+    using System.Collections.Generic;
+    using BusConfigurators;
+    using Configurators;
+    using ScenarioBuilders;
 
-	public class BusTestScenarioBuilderConfigurator :
+    public class BusTestScenarioBuilderConfigurator :
 		IScenarioBuilderConfigurator<IBusTestScenario>
 	{
 		readonly Action<IServiceBusConfigurator> _configureAction;

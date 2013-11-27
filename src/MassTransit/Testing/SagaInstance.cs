@@ -12,7 +12,7 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Testing
 {
-	using Saga;
+    using Saga;
 
     public interface ISagaInstance<T>
     where T : class, ISaga

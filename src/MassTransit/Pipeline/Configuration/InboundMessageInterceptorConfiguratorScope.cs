@@ -12,12 +12,12 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Pipeline.Configuration
 {
-	using System;
-	using Context;
-	using Inspectors;
-	using Util;
+    using System;
+    using Context;
+    using Inspectors;
+    using Util;
 
-	public class InboundMessageInterceptorConfiguratorScope :
+    public class InboundMessageInterceptorConfiguratorScope :
 		PipelineInspectorBase<InboundMessageInterceptorConfiguratorScope>
 	{
 		public Func<IPipelineSink<IConsumeContext>, IPipelineSink<IConsumeContext>> InsertAfter { get; private set; }

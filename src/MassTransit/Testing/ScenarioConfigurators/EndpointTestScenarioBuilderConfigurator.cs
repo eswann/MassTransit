@@ -12,14 +12,14 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Testing.ScenarioConfigurators
 {
-	using System;
-	using System.Collections.Generic;
-	using Configurators;
-	using EndpointConfigurators;
-	using ScenarioBuilders;
-	using Scenarios;
+    using System;
+    using System.Collections.Generic;
+    using Configurators;
+    using EndpointConfigurators;
+    using ScenarioBuilders;
+    using Scenarios;
 
-	public class EndpointTestScenarioBuilderConfigurator<TScenario> :
+    public class EndpointTestScenarioBuilderConfigurator<TScenario> :
 		IScenarioBuilderConfigurator<TScenario>
 		where TScenario : IEndpointTestScenario
 	{

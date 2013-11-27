@@ -14,12 +14,10 @@ namespace MassTransit.Tests.Serialization
 {
     using System.Diagnostics;
     using System.IO;
-    using System.Linq;
     using System.Text;
     using Context;
     using Magnum.TestFramework;
     using MassTransit.Serialization;
-    using MassTransit.Services.Subscriptions.Messages;
     using Messages;
     using NUnit.Framework;
 

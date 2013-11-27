@@ -12,13 +12,13 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.TestFramework.Fixtures
 {
-	using System;
-	using System.Collections.Generic;
-	using System.Threading;
-	using Magnum.Extensions;
-	using NUnit.Framework;
+    using System;
+    using System.Collections.Generic;
+    using System.Threading;
+    using Magnum.Extensions;
+    using NUnit.Framework;
 
-	public abstract class AbstractTestConsumer<TMessage>
+    public abstract class AbstractTestConsumer<TMessage>
 		where TMessage : class
 	{
 		static readonly List<TMessage> _allMessages = new List<TMessage>();

@@ -12,9 +12,9 @@
 // specific language governing permissions and limitations under the License.
 namespace BusDriver.Formatting
 {
-	using System.Collections.Generic;
+    using System.Collections.Generic;
 
-	public interface ITextBlock
+    public interface ITextBlock
 	{
 		int Width { get; }
 		ITextBlock Body(string text);

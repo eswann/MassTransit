@@ -12,11 +12,11 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Testing.TestActions
 {
-	using System;
-	using Context;
-	using Scenarios;
+    using System;
+    using Context;
+    using Scenarios;
 
-	public class PublishTestAction<TScenario, TMessage> :
+    public class PublishTestAction<TScenario, TMessage> :
 		TestAction<TScenario>
 		where TMessage : class
 		where TScenario : ITestScenario

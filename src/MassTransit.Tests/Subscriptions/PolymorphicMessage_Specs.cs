@@ -12,14 +12,14 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Tests.Subscriptions
 {
-	using BusConfigurators;
-	using Magnum.Extensions;
-	using Magnum.TestFramework;
-	using NUnit.Framework;
-	using TestFramework;
-	using TextFixtures;
+    using BusConfigurators;
+    using Magnum.Extensions;
+    using Magnum.TestFramework;
+    using NUnit.Framework;
+    using TestFramework;
+    using TextFixtures;
 
-	[TestFixture]
+    [TestFixture]
 	public class When_a_message_is_received_that_is_polymorphic :
 		LoopbackLocalAndRemoteTestFixture
 	{

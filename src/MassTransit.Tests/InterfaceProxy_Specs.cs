@@ -25,7 +25,7 @@ namespace MassTransit.Tests
         FutureMessage<IProxyMe> _received;
         int _intValue = 42;
         string _stringValue = "Hello";
-        Guid _correlationId = Guid.NewGuid();
+        readonly Guid _correlationId = Guid.NewGuid();
 
         protected override void EstablishContext()
         {
@@ -84,7 +84,7 @@ namespace MassTransit.Tests
         FutureMessage<IProxyMe> _received;
         int _intValue = 42;
         string _stringValue = "Hello";
-        Guid _correlationId = Guid.NewGuid();
+        readonly Guid _correlationId = Guid.NewGuid();
 
         protected override void EstablishContext()
         {

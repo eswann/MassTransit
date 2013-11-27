@@ -12,12 +12,12 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Tests.Examples.Sagas
 {
-	using System;
-	using Magnum.StateMachine;
-	using MassTransit.Saga;
-	using Messages;
+    using System;
+    using Magnum.StateMachine;
+    using MassTransit.Saga;
+    using Messages;
 
-	public class SimpleStateMachineSaga :
+    public class SimpleStateMachineSaga :
 		SagaStateMachine<SimpleStateMachineSaga>,
 		ISaga
 	{

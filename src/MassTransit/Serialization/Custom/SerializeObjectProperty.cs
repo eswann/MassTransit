@@ -12,11 +12,11 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Serialization.Custom
 {
-	using System;
-	using System.Linq.Expressions;
-	using System.Reflection;
+    using System;
+    using System.Linq.Expressions;
+    using System.Reflection;
 
-	public class SerializeObjectProperty<T> :
+    public class SerializeObjectProperty<T> :
 		ObjectPropertyBase
 	{
 		private readonly Func<T, object> _get;

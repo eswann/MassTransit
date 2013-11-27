@@ -12,12 +12,12 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.BusServiceConfigurators
 {
-	using System.Collections.Generic;
-	using Builders;
-	using BusConfigurators;
-	using Configurators;
+    using System.Collections.Generic;
+    using Builders;
+    using BusConfigurators;
+    using Configurators;
 
-	public class CustomBusServiceConfigurator :
+    public class CustomBusServiceConfigurator :
 		IBusBuilderConfigurator
 	{
 		readonly IBusServiceConfigurator _configurator;

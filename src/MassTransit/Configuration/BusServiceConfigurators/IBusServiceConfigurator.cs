@@ -12,9 +12,9 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.BusServiceConfigurators
 {
-	using System;
+    using System;
 
-	public interface IBusServiceConfigurator
+    public interface IBusServiceConfigurator
 	{
 		/// <summary>
 		/// Returns the type of the service created by the configurator

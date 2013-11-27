@@ -17,7 +17,6 @@ namespace MassTransit.Transports
     using System.Linq;
     using Magnum.Caching;
 
-
     public class InMemoryInboundMessageTracker :
         IInboundMessageTracker
     {

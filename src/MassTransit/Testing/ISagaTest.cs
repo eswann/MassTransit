@@ -12,11 +12,11 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Testing
 {
-	using Saga;
-	using Scenarios;
-	using Subjects;
+    using Saga;
+    using Scenarios;
+    using Subjects;
 
-	public interface ISagaTest<TSaga> :
+    public interface ISagaTest<TSaga> :
 		ITestInstance
 		where TSaga : class, ISaga
 	{

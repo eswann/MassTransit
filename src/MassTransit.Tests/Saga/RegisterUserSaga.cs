@@ -12,14 +12,14 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Tests.Saga
 {
-	using System;
-	using Magnum.Extensions;
-	using MassTransit.Saga;
-	using MassTransit.Services.Timeout.Messages;
-	using Messages;
-	using TestFramework;
+    using System;
+    using Magnum.Extensions;
+    using MassTransit.Saga;
+    using MassTransit.Services.Timeout.Messages;
+    using Messages;
+    using TestFramework;
 
-	/// <summary>
+    /// <summary>
 	/// 
 	/// So here is the deal
 	/// The saga is a class that contains the state and behavior of the saga

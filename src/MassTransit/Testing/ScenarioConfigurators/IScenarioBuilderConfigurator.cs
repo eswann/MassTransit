@@ -12,11 +12,11 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Testing.ScenarioConfigurators
 {
-	using Configurators;
-	using ScenarioBuilders;
-	using Scenarios;
+    using Configurators;
+    using ScenarioBuilders;
+    using Scenarios;
 
-	public interface IScenarioBuilderConfigurator<TScenario> :
+    public interface IScenarioBuilderConfigurator<TScenario> :
 		ITestConfigurator
 		where TScenario : ITestScenario
 	{

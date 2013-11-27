@@ -59,9 +59,9 @@ namespace MassTransit.Transports
         public int RetryLimit { get; set; }
         public MessageTrackerFactory TrackerFactory { get; set; }
 
-        MassTransit.EndpointAddress GetErrorEndpointAddress()
+        EndpointAddress GetErrorEndpointAddress()
         {
-            return new MassTransit.EndpointAddress(Address.Uri.AppendToPath("_error"));
+            return new EndpointAddress(Address.Uri.AppendToPath("_error"));
         }
     }
 }

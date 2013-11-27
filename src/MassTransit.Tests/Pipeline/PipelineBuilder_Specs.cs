@@ -12,12 +12,12 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Tests.Pipeline
 {
-	using MassTransit.Pipeline;
-	using MassTransit.Pipeline.Configuration;
-	using Messages;
-	using NUnit.Framework;
+    using MassTransit.Pipeline;
+    using MassTransit.Pipeline.Configuration;
+    using Messages;
+    using NUnit.Framework;
 
-	[TestFixture]
+    [TestFixture]
 	public class When_building_a_pipeline
 	{
 		[SetUp]

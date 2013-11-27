@@ -55,13 +55,13 @@ namespace MassTransit.Tests
                 });
         }
 
-        FutureMessage<int> _first = new FutureMessage<int>();
-        FutureMessage<int> _second = new FutureMessage<int>();
+        readonly FutureMessage<int> _first = new FutureMessage<int>();
+        readonly FutureMessage<int> _second = new FutureMessage<int>();
 
         class MyConsumer :
             Consumes<A>.Context
         {
-            public static FutureMessage<A> Called = new FutureMessage<A>();
+            public static readonly FutureMessage<A> Called = new FutureMessage<A>();
 
             public void Consume(IConsumeContext<A> message)
             {

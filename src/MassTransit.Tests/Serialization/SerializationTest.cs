@@ -12,13 +12,13 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Tests.Serialization
 {
-	using System.IO;
-	using Context;
-	using Magnum.TestFramework;
-	using MassTransit.Serialization;
-	using NUnit.Framework;
+    using System.IO;
+    using Context;
+    using Magnum.TestFramework;
+    using MassTransit.Serialization;
+    using NUnit.Framework;
 
-	public abstract class SerializationTest<TSerializer>
+    public abstract class SerializationTest<TSerializer>
 		where TSerializer : IMessageSerializer, new()
 	{
 		IMessageSerializer _serializer;

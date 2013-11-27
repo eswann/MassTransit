@@ -12,11 +12,11 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Builders
 {
-	using System;
-	using BusServiceConfigurators;
-	using Configuration;
+    using System;
+    using BusServiceConfigurators;
+    using Configuration;
 
-	/// <summary>
+    /// <summary>
 	/// A BusBuilder is the base interface for building service, and includes things like
 	/// control bus, subscription bus, and other limited-functionality bus instances
 	/// </summary>

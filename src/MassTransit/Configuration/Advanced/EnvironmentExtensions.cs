@@ -12,13 +12,13 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Advanced
 {
-	using System;
-	using System.Configuration;
-	using BusConfigurators;
-	using Configuration;
-	using EnvironmentConfigurators;
+    using System;
+    using System.Configuration;
+    using BusConfigurators;
+    using Configuration;
+    using EnvironmentConfigurators;
 
-	public static class EnvironmentExtensions
+    public static class EnvironmentExtensions
 	{
 		public static void Environments(this IServiceBusConfigurator configurator,
 		                                Action<IEnvironmentsConfigurator> configureCallback)

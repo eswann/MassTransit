@@ -12,21 +12,21 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Tests.Services.Routing
 {
-	using System;
-	using MassTransit.Services.Routing.Configuration;
-	using Messages;
-	using NUnit.Framework;
-	using TextFixtures;
-	using TestFramework;
+    using System;
+    using MassTransit.Services.Routing.Configuration;
+    using Messages;
+    using NUnit.Framework;
+    using TestFramework;
+    using TextFixtures;
 
-	[TestFixture]
+    [TestFixture]
 	public class When_configuring_routes :
 		LoopbackTestFixture
 	{
 		[Test]
 		public void Should_create_outbound_sink_for_route()
 		{
-			Uri address = new Uri("loopback://localhost/test_target");
+			var address = new Uri("loopback://localhost/test_target");
 
 			var configurator = new RoutingConfigurator();
 

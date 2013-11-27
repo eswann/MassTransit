@@ -12,9 +12,9 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Services.Routing.Configuration
 {
-	using System;
+    using System;
 
-	public interface RouteTo
+    public interface RouteTo
 	{
 		void To(Uri address);
 		void To(string addressUri);

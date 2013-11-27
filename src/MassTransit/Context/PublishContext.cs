@@ -25,7 +25,7 @@ namespace MassTransit.Context
         private readonly HashSet<Uri> _endpoints = new HashSet<Uri>();
         Action<IEndpointAddress> _eachSubscriberAction = Ignore;
         Action _noSubscribersAction = Ignore;
-        Stopwatch _timer;
+        readonly Stopwatch _timer;
         Func<Uri, bool> _wasEndpointAlreadySent;
 
         PublishContext(T message)

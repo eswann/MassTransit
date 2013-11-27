@@ -15,7 +15,6 @@ namespace MassTransit.NewIdProviders
     using System;
     using System.Collections.Generic;
 
-
     public class BestPossibleWorkerIdProvider :
         IWorkerIdProvider
     {

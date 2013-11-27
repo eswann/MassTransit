@@ -12,13 +12,13 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Serialization
 {
-	using System;
-	using System.IO;
-	using System.Runtime.Serialization;
-	using Context;
-	using Magnum.Cryptography;
+    using System;
+    using System.IO;
+    using System.Runtime.Serialization;
+    using Context;
+    using Magnum.Cryptography;
 
-	public class PreSharedKeyEncryptedMessageSerializer :
+    public class PreSharedKeyEncryptedMessageSerializer :
 		IMessageSerializer
 	{
 		const string ContentTypeHeaderValue = "application/vnd.masstransit+psk";

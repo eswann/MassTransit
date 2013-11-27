@@ -12,15 +12,15 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Tests
 {
-	using System;
-	using BusConfigurators;
-	using Messages;
-	using NUnit.Framework;
-	using TestConsumers;
-	using TextFixtures;
-	using TestFramework;
+    using System;
+    using BusConfigurators;
+    using Messages;
+    using NUnit.Framework;
+    using TestConsumers;
+    using TestFramework;
+    using TextFixtures;
 
-	[TestFixture]
+    [TestFixture]
 	public class When_a_request_message_is_published :
 		LoopbackLocalAndRemoteTestFixture
 	{

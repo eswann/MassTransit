@@ -12,12 +12,12 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.TestFramework
 {
-	using System;
-	using System.Threading;
-	using Magnum;
-	using Magnum.Extensions;
+    using System;
+    using System.Threading;
+    using Magnum;
+    using Magnum.Extensions;
 
-	/// <summary>
+    /// <summary>
 	/// A future object that supports both callbacks and asynchronous waits once a future value becomes available.
 	/// </summary>
 	/// <typeparam name="T"></typeparam>

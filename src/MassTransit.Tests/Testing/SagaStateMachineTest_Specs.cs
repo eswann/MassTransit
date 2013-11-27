@@ -12,13 +12,13 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Tests.Testing
 {
-	using System;
-	using Magnum.StateMachine;
-	using Magnum.TestFramework;
-	using MassTransit.Saga;
-	using MassTransit.Testing;
+    using System;
+    using Magnum.StateMachine;
+    using Magnum.TestFramework;
+    using MassTransit.Saga;
+    using MassTransit.Testing;
 
-	[Scenario]
+    [Scenario]
 	public class When_a_state_machine_saga_is_being_tested
 	{
 		Guid _sagaId;

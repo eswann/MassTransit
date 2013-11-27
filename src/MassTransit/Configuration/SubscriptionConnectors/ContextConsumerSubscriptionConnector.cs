@@ -12,14 +12,14 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.SubscriptionConnectors
 {
-	using System;
-	using Context;
-	using Magnum.Extensions;
-	using Pipeline;
-	using Pipeline.Configuration;
-	using Pipeline.Sinks;
+    using System;
+    using Context;
+    using Magnum.Extensions;
+    using Pipeline;
+    using Pipeline.Configuration;
+    using Pipeline.Sinks;
 
-	public class ContextConsumerSubscriptionConnector<TConsumer, TMessage> :
+    public class ContextConsumerSubscriptionConnector<TConsumer, TMessage> :
 		IConsumerSubscriptionConnector
 		where TConsumer : class, Consumes<IConsumeContext<TMessage>>.All
 		where TMessage : class

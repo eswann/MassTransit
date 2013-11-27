@@ -12,9 +12,9 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Subscriptions.Messages
 {
-	using System;
+    using System;
 
-	public interface IPeer
+    public interface IPeer
 	{
 		Guid PeerId { get; }
 		long Timestamp { get; }

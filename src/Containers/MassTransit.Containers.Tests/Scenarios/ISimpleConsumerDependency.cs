@@ -14,7 +14,6 @@ namespace MassTransit.Containers.Tests.Scenarios
 {
     using System;
 
-
     public interface ISimpleConsumerDependency :
         IDisposable
     {

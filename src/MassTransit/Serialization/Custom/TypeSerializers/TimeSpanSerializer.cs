@@ -12,10 +12,10 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Serialization.Custom.TypeSerializers
 {
-	using System;
-	using System.Xml;
+    using System;
+    using System.Xml;
 
-	public class TimeSpanSerializer :
+    public class TimeSpanSerializer :
 		SerializerBase<TimeSpan>
 	{
 		protected override void WriteValue(XmlWriter writer, object value)

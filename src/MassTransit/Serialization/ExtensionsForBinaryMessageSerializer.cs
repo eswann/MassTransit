@@ -12,11 +12,11 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Serialization
 {
-	using System;
-	using System.Collections.Generic;
-	using System.Runtime.Remoting.Messaging;
+    using System;
+    using System.Collections.Generic;
+    using System.Runtime.Remoting.Messaging;
 
-	public static class ExtensionsForBinaryMessageSerializer
+    public static class ExtensionsForBinaryMessageSerializer
 	{
 		public static void Add(this List<Header> headers, string key, Uri uri)
 		{

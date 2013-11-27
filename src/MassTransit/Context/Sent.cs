@@ -17,7 +17,7 @@ namespace MassTransit.Context
 	{
 		readonly IEndpointAddress _address;
 		readonly ISendContext _context;
-		long _timestamp;
+	    readonly long _timestamp;
 
 		public Sent(ISendContext context, IEndpointAddress address, long timestamp)
 		{
@@ -48,7 +48,7 @@ namespace MassTransit.Context
 	{
 		readonly IEndpointAddress _address;
 		readonly ISendContext<T> _context;
-		long _timestamp;
+	    readonly long _timestamp;
 
 		public Sent(ISendContext<T> context, IEndpointAddress address, long timestamp)
 		{

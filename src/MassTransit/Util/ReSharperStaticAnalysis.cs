@@ -12,10 +12,10 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Util
 {
-	using System;
-	using System.Collections.Generic;
+    using System;
+    using System.Collections.Generic;
 
-	/// <summary>
+    /// <summary>
 	/// Indicates that marked element should be localized or not.
 	/// </summary>
 	[AttributeUsage(AttributeTargets.All, AllowMultiple = false, Inherited = true)]

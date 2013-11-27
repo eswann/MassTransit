@@ -12,8 +12,8 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Diagnostics
 {
-    using MassTransit.BusConfigurators;
-    using MassTransit.Diagnostics.Tracing;
+    using BusConfigurators;
+    using Tracing;
 
     public static class TracingExtensions
     {

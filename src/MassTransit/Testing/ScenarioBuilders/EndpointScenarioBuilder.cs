@@ -12,15 +12,15 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Testing.ScenarioBuilders
 {
-	using System;
-	using EndpointConfigurators;
-	using Exceptions;
-	using Magnum.Extensions;
-	using MassTransit.Configurators;
-	using Scenarios;
-	using Serialization;
-	using Transports;
-	using Transports.Loopback;
+    using System;
+    using EndpointConfigurators;
+    using Exceptions;
+    using Magnum.Extensions;
+    using MassTransit.Configurators;
+    using Scenarios;
+    using Serialization;
+    using Transports;
+    using Transports.Loopback;
 
     /// <summary>
     /// And endpoint scenario builder implementation ties together the scenario 

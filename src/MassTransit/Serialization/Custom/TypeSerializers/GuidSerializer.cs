@@ -12,10 +12,10 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Serialization.Custom.TypeSerializers
 {
-	using System;
-	using System.Xml;
+    using System;
+    using System.Xml;
 
-	public class GuidSerializer :
+    public class GuidSerializer :
 		SerializerBase<Guid>
 	{
 		protected override void WriteValue(XmlWriter writer, object value)

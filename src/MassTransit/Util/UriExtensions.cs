@@ -12,10 +12,10 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Util
 {
-	using System;
-	using Exceptions;
+    using System;
+    using Exceptions;
 
-	public static class UriExtensions
+    public static class UriExtensions
 	{
 		public static Uri AppendToPath(this Uri uri, string value)
 		{

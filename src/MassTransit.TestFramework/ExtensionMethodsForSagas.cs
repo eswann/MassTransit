@@ -12,18 +12,18 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.TestFramework
 {
-	using System;
-	using System.Collections.Generic;
-	using System.Linq;
-	using System.Linq.Expressions;
-	using System.Reflection;
-	using System.Threading;
-	using Magnum.Extensions;
-	using Magnum.StateMachine;
-	using NUnit.Framework;
-	using Saga;
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Linq.Expressions;
+    using System.Reflection;
+    using System.Threading;
+    using Magnum.Extensions;
+    using Magnum.StateMachine;
+    using NUnit.Framework;
+    using Saga;
 
-	public static class ExtensionMethodsForSagas
+    public static class ExtensionMethodsForSagas
 	{
 		public static TimeSpan Timeout { get; set; }
 

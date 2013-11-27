@@ -12,9 +12,9 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Serialization.Custom.TypeSerializers
 {
-	using System.Xml;
+    using System.Xml;
 
-	public class ByteSerializer :
+    public class ByteSerializer :
 		SerializerBase<byte>
 	{
 		protected override void WriteValue(XmlWriter writer, object value)

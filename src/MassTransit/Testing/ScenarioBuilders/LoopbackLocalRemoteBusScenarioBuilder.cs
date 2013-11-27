@@ -12,14 +12,14 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Testing.ScenarioBuilders
 {
-	using System;
-	using BusConfigurators;
-	using Magnum.Extensions;
-	using Scenarios;
-	using Subscriptions.Coordinator;
-	using Transports;
+    using System;
+    using BusConfigurators;
+    using Magnum.Extensions;
+    using Scenarios;
+    using Subscriptions.Coordinator;
+    using Transports;
 
-	public class LoopbackLocalRemoteBusScenarioBuilder :
+    public class LoopbackLocalRemoteBusScenarioBuilder :
 		EndpointScenarioBuilder<ILocalRemoteTestScenario>,
 		ILocalRemoteScenarioBuilder
 	{

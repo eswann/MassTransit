@@ -12,20 +12,20 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Tests.Load
 {
-	using System;
-	using System.Collections.Generic;
-	using System.Diagnostics;
-	using System.Linq;
-	using System.Threading;
-	using Context;
-	using Magnum;
-	using Magnum.Extensions;
-	using Magnum.TestFramework;
-	using MassTransit.Subscriptions;
-	using Messages;
-	using TestFramework;
+    using System;
+    using System.Collections.Generic;
+    using System.Diagnostics;
+    using System.Linq;
+    using System.Threading;
+    using Context;
+    using Magnum;
+    using Magnum.Extensions;
+    using Magnum.TestFramework;
+    using MassTransit.Subscriptions;
+    using Messages;
+    using TestFramework;
 
-	public class LoadGenerator<TRequest, TResponse> :
+    public class LoadGenerator<TRequest, TResponse> :
 		Consumes<TResponse>.All
 		where TRequest : class, First
 		where TResponse : class, First

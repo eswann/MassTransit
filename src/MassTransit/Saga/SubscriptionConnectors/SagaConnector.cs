@@ -12,16 +12,16 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Saga.SubscriptionConnectors
 {
-	using System;
-	using System.Collections.Generic;
-	using System.Linq;
-	using Exceptions;
-	using Magnum.Extensions;
-	using Magnum.Reflection;
-	using MassTransit.Pipeline;
-	using Util;
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using Exceptions;
+    using Magnum.Extensions;
+    using Magnum.Reflection;
+    using MassTransit.Pipeline;
+    using Util;
 
-	public interface ISagaConnector
+    public interface ISagaConnector
 	{
 		UnsubscribeAction Connect(IInboundPipelineConfigurator configurator);
 	}

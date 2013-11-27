@@ -12,18 +12,15 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Tests.Serialization
 {
-	using System;
-	using System.Diagnostics;
-	using System.IO;
-	using System.Text;
-	using Context;
-	using Magnum;
-	using Magnum.Extensions;
-	using MassTransit.Serialization;
-	using Messages;
-	using NUnit.Framework;
+    using System;
+    using System.IO;
+    using Context;
+    using Magnum.Extensions;
+    using MassTransit.Serialization;
+    using Messages;
+    using NUnit.Framework;
 
-	public abstract class Setting_the_message_expiration<TSerializer>
+    public abstract class Setting_the_message_expiration<TSerializer>
 		: SerializationSpecificationBase<TSerializer>
 		where TSerializer : IMessageSerializer, new()
 	{
@@ -79,7 +76,7 @@ namespace MassTransit.Tests.Serialization
 		{
 			DateTime now = 5.Minutes().FromNow();
 
-			DateTime expiration = new DateTime(now.Year, now.Month, now.Day, now.Hour, now.Minute, now.Second, now.Millisecond);
+			var expiration = new DateTime(now.Year, now.Month, now.Day, now.Hour, now.Minute, now.Second, now.Millisecond);
 
 			VerifyMessageHeaderIsPassed(x => x.ExpiresAt(expiration),
 				x => { Assert.AreEqual(expiration.ToUniversalTime(), x.ExpirationTime); });

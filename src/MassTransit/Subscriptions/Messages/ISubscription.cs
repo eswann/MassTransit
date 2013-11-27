@@ -12,8 +12,7 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Subscriptions.Messages
 {
-	using System;
-	using Transports;
+    using System;
 
     /// <summary>
     /// Describes a subscription of an <see cref="Endpoint"/> to a particular message.

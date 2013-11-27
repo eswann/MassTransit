@@ -12,9 +12,9 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Tests.Load.Messages
 {
-	using System;
+    using System;
 
-	public interface First :
+    public interface First :
 		IAmCorrelatedBy<Guid>
 	{
 		DateTime CreatedAt { get; }

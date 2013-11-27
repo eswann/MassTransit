@@ -12,10 +12,10 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.BusConfigurators
 {
-	using System;
-	using Magnum.Extensions;
+    using System;
+    using Magnum.Extensions;
 
-	public class ServiceBusDefaultSettings
+    public class ServiceBusDefaultSettings
 	{
 		public ServiceBusDefaultSettings()
 		{

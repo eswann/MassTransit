@@ -12,9 +12,9 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Serialization.Custom.TypeDeserializers
 {
-	using System;
+    using System;
 
-	public class EnumDeserializer<T> :
+    public class EnumDeserializer<T> :
 		IObjectDeserializer<T>
 	{
 		public object Deserialize(IDeserializerContext context)

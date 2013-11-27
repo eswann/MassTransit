@@ -12,13 +12,12 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Testing.Instances
 {
-	using System;
-	using System.Collections.Generic;
-	using Magnum.Extensions;
-	using Scenarios;
-	using TestActions;
+    using System.Collections.Generic;
+    using Magnum.Extensions;
+    using Scenarios;
+    using TestActions;
 
-	public abstract class TestInstance<TScenario>
+    public abstract class TestInstance<TScenario>
 		where TScenario : ITestScenario
 	{
 		readonly IList<TestAction<TScenario>> _actions;

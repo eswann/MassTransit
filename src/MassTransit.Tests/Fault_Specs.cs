@@ -12,14 +12,14 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Tests
 {
-	using System;
-	using Context;
-	using Magnum.Extensions;
-	using Magnum.TestFramework;
-	using NUnit.Framework;
-	using TextFixtures;
+    using System;
+    using Context;
+    using Magnum.Extensions;
+    using Magnum.TestFramework;
+    using NUnit.Framework;
+    using TextFixtures;
 
-	[TestFixture]
+    [TestFixture]
 	public class When_a_message_fault_occurs :
 		LoopbackTestFixture
 	{

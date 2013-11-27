@@ -12,9 +12,9 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Subscriptions
 {
-	using System;
+    using System;
 
-	/// <summary>
+    /// <summary>
 	/// Used to wrap an UnsubscribeAction in a disposable block
 	/// </summary>
 	public interface IUnsubscribeAction :

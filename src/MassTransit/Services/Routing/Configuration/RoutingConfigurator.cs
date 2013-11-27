@@ -12,13 +12,13 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Services.Routing.Configuration
 {
-	using System;
-	using System.Collections.Generic;
-	using BusServiceConfigurators;
-	using Pipeline;
-	using Util;
+    using System;
+    using System.Collections.Generic;
+    using BusServiceConfigurators;
+    using Pipeline;
+    using Util;
 
-	public class RoutingConfigurator :
+    public class RoutingConfigurator :
 		IBusServiceConfigurator
 	{
 		readonly IList<Func<IServiceBus, UnsubscribeAction>> _routes = new List<Func<IServiceBus, UnsubscribeAction>>();

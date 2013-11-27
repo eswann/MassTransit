@@ -12,10 +12,10 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Saga.SubscriptionConnectors
 {
-	using System;
-	using MassTransit.SubscriptionConnectors;
+    using System;
+    using MassTransit.SubscriptionConnectors;
 
-	public interface ISagaWorkerSubscriptionConnector :
+    public interface ISagaWorkerSubscriptionConnector :
 		IInstanceSubscriptionConnector
 	{
 		Type SagaType { get; }

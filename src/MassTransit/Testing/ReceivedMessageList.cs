@@ -12,13 +12,13 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Testing
 {
-	using System;
-	using System.Collections;
-	using System.Collections.Generic;
-	using System.Linq;
-	using System.Threading;
-	using Context;
-	using Magnum.Extensions;
+    using System;
+    using System.Collections;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading;
+    using Context;
+    using Magnum.Extensions;
 
     public interface IReceivedMessageList :
     IEnumerable<IReceivedMessage>
@@ -156,7 +156,7 @@ namespace MassTransit.Testing
 	{
 		readonly HashSet<IReceivedMessage<T>> _messages;
 		readonly AutoResetEvent _received;
-		TimeSpan _timeout = 8.Seconds();
+	    readonly TimeSpan _timeout = 8.Seconds();
 
 		public ReceivedMessageList()
 		{

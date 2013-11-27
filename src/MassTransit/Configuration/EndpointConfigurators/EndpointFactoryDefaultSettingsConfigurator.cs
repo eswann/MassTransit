@@ -12,8 +12,8 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.EndpointConfigurators
 {
-	using System;
-	using Serialization;
+    using System;
+    using Serialization;
 
     public interface IEndpointFactoryDefaultSettingsConfigurator
     {

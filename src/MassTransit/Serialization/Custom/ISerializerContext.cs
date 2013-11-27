@@ -12,9 +12,9 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Serialization.Custom
 {
-	using System;
-	using System.Collections.Generic;
-	using System.Xml;
+    using System;
+    using System.Collections.Generic;
+    using System.Xml;
 
     /// <summary>
 	/// The serializer context is passed through all of the serializers to provide a central context for

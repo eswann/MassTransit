@@ -15,7 +15,6 @@ namespace MassTransit.Tests.NewId_
     using System;
     using NUnit.Framework;
 
-
     [TestFixture]
     public class When_interoperating_with_the_guid_type
     {

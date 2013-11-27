@@ -12,10 +12,10 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Tests.Load.Messages
 {
-	using System;
-	using Magnum;
+    using System;
+    using Magnum;
 
-	public class FirstCommand :
+    public class FirstCommand :
 		First
 	{
 		public FirstCommand(Guid correlationId)

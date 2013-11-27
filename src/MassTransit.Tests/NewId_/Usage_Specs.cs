@@ -15,7 +15,6 @@ namespace MassTransit.Tests.NewId_
     using System;
     using NUnit.Framework;
 
-
     [TestFixture]
     public class Using_a_new_id
     {

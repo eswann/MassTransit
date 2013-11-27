@@ -12,14 +12,14 @@
 // specific language governing permissions and limitations under the License.
 namespace BusDriver.Commands
 {
-	using System;
-	using System.Text;
-	using Formatting;
-	using MassTransit.Logging;
-	using Magnum.Extensions;
-	using MassTransit.Transports;
+    using System;
+    using System.Text;
+    using Formatting;
+    using Magnum.Extensions;
+    using MassTransit.Logging;
+    using MassTransit.Transports;
 
-	public class PeekCommand :
+    public class PeekCommand :
 		Command
 	{
 		static readonly ILog _log = Logger.Get(typeof(PeekCommand));

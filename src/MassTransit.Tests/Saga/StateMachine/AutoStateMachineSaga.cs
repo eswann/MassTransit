@@ -12,13 +12,13 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Tests.Saga.StateMachine
 {
-	using System;
-	using System.Runtime.Serialization;
-	using Magnum.StateMachine;
-	using MassTransit.Saga;
-	using Messages;
+    using System;
+    using System.Runtime.Serialization;
+    using Magnum.StateMachine;
+    using MassTransit.Saga;
+    using Messages;
 
-	[Serializable]
+    [Serializable]
 	public class AutoStateMachineSaga :
 		SagaStateMachine<AutoStateMachineSaga>,
 		ISaga

@@ -1,13 +1,12 @@
 namespace MassTransit.Tests.Serialization
 {
-	using System.Diagnostics;
-	using System.IO;
-	using System.Text;
-	using Context;
-	using Magnum.TestFramework;
-	using MassTransit.Serialization;
+    using System.IO;
+    using System.Text;
+    using Context;
+    using Magnum.TestFramework;
+    using MassTransit.Serialization;
 
-	[Scenario]
+    [Scenario]
 	public class When_an_interface_message_is_bound
 	{
 		string _message;

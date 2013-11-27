@@ -12,10 +12,10 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Testing.ScenarioBuilders
 {
-	using System;
-	using BusConfigurators;
+    using System;
+    using BusConfigurators;
 
-	public interface ILocalRemoteScenarioBuilder :
+    public interface ILocalRemoteScenarioBuilder :
 		IEndpointScenarioBuilder<ILocalRemoteTestScenario>
 	{
 		void ConfigureLocalBus(Action<IServiceBusConfigurator> configureCallback);

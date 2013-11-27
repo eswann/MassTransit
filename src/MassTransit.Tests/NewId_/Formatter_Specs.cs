@@ -16,7 +16,6 @@ namespace MassTransit.Tests.NewId_
     using NewIdFormatters;
     using NewIdParsers;
 
-
     [TestFixture]
     public class Using_the_newid_formatters
     {

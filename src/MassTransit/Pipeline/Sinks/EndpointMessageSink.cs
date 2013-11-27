@@ -12,9 +12,9 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Pipeline.Sinks
 {
-	using System;
-	using System.Collections.Generic;
-	using Context;
+    using System;
+    using System.Collections.Generic;
+    using Context;
 
     /// <summary>
 	/// A message sink that sends to an endpoint

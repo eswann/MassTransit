@@ -12,10 +12,10 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Testing
 {
-	using Scenarios;
-	using Subjects;
+    using Scenarios;
+    using Subjects;
 
-	public interface ConsumerTest<TConsumer> :
+    public interface ConsumerTest<TConsumer> :
 		ITestInstance
 		where TConsumer : class
 	{

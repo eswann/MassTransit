@@ -12,11 +12,11 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Saga.SubscriptionConnectors
 {
-	using System;
-	using Exceptions;
-	using Pipeline;
+    using System;
+    using Exceptions;
+    using Pipeline;
 
-	public class InitiatedBySagaSubscriptionConnector<TSaga, TMessage> :
+    public class InitiatedBySagaSubscriptionConnector<TSaga, TMessage> :
 		SagaSubscriptionConnector<TSaga, TMessage>
 		where TSaga : class, ISaga, InitiatedBy<TMessage>
 		where TMessage : class, IAmCorrelatedBy<Guid>

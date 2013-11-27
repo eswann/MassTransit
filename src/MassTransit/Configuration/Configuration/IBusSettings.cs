@@ -12,9 +12,9 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Configuration
 {
-	using System;
+    using System;
 
-	/// <summary>
+    /// <summary>
 	/// Interface with bus settings. Each bus needs to have its own settings,
 	/// and you may have multiple buses with different sets of settings, active,
 	/// at any given point in time of your application.

@@ -12,16 +12,16 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.TestFramework.Fixtures
 {
-	using System;
-	using System.Collections.Generic;
-	using System.Diagnostics;
-	using System.Linq;
-	using Logging;
-	using Magnum.Extensions;
-	using Magnum.TestFramework;
-	using NUnit.Framework;
+    using System;
+    using System.Collections.Generic;
+    using System.Diagnostics;
+    using System.Linq;
+    using Logging;
+    using Magnum.Extensions;
+    using Magnum.TestFramework;
+    using NUnit.Framework;
 
-	[TestFixture]
+    [TestFixture]
 	public class AbstractTestFixture
 	{
 		[TestFixtureSetUp]

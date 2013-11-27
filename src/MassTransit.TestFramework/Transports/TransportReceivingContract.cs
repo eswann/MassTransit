@@ -12,12 +12,12 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.TestFramework.Transports
 {
-	using System;
-	using MassTransit.Transports;
-	using Messages;
-	using NUnit.Framework;
+    using System;
+    using MassTransit.Transports;
+    using Messages;
+    using NUnit.Framework;
 
-	public abstract class TransportReceivingContract<TTransportFactory>
+    public abstract class TransportReceivingContract<TTransportFactory>
 		where TTransportFactory : class, ITransportFactory, new()
 	{
 		IEndpoint _endpoint;

@@ -14,9 +14,9 @@ namespace MassTransit.Tests.Testing
 {
     using Context;
     using Magnum.TestFramework;
-	using MassTransit.Testing;
+    using MassTransit.Testing;
 
-	[Scenario]
+    [Scenario]
 	public class When_a_handler_responds_to_a_message
 	{
 		IHandlerTest<A> _test;

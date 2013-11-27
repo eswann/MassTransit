@@ -12,11 +12,11 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Saga.Configuration
 {
-    using MassTransit.Logging;
+    using Logging;
     using Magnum;
-    using MassTransit.Saga.SubscriptionConfigurators;
-    using MassTransit.Saga.SubscriptionConnectors;
     using MassTransit.SubscriptionConfigurators;
+    using SubscriptionConfigurators;
+    using SubscriptionConnectors;
 
     public static class SagaSubscriptionConfiguratorExtensions
     {

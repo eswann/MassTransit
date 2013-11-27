@@ -13,7 +13,6 @@
 namespace MassTransit.Tests.Transports
 {
     using System;
-    using MassTransit.Transports;
     using MassTransit.Transports.Loopback;
     using NUnit.Framework;
     using TestFramework.Transports;

@@ -11,14 +11,13 @@
 // CONDITIONS OF ANY KIND, either express or implied. See the License for the 
 // specific language governing permissions and limitations under the License.
 
-using MassTransit.Exceptions;
-using MassTransit.Transports;
-using MassTransit.Util;
-
 namespace MassTransit
 {
     using System;
     using Diagnostics.Introspection;
+    using Exceptions;
+    using Transports;
+    using Util;
 
     /// <summary>
     /// The endpoint factory methods used to retrieve objects implementing IEndpoint from Uris.

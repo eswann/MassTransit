@@ -12,12 +12,12 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Testing
 {
-	using System;
-	using Configuration;
-	using Scenarios;
-	using TestInstanceConfigurators;
+    using System;
+    using Configuration;
+    using Scenarios;
+    using TestInstanceConfigurators;
 
-	public static class ConsumerTestConfiguratorExtensions
+    public static class ConsumerTestConfiguratorExtensions
 	{
 		public static void ConstructUsing<TScenario, TConsumer>(
 			this IConsumerTestInstanceConfigurator<TScenario, TConsumer> configurator,

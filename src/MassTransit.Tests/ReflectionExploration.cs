@@ -3,10 +3,10 @@ namespace MassTransit.Tests
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using Magnum.Extensions;
+    using Magnum.TestFramework;
     using MassTransit.Saga;
     using NUnit.Framework;
-    using Magnum.TestFramework;
-    using Magnum.Extensions;
     using TestFramework;
 
     [TestFixture]

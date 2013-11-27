@@ -12,20 +12,19 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Tests.Saga.StateMachine
 {
-	using System;
-	using System.Linq;
-	using Exceptions;
-	using Locator;
-	using Magnum.TestFramework;
-	using MassTransit.Pipeline;
-	using MassTransit.Pipeline.Inspectors;
-	using MassTransit.Saga;
-	using MassTransit.Saga.Configuration;
-	using NUnit.Framework;
-	using TestFramework;
-	using TextFixtures;
+    using System;
+    using Exceptions;
+    using Locator;
+    using Magnum.TestFramework;
+    using MassTransit.Pipeline;
+    using MassTransit.Pipeline.Inspectors;
+    using MassTransit.Saga;
+    using MassTransit.Saga.Configuration;
+    using NUnit.Framework;
+    using TestFramework;
+    using TextFixtures;
 
-	[TestFixture]
+    [TestFixture]
 	public class When_an_initiating_message_for_a_saga_arrives :
 		LoopbackTestFixture
 	{
@@ -49,7 +48,7 @@ namespace MassTransit.Tests.Saga.StateMachine
 		[Test]
 		public void The_saga_should_be_created_when_an_initiating_message_is_received()
 		{
-			InitiateSimpleSaga message = new InitiateSimpleSaga(_sagaId);
+			var message = new InitiateSimpleSaga(_sagaId);
 
 			LocalBus.InboundPipeline.Dispatch(message);
 
@@ -106,7 +105,7 @@ namespace MassTransit.Tests.Saga.StateMachine
 		[Test]
 		public void An_exception_should_be_thrown()
 		{
-			InitiateSimpleSaga message = new InitiateSimpleSaga(_sagaId);
+			var message = new InitiateSimpleSaga(_sagaId);
 
 			LocalBus.InboundPipeline.Dispatch(message);
 

@@ -12,16 +12,16 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Serialization.Custom.TypeDeserializers
 {
-	using System;
-	using System.Collections.Generic;
-	using System.Xml;
+    using System;
+    using System.Collections.Generic;
+    using System.Xml;
 
-	public class DictionaryDeserializer<TKey, TValue> :
+    public class DictionaryDeserializer<TKey, TValue> :
 		IObjectDeserializer<IDictionary<TKey, TValue>>
 	{
 		public object Deserialize(IDeserializerContext context)
 		{
-			Dictionary<TKey, TValue> dictionary = new Dictionary<TKey, TValue>();
+			var dictionary = new Dictionary<TKey, TValue>();
 
 			if (DictionaryIsEmpty(context))
 				return dictionary;

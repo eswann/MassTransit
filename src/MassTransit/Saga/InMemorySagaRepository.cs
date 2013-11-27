@@ -27,7 +27,7 @@ namespace MassTransit.Saga
         where TSaga : class, ISaga
     {
         private static readonly ILog _log = Logger.Get(typeof(InMemorySagaRepository<TSaga>));
-        IndexedSagaDictionary<TSaga> _sagas;
+        readonly IndexedSagaDictionary<TSaga> _sagas;
 
         public InMemorySagaRepository()
         {

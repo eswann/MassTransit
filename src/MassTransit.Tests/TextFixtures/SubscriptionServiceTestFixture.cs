@@ -12,17 +12,14 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Tests.TextFixtures
 {
-	using System;
-	using System.Collections.Generic;
-	using BusConfigurators;
-	using Magnum.Extensions;
-	using MassTransit.Saga;
-	using MassTransit.Services.Subscriptions.Configuration;
-	using MassTransit.Services.Subscriptions.Server;
-	using MassTransit.Transports;
-	using NUnit.Framework;
+    using BusConfigurators;
+    using MassTransit.Saga;
+    using MassTransit.Services.Subscriptions.Configuration;
+    using MassTransit.Services.Subscriptions.Server;
+    using MassTransit.Transports;
+    using NUnit.Framework;
 
-	[TestFixture, Ignore]
+    [TestFixture, Ignore]
 	public class SubscriptionServiceTestFixture<TTransportFactory> :
 		EndpointTestFixture<TTransportFactory>
 		where TTransportFactory : class, ITransportFactory, new()

@@ -12,12 +12,12 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Saga
 {
-	using System;
-	using System.Collections.Generic;
-	using Context;
-	using MassTransit.Pipeline;
+    using System;
+    using System.Collections.Generic;
+    using Context;
+    using MassTransit.Pipeline;
 
-	/// <summary>
+    /// <summary>
 	/// A saga repository is used by the service bus to dispatch messages to sagas
 	/// </summary>
 	/// <typeparam name="TSaga"></typeparam>

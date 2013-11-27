@@ -14,7 +14,6 @@ namespace MassTransit.Pipeline.Configuration
 {
     using System;
     using Context;
-    using Pipeline;
     using Sinks;
 
     public static class ExtensionsForPipelineConfiguration

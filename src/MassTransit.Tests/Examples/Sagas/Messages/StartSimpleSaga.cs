@@ -12,9 +12,9 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Tests.Examples.Sagas.Messages
 {
-	using System;
+    using System;
 
-	public class StartSimpleSaga :
+    public class StartSimpleSaga :
 		IAmCorrelatedBy<Guid>
 	{
 		public Guid CorrelationId { get; set; }

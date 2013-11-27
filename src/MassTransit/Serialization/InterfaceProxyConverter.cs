@@ -12,11 +12,11 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Serialization
 {
-	using System;
-	using Magnum.Reflection;
-	using Newtonsoft.Json;
+    using System;
+    using Magnum.Reflection;
+    using Newtonsoft.Json;
 
-	public class InterfaceProxyConverter :
+    public class InterfaceProxyConverter :
 		JsonConverter
 	{
 		public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)

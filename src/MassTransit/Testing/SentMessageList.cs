@@ -38,7 +38,7 @@ namespace MassTransit.Testing
     {
         private readonly HashSet<ISentMessage> _messages;
         private readonly AutoResetEvent _received;
-        TimeSpan _timeout = 12.Seconds();
+        readonly TimeSpan _timeout = 12.Seconds();
 
         public SentMessageList()
         {

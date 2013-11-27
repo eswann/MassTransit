@@ -15,7 +15,6 @@ namespace MassTransit.Tests.Serialization
     using System;
     using BusConfigurators;
     using Magnum.TestFramework;
-    using MassTransit.Transports;
     using MassTransit.Transports.Loopback;
     using TestFramework;
     using TextFixtures;

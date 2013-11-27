@@ -12,9 +12,9 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Tests
 {
-	using System;
-	using System.Diagnostics;
-	using System.Threading;
+    using System;
+    using System.Diagnostics;
+    using System.Threading;
 
     /// <summary>
     /// A simple class that helps to work with the async nature of messaging

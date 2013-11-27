@@ -19,7 +19,6 @@ namespace MassTransit.EndpointConfigurators
     using Exceptions;
     using Serialization;
 
-
     public class AddSerializerEndpointFactoryConfigurator :
         IEndpointFactoryBuilderConfigurator
     {

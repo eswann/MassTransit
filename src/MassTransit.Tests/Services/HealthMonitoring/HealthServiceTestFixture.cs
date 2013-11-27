@@ -12,18 +12,18 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Tests.Services.HealthMonitoring
 {
-	using System.Threading;
-	using MassTransit.Saga;
-	using MassTransit.Services.HealthMonitoring;
-	using MassTransit.Services.HealthMonitoring.Messages;
-	using MassTransit.Services.HealthMonitoring.Server;
-	using MassTransit.Services.Timeout.Messages;
-	using MassTransit.Transports.Loopback;
-	using NUnit.Framework;
-	using TextFixtures;
-	using TestFramework;
+    using System.Threading;
+    using MassTransit.Saga;
+    using MassTransit.Services.HealthMonitoring;
+    using MassTransit.Services.HealthMonitoring.Messages;
+    using MassTransit.Services.HealthMonitoring.Server;
+    using MassTransit.Services.Timeout.Messages;
+    using MassTransit.Transports.Loopback;
+    using NUnit.Framework;
+    using TestFramework;
+    using TextFixtures;
 
-	[TestFixture]
+    [TestFixture]
 	public class HealthServiceTestFixture :
 		SubscriptionServiceTestFixture<LoopbackTransportFactory>
 	{

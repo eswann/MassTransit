@@ -11,16 +11,15 @@
 // CONDITIONS OF ANY KIND, either express or implied. See the License for the 
 // specific language governing permissions and limitations under the License.
 
-using MassTransit.Util;
-
 namespace MassTransit.Transports
 {
-	using System;
-	using System.Transactions;
-	using Magnum;
-	using Magnum.Extensions;
+    using System;
+    using System.Transactions;
+    using Magnum;
+    using Magnum.Extensions;
+    using Util;
 
-	public class TransportSettings :
+    public class TransportSettings :
 		ITransportSettings
 	{
 		public TransportSettings([NotNull] IEndpointAddress address)

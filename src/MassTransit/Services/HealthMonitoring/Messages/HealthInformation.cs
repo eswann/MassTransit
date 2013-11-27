@@ -12,9 +12,9 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Services.HealthMonitoring.Messages
 {
-	using System;
+    using System;
 
-	[Serializable]
+    [Serializable]
 	public class HealthInformation
 	{
 		public HealthInformation(Guid clientId, Uri controlUri, Uri dataUri, DateTime lastHeartbeat, string state)

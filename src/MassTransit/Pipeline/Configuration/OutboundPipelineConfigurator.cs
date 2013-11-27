@@ -15,7 +15,7 @@ namespace MassTransit.Pipeline.Configuration
     using Context;
     using Sinks;
 
-	public class OutboundPipelineConfigurator :
+    public class OutboundPipelineConfigurator :
 		IOutboundPipelineConfigurator
 	{
 		readonly IServiceBus _bus;

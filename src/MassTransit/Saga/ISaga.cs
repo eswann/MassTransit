@@ -13,7 +13,6 @@
 namespace MassTransit.Saga
 {
     using System;
-    
 
     /// <summary>
     /// Defines a component as a saga

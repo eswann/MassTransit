@@ -12,10 +12,10 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit
 {
-	using System;
-	using BusConfigurators;
+    using System;
+    using BusConfigurators;
 
-	public static class ControlBusConfigurationExtensions
+    public static class ControlBusConfigurationExtensions
 	{
 		/// <summary>
 		/// Create a control bus using the default settings and associate it with the ServiceBus being configured.

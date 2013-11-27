@@ -13,9 +13,9 @@
 namespace MassTransit.Diagnostics
 {
     using System;
-    using MassTransit.BusConfigurators;
-    using MassTransit.BusServiceConfigurators;
-    using MassTransit.Diagnostics.Introspection;
+    using BusConfigurators;
+    using BusServiceConfigurators;
+    using Introspection;
     using Magnum.FileSystem;
 
     public static class IntrospectionExtensions

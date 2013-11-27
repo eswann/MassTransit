@@ -12,9 +12,8 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.TestFramework.Fixtures
 {
-	using System;
-	using Diagnostics;
-	using Diagnostics.Introspection;
+    using System;
+    using Diagnostics.Introspection;
 
     public class EndpointCacheProxy :
 		IEndpointCache

@@ -12,11 +12,11 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Tests.Saga.Locator
 {
-	using System;
-	using Magnum.StateMachine;
-	using MassTransit.Saga;
+    using System;
+    using Magnum.StateMachine;
+    using MassTransit.Saga;
 
-	public class TestSaga :
+    public class TestSaga :
 		SagaStateMachine<TestSaga>,
 		ISaga
 	{

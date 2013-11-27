@@ -1,20 +1,21 @@
 ﻿namespace MassTransit.Tests.Subscriptions
 {
     using System.Linq;
+    using BusConfigurators;
     using Magnum.Extensions;
     using Magnum.TestFramework;
     using MassTransit.Subscriptions;
+    using MassTransit.Testing;
     using NUnit.Framework;
     using TextFixtures;
-    using MassTransit.Testing;
 
     [TestFixture]
     public class When_a_static_and_dynamic_subscription_are_on_the_same_bus :
         LoopbackLocalAndRemoteTestFixture
     {
-        FutureMessage<A> _receivedA;
-        FutureMessage<B> _receivedB;
-        FutureMessage<C> _receivedC;
+        readonly FutureMessage<A> _receivedA;
+        readonly FutureMessage<B> _receivedB;
+        readonly FutureMessage<C> _receivedC;
 
         public When_a_static_and_dynamic_subscription_are_on_the_same_bus()
         {
@@ -23,7 +24,7 @@
             _receivedC = new FutureMessage<C>();
         }
 
-        protected override void ConfigureRemoteBus(BusConfigurators.IServiceBusConfigurator configurator)
+        protected override void ConfigureRemoteBus(IServiceBusConfigurator configurator)
         {
             base.ConfigureRemoteBus(configurator);
 

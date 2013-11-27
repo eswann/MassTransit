@@ -20,7 +20,7 @@ namespace MassTransit.Services.HealthMonitoring
     using Saga.Configuration;
     using Server;
 
-	/// <summary>
+    /// <summary>
 	/// The health service attempts to track all known endpoints and monitor their status for up/down. 
 	/// </summary>
     public class HealthService :

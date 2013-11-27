@@ -13,9 +13,9 @@
 namespace MassTransit.Services.Subscriptions.Configuration
 {
     using System;
-    using MassTransit.BusConfigurators;
-    using MassTransit.SubscriptionConfigurators;
-    using MassTransit.Util;
+    using BusConfigurators;
+    using SubscriptionConfigurators;
+    using Util;
 
     public static class SubscriptionClientConfiguratorExtensions
     {

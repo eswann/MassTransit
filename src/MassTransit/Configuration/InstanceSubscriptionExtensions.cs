@@ -12,12 +12,12 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit
 {
-	using Magnum;
-	using SubscriptionConfigurators;
-	using SubscriptionConnectors;
-	using Util;
+    using Magnum;
+    using SubscriptionConfigurators;
+    using SubscriptionConnectors;
+    using Util;
 
-	/// <summary>
+    /// <summary>
 	/// Extensions for subscribing object instances.
 	/// </summary>
 	public static class InstanceSubscriptionExtensions

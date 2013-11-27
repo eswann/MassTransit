@@ -16,7 +16,6 @@ namespace MassTransit
     using NewIdFormatters;
     using NewIdProviders;
 
-
     /// <summary>
     /// A NewId is a type that fits into the same space as a Guid/Uuid/uniqueidentifier,
     /// but is guaranteed to be both unique and ordered, assuming it is generated using
@@ -29,13 +28,13 @@ namespace MassTransit
         IFormattable
     {
         public static readonly NewId Empty = new NewId(0, 0, 0, 0);
-        static INewIdFormatter _braceFormatter = new DashedHexFormatter('{', '}');
-        static INewIdFormatter _dashedHexFormatter = new DashedHexFormatter();
+        static readonly INewIdFormatter _braceFormatter = new DashedHexFormatter('{', '}');
+        static readonly INewIdFormatter _dashedHexFormatter = new DashedHexFormatter();
 
         static NewIdGenerator _generator;
 
-        static INewIdFormatter _hexFormatter = new HexFormatter();
-        static INewIdFormatter _parenFormatter = new DashedHexFormatter('(', ')');
+        static readonly INewIdFormatter _hexFormatter = new HexFormatter();
+        static readonly INewIdFormatter _parenFormatter = new DashedHexFormatter('(', ')');
         static ITickProvider _tickProvider;
         static IWorkerIdProvider _workerIdProvider;
 

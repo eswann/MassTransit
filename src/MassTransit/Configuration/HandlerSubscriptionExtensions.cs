@@ -12,13 +12,13 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit
 {
-	using System;
-	using Context;
-	using Pipeline;
-	using SubscriptionConfigurators;
-	using SubscriptionConnectors;
+    using System;
+    using Context;
+    using Pipeline;
+    using SubscriptionConfigurators;
+    using SubscriptionConnectors;
 
-	public static class HandlerSubscriptionExtensions
+    public static class HandlerSubscriptionExtensions
 	{
 		/// <summary>
 		/// Subscribes a message handler (which can be any delegate of the message type,

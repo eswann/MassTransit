@@ -12,11 +12,11 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Testing.TestDecorators
 {
-	using System;
-	using Context;
-	using Saga;
+    using System;
+    using Context;
+    using Saga;
 
-	public class SagaPolicyTestDecorator<TSaga, TMessage> :
+    public class SagaPolicyTestDecorator<TSaga, TMessage> :
 		ISagaPolicy<TSaga, TMessage>
 		where TMessage : class
 		where TSaga : class, ISaga

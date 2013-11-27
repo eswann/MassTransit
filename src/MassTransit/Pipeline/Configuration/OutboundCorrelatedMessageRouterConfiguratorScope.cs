@@ -14,10 +14,10 @@ namespace MassTransit.Pipeline.Configuration
 {
     using Context;
     using Inspectors;
-	using Sinks;
-	using Util;
+    using Sinks;
+    using Util;
 
-	public class OutboundCorrelatedMessageRouterConfiguratorScope<TMessage, TKey> :
+    public class OutboundCorrelatedMessageRouterConfiguratorScope<TMessage, TKey> :
 		PipelineInspectorBase<OutboundCorrelatedMessageRouterConfiguratorScope<TMessage, TKey>>
 		where TMessage : class, IAmCorrelatedBy<TKey>
 	{

@@ -12,11 +12,11 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.EnvironmentConfigurators
 {
-	using System;
-	using BusConfigurators;
-	using Configuration;
+    using System;
+    using BusConfigurators;
+    using Configuration;
 
-	public class DelegateEnvironmentConfigurator :
+    public class DelegateEnvironmentConfigurator :
 		IServiceBusEnvironment
 	{
 		readonly Action<IServiceBusConfigurator> _callback;

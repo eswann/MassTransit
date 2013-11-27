@@ -12,16 +12,16 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Tests.Pipeline
 {
-	using System;
-	using Context;
-	using MassTransit.Pipeline;
-	using MassTransit.Pipeline.Configuration;
-	using MassTransit.Pipeline.Inspectors;
-	using Messages;
-	using NUnit.Framework;
-	using Rhino.Mocks;
+    using System;
+    using Context;
+    using MassTransit.Pipeline;
+    using MassTransit.Pipeline.Configuration;
+    using MassTransit.Pipeline.Inspectors;
+    using Messages;
+    using NUnit.Framework;
+    using Rhino.Mocks;
 
-	[TestFixture]
+    [TestFixture]
 	public class When_pushing_a_message_through_an_outbound_pipeline
 	{
 		[SetUp]

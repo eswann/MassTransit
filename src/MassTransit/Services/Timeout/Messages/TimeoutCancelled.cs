@@ -12,9 +12,9 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Services.Timeout.Messages
 {
-	using System;
+    using System;
 
-	[Serializable]
+    [Serializable]
 	public class TimeoutCancelled :
 		IAmCorrelatedBy<Guid>
 	{

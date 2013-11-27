@@ -18,7 +18,6 @@ namespace MassTransit.EndpointConfigurators
     using Transports;
     using Util;
 
-
     public interface IEndpointFactoryDefaultSettings
     {
         MessageTrackerFactory TrackerFactory { get; }

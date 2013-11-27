@@ -12,13 +12,13 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.TestFramework.Fixtures
 {
-	using System;
-	using BusConfigurators;
-	using MassTransit.Transports;
-	using NUnit.Framework;
-	using Saga;
-	using Services.Subscriptions.Configuration;
-	using Services.Subscriptions.Server;
+    using System;
+    using BusConfigurators;
+    using MassTransit.Transports;
+    using NUnit.Framework;
+    using Saga;
+    using Services.Subscriptions.Configuration;
+    using Services.Subscriptions.Server;
 
     [TestFixture, Ignore]
 	public class SubscriptionServiceTestFixture<TTransportFactory> :

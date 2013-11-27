@@ -12,16 +12,16 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Testing.TestInstanceConfigurators
 {
-	using System;
-	using System.Collections.Generic;
-	using System.Linq;
-	using ActionConfigurators;
-	using Builders;
-	using Configurators;
-	using Magnum.Extensions;
-	using ScenarioBuilders;
-	using ScenarioConfigurators;
-	using Scenarios;
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using ActionConfigurators;
+    using Builders;
+    using Configurators;
+    using Magnum.Extensions;
+    using ScenarioBuilders;
+    using ScenarioConfigurators;
+    using Scenarios;
 
     public interface ITestInstanceConfigurator<TScenario> :
     ITestInstanceConfigurator

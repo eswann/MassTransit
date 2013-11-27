@@ -12,14 +12,14 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Tests.Serialization
 {
-	using System.IO;
-	using System.Text;
-	using Context;
-	using Magnum.TestFramework;
-	using MassTransit.Serialization;
-	using NUnit.Framework;
+    using System.IO;
+    using System.Text;
+    using Context;
+    using Magnum.TestFramework;
+    using MassTransit.Serialization;
+    using NUnit.Framework;
 
-	[TestFixture]
+    [TestFixture]
 	public class Deserializing_a_message_with_a_different_clr_version
 	{
 		[Test]

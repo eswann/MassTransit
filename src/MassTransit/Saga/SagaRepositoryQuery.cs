@@ -12,10 +12,10 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Saga
 {
-	using System;
-	using System.Linq.Expressions;
+    using System;
+    using System.Linq.Expressions;
 
-	public class SagaRepositoryQuery<TSaga, TResult>
+    public class SagaRepositoryQuery<TSaga, TResult>
 		where TSaga : class, ISaga
 	{
 		readonly Func<TSaga, bool> _filter;

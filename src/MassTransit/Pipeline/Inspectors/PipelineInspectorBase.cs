@@ -12,10 +12,10 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Pipeline.Inspectors
 {
-	using System;
-	using Magnum.Reflection;
+    using System;
+    using Magnum.Reflection;
 
-	/// <summary>
+    /// <summary>
 	/// Base class for pipeline inspectors
 	/// </summary>
 	public class PipelineInspectorBase<TVisitor> :

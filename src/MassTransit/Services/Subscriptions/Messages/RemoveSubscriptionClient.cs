@@ -12,9 +12,9 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Services.Subscriptions.Messages
 {
-	using System;
+    using System;
 
-	[Serializable]
+    [Serializable]
 	public class RemoveSubscriptionClient :
 		SubscriptionClientMessageBase
 	{

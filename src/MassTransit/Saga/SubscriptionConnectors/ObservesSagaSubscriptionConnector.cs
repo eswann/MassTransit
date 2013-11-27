@@ -12,13 +12,13 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Saga.SubscriptionConnectors
 {
-	using System;
-	using System.Linq.Expressions;
-	using Exceptions;
-	using Magnum.Reflection;
-	using Pipeline;
+    using System;
+    using System.Linq.Expressions;
+    using Exceptions;
+    using Magnum.Reflection;
+    using Pipeline;
 
-	public class ObservesSagaSubscriptionConnector<TSaga, TMessage> :
+    public class ObservesSagaSubscriptionConnector<TSaga, TMessage> :
 		SagaSubscriptionConnector<TSaga, TMessage>
 		where TSaga : class, ISaga, IObserve<TMessage, TSaga>
 		where TMessage : class

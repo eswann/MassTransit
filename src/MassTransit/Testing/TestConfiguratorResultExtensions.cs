@@ -12,9 +12,9 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Testing
 {
-	using Configurators;
+    using Configurators;
 
-	public static class TestConfiguratorResultExtensions
+    public static class TestConfiguratorResultExtensions
 	{
 		public static ITestConfiguratorResult Failure(this ITestConfigurator configurator, string message)
 		{

@@ -19,7 +19,6 @@ namespace MassTransit.Containers.Tests
     using Scenarios;
     using SubscriptionConfigurators;
 
-
     [Scenario]
     public class Autofac_Consumer :
         When_registering_a_consumer

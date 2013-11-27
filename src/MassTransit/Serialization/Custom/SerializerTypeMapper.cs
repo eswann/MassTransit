@@ -12,7 +12,7 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Serialization.Custom
 {
-	using System;
+    using System;
 
-	public delegate Type SerializerTypeMapper(Type declaringType, Type propertyType, object value);
+    public delegate Type SerializerTypeMapper(Type declaringType, Type propertyType, object value);
 }

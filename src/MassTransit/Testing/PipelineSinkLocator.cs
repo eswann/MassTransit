@@ -12,13 +12,13 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Testing
 {
-	using System.Collections.Generic;
-	using System.Linq;
-	using Pipeline;
-	using Pipeline.Inspectors;
-	using Pipeline.Sinks;
+    using System.Collections.Generic;
+    using System.Linq;
+    using Pipeline;
+    using Pipeline.Inspectors;
+    using Pipeline.Sinks;
 
-	public class PipelineSinkLocator<T> :
+    public class PipelineSinkLocator<T> :
 		PipelineInspectorBase<PipelineSinkLocator<T>>
 		where T : class
 	{

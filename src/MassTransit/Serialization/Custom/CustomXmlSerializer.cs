@@ -12,13 +12,13 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Serialization.Custom
 {
-	using System.IO;
-	using System.Linq;
-	using System.Runtime.Serialization;
-	using System.Text;
-	using System.Xml;
+    using System.IO;
+    using System.Linq;
+    using System.Runtime.Serialization;
+    using System.Text;
+    using System.Xml;
 
-	public class CustomXmlSerializer :
+    public class CustomXmlSerializer :
 		IXmlSerializer
 	{
 		readonly XmlReaderSettings _readerSettings;

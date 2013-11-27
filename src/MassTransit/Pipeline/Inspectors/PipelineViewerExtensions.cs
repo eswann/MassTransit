@@ -13,7 +13,6 @@
 namespace MassTransit.Pipeline.Inspectors
 {
     using System;
-    using MassTransit.Pipeline;
 
     public static class PipelineViewerExtensions
     {

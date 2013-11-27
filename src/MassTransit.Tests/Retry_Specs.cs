@@ -14,12 +14,12 @@ namespace MassTransit.Tests
 {
     using Context;
     using Magnum.Extensions;
-	using Messages;
-	using NUnit.Framework;
-	using TestFramework;
-	using TextFixtures;
+    using Messages;
+    using NUnit.Framework;
+    using TestFramework;
+    using TextFixtures;
 
-	[TestFixture]
+    [TestFixture]
 	public class When_a_message_consumer_specifies_that_it_should_retry_a_message :
 		LoopbackTestFixture
 	{

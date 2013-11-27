@@ -12,18 +12,18 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Saga.SubscriptionConnectors
 {
-	using System;
-	using System.Collections.Generic;
-	using System.Linq.Expressions;
-	using Configuration;
-	using Exceptions;
-	using Magnum.StateMachine;
-	using MassTransit.Pipeline;
-	using MassTransit.Pipeline.Configuration;
-	using Pipeline;
-	using Util;
+    using System;
+    using System.Collections.Generic;
+    using System.Linq.Expressions;
+    using Configuration;
+    using Exceptions;
+    using Magnum.StateMachine;
+    using MassTransit.Pipeline;
+    using MassTransit.Pipeline.Configuration;
+    using Pipeline;
+    using Util;
 
-	public class CorrelatedSagaSubscriptionConnector<TSaga, TMessage> :
+    public class CorrelatedSagaSubscriptionConnector<TSaga, TMessage> :
 		ISagaSubscriptionConnector
 		where TSaga : SagaStateMachine<TSaga>, ISaga
 		where TMessage : class, IAmCorrelatedBy<Guid>

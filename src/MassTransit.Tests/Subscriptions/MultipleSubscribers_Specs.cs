@@ -12,7 +12,6 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Tests.Subscriptions
 {
-    using System;
     using System.Collections.Generic;
     using System.Linq;
     using BusConfigurators;
@@ -36,7 +35,7 @@ namespace MassTransit.Tests.Subscriptions
             LocalBus.Publish(new MyMessage());
         }
 
-        List<int> receivedMessages = new List<int>();
+        readonly List<int> receivedMessages = new List<int>();
 
 
         protected override void ConfigureRemoteBus(IServiceBusConfigurator configurator)

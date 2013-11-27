@@ -14,7 +14,7 @@ namespace MassTransit.Services.Timeout.Messages
 {
     using System;
 
-	/// <summary>
+    /// <summary>
 	/// Used by the Timeout Service, cancels the scheduled timeout with the specified CorrelationId
 	/// </summary>
     [Serializable]

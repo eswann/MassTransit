@@ -11,12 +11,11 @@
 // CONDITIONS OF ANY KIND, either express or implied. See the License for the 
 // specific language governing permissions and limitations under the License.
 
-using MassTransit.Util;
-
 namespace MassTransit.Transports
 {
-	using System;
-	using Context;
+    using System;
+    using Context;
+    using Util;
 
     /// <summary>
 	/// The inbound transport takes messages from the underlying transport technology and hands it to the

@@ -12,12 +12,12 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Tests
 {
-	using BusConfigurators;
-	using Magnum.TestFramework;
-	using NUnit.Framework;
-	using TextFixtures;
+    using BusConfigurators;
+    using Magnum.TestFramework;
+    using NUnit.Framework;
+    using TextFixtures;
 
-	[TestFixture]
+    [TestFixture]
 	public class When_creating_a_bus_with_a_separate_control_bus :
 		LoopbackLocalAndRemoteTestFixture
 	{

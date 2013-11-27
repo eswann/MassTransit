@@ -12,9 +12,9 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Tests.Pipeline
 {
-	using Messages;
+    using Messages;
 
-	public class ParticularConsumer :
+    public class ParticularConsumer :
 		Consumes<PingMessage>.Selected
 	{
 		private readonly bool _accept;

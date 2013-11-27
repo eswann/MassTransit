@@ -12,8 +12,8 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Services.HealthMonitoring.Configuration
 {
-    using MassTransit.BusConfigurators;
-    using MassTransit.BusServiceConfigurators;
+    using BusConfigurators;
+    using BusServiceConfigurators;
 
     public static class HealthClientConfiguratorExtensions
 	{

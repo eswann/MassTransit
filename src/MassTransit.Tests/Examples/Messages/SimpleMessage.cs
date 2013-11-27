@@ -12,9 +12,9 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Tests.Examples.Messages
 {
-	using System;
+    using System;
 
-	public class SimpleMessage
+    public class SimpleMessage
 	{
 		public Guid CorrelationId { get; private set; }
 

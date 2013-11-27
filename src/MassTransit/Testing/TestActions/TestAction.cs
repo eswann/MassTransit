@@ -12,9 +12,9 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Testing.TestActions
 {
-	using Scenarios;
+    using Scenarios;
 
-	public interface TestAction<TScenario>
+    public interface TestAction<TScenario>
 		where TScenario : ITestScenario
 	{
 		void Act(TScenario scenario);

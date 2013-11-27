@@ -12,9 +12,9 @@
 // specific language governing permissions and limitations under the License.
 namespace BusDriver
 {
-	using System;
+    using System;
 
-	static class UriExtensions
+    static class UriExtensions
 	{
 		internal static Uri ToUri(this string uriString, string message)
 		{

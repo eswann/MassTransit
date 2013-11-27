@@ -12,8 +12,8 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Pipeline
 {
-	using System;
-	using Context;
+    using System;
+    using Context;
 
     /// <summary>
 	/// Implemented by classes that can be placed in the inbound message pipeline. See

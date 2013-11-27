@@ -12,11 +12,11 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Subscriptions.Coordinator
 {
-	using System;
-	using System.Collections.Generic;
-	using Messages;
+    using System;
+    using System.Collections.Generic;
+    using Messages;
 
-	/// <summary>
+    /// <summary>
 	/// Implementers take care of 
 	/// </summary>
 	public interface SubscriptionRouter

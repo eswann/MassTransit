@@ -12,12 +12,12 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Testing.TestDecorators
 {
-	using System;
-	using System.Collections.Generic;
-	using Context;
-	using Pipeline;
+    using System;
+    using System.Collections.Generic;
+    using Context;
+    using Pipeline;
 
-	public class ConsumerFactoryTestDecorator<TConsumer> :
+    public class ConsumerFactoryTestDecorator<TConsumer> :
 		IConsumerFactory<TConsumer>
 		where TConsumer : class
 	{

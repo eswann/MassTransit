@@ -26,7 +26,6 @@ namespace BusDriver.Commands
     using MassTransit.Logging;
     using MassTransit.Transports;
 
-
     public class LoadCommand :
         Command
     {

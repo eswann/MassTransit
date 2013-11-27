@@ -12,10 +12,10 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Services.HealthMonitoring.Messages
 {
-	using System;
-	using System.Collections.Generic;
+    using System;
+    using System.Collections.Generic;
 
-	[Serializable]
+    [Serializable]
 	public class HealthUpdate
 	{
 		public HealthUpdate()

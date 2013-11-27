@@ -15,12 +15,11 @@ namespace MassTransit.NewIdProviders
     using System;
     using System.Diagnostics;
 
-
     public class StopwatchTickProvider :
         ITickProvider
     {
         DateTime _start;
-        Stopwatch _stopwatch;
+        readonly Stopwatch _stopwatch;
 
         public StopwatchTickProvider()
         {

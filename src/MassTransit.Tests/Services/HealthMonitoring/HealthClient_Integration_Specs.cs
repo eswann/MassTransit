@@ -13,10 +13,7 @@
 namespace MassTransit.Tests.Services.HealthMonitoring
 {
     using System;
-    using System.Linq;
     using System.Threading;
-    using Magnum.Extensions;
-    using Magnum.TestFramework;
     using MassTransit.Pipeline.Inspectors;
     using MassTransit.Saga;
     using MassTransit.Services.HealthMonitoring;

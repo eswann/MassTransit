@@ -15,16 +15,15 @@ namespace MassTransit.Tests.Timeouts
     using System;
     using System.Diagnostics;
     using System.Linq;
-    using System.Threading;
     using Magnum.Extensions;
     using Magnum.TestFramework;
     using MassTransit.Saga;
     using MassTransit.Services.Timeout;
     using MassTransit.Services.Timeout.Messages;
     using MassTransit.Services.Timeout.Server;
+    using MassTransit.Testing;
     using NUnit.Framework;
     using TextFixtures;
-    using MassTransit.Testing;
 
     [TestFixture]
     public class When_scheduling_a_timeout_for_a_new_id :

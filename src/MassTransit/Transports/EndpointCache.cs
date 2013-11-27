@@ -19,7 +19,6 @@ namespace MassTransit.Transports
     using Magnum;
     using Magnum.Caching;
 
-
     public class EndpointCache :
         IEndpointCache
     {

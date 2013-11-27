@@ -12,9 +12,9 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Transports
 {
-	using System;
-	using System.Runtime.Serialization;
-	using MassTransit.Exceptions;
+    using System;
+    using System.Runtime.Serialization;
+    using Exceptions;
 
     [Serializable]
 	public class InvalidConnectionException : TransportException

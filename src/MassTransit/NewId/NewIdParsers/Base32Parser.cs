@@ -14,7 +14,6 @@ namespace MassTransit.NewIdParsers
 {
     using System;
 
-
     public class Base32Parser :
         INewIdParser
     {

@@ -12,13 +12,12 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Tests
 {
-	using System;
-	using Magnum.TestFramework;
-	using NUnit.Framework;
-	using Util;
-	using Magnum.Extensions;
+    using System;
+    using Magnum.TestFramework;
+    using NUnit.Framework;
+    using Util;
 
-	[Scenario]
+    [Scenario]
 	public class Advanced_Uri_Specs
 	{
 		Uri _baseUri;

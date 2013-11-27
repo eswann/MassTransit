@@ -12,7 +12,7 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Serialization.Custom.TypeSerializers
 {
-	using System.Xml;
+    using System.Xml;
 
 #pragma warning disable 3009
 	public class UIntSerializer :

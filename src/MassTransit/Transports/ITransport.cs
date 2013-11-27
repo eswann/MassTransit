@@ -12,9 +12,9 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Transports
 {
-	using System;
+    using System;
 
-	public interface ITransport :
+    public interface ITransport :
 		IDisposable
 	{
 		IEndpointAddress Address { get; }

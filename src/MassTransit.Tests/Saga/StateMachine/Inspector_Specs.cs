@@ -12,12 +12,12 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Tests.Saga.StateMachine
 {
-	using System.Linq;
-	using Locator;
-	using Magnum.TestFramework;
-	using NUnit.Framework;
+    using System.Linq;
+    using Locator;
+    using Magnum.TestFramework;
+    using NUnit.Framework;
 
-	[TestFixture]
+    [TestFixture]
 	public class Inspecting_a_state_machine_driven_saga : 
 		StateMachineSubscriberTestBase
 	{

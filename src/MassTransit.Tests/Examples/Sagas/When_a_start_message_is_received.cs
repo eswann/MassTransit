@@ -12,10 +12,10 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Tests.Examples.Sagas
 {
-	using Messages;
-	using Magnum.TestFramework;
+    using Magnum.TestFramework;
+    using Messages;
 
-	[Scenario]
+    [Scenario]
 	public class When_a_start_message_is_received :
 		Given_a_simple_saga_does_not_exist
 	{

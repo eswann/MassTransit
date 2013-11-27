@@ -12,9 +12,7 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Subscriptions
 {
-	using System;
-
-	public class DisposableUnsubscribeAction :
+    public class DisposableUnsubscribeAction :
 		IUnsubscribeAction
 	{
 		UnsubscribeAction _action;

@@ -12,12 +12,12 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Util
 {
-	using System;
-	using System.Collections.Generic;
-	using System.Collections.ObjectModel;
-	using System.Linq.Expressions;
+    using System;
+    using System.Collections.Generic;
+    using System.Collections.ObjectModel;
+    using System.Linq.Expressions;
 
-	public abstract class ExpressionVisitor
+    public abstract class ExpressionVisitor
 	{
 		protected virtual Expression Visit(Expression exp)
 		{

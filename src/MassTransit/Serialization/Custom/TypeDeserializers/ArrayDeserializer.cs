@@ -12,9 +12,9 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Serialization.Custom.TypeDeserializers
 {
-	using System.Collections.Generic;
+    using System.Collections.Generic;
 
-	public class ArrayDeserializer<T> :
+    public class ArrayDeserializer<T> :
 		EnumerableDeserializerBase<T>
 	{
 		public override object Deserialize(IDeserializerContext context)

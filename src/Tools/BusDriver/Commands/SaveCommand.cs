@@ -12,19 +12,18 @@
 // specific language governing permissions and limitations under the License.
 namespace BusDriver.Commands
 {
-	using System;
-	using System.IO;
-	using System.Text;
-	using Formatting;
-	using MassTransit.Context;
-	using MassTransit.Logging;
-	using Magnum.Extensions;
-	using Magnum.FileSystem;
-	using Magnum.FileSystem.Internal;
-	using MassTransit;
-	using MassTransit.Transports;
+    using System;
+    using System.IO;
+    using System.Text;
+    using Formatting;
+    using Magnum.Extensions;
+    using Magnum.FileSystem;
+    using Magnum.FileSystem.Internal;
+    using MassTransit.Context;
+    using MassTransit.Logging;
+    using MassTransit.Transports;
 
-	public class SaveCommand :
+    public class SaveCommand :
 		Command
 	{
 		static readonly ILog _log = Logger.Get(typeof (SaveCommand));

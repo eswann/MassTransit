@@ -12,11 +12,11 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Testing.Factories
 {
-	using System;
-	using Saga;
-	using ScenarioBuilders;
-	using Scenarios;
-	using TestInstanceConfigurators;
+    using System;
+    using Saga;
+    using ScenarioBuilders;
+    using Scenarios;
+    using TestInstanceConfigurators;
 
     public interface ISagaTestFactory<TScenario, TSaga>
         where TSaga : class, ISaga

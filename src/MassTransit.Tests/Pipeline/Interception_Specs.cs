@@ -12,11 +12,11 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Tests.Pipeline
 {
-	using Magnum.TestFramework;
-	using NUnit.Framework;
-	using TextFixtures;
+    using Magnum.TestFramework;
+    using NUnit.Framework;
+    using TextFixtures;
 
-	[Scenario]
+    [Scenario]
 	public class When_intercepting_messages_as_they_are_published
 		: LoopbackTestFixture
 	{

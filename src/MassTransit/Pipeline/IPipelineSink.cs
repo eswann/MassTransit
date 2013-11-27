@@ -12,10 +12,10 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Pipeline
 {
-	using System;
-	using System.Collections.Generic;
+    using System;
+    using System.Collections.Generic;
 
-	/// <summary>
+    /// <summary>
 	/// <see cref="IPipelineSink{T}"/>.
 	/// </summary>
 	public interface IPipelineSink

@@ -12,10 +12,10 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Services.Timeout.Messages
 {
-	using System;
-	using System.Data.SqlTypes;
+    using System;
+    using System.Data.SqlTypes;
 
-	[Serializable]
+    [Serializable]
 	public class ScheduleTimeout : 
 		TimeoutMessageBase
 	{

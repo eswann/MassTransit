@@ -16,7 +16,6 @@ namespace MassTransit.Serialization
     using System.Collections.Generic;
     using Util;
 
-
     public class SupportedMessageSerializers :
         ISupportedMessageSerializers
     {

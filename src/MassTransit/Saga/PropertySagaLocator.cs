@@ -12,13 +12,13 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Saga
 {
-	using System;
-	using System.Collections.Generic;
-	using System.Linq.Expressions;
-	using Context;
-	using Pipeline;
+    using System;
+    using System.Collections.Generic;
+    using System.Linq.Expressions;
+    using Context;
+    using Pipeline;
 
-	public class PropertySagaLocator<TSaga, TMessage> :
+    public class PropertySagaLocator<TSaga, TMessage> :
 		ISagaLocator<TMessage>
 		where TSaga : class, ISaga
 		where TMessage : class

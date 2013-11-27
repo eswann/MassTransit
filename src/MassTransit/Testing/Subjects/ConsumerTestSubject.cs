@@ -12,9 +12,8 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Testing.Subjects
 {
-	using System;
-	using Scenarios;
-	using TestDecorators;
+    using Scenarios;
+    using TestDecorators;
 
     public interface IConsumerTestSubject<TConsumer> :
     ITestSubject<TConsumer>

@@ -16,7 +16,6 @@ namespace MassTransit.NewIdProviders
     using System.Linq;
     using System.Net.NetworkInformation;
 
-
     public class NetworkAddressWorkerIdProvider :
         IWorkerIdProvider
     {

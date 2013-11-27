@@ -12,9 +12,9 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Monitoring
 {
-	using System.Diagnostics;
+    using System.Diagnostics;
 
-	public class RuntimePerformanceCounter
+    public class RuntimePerformanceCounter
 	{
 		readonly PerformanceCounterType _counterType;
 		readonly string _help;

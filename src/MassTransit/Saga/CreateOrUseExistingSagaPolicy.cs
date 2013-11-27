@@ -12,12 +12,12 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Saga
 {
-	using System;
-	using System.Linq.Expressions;
-	using Context;
-	using Magnum.Reflection;
+    using System;
+    using System.Linq.Expressions;
+    using Context;
+    using Magnum.Reflection;
 
-	public class CreateOrUseExistingSagaPolicy<TSaga, TMessage> :
+    public class CreateOrUseExistingSagaPolicy<TSaga, TMessage> :
 		ISagaPolicy<TSaga, TMessage>
 		where TSaga : class, ISaga
 		where TMessage : class

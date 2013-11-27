@@ -12,9 +12,9 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Configurators
 {
-	using System;
+    using System;
 
-	[Serializable]
+    [Serializable]
 	public enum ValidationResultDisposition
 	{
 		Success,

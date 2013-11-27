@@ -12,12 +12,12 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.EndpointConfigurators
 {
-	using System;
-	using System.Collections.Generic;
-	using Builders;
-	using Configurators;
+    using System;
+    using System.Collections.Generic;
+    using Builders;
+    using Configurators;
 
-	public class DelegateEndpointFactoryBuilderConfigurator :
+    public class DelegateEndpointFactoryBuilderConfigurator :
 		IEndpointFactoryBuilderConfigurator
 	{
 		readonly Action<IEndpointFactoryBuilder> _builderCallback;

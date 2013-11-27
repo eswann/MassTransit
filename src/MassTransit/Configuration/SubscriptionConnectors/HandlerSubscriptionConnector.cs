@@ -14,10 +14,10 @@ namespace MassTransit.SubscriptionConnectors
 {
     using Context;
     using Pipeline;
-	using Pipeline.Configuration;
-	using Pipeline.Sinks;
+    using Pipeline.Configuration;
+    using Pipeline.Sinks;
 
-	public class HandlerSubscriptionConnector<TMessage>
+    public class HandlerSubscriptionConnector<TMessage>
 		where TMessage : class
 	{
 		/// <summary>

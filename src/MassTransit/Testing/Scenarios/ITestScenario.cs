@@ -12,9 +12,9 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Testing.Scenarios
 {
-	using System;
+    using System;
 
-	/// <summary>
+    /// <summary>
 	/// A test scenario that allows the tester to
 	/// get hold of what messages were published, skipped, sent and received.
 	/// Inherits IDisposable.

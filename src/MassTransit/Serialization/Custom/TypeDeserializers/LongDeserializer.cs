@@ -12,9 +12,9 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Serialization.Custom.TypeDeserializers
 {
-	using System.Xml;
+    using System.Xml;
 
-	public class LongDeserializer :
+    public class LongDeserializer :
 		IObjectDeserializer<long>
 	{
 		public object Deserialize(IDeserializerContext context)

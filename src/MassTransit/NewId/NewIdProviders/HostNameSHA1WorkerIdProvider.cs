@@ -17,7 +17,6 @@ namespace MassTransit.NewIdProviders
     using System.Security.Cryptography;
     using System.Text;
 
-
     public class HostNameSHA1WorkerIdProvider :
         IWorkerIdProvider
     {

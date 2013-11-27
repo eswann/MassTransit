@@ -12,9 +12,9 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Configurators
 {
-	using System.Collections.Generic;
+    using System.Collections.Generic;
 
-	/// <summary>
+    /// <summary>
 	/// Base interface for all MassTransit configurators. This interface only
 	/// contains a method for validating the validity of the configuration.
 	/// </summary>

@@ -12,20 +12,20 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Testing.TestDecorators
 {
-	using System;
-	using System.Collections.Generic;
-	using Context;
-	using Pipeline;
-	using Saga;
+    using System;
+    using System.Collections.Generic;
+    using Context;
+    using Pipeline;
+    using Saga;
 
-	public class SagaRepositoryTestDecorator<TSaga> :
+    public class SagaRepositoryTestDecorator<TSaga> :
 		ISagaRepository<TSaga>
 		where TSaga : class, ISaga
 	{
 		readonly ReceivedMessageList _received;
 		readonly ISagaRepository<TSaga> _sagaRepository;
 		readonly SagaList<TSaga> _sagas;
-		SagaList<TSaga> _created;
+	    readonly SagaList<TSaga> _created;
 
 		public SagaRepositoryTestDecorator(ISagaRepository<TSaga> sagaRepository,
 		                                   ReceivedMessageList received, SagaList<TSaga> created,
