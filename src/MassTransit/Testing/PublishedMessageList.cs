@@ -34,9 +34,9 @@ namespace MassTransit.Testing
         IPublishedMessageList,
         IDisposable
     {
-        readonly HashSet<IPublishedMessage> _messages;
-        readonly AutoResetEvent _published;
-        readonly TimeSpan _timeout = 12.Seconds();
+        private readonly HashSet<IPublishedMessage> _messages;
+        private readonly AutoResetEvent _published;
+        private readonly TimeSpan _timeout = 12.Seconds();
 
         public PublishedMessageList()
         {

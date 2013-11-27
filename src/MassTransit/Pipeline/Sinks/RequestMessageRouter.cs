@@ -28,9 +28,9 @@ namespace MassTransit.Pipeline.Sinks
         where TMessage : class
         where T : class, IMessageContext<TMessage>
     {
-        readonly IEnumerable<Action<T>> _empty;
-        readonly Func<T, string> _keyAccessor;
-        readonly Atomic<Dictionary<string, MessageRouter<T>>> _output;
+        private readonly IEnumerable<Action<T>> _empty;
+        private readonly Func<T, string> _keyAccessor;
+        private readonly Atomic<Dictionary<string, MessageRouter<T>>> _output;
 
         public RequestMessageRouter(Func<T, string> keyAccessor)
         {

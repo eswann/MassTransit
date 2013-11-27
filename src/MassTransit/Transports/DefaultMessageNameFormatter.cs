@@ -18,11 +18,11 @@ namespace MassTransit.Transports
 
     public class DefaultMessageNameFormatter : IMessageNameFormatter
     {
-        readonly Cache<Type, string> _cache;
-        readonly string _genericArgumentSeparator;
-        readonly string _genericTypeSeparator;
-        readonly string _namespaceSeparator;
-        readonly string _nestedTypeSeparator;
+        private readonly Cache<Type, string> _cache;
+        private readonly string _genericArgumentSeparator;
+        private readonly string _genericTypeSeparator;
+        private readonly string _namespaceSeparator;
+        private readonly string _nestedTypeSeparator;
 
         public DefaultMessageNameFormatter(string genericArgumentSeparator, string genericTypeSeparator,
                                            string namespaceSeparator, string nestedTypeSeparator)

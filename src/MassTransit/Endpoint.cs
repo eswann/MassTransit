@@ -30,13 +30,13 @@ namespace MassTransit
     [DebuggerDisplay("{Address}")]
     public class Endpoint : IEndpoint
     {
-        static readonly ILog _log = Logger.Get(typeof(Endpoint));
-        readonly IEndpointAddress _address;
-        readonly IMessageSerializer _serializer;
-        readonly IInboundMessageTracker _tracker;
-        readonly ISupportedMessageSerializers _supportedSerializers;
+        private static readonly ILog _log = Logger.Get(typeof(Endpoint));
+        private readonly IEndpointAddress _address;
+        private readonly IMessageSerializer _serializer;
+        private readonly IInboundMessageTracker _tracker;
+        private readonly ISupportedMessageSerializers _supportedSerializers;
         bool _disposed;
-        readonly string _disposedMessage;
+        private readonly string _disposedMessage;
         IOutboundTransport _errorTransport;
         IDuplexTransport _transport;
 

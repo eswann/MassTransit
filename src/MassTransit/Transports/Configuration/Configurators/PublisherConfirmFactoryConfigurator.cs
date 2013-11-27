@@ -29,7 +29,7 @@ namespace MassTransit.Transports.Configuration.Configurators
         IPublisherConfirmFactoryConfigurator,
         ITransportFactoryBuilderConfigurator
     {
-        readonly bool _usePublisherConfirms;
+        private readonly bool _usePublisherConfirms;
 
         public PublisherConfirmFactoryConfigurator(bool usePublisherConfirms)
         {

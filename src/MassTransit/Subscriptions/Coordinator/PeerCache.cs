@@ -23,11 +23,11 @@ namespace MassTransit.Subscriptions.Coordinator
     public class PeerCache :
         Actor
     {
-        static readonly ILog _log = Logger.Get(typeof(PeerCache));
-        readonly ActorFactory<PeerHandler> _peerHandlerFactory;
-        readonly Cache<Guid, Uri> _peerIds;
-        readonly Uri _peerUri;
-        readonly Cache<Uri, ActorRef> _peers;
+        private static readonly ILog _log = Logger.Get(typeof(PeerCache));
+        private readonly ActorFactory<PeerHandler> _peerHandlerFactory;
+        private readonly Cache<Guid, Uri> _peerIds;
+        private readonly Uri _peerUri;
+        private readonly Cache<Uri, ActorRef> _peers;
 
         public PeerCache(SubscriptionObserver observer, Guid clientId, Uri controlUri, SubscriptionRepository repository)
         {

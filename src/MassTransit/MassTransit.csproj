@@ -216,7 +216,6 @@
     <Compile Include="Configuration\SubscriptionConfiguratorExtensions.cs" />
     <Compile Include="Configuration\SubscriptionConfigurators\ConsumerSubscriptionConfigurator.cs" />
     <Compile Include="Configuration\SubscriptionConfigurators\HandlerSubscriptionConfigurator.cs" />
-    <Compile Include="Configuration\SubscriptionConfigurators\IInstanceSubscriptionConfigurator.cs" />
     <Compile Include="Configuration\SubscriptionConfigurators\InstanceSubscriptionConfigurator.cs" />
     <Compile Include="Configuration\SubscriptionConfigurators\SubscriptionBusServiceConfigurator.cs" />
     <Compile Include="Configuration\SubscriptionConfigurators\SubscriptionConfigurator.cs" />

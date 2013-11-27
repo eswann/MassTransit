@@ -19,9 +19,9 @@ namespace MassTransit.SubscriptionBuilders
     public class InstanceSubscriptionBuilder :
         ISubscriptionBuilder
     {
-        readonly IInstanceConnector _connector;
-        readonly object _instance;
-        readonly ReferenceFactory _referenceFactory;
+        private readonly IInstanceConnector _connector;
+        private readonly object _instance;
+        private readonly ReferenceFactory _referenceFactory;
 
         public InstanceSubscriptionBuilder(object instance,
             ReferenceFactory referenceFactory)

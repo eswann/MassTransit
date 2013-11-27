@@ -36,8 +36,8 @@ namespace MassTransit.Testing
         ISentMessageList,
         IDisposable
     {
-        readonly HashSet<ISentMessage> _messages;
-        readonly AutoResetEvent _received;
+        private readonly HashSet<ISentMessage> _messages;
+        private readonly AutoResetEvent _received;
         TimeSpan _timeout = 12.Seconds();
 
         public SentMessageList()

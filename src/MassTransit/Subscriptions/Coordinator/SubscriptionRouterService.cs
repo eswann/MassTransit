@@ -26,15 +26,15 @@ namespace MassTransit.Subscriptions.Coordinator
         SubscriptionObserver,
         IDiagnosticsSource
     {
-        readonly IList<BusSubscriptionEventListener> _listeners;
-        readonly string _network;
-        readonly IList<SubscriptionObserver> _observers;
-        readonly ActorRef _peerCache;
-        readonly Guid _peerId;
-        readonly Uri _peerUri;
+        private readonly IList<BusSubscriptionEventListener> _listeners;
+        private readonly string _network;
+        private readonly IList<SubscriptionObserver> _observers;
+        private readonly ActorRef _peerCache;
+        private readonly Guid _peerId;
+        private readonly Uri _peerUri;
         bool _disposed;
         UnsubscribeAction _unregister;
-        readonly SubscriptionRepository _repository;
+        private readonly SubscriptionRepository _repository;
 
         public SubscriptionRouterService(IServiceBus bus, SubscriptionRepository repository, string network)
         {

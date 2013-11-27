@@ -19,7 +19,7 @@ namespace MassTransit.Context
     {
         const string ReceiveContextKey = "MassTransitReceiveContext";
 
-        readonly IContextStorageProvider _fallback;
+        private readonly IContextStorageProvider _fallback;
 
         public HttpContextContextStorageProvider()
         {

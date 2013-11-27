@@ -19,7 +19,7 @@ namespace MassTransit.Context
     public class MessageHeaders :
         IMessageHeaders
     {
-        readonly IDictionary<string, string> _headers;
+        private readonly IDictionary<string, string> _headers;
 
         public MessageHeaders()
         {

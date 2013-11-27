@@ -39,10 +39,10 @@ namespace MassTransit
         static ITickProvider _tickProvider;
         static IWorkerIdProvider _workerIdProvider;
 
-        readonly Int32 _a;
-        readonly Int32 _b;
-        readonly Int32 _c;
-        readonly Int32 _d;
+        private readonly Int32 _a;
+        private readonly Int32 _b;
+        private readonly Int32 _c;
+        private readonly Int32 _d;
 
         /// <summary>
         /// Creates a NewId using the specified byte array.

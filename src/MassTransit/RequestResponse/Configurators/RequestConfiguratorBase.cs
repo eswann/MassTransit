@@ -22,10 +22,10 @@ namespace MassTransit.RequestResponse.Configurators
     public abstract class RequestConfiguratorBase<TRequest>
         where TRequest : class
     {
-        readonly IList<Action<ISendContext<TRequest>>> _contextActions;
-        readonly Cache<Type, IResponseHandler> _handlers;
-        readonly TRequest _message;
-        readonly string _requestId;
+        private readonly IList<Action<ISendContext<TRequest>>> _contextActions;
+        private readonly Cache<Type, IResponseHandler> _handlers;
+        private readonly TRequest _message;
+        private readonly string _requestId;
         protected SynchronizationContext RequestSynchronizationContext;
         protected TimeSpan Timeout;
         protected TimeoutHandler<TRequest> TimeoutHandler;

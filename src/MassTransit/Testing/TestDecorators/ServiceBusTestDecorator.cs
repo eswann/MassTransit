@@ -22,9 +22,9 @@ namespace MassTransit.Testing.TestDecorators
     public class ServiceBusTestDecorator :
         IServiceBus
     {
-        readonly IServiceBus _bus;
-        readonly PublishedMessageList _published;
-        readonly EndpointTestScenario _scenario;
+        private readonly IServiceBus _bus;
+        private readonly PublishedMessageList _published;
+        private readonly EndpointTestScenario _scenario;
 
         public ServiceBusTestDecorator(IServiceBus bus, EndpointTestScenario scenario)
         {

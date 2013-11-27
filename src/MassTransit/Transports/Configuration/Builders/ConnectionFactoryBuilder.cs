@@ -29,8 +29,8 @@ namespace MassTransit.Transports.Configuration.Builders
     public class ConnectionFactoryBuilder :
         IConnectionFactoryBuilder
     {
-        readonly IRabbitMqEndpointAddress _address;
-        readonly IList<Func<ConnectionFactory, ConnectionFactory>> _connectionFactoryConfigurators;
+        private readonly IRabbitMqEndpointAddress _address;
+        private readonly IList<Func<ConnectionFactory, ConnectionFactory>> _connectionFactoryConfigurators;
 
         public ConnectionFactoryBuilder(IRabbitMqEndpointAddress address)
         {

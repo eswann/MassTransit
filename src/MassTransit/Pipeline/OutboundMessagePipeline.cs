@@ -20,7 +20,7 @@ namespace MassTransit.Pipeline
     public class OutboundMessagePipeline :
         IOutboundMessagePipeline
     {
-        readonly Atomic<IPipelineSink<ISendContext>> _output;
+        private readonly Atomic<IPipelineSink<ISendContext>> _output;
 
         public OutboundMessagePipeline(IPipelineSink<ISendContext> output)
         {

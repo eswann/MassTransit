@@ -19,9 +19,9 @@ namespace MassTransit.Exceptions
     public class SagaException :
         MassTransitException
     {
-        readonly Guid _correlationId;
-        readonly Type _messageType;
-        readonly Type _sagaType;
+        private readonly Guid _correlationId;
+        private readonly Type _messageType;
+        private readonly Type _sagaType;
 
         public SagaException(string message, Type sagaType, Type messageType, Guid correlationId)
             : base(FormatMessage(sagaType, correlationId, messageType, message))

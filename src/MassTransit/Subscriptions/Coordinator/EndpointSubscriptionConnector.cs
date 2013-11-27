@@ -25,7 +25,7 @@ namespace MassTransit.Subscriptions.Coordinator
         EndpointSubscriptionConnector
         where TMessage : class
     {
-        readonly IServiceBus _bus;
+        private readonly IServiceBus _bus;
 
         public EndpointSubscriptionConnector(IServiceBus bus)
         {
@@ -44,8 +44,8 @@ namespace MassTransit.Subscriptions.Coordinator
         EndpointSubscriptionConnector
         where TMessage : class, IAmCorrelatedBy<TKey>
     {
-        readonly IServiceBus _bus;
-        readonly Func<string, TKey> _converter;
+        private readonly IServiceBus _bus;
+        private readonly Func<string, TKey> _converter;
 
         public EndpointSubscriptionConnector(IServiceBus bus, Func<string, TKey> converter)
         {

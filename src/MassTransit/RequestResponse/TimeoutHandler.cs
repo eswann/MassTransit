@@ -18,8 +18,8 @@ namespace MassTransit.RequestResponse
     public class TimeoutHandler<TRequest>
         where TRequest : class
     {
-        readonly SynchronizationContext _synchronizationContext;
-        readonly Action<TRequest> _timeoutCallback;
+        private readonly SynchronizationContext _synchronizationContext;
+        private readonly Action<TRequest> _timeoutCallback;
 
         public TimeoutHandler(SynchronizationContext synchronizationSynchronizationContext,
             Action<TRequest> timeoutCallback)

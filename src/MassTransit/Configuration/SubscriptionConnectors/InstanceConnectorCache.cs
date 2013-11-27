@@ -21,7 +21,7 @@ namespace MassTransit.SubscriptionConnectors
         [ThreadStatic]
         static InstanceConnectorCache _current;
 
-        readonly GenericTypeCache<IInstanceConnector> _connectors;
+        private readonly GenericTypeCache<IInstanceConnector> _connectors;
 
         InstanceConnectorCache()
         {

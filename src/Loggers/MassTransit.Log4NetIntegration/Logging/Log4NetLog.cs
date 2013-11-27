@@ -16,10 +16,9 @@ namespace MassTransit.Log4NetIntegration.Logging
     using System.Globalization;
     using MassTransit.Logging;
 
-    public class Log4NetLog :
-        ILog
+    public class Log4NetLog : ILog
     {
-        readonly log4net.ILog _log;
+        private readonly log4net.ILog _log;
 
         public Log4NetLog(log4net.ILog log)
         {

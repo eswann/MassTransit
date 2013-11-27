@@ -29,7 +29,7 @@ namespace MassTransit.Pipeline.Sinks
         where TMessage : class, IAmCorrelatedBy<TKey>
         where T : class, IMessageContext<TMessage>
     {
-        readonly Atomic<Dictionary<TKey, CorrelatedMessageSinkRouter<T, TMessage, TKey>>> _output;
+        private readonly Atomic<Dictionary<TKey, CorrelatedMessageSinkRouter<T, TMessage, TKey>>> _output;
 
         public CorrelatedMessageRouter()
         {

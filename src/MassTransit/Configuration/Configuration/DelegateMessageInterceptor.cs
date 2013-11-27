@@ -19,8 +19,8 @@ namespace MassTransit.Configuration
     public class DelegateMessageInterceptor :
         IInboundMessageInterceptor
     {
-        readonly Action _afterConsume;
-        readonly Action _beforeConsume;
+        private readonly Action _afterConsume;
+        private readonly Action _beforeConsume;
 
         public DelegateMessageInterceptor(Action beforeConsume, Action afterConsume)
         {

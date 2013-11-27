@@ -19,10 +19,10 @@ namespace MassTransit.Transports
 
     public class DefaultConnectionPolicy : IConnectionPolicy
     {
-        readonly IConnectionHandler _connectionHandler;
-        readonly TimeSpan _reconnectDelay;
-        readonly ILog _log = Logger.Get(typeof(DefaultConnectionPolicy));
-        readonly ReaderWriterLockSlim _connectionLock = new ReaderWriterLockSlim(LockRecursionPolicy.SupportsRecursion);
+        private readonly IConnectionHandler _connectionHandler;
+        private readonly TimeSpan _reconnectDelay;
+        private readonly ILog _log = Logger.Get(typeof(DefaultConnectionPolicy));
+        private readonly ReaderWriterLockSlim _connectionLock = new ReaderWriterLockSlim(LockRecursionPolicy.SupportsRecursion);
 
         public DefaultConnectionPolicy(IConnectionHandler connectionHandler)
         {

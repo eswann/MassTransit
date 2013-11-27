@@ -20,9 +20,9 @@ namespace MassTransit.Subscriptions.Coordinator
 
     public class BusSubscriptionCache
     {
-        static readonly ILog _log = Logger.Get(typeof (BusSubscriptionCache));
-        readonly SubscriptionObserver _observer;
-        readonly Cache<SubscriptionKey, BusSubscription> _subscriptions;
+        private static readonly ILog _log = Logger.Get(typeof (BusSubscriptionCache));
+        private readonly SubscriptionObserver _observer;
+        private readonly Cache<SubscriptionKey, BusSubscription> _subscriptions;
 
         public BusSubscriptionCache(SubscriptionObserver observer)
         {

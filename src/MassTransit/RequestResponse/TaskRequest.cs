@@ -26,13 +26,13 @@ namespace MassTransit.RequestResponse
         ITaskRequest<TRequest>
         where TRequest : class
     {
-        readonly CancellationTokenSource _cancelRequest;
-        readonly CancellationTokenSource _cancelTimeout;
-        readonly TRequest _message;
-        readonly TimeoutHandler<TRequest> _timeoutHandler;
-        readonly string _requestId;
-        readonly Cache<Type, ITaskResponseHandler> _responseHandlers;
-        readonly TaskCompletionSource<TRequest> _source;
+        private readonly CancellationTokenSource _cancelRequest;
+        private readonly CancellationTokenSource _cancelTimeout;
+        private readonly TRequest _message;
+        private readonly TimeoutHandler<TRequest> _timeoutHandler;
+        private readonly string _requestId;
+        private readonly Cache<Type, ITaskResponseHandler> _responseHandlers;
+        private readonly TaskCompletionSource<TRequest> _source;
 
         CancellationTokenRegistration _cancelRequestRegistration;
         UnsubscribeAction _unsubscribe;

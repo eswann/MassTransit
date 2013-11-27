@@ -24,7 +24,7 @@ namespace MassTransit.Pipeline.Inspectors
     public class PipelineViewer :
         PipelineInspectorBase<PipelineViewer>
     {
-        readonly StringBuilder _text = new StringBuilder();
+        private readonly StringBuilder _text = new StringBuilder();
         int _depth;
 
         public string Text

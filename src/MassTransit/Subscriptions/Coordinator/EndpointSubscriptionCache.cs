@@ -19,11 +19,11 @@ namespace MassTransit.Subscriptions.Coordinator
 
     public class EndpointSubscriptionCache
     {
-        static readonly ILog _log = Logger.Get(typeof(EndpointSubscriptionCache));
+        private static readonly ILog _log = Logger.Get(typeof(EndpointSubscriptionCache));
 
-        readonly Cache<SubscriptionKey, EndpointSubscription> _messageSubscriptions;
-        readonly SubscriptionObserver _observer;
-        readonly Uri _peerUri;
+        private readonly Cache<SubscriptionKey, EndpointSubscription> _messageSubscriptions;
+        private readonly SubscriptionObserver _observer;
+        private readonly Uri _peerUri;
 
         public EndpointSubscriptionCache(SubscriptionObserver observer, Uri peerUri,
             SubscriptionRepository repository)

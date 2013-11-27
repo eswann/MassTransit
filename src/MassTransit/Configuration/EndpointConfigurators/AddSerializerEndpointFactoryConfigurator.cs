@@ -23,7 +23,7 @@ namespace MassTransit.EndpointConfigurators
     public class AddSerializerEndpointFactoryConfigurator :
         IEndpointFactoryBuilderConfigurator
     {
-        readonly Func<IMessageSerializer> _serializerFactory;
+        private readonly Func<IMessageSerializer> _serializerFactory;
 
         public AddSerializerEndpointFactoryConfigurator(Func<IMessageSerializer> serializerFactory)
         {

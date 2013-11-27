@@ -105,13 +105,13 @@ namespace MassTransit.BusConfigurators
     public class ServiceBusConfigurator :
         IServiceBusConfigurator
     {
-        static readonly ILog _log = Logger.Get(typeof (ServiceBusConfigurator));
+        private static readonly ILog _log = Logger.Get(typeof (ServiceBusConfigurator));
 
-        readonly IList<IBusBuilderConfigurator> _configurators;
-        readonly IEndpointFactoryConfigurator _endpointFactoryConfigurator;
-        readonly ServiceBusSettings _settings;
+        private readonly IList<IBusBuilderConfigurator> _configurators;
+        private readonly IEndpointFactoryConfigurator _endpointFactoryConfigurator;
+        private readonly ServiceBusSettings _settings;
 
-        readonly SubscriptionRouterConfigurator _subscriptionRouterConfigurator;
+        private readonly SubscriptionRouterConfigurator _subscriptionRouterConfigurator;
         Func<IBusSettings, IBusBuilder> _builderFactory;
 
         public ServiceBusConfigurator(ServiceBusDefaultSettings defaultSettings)

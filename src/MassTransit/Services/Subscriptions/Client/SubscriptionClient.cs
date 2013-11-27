@@ -27,16 +27,16 @@ namespace MassTransit.Services.Subscriptions.Client
     public class SubscriptionClient :
         SubscriptionObserver
     {
-        static readonly ILog _log = Logger.Get(typeof (SubscriptionClient));
-        readonly IServiceBus _bus;
-        readonly SubscriptionRouter _router;
-        readonly string _network;
-        readonly SubscriptionServiceMessageProducer _producer;
-        readonly ManualResetEvent _ready = new ManualResetEvent(false);
-        readonly TimeSpan _startTimeout;
-        readonly Uri _subscriptionServiceUri;
+        private static readonly ILog _log = Logger.Get(typeof (SubscriptionClient));
+        private readonly IServiceBus _bus;
+        private readonly SubscriptionRouter _router;
+        private readonly string _network;
+        private readonly SubscriptionServiceMessageProducer _producer;
+        private readonly ManualResetEvent _ready = new ManualResetEvent(false);
+        private readonly TimeSpan _startTimeout;
+        private readonly Uri _subscriptionServiceUri;
         UnsubscribeAction _unsubscribeAction;
-        readonly IEndpoint _subscriptionEndpoint;
+        private readonly IEndpoint _subscriptionEndpoint;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="SubscriptionClient"/> class.

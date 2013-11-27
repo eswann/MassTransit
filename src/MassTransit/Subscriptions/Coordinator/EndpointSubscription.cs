@@ -21,13 +21,13 @@ namespace MassTransit.Subscriptions.Coordinator
 
     public class EndpointSubscription
     {
-        static readonly ILog _log = Logger.Get(typeof(EndpointSubscription));
-        readonly string _correlationId;
-        readonly IDictionary<Guid, IPeerSubscription> _ids;
-        readonly string _messageName;
-        readonly SubscriptionObserver _observer;
-        readonly Uri _peerUri;
-        readonly SubscriptionRepository _repository;
+        private static readonly ILog _log = Logger.Get(typeof(EndpointSubscription));
+        private readonly string _correlationId;
+        private readonly IDictionary<Guid, IPeerSubscription> _ids;
+        private readonly string _messageName;
+        private readonly SubscriptionObserver _observer;
+        private readonly Uri _peerUri;
+        private readonly SubscriptionRepository _repository;
         Uri _endpointUri;
         Guid _subscriptionId;
 

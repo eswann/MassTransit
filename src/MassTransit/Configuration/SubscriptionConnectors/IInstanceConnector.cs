@@ -31,7 +31,7 @@ namespace MassTransit.SubscriptionConnectors
         IInstanceConnector
         where T : class
     {
-        readonly IEnumerable<IInstanceSubscriptionConnector> _connectors;
+        private readonly IEnumerable<IInstanceSubscriptionConnector> _connectors;
 
         public InstanceConnector()
         {

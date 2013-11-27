@@ -19,7 +19,7 @@ namespace MassTransit.Context
     {
         static EndpointObjectSenderCache _instance;
 
-        readonly Cache<Type, IEndpointObjectSender> _typeCache =
+        private readonly Cache<Type, IEndpointObjectSender> _typeCache =
             new GenericTypeCache<IEndpointObjectSender>(typeof(EndpointObjectSender<>));
 
         public static EndpointObjectSenderCache Instance

@@ -20,10 +20,9 @@ namespace MassTransit.NLogIntegration.Logging
     /// <summary>
     /// A logger that wraps to NLog. See http://stackoverflow.com/questions/7412156/how-to-retain-callsite-information-when-wrapping-nlog
     /// </summary>
-    public class NLogLog :
-        ILog
+    public class NLogLog : ILog
     {
-        readonly NLog.Logger _log;
+        private readonly NLog.Logger _log;
 
         /// <summary>
         /// Create a new NLog logger instance.

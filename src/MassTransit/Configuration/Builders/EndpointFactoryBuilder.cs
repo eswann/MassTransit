@@ -101,10 +101,10 @@ namespace MassTransit.Builders
     public class EndpointFactoryBuilder :
         IEndpointFactoryBuilder
     {
-        readonly EndpointFactoryDefaultSettings _defaults;
-        readonly IDictionary<Uri, IEndpointBuilder> _endpointBuilders;
-        readonly SupportedMessageSerializers _messageSerializers;
-        readonly IDictionary<string, ITransportFactory> _transportFactories;
+        private readonly EndpointFactoryDefaultSettings _defaults;
+        private readonly IDictionary<Uri, IEndpointBuilder> _endpointBuilders;
+        private readonly SupportedMessageSerializers _messageSerializers;
+        private readonly IDictionary<string, ITransportFactory> _transportFactories;
 
         public EndpointFactoryBuilder([NotNull] IEndpointFactoryDefaultSettings defaults)
         {

@@ -22,7 +22,7 @@ namespace MassTransit.Pipeline.Sinks
         where TMessage : class
         where TConsumer : class, Consumes<IConsumeContext<TMessage>>.Selected
     {
-        readonly IConsumerFactory<TConsumer> _consumerFactory;
+        private readonly IConsumerFactory<TConsumer> _consumerFactory;
 
         public SelectedContextConsumerMessageSink(IConsumerFactory<TConsumer> consumerFactory)
         {

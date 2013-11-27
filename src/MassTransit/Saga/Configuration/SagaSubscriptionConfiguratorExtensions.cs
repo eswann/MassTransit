@@ -20,7 +20,7 @@ namespace MassTransit.Saga.Configuration
 
     public static class SagaSubscriptionConfiguratorExtensions
     {
-        static readonly ILog _log = Logger.Get(typeof (SagaSubscriptionConfiguratorExtensions));
+        private static readonly ILog _log = Logger.Get(typeof (SagaSubscriptionConfiguratorExtensions));
 
         /// <summary>
         /// Configure a saga subscription

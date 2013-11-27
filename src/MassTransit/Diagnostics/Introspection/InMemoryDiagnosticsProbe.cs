@@ -20,7 +20,7 @@ namespace MassTransit.Diagnostics.Introspection
     public class InMemoryDiagnosticsProbe :
         IDiagnosticsProbe
     {
-        readonly List<IDiagnosticEntry> _entries;
+        private readonly List<IDiagnosticEntry> _entries;
 
         public InMemoryDiagnosticsProbe()
         {

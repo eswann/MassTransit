@@ -27,11 +27,11 @@ namespace MassTransit
 
     public class Producer : IConnectionBinding<TransportConnection>
     {
-        readonly Cache<ulong, TaskCompletionSource<bool>> _confirms;
-        static readonly ILog _log = Logger.Get<Producer>();
-        readonly IEndpointAddress _address;
-        readonly IPublisherConfirmSettings _publisherConfirmSettings;
-        readonly object _lock = new object();
+        private readonly Cache<ulong, TaskCompletionSource<bool>> _confirms;
+        private static readonly ILog _log = Logger.Get<Producer>();
+        private readonly IEndpointAddress _address;
+        private readonly IPublisherConfirmSettings _publisherConfirmSettings;
+        private readonly object _lock = new object();
         IModel _channel;
 
         public Producer(IEndpointAddress address, IPublisherConfirmSettings publisherConfirmSettings)

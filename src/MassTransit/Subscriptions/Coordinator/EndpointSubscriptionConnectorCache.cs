@@ -22,11 +22,11 @@ namespace MassTransit.Subscriptions.Coordinator
 
     public class EndpointSubscriptionConnectorCache
     {
-        static readonly ILog _log = Logger.Get(typeof (EndpointSubscriptionConnectorCache));
-        readonly IServiceBus _bus;
+        private static readonly ILog _log = Logger.Get(typeof (EndpointSubscriptionConnectorCache));
+        private readonly IServiceBus _bus;
 
-        readonly Cache<Type, EndpointSubscriptionConnector> _cache;
-        readonly TypeConverter _typeConverter;
+        private readonly Cache<Type, EndpointSubscriptionConnector> _cache;
+        private readonly TypeConverter _typeConverter;
 
         public EndpointSubscriptionConnectorCache(IServiceBus bus)
         {

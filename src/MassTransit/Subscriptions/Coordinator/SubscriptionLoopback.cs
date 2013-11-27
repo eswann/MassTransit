@@ -21,12 +21,12 @@ namespace MassTransit.Subscriptions.Coordinator
     public class SubscriptionLoopback :
         SubscriptionObserver
     {
-        static readonly ILog _log = Logger.Get(typeof (SubscriptionLoopback));
-        readonly HashSet<string> _ignoredMessageTypes;
+        private static readonly ILog _log = Logger.Get(typeof (SubscriptionLoopback));
+        private readonly HashSet<string> _ignoredMessageTypes;
 
-        readonly Guid _peerId;
-        readonly SubscriptionRouter _router;
-        readonly List<Action<SubscriptionRouter>> _waiting;
+        private readonly Guid _peerId;
+        private readonly SubscriptionRouter _router;
+        private readonly List<Action<SubscriptionRouter>> _waiting;
         long _messageNumber;
         SubscriptionRouter _targetRouter;
 

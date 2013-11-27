@@ -21,8 +21,8 @@ namespace MassTransit.Transports
     public class InMemoryInboundMessageTracker :
         IInboundMessageTracker
     {
-        readonly Cache<string, TrackedMessage> _messages;
-        readonly int _retryLimit;
+        private readonly Cache<string, TrackedMessage> _messages;
+        private readonly int _retryLimit;
 
         public InMemoryInboundMessageTracker(int retryLimit)
         {

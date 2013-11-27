@@ -30,9 +30,9 @@ namespace MassTransit.Services.Subscriptions.Server
         Consumes<SubscriptionRemoved>.All,
         IDisposable
     {
-        static readonly ILog _log = Logger.Get<SubscriptionService>();
-        readonly ISagaRepository<SubscriptionClientSaga> _subscriptionClientSagas;
-        readonly ISagaRepository<SubscriptionSaga> _subscriptionSagas;
+        private static readonly ILog _log = Logger.Get<SubscriptionService>();
+        private readonly ISagaRepository<SubscriptionClientSaga> _subscriptionClientSagas;
+        private readonly ISagaRepository<SubscriptionSaga> _subscriptionSagas;
         IServiceBus _bus;
         bool _disposed;
         UnsubscribeAction _unsubscribeToken = () => false;

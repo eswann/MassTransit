@@ -26,8 +26,8 @@ namespace MassTransit.Transports
 
     public class TransportConnection : ITransportConnection
     {
-        static readonly ILog _log = Logger.Get(typeof (TransportConnection));
-        readonly ConnectionFactory _connectionFactory;
+        private static readonly ILog _log = Logger.Get(typeof (TransportConnection));
+        private readonly ConnectionFactory _connectionFactory;
         RabbitMQ.Client.IConnection _connection;
         bool _disposed;
 

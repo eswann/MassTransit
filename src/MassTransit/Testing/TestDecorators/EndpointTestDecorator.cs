@@ -23,9 +23,9 @@ namespace MassTransit.Testing.TestDecorators
     public class EndpointTestDecorator :
         IEndpoint
     {
-        readonly IEndpoint _endpoint;
-        readonly ReceivedMessageList _received;
-        readonly SentMessageList _sent;
+        private readonly IEndpoint _endpoint;
+        private readonly ReceivedMessageList _received;
+        private readonly SentMessageList _sent;
         EndpointTestScenario _scenario;
 
         public EndpointTestDecorator(IEndpoint endpoint, EndpointTestScenario scenario)

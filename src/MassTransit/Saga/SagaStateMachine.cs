@@ -24,7 +24,7 @@ namespace MassTransit.Saga
         StateMachine<T>
         where T : SagaStateMachine<T>
     {
-        static readonly Cache<Event, IEventBinder<T>> _binders = new DictionaryCache<Event, IEventBinder<T>>();
+        private static readonly Cache<Event, IEventBinder<T>> _binders = new DictionaryCache<Event, IEventBinder<T>>();
         static Expression<Func<T, bool>> _completedExpression = x => false;
 
         protected SagaStateMachine()

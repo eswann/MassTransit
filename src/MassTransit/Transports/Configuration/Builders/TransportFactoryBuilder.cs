@@ -26,7 +26,7 @@ namespace MassTransit.Transports.Configuration.Builders
     public class TransportFactoryBuilder :
         ITransportFactoryBuilder
     {
-        readonly IDictionary<Uri, IConnectionFactoryBuilder> _connectionFactoryBuilders;
+        private readonly IDictionary<Uri, IConnectionFactoryBuilder> _connectionFactoryBuilders;
         IPublisherConfirmSettings _publisherConfirmSettings = new PublisherConfirmSettings();
 
         public TransportFactoryBuilder()

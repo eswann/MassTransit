@@ -21,9 +21,9 @@ namespace MassTransit.Subscriptions.Coordinator
     public class BusSubscriptionEventListener :
         ISubscriptionEvent
     {
-        static readonly ILog _log = Logger.Get(typeof (BusSubscriptionEventListener));
-        readonly BusSubscriptionCache _busSubscriptionCache;
-        readonly Uri _endpointUri;
+        private static readonly ILog _log = Logger.Get(typeof (BusSubscriptionEventListener));
+        private readonly BusSubscriptionCache _busSubscriptionCache;
+        private readonly Uri _endpointUri;
 
         public BusSubscriptionEventListener(IServiceBus bus, SubscriptionObserver observer)
         {

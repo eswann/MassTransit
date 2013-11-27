@@ -20,9 +20,9 @@ namespace MassTransit.SubscriptionBuilders
         ISubscriptionBuilder
         where TMessage : class
     {
-        readonly HandlerSubscriptionConnector<TMessage> _connector;
-        readonly HandlerSelector<TMessage> _handler;
-        readonly ReferenceFactory _referenceFactory;
+        private readonly HandlerSubscriptionConnector<TMessage> _connector;
+        private readonly HandlerSelector<TMessage> _handler;
+        private readonly ReferenceFactory _referenceFactory;
 
         public HandlerSubscriptionBuilder(HandlerSelector<TMessage> handler,
             ReferenceFactory referenceFactory)

@@ -20,7 +20,7 @@ namespace MassTransit.Transports.Configuration.Configurators
     public class PasswordConnectionFactoryConfigurator :
         IConnectionFactoryBuilderConfigurator
     {
-        readonly string _password;
+        private readonly string _password;
 
         public PasswordConnectionFactoryConfigurator(string password)
         {

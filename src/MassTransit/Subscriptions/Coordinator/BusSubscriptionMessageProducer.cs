@@ -21,13 +21,13 @@ namespace MassTransit.Subscriptions.Coordinator
     public class BusSubscriptionMessageProducer :
         SubscriptionObserver
     {
-        static readonly ILog _log = Logger.Get(typeof (BusSubscriptionMessageProducer));
-        readonly IEndpoint _endpoint;
-        readonly Uri _endpointUri;
-        readonly string _network;
+        private static readonly ILog _log = Logger.Get(typeof (BusSubscriptionMessageProducer));
+        private readonly IEndpoint _endpoint;
+        private readonly Uri _endpointUri;
+        private readonly string _network;
 
-        readonly Guid _peerId;
-        readonly Uri _peerUri;
+        private readonly Guid _peerId;
+        private readonly Uri _peerUri;
         long _lastMessageNumber;
         long _timestamp;
 

@@ -22,11 +22,11 @@ namespace MassTransit.Context
         IConsumeContext<TMessage>
         where TMessage : class
     {
-        static readonly ILog _log = Logger.Get(typeof(ReceiveContext));
+        private static readonly ILog _log = Logger.Get(typeof(ReceiveContext));
 
-        readonly IReceiveContext _context;
-        readonly TMessage _message;
-        readonly Uri _responseAddress;
+        private readonly IReceiveContext _context;
+        private readonly TMessage _message;
+        private readonly Uri _responseAddress;
 
         public ConsumeContext(IReceiveContext context, TMessage message)
         {

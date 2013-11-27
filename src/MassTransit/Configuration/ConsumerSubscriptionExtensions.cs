@@ -22,7 +22,7 @@ namespace MassTransit
 
     public static class ConsumerSubscriptionExtensions
     {
-        static readonly ILog _log = Logger.Get(typeof (ConsumerSubscriptionExtensions));
+        private static readonly ILog _log = Logger.Get(typeof (ConsumerSubscriptionExtensions));
 
         public static IConsumerSubscriptionConfigurator<TConsumer> Consumer<TConsumer>(
             [NotNull] this ISubscriptionBusServiceConfigurator configurator,

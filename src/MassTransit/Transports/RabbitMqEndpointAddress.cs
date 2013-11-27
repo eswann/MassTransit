@@ -28,16 +28,16 @@ namespace MassTransit.Transports
         const string FormatErrorMsg =
             "The path can be empty, or a sequence of these characters: letters, digits, hyphen, underscore, period, or colon.";
 
-        static readonly string _localMachineName = Environment.MachineName.ToLowerInvariant();
-        static readonly Regex _regex = new Regex(@"^[A-Za-z0-9\-_\.:]+$");
-        readonly bool _autoDelete;
-        readonly ConnectionFactory _connectionFactory;
-        readonly bool _durable = true;
-        readonly bool _exclusive;
-        readonly bool _isHighAvailable;
-        readonly bool _isTransactional;
-        readonly string _name;
-        readonly Uri _uri;
+        private static readonly string _localMachineName = Environment.MachineName.ToLowerInvariant();
+        private static readonly Regex _regex = new Regex(@"^[A-Za-z0-9\-_\.:]+$");
+        private readonly bool _autoDelete;
+        private readonly ConnectionFactory _connectionFactory;
+        private readonly bool _durable = true;
+        private readonly bool _exclusive;
+        private readonly bool _isHighAvailable;
+        private readonly bool _isTransactional;
+        private readonly string _name;
+        private readonly Uri _uri;
         Func<bool> _isLocal;
         ushort _prefetch;
         int _ttl;

@@ -19,8 +19,8 @@ namespace MassTransit.Pipeline.Sinks
     public class OutboundMessageInterceptor :
         IPipelineSink<ISendContext>
     {
-        readonly IOutboundMessageInterceptor _interceptor;
-        readonly IPipelineSink<ISendContext> _output;
+        private readonly IOutboundMessageInterceptor _interceptor;
+        private readonly IPipelineSink<ISendContext> _output;
 
         public OutboundMessageInterceptor(Func<IPipelineSink<ISendContext>, IPipelineSink<ISendContext>> insertAfter,
                                           IOutboundMessageInterceptor interceptor)

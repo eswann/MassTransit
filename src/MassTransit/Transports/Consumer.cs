@@ -19,12 +19,12 @@ namespace MassTransit.Transports
 
     public class Consumer : IConnectionBinding<TransportConnection>
     {
-        readonly IRabbitMqEndpointAddress _address;
-        readonly object _lock = new object();
+        private readonly IRabbitMqEndpointAddress _address;
+        private readonly object _lock = new object();
         IModel _channel;
         QueueingBasicConsumer _consumer;
         bool _purgeOnBind;
-        readonly string _consumerTag;
+        private readonly string _consumerTag;
 
         public Consumer(IRabbitMqEndpointAddress address, bool purgeOnBind)
         {

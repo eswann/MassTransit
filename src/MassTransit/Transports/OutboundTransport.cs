@@ -26,9 +26,9 @@ namespace MassTransit.Transports
     public class OutboundTransport :
         IOutboundTransport
     {
-        readonly IRabbitMqEndpointAddress _address;
-        readonly IPublisherConfirmSettings _publisherConfirmSettings;
-        readonly IConnectionHandler<TransportConnection> _connectionHandler;
+        private readonly IRabbitMqEndpointAddress _address;
+        private readonly IPublisherConfirmSettings _publisherConfirmSettings;
+        private readonly IConnectionHandler<TransportConnection> _connectionHandler;
         Producer _producer;
 
         public OutboundTransport(IRabbitMqEndpointAddress address,

@@ -21,7 +21,7 @@ namespace MassTransit.Pipeline.Sinks
         IOutboundPipelineSink
         where TMessage : class
     {
-        readonly IPipelineSink<IBusPublishContext<TMessage>> _output;
+        private readonly IPipelineSink<IBusPublishContext<TMessage>> _output;
 
         public OutboundConvertMessageSink(IPipelineSink<IBusPublishContext<TMessage>> output)
         {

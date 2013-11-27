@@ -17,7 +17,7 @@ namespace MassTransit.Transports.Management
 
     public class EndpointManagement : IEndpointManagement
     {
-        readonly bool _owned;
+        private readonly bool _owned;
         IConnection _connection;
         bool _disposed;
 

@@ -72,7 +72,7 @@ namespace MassTransit.RequestResponse.Configurators
         IInlineRequestConfigurator<TRequest>
         where TRequest : class
     {
-        readonly Request<TRequest> _request;
+        private readonly Request<TRequest> _request;
 
         public InlineRequestConfigurator(TRequest message)
             : base(message)

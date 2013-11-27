@@ -20,7 +20,7 @@ namespace MassTransit.EndpointConfigurators
     public class DefaultMessageTrackerEndpointFactoryConfigurator :
         IEndpointFactoryBuilderConfigurator
     {
-        readonly MessageTrackerFactory _messageTrackerFactory;
+        private readonly MessageTrackerFactory _messageTrackerFactory;
 
         public DefaultMessageTrackerEndpointFactoryConfigurator(MessageTrackerFactory messageTrackerFactory)
         {

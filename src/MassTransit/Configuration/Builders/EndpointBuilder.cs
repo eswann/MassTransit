@@ -25,12 +25,12 @@ namespace MassTransit.Builders
     public class EndpointBuilder :
         IEndpointBuilder
     {
-        readonly IEndpointAddress _address;
-        readonly ITransportSettings _errorSettings;
-        readonly OutboundTransportFactory _errorTransportFactory;
-        readonly Func<IInboundMessageTracker> _messageTrackerFactory;
-        readonly IEndpointSettings _settings;
-        readonly DuplexTransportFactory _transportFactory;
+        private readonly IEndpointAddress _address;
+        private readonly ITransportSettings _errorSettings;
+        private readonly OutboundTransportFactory _errorTransportFactory;
+        private readonly Func<IInboundMessageTracker> _messageTrackerFactory;
+        private readonly IEndpointSettings _settings;
+        private readonly DuplexTransportFactory _transportFactory;
 
         public EndpointBuilder([NotNull] IEndpointAddress address, [NotNull] IEndpointSettings settings,
             [NotNull] ITransportSettings errorSettings, [NotNull] DuplexTransportFactory transportFactory,

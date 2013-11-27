@@ -78,8 +78,8 @@ namespace MassTransit.Util
         IndexedSagaProperty<TSaga>
         where TSaga : class, ISaga
     {
-        readonly Func<TSaga, TProperty> _getProperty;
-        readonly IDictionary<TProperty, HashSet<TSaga>> _values;
+        private readonly Func<TSaga, TProperty> _getProperty;
+        private readonly IDictionary<TProperty, HashSet<TSaga>> _values;
 
         /// <summary>
         /// Creates an index for the specified property of a saga

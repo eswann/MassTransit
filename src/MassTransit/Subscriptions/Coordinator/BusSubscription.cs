@@ -20,11 +20,11 @@ namespace MassTransit.Subscriptions.Coordinator
     public class BusSubscription :
         ISubscription
     {
-        static readonly ILog _log = Logger.Get(typeof(BusSubscription));
-        readonly string _correlationId;
-        readonly HashSet<Guid> _ids;
-        readonly string _messageName;
-        readonly SubscriptionObserver _observer;
+        private static readonly ILog _log = Logger.Get(typeof(BusSubscription));
+        private readonly string _correlationId;
+        private readonly HashSet<Guid> _ids;
+        private readonly string _messageName;
+        private readonly SubscriptionObserver _observer;
         Uri _endpointUri;
         Guid _subscriptionId;
 

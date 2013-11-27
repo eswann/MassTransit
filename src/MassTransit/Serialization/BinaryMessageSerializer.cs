@@ -43,8 +43,8 @@ namespace MassTransit.Serialization
         const string RetryCountKey = "RetryCount";
         const string SourceAddressKey = "SourceAddress";
 
-        static readonly BinaryFormatter _formatter = new BinaryFormatter();
-        static readonly ILog _log = Logger.Get(typeof (BinaryMessageSerializer));
+        private static readonly BinaryFormatter _formatter = new BinaryFormatter();
+        private static readonly ILog _log = Logger.Get(typeof (BinaryMessageSerializer));
 
         public string ContentType
         {

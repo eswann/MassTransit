@@ -43,8 +43,8 @@ namespace MassTransit.Testing.ScenarioBuilders
         EndpointScenarioBuilder<IBusTestScenario>,
         IBusScenarioBuilder
     {
-        readonly ServiceBusConfigurator _configurator;
-        readonly ServiceBusDefaultSettings _settings;
+        private readonly ServiceBusConfigurator _configurator;
+        private readonly ServiceBusDefaultSettings _settings;
 
         /// <summary>
         /// c'tor

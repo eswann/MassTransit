@@ -18,11 +18,11 @@ namespace MassTransit.Transports
 
     public class Publisher : IConnectionBinding<TransportConnection>
     {
-        readonly IRabbitMqEndpointAddress _address;
-        readonly object _bindings = new object();
-        readonly HashSet<ExchangeBinding> _exchangeBindings;
-        readonly IDictionary<string,bool> _exchanges;
-        readonly object _lock = new object();
+        private readonly IRabbitMqEndpointAddress _address;
+        private readonly object _bindings = new object();
+        private readonly HashSet<ExchangeBinding> _exchangeBindings;
+        private readonly IDictionary<string,bool> _exchanges;
+        private readonly object _lock = new object();
         IModel _channel;
 
         public Publisher(IRabbitMqEndpointAddress address)

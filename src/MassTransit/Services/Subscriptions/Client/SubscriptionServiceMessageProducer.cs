@@ -25,12 +25,12 @@ namespace MassTransit.Services.Subscriptions.Client
     /// </summary>
     internal class SubscriptionServiceMessageProducer 
     {
-        static readonly ILog _log = Logger.Get(typeof(SubscriptionServiceMessageProducer));
-        readonly IEndpoint _endpoint;
-        readonly string _network;
+        private static readonly ILog _log = Logger.Get(typeof(SubscriptionServiceMessageProducer));
+        private readonly IEndpoint _endpoint;
+        private readonly string _network;
 
-        readonly Guid _peerId;
-        readonly Uri _peerUri;
+        private readonly Guid _peerId;
+        private readonly Uri _peerUri;
         long _lastMessageNumber;
 
         /// <summary>

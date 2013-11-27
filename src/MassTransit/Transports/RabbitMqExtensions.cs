@@ -18,7 +18,7 @@ namespace MassTransit.Transports
 
     public static class RabbitMqExtensions
     {
-        static readonly ILog _log = Logger.Get<TransportFactory>();
+        private static readonly ILog _log = Logger.Get<TransportFactory>();
 
         /// <summary>
         /// Close and dispose of a RabbitMQ channel without throwing any exceptions

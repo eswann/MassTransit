@@ -20,8 +20,8 @@ namespace MassTransit.Context
         MessageContext,
         ISendContext
     {
-        readonly Action<Stream> _bodyWriter;
-        readonly Action<IEndpointAddress> _notifySend;
+        private readonly Action<Stream> _bodyWriter;
+        private readonly Action<IEndpointAddress> _notifySend;
 
         public MoveMessageSendContext(IReceiveContext context)
         {

@@ -16,7 +16,7 @@ namespace MassTransit
 
     public static class EndpointLoggerExtensions
     {
-        static readonly ILog _messages = Logger.Get("MassTransit.Messages");
+        private static readonly ILog _messages = Logger.Get("MassTransit.Messages");
 
         public static void LogSkipped(this IEndpointAddress sourceAddress, string messageId)
         {

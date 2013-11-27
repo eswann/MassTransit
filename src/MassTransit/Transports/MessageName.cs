@@ -23,7 +23,7 @@ namespace MassTransit.Transports
     public class MessageName :
         ISerializable
     {
-        readonly string _name;
+        private readonly string _name;
 
         public MessageName(string name)
         {

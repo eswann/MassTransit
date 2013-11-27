@@ -23,7 +23,7 @@ namespace MassTransit.Serialization
     {
         const string ContentTypeHeaderValue = "application/vnd.masstransit+xmlv1";
 
-        static readonly IXmlSerializer _serializer = new CustomXmlSerializer();
+        private static readonly IXmlSerializer _serializer = new CustomXmlSerializer();
 
         public string ContentType
         {

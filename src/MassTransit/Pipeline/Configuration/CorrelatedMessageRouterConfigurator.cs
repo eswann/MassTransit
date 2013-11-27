@@ -18,7 +18,7 @@ namespace MassTransit.Pipeline.Configuration
 
     public class InboundCorrelatedMessageRouterConfigurator
     {
-        readonly IPipelineSink<IConsumeContext> _sink;
+        private readonly IPipelineSink<IConsumeContext> _sink;
 
         internal InboundCorrelatedMessageRouterConfigurator(IPipelineSink<IConsumeContext> sink)
         {

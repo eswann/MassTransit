@@ -23,10 +23,10 @@ namespace MassTransit.Transports
     public class EndpointCache :
         IEndpointCache
     {
-        static readonly ILog _log = Logger.Get(typeof(EndpointCache));
+        private static readonly ILog _log = Logger.Get(typeof(EndpointCache));
 
-        readonly IEndpointFactory _endpointFactory;
-        readonly Cache<Uri, IEndpoint> _endpoints;
+        private readonly IEndpointFactory _endpointFactory;
+        private readonly Cache<Uri, IEndpoint> _endpoints;
         bool _disposed;
 
         public EndpointCache(IEndpointFactory endpointFactory)

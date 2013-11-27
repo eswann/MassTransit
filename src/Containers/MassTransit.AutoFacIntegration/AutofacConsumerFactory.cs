@@ -23,8 +23,8 @@ namespace MassTransit.AutofacIntegration
         IConsumerFactory<T>
         where T : class
     {
-        readonly ILifetimeScope _scope;
-        readonly string _name;
+        private readonly ILifetimeScope _scope;
+        private readonly string _name;
 
         public AutofacConsumerFactory(ILifetimeScope scope, string name)
         {

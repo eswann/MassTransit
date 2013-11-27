@@ -23,9 +23,9 @@ namespace MassTransit.RequestResponse
         IResponseHandler
         where TResponse : class
     {
-        readonly HandlerSelector<TResponse> _handler;
-        readonly string _requestId;
-        readonly SynchronizationContext _synchronizationContext;
+        private readonly HandlerSelector<TResponse> _handler;
+        private readonly string _requestId;
+        private readonly SynchronizationContext _synchronizationContext;
 
         protected ResponseHandlerBase(string requestId, SynchronizationContext synchronizationContext,
             Action<IConsumeContext<TResponse>, TResponse> handler)

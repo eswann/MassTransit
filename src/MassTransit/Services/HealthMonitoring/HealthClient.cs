@@ -26,9 +26,9 @@ namespace MassTransit.Services.HealthMonitoring
         Consumes<PingEndpoint>.All,
         IDiagnosticsSource
     {
-        readonly int _heartbeatIntervalInMilliseconds;
-        readonly int _heartbeatIntervalInSeconds;
-        readonly ILog _log = Logger.Get(typeof (HealthClient));
+        private readonly int _heartbeatIntervalInMilliseconds;
+        private readonly int _heartbeatIntervalInSeconds;
+        private readonly ILog _log = Logger.Get(typeof (HealthClient));
         IServiceBus _bus;
         Uri _controlUri;
         Uri _dataUri;

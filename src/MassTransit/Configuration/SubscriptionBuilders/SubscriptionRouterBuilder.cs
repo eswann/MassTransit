@@ -31,8 +31,8 @@ namespace MassTransit.SubscriptionBuilders
     public class SubscriptionRouterBuilder :
         ISubscriptionRouterBuilder
     {
-        readonly IServiceBus _bus;
-        readonly IList<Func<IServiceBus, SubscriptionRouter, SubscriptionObserver>> _observers;
+        private readonly IServiceBus _bus;
+        private readonly IList<Func<IServiceBus, SubscriptionRouter, SubscriptionObserver>> _observers;
         string _network;
         Func<SubscriptionStorage> _subscriptionStorageFactory;
 

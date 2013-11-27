@@ -18,10 +18,10 @@ namespace MassTransit.AutofacIntegration
     using Autofac;
     using Autofac.Core;
     using Magnum.Extensions;
-    using MassTransit.Saga;
-    using MassTransit.Saga.SubscriptionConfigurators;
-    using MassTransit.SubscriptionConfigurators;
+    using Saga;
     using Saga.Configuration;
+    using Saga.SubscriptionConfigurators;
+    using SubscriptionConfigurators;
 
     public static class AutofacExtensions
     {

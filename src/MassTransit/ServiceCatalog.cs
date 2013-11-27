@@ -23,7 +23,7 @@ namespace MassTransit
     [DebuggerDisplay("{DebuggerDisplay()}")]
     public class ServiceCatalog
     {
-        readonly Cache<int, IList<IBusService>> _services;
+        private readonly Cache<int, IList<IBusService>> _services;
 
         public ServiceCatalog()
         {

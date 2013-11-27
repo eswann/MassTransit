@@ -24,10 +24,10 @@ namespace MassTransit.Subscriptions.Coordinator
     public class BusSubscriptionConnector :
         SubscriptionObserver
     {
-        static readonly ILog _log = Logger.Get(typeof(BusSubscriptionConnector));
-        readonly Cache<Guid, UnsubscribeAction> _connectionCache;
-        readonly EndpointSubscriptionConnectorCache _controlBusSubscriptionCache;
-        readonly EndpointSubscriptionConnectorCache _dataBusSubscriptionCache;
+        private static readonly ILog _log = Logger.Get(typeof(BusSubscriptionConnector));
+        private readonly Cache<Guid, UnsubscribeAction> _connectionCache;
+        private readonly EndpointSubscriptionConnectorCache _controlBusSubscriptionCache;
+        private readonly EndpointSubscriptionConnectorCache _dataBusSubscriptionCache;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="BusSubscriptionConnector"/> class.

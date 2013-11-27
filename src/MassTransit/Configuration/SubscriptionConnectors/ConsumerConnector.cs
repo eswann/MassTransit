@@ -37,7 +37,7 @@ namespace MassTransit.SubscriptionConnectors
         IConsumerConnector
         where T : class
     {
-        readonly IEnumerable<IConsumerSubscriptionConnector> _connectors;
+        private readonly IEnumerable<IConsumerSubscriptionConnector> _connectors;
 
         public ConsumerConnector()
         {

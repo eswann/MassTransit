@@ -31,13 +31,12 @@ namespace MassTransit.BusConfigurators
     }
 
     public class ControlBusConfigurator :
-        IControlBusConfigurator,
-        IBusBuilderConfigurator
+        IControlBusConfigurator, IBusBuilderConfigurator
     {
-        static readonly ILog _log = Logger.Get(typeof(ControlBusConfigurator));
+        private static readonly ILog _log = Logger.Get(typeof(ControlBusConfigurator));
 
-        readonly IList<IBusBuilderConfigurator> _configurators;
-        Uri _uri;
+        private readonly IList<IBusBuilderConfigurator> _configurators;
+        private Uri _uri;
 
         public ControlBusConfigurator()
         {

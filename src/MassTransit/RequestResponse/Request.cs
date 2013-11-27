@@ -49,11 +49,11 @@ namespace MassTransit.RequestResponse
         IRequestComplete
         where TRequest : class
     {
-        static readonly ILog _log = Logger.Get(typeof(Request<TRequest>));
-        readonly IList<AsyncCallback> _completionCallbacks;
-        readonly object _lock = new object();
-        readonly TRequest _message;
-        readonly string _requestId;
+        private static readonly ILog _log = Logger.Get(typeof(Request<TRequest>));
+        private readonly IList<AsyncCallback> _completionCallbacks;
+        private readonly object _lock = new object();
+        private readonly TRequest _message;
+        private readonly string _requestId;
 
         ManualResetEvent _complete;
         bool _completed;

@@ -22,8 +22,8 @@ namespace MassTransit.Configuration
         IConsumerFactory<TConsumer>
         where TConsumer : class
     {
-        readonly IConsumerFactory<TConsumer> _consumerFactory;
-        readonly Action<Action> _interceptor;
+        private readonly IConsumerFactory<TConsumer> _consumerFactory;
+        private readonly Action<Action> _interceptor;
 
         public InterceptingConsumerFactory([NotNull] IConsumerFactory<TConsumer> consumerFactory, [NotNull] Action<Action> interceptor)
         {

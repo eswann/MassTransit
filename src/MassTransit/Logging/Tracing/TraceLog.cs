@@ -19,8 +19,8 @@ namespace MassTransit.Logging.Tracing
     public class TraceLog :
         ILog
     {
-        readonly LogLevel _level;
-        readonly TraceSource _source;
+        private readonly LogLevel _level;
+        private readonly TraceSource _source;
 
         public TraceLog(TraceSource source)
         {

@@ -23,9 +23,9 @@ namespace MassTransit.Subscriptions.Coordinator
     public class InMemorySubscriptionStorage :
         SubscriptionStorage
     {
-        readonly Fiber _fiber;
-        readonly ILog _log = Logger.Get<InMemorySubscriptionStorage>();
-        readonly HashSet<PersistentSubscription> _subscriptions;
+        private readonly Fiber _fiber;
+        private readonly ILog _log = Logger.Get<InMemorySubscriptionStorage>();
+        private readonly HashSet<PersistentSubscription> _subscriptions;
 
         bool _disposed;
 

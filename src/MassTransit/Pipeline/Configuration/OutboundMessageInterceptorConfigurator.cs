@@ -19,7 +19,7 @@ namespace MassTransit.Pipeline.Configuration
 
     public class OutboundMessageInterceptorConfigurator
     {
-        readonly IPipelineSink<ISendContext> _sink;
+        private readonly IPipelineSink<ISendContext> _sink;
 
         public OutboundMessageInterceptorConfigurator(IPipelineSink<ISendContext> sink)
         {

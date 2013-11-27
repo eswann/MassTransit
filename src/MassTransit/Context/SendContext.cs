@@ -20,7 +20,7 @@ namespace MassTransit.Context
         ISendContext<T>
         where T : class
     {
-        readonly T _message;
+        private readonly T _message;
         Action<Stream> _bodyWriter;
         Guid _id;
         IReceiveContext _receiveContext;

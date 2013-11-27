@@ -17,7 +17,7 @@ namespace MassTransit.Transports
     class RetryPolicy :
         IConnectionPolicy
     {
-        readonly IConnectionPolicyChain _policyChain;
+        private readonly IConnectionPolicyChain _policyChain;
 
         public RetryPolicy(IConnectionPolicyChain policyChain)
         {

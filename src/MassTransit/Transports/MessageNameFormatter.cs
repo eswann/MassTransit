@@ -16,7 +16,7 @@ namespace MassTransit.Transports
 
     public class MessageNameFormatter : IMessageNameFormatter
     {
-        readonly IMessageNameFormatter _formatter;
+        private readonly IMessageNameFormatter _formatter;
 
         public MessageNameFormatter()
         {

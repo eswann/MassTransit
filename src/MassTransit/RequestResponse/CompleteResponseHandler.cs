@@ -20,7 +20,7 @@ namespace MassTransit.RequestResponse
         ResponseHandlerBase<TResponse>
         where TResponse : class
     {
-        readonly IRequestComplete _complete;
+        private readonly IRequestComplete _complete;
 
         public CompleteResponseHandler(string requestId, IRequestComplete complete,
             SynchronizationContext synchronizationContext, Action<IConsumeContext<TResponse>, TResponse> handler)

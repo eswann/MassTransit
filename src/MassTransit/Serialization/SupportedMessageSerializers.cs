@@ -20,7 +20,7 @@ namespace MassTransit.Serialization
     public class SupportedMessageSerializers :
         ISupportedMessageSerializers
     {
-        readonly IDictionary<string, IMessageSerializer> _serializers;
+        private readonly IDictionary<string, IMessageSerializer> _serializers;
         Func<IMessageSerializer> _defaultSerializer;
 
         public SupportedMessageSerializers(params IMessageSerializer[] serializers)

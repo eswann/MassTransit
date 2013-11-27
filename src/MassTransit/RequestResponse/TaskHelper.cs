@@ -18,8 +18,8 @@ namespace MassTransit.RequestResponse
 
     public static class TaskHelper
     {
-        static readonly Task _canceled;
-        static readonly Task _completed;
+        private static readonly Task _canceled;
+        private static readonly Task _completed;
 
         static TaskHelper()
         {

@@ -25,15 +25,15 @@ namespace MassTransit.Context
         MessageContext,
         IReceiveContext
     {
-        static readonly ILog _log = Logger.Get(typeof(ReceiveContext));
-        readonly IList<IPublished> _published;
-        readonly IList<IReceived> _received;
-        readonly IList<ISent> _sent;
-        readonly bool _transactional;
+        private static readonly ILog _log = Logger.Get(typeof(ReceiveContext));
+        private readonly IList<IPublished> _published;
+        private readonly IList<IReceived> _received;
+        private readonly IList<ISent> _sent;
+        private readonly bool _transactional;
         Stream _bodyStream;
         Stopwatch _timer;
         IMessageTypeConverter _typeConverter;
-        readonly IList<Action> _faultActions;
+        private readonly IList<Action> _faultActions;
 
         ReceiveContext()
         {

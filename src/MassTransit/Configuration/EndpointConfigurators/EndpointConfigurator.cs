@@ -107,8 +107,8 @@ namespace MassTransit.EndpointConfigurators
         IEndpointConfigurator,
         IEndpointFactoryBuilderConfigurator
     {
-        readonly Uri _baseUri;
-        readonly EndpointSettings _settings;
+        private readonly Uri _baseUri;
+        private readonly EndpointSettings _settings;
         IEndpointAddress _errorAddress;
         OutboundTransportFactory _errorTransportFactory;
         DuplexTransportFactory _transportFactory;

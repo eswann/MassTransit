@@ -19,7 +19,7 @@ namespace MassTransit.Transports.Configuration.Configurators
 
     public class UsernameConnectionFactoryConfigurator : IConnectionFactoryBuilderConfigurator
     {
-        readonly string _userName;
+        private readonly string _userName;
 
         public UsernameConnectionFactoryConfigurator(string userName)
         {

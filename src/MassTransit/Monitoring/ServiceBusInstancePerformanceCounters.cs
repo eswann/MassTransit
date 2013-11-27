@@ -18,7 +18,7 @@ namespace MassTransit.Monitoring
     public class ServiceBusInstancePerformanceCounters :
         IDisposable
     {
-        static readonly ILog _log = Logger.Get(typeof (ServiceBusInstancePerformanceCounters));
+        private static readonly ILog _log = Logger.Get(typeof (ServiceBusInstancePerformanceCounters));
 
         bool _disposed;
 

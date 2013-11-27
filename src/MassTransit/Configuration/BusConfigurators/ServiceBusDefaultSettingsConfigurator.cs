@@ -30,7 +30,7 @@ namespace MassTransit.BusConfigurators
     public class ServiceBusDefaultSettingsConfigurator :
         IServiceBusDefaultSettingsConfigurator
     {
-        readonly ServiceBusDefaultSettings _defaultSettings;
+        private readonly ServiceBusDefaultSettings _defaultSettings;
 
         public ServiceBusDefaultSettingsConfigurator(ServiceBusDefaultSettings defaultSettings)
         {

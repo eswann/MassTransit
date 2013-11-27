@@ -20,14 +20,13 @@ namespace MassTransit.AutofacIntegration
     using Pipeline;
     using Saga;
 
-
     public class AutofacSagaRepository<T> :
         ISagaRepository<T>
         where T : class, ISaga
     {
-        readonly string _name;
-        readonly ISagaRepository<T> _repository;
-        readonly ILifetimeScope _scope;
+        private readonly string _name;
+        private readonly ISagaRepository<T> _repository;
+        private readonly ILifetimeScope _scope;
 
         public AutofacSagaRepository(ISagaRepository<T> repository, ILifetimeScope scope, string name)
         {

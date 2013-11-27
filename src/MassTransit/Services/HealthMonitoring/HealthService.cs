@@ -27,9 +27,9 @@ namespace MassTransit.Services.HealthMonitoring
         Consumes<HealthUpdateRequest>.All,
         IDisposable
     {
-        static readonly ILog _log = Logger.Get(typeof (HealthService));
-        readonly IServiceBus _bus;
-        readonly ISagaRepository<HealthSaga> _healthSagas;
+        private static readonly ILog _log = Logger.Get(typeof (HealthService));
+        private readonly IServiceBus _bus;
+        private readonly ISagaRepository<HealthSaga> _healthSagas;
         UnsubscribeAction _unsubscribeToken = () => false;
 
         /// <summary>

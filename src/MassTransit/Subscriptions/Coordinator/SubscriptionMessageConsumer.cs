@@ -33,12 +33,12 @@ namespace MassTransit.Subscriptions.Coordinator
         Consumes<AddPeer>.Context,
         Consumes<IRemovePeer>.Context
     {
-        static readonly ILog _log = Logger.Get(typeof (SubscriptionMessageConsumer));
-        readonly SubscriptionRouter _router;
-        readonly HashSet<Uri> _ignoredSourceAddresses;
-        readonly string _network;
-        readonly Guid _peerId;
-        readonly Uri _peerUri;
+        private static readonly ILog _log = Logger.Get(typeof (SubscriptionMessageConsumer));
+        private readonly SubscriptionRouter _router;
+        private readonly HashSet<Uri> _ignoredSourceAddresses;
+        private readonly string _network;
+        private readonly Guid _peerId;
+        private readonly Uri _peerUri;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="SubscriptionMessageConsumer"/> class.

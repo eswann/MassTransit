@@ -15,7 +15,7 @@ namespace MassTransit.NewIdFormatters
     public class HexFormatter :
         INewIdFormatter
     {
-        readonly int _alpha;
+        private readonly int _alpha;
 
         public HexFormatter(bool upperCase = false)
         {

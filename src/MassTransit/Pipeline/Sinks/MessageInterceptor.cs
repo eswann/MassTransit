@@ -20,8 +20,8 @@ namespace MassTransit.Pipeline.Sinks
     public class InboundMessageInterceptor :
         IPipelineSink<IConsumeContext>
     {
-        readonly IInboundMessageInterceptor _interceptor;
-        readonly IPipelineSink<IConsumeContext> _output;
+        private readonly IInboundMessageInterceptor _interceptor;
+        private readonly IPipelineSink<IConsumeContext> _output;
 
         public InboundMessageInterceptor(
             Func<IPipelineSink<IConsumeContext>, IPipelineSink<IConsumeContext>> insertAfter,

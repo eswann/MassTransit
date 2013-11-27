@@ -12,19 +12,19 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.AutofacIntegration
 {
-	using System;
-	using Autofac;
-	using Magnum.Reflection;
-	using Saga;
-	using Saga.Configuration;
-	using SubscriptionConfigurators;
-	using Util;
+    using System;
+    using Autofac;
+    using Magnum.Reflection;
+    using Saga;
+    using Saga.Configuration;
+    using SubscriptionConfigurators;
+    using Util;
 
-	public class AutofacSagaRepositoryFactoryConfigurator
+    public class AutofacSagaRepositoryFactoryConfigurator
 	{
-		readonly ISubscriptionBusServiceConfigurator _configurator;
-        readonly ILifetimeScope _scope;
-	    string _name;
+		private readonly ISubscriptionBusServiceConfigurator _configurator;
+        private readonly ILifetimeScope _scope;
+        private readonly string _name;
 
 	    public AutofacSagaRepositoryFactoryConfigurator(ISubscriptionBusServiceConfigurator configurator, ILifetimeScope scope, string name)
 		{

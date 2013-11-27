@@ -23,7 +23,7 @@ namespace MassTransit.Configuration
         IConsumerFactory<TConsumer>
         where TConsumer : class
     {
-        readonly Func<TConsumer> _factoryMethod;
+        private readonly Func<TConsumer> _factoryMethod;
 
         public DelegateConsumerFactory(Func<TConsumer> factoryMethod)
         {

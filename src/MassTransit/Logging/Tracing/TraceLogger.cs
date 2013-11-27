@@ -18,8 +18,8 @@ namespace MassTransit.Logging.Tracing
     public class TraceLogger :
         ILogger
     {
-        readonly Cache<string, TraceLog> _logs;
-        readonly Cache<string, TraceSource> _sources;
+        private readonly Cache<string, TraceLog> _logs;
+        private readonly Cache<string, TraceSource> _sources;
 
         public TraceLogger()
         {

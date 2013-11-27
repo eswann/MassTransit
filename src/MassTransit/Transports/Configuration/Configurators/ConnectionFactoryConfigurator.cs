@@ -31,7 +31,7 @@ namespace MassTransit.Transports.Configuration.Configurators
 		IConnectionFactoryConfigurator,
 		ITransportFactoryBuilderConfigurator
 	{
-        readonly IRabbitMqEndpointAddress _address;
+        private readonly IRabbitMqEndpointAddress _address;
 
 		readonly List<IConnectionFactoryBuilderConfigurator> _configurators;
 

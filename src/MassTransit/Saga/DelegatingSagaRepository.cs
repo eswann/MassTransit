@@ -16,8 +16,8 @@ namespace MassTransit.Saga
         ISagaRepository<TSaga>
         where TSaga : class, ISaga
     {
-        readonly Action<TSaga> _callback;
-        readonly ISagaRepository<TSaga> _repository;
+        private readonly Action<TSaga> _callback;
+        private readonly ISagaRepository<TSaga> _repository;
 
         public DelegatingSagaRepository(ISagaRepository<TSaga> repository, Action<TSaga> callback)
         {

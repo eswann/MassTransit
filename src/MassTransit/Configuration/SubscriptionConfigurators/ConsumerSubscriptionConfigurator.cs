@@ -34,7 +34,7 @@ namespace MassTransit.SubscriptionConfigurators
         ISubscriptionBuilderConfigurator
         where TConsumer : class
     {
-        readonly IConsumerFactory<TConsumer> _consumerFactory;
+        private readonly IConsumerFactory<TConsumer> _consumerFactory;
 
         public ConsumerSubscriptionConfigurator(IConsumerFactory<TConsumer> consumerFactory)
         {

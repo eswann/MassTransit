@@ -23,10 +23,10 @@ namespace MassTransit.Serialization
     public class JsonMessageTypeConverter :
         IMessageTypeConverter
     {
-        readonly IDictionary<Type, object> _mapped;
-        readonly JsonSerializer _serializer;
-        readonly string[] _supportedTypes;
-        readonly JToken _token;
+        private readonly IDictionary<Type, object> _mapped;
+        private readonly JsonSerializer _serializer;
+        private readonly string[] _supportedTypes;
+        private readonly JToken _token;
 
         public JsonMessageTypeConverter(JsonSerializer serializer, JToken token, IEnumerable<string> supportedTypes)
         {

@@ -27,9 +27,9 @@ namespace MassTransit.Transports.Loopback
     /// </summary>
     public class LoopbackTransport : IDuplexTransport
     {
-        readonly object _messageReadLock = new object();
-        readonly object _messageWriteLock = new object();
-        readonly TimeSpan _deadlockTimeout = new TimeSpan(0, 1, 0);
+        private readonly object _messageReadLock = new object();
+        private readonly object _messageWriteLock = new object();
+        private readonly TimeSpan _deadlockTimeout = new TimeSpan(0, 1, 0);
         bool _disposed;
         AutoResetEvent _messageReady = new AutoResetEvent(false);
         LinkedList<LoopbackMessage> _messages = new LinkedList<LoopbackMessage>();

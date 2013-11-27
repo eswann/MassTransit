@@ -30,11 +30,11 @@ namespace MassTransit.Transports.Publish
     public class PublishEndpointInterceptor :
         IOutboundMessageInterceptor
     {
-        readonly IDictionary<Type, UnsubscribeAction> _added;
-        readonly IRabbitMqEndpointAddress _address;
-        readonly IServiceBus _bus;
-        readonly InboundTransport _inboundTransport;
-        readonly IMessageNameFormatter _messageNameFormatter;
+        private readonly IDictionary<Type, UnsubscribeAction> _added;
+        private readonly IRabbitMqEndpointAddress _address;
+        private readonly IServiceBus _bus;
+        private readonly InboundTransport _inboundTransport;
+        private readonly IMessageNameFormatter _messageNameFormatter;
 
         public PublishEndpointInterceptor(IServiceBus bus)
         {

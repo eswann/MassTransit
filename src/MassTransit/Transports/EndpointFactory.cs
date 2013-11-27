@@ -26,9 +26,9 @@ namespace MassTransit.Transports
     public class EndpointFactory :
         IEndpointFactory
     {
-        readonly IEndpointFactoryDefaultSettings _defaults;
-        readonly Cache<Uri, IEndpointBuilder> _endpointBuilders;
-        readonly Cache<string, ITransportFactory> _transportFactories;
+        private readonly IEndpointFactoryDefaultSettings _defaults;
+        private readonly Cache<Uri, IEndpointBuilder> _endpointBuilders;
+        private readonly Cache<string, ITransportFactory> _transportFactories;
         bool _disposed;
 
         /// <summary>

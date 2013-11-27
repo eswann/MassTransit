@@ -45,11 +45,11 @@ namespace MassTransit.Transports
         IConnectionHandler
         where T : ITransportConnection
     {
-        readonly HashSet<IConnectionBinding<T>> _bindings;
-        readonly T _connection;
-        readonly object _lock = new object();
-        readonly ILog _log = Logger.Get(typeof (ConnectionHandler<T>));
-        readonly ConnectionPolicyChain _policyChain;
+        private readonly HashSet<IConnectionBinding<T>> _bindings;
+        private readonly T _connection;
+        private readonly object _lock = new object();
+        private readonly ILog _log = Logger.Get(typeof (ConnectionHandler<T>));
+        private readonly ConnectionPolicyChain _policyChain;
         bool _bound;
         bool _connected;
         bool _disposed;

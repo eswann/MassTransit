@@ -22,7 +22,7 @@ namespace MassTransit.EndpointConfigurators
     public class SetSupportedMessageSerializersEndpointFactoryConfigurator :
         IEndpointFactoryBuilderConfigurator
     {
-        readonly Func<ISupportedMessageSerializers> _supportedSerializersFactory;
+        private readonly Func<ISupportedMessageSerializers> _supportedSerializersFactory;
 
         public SetSupportedMessageSerializersEndpointFactoryConfigurator(Func<ISupportedMessageSerializers> supportedSerializersFactory)
         {

@@ -18,8 +18,8 @@ namespace MassTransit.Serialization
     public class StaticMessageTypeConverter :
         IMessageTypeConverter
     {
-        readonly object _message;
-        readonly Type _messageType;
+        private readonly object _message;
+        private readonly Type _messageType;
 
         public StaticMessageTypeConverter([NotNull] object message)
         {

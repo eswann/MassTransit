@@ -34,7 +34,7 @@ namespace MassTransit.Testing
         ISentMessage<T>
         where T : class
     {
-        readonly ISendContext<T> _context;
+        private readonly ISendContext<T> _context;
         Exception _exception;
 
         public SentMessage(ISendContext<T> context)

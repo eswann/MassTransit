@@ -18,8 +18,8 @@ namespace MassTransit.RequestResponse
     public class FaultHandler<TRequest>
         where TRequest : class
     {
-        readonly Action<TRequest, Fault<TRequest>> _faultCallback;
-        readonly SynchronizationContext _synchronizationContext;
+        private readonly Action<TRequest, Fault<TRequest>> _faultCallback;
+        private readonly SynchronizationContext _synchronizationContext;
 
         public FaultHandler(SynchronizationContext synchronizationSynchronizationContext,
             Action<TRequest, Fault<TRequest>> faultCallback)

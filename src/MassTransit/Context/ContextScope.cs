@@ -18,7 +18,7 @@ namespace MassTransit.Context
     public class ContextScope :
         IDisposable
     {
-        readonly Action _restore;
+        private readonly Action _restore;
 
         ContextScope(Action restore)
         {

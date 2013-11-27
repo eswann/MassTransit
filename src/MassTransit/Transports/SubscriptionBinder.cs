@@ -23,11 +23,11 @@ namespace MassTransit.Transports
 
     public class SubscriptionBinder : SubscriptionObserver
     {
-        static readonly ILog _log = Logger.Get(typeof (SubscriptionBinder));
-        readonly Dictionary<Guid, MessageName> _bindings;
-        readonly InboundTransport _inboundTransport;
-        readonly IEndpointAddress _inputAddress;
-        readonly IMessageNameFormatter _messageNameFormatter;
+        private static readonly ILog _log = Logger.Get(typeof (SubscriptionBinder));
+        private readonly Dictionary<Guid, MessageName> _bindings;
+        private readonly InboundTransport _inboundTransport;
+        private readonly IEndpointAddress _inputAddress;
+        private readonly IMessageNameFormatter _messageNameFormatter;
 
         public SubscriptionBinder(IServiceBus bus)
         {

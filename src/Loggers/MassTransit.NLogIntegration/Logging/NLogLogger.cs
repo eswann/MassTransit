@@ -18,10 +18,9 @@ namespace MassTransit.NLogIntegration.Logging
     using Util;
     using Logger = MassTransit.Logging.Logger;
 
-    public class NLogLogger : 
-        ILogger
+    public class NLogLogger : ILogger
     {
-        readonly Func<string, NLog.Logger> _logFactory;
+        private readonly Func<string, NLog.Logger> _logFactory;
  
         public NLogLogger([NotNull] LogFactory factory)
         {
@@ -30,7 +29,7 @@ namespace MassTransit.NLogIntegration.Logging
 
         public NLogLogger()
         {
-            _logFactory = NLog.LogManager.GetLogger;
+            _logFactory = LogManager.GetLogger;
         }
 
         public ILog Get(string name)

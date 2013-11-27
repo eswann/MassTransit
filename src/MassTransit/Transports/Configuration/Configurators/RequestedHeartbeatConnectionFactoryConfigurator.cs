@@ -19,7 +19,7 @@ namespace MassTransit.Transports.Configuration.Configurators
 
     public class RequestedHeartbeatConnectionFactoryConfigurator : IConnectionFactoryBuilderConfigurator
     {
-        readonly ushort _requestedHeartbeat;
+        private readonly ushort _requestedHeartbeat;
 
         public RequestedHeartbeatConnectionFactoryConfigurator(ushort requestedHeartbeat)
         {

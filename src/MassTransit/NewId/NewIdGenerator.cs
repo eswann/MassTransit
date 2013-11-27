@@ -14,13 +14,13 @@ namespace MassTransit
 {
     public class NewIdGenerator
     {
-        readonly int _c;
-        readonly int _d;
+        private readonly int _c;
+        private readonly int _d;
 
-        readonly object _sync = new object();
-        readonly ITickProvider _tickProvider;
-        readonly byte[] _workerId;
-        readonly int _workerIndex;
+        private readonly object _sync = new object();
+        private readonly ITickProvider _tickProvider;
+        private readonly byte[] _workerId;
+        private readonly int _workerIndex;
         int _a;
         int _b;
         long _lastTick;

@@ -21,8 +21,8 @@ namespace MassTransit.Context
         IBusPublishContext<T>
         where T : class
     {
-        readonly IPublishContext _notifySend;
-        readonly HashSet<Uri> _endpoints = new HashSet<Uri>();
+        private readonly IPublishContext _notifySend;
+        private readonly HashSet<Uri> _endpoints = new HashSet<Uri>();
         Action<IEndpointAddress> _eachSubscriberAction = Ignore;
         Action _noSubscribersAction = Ignore;
         Stopwatch _timer;

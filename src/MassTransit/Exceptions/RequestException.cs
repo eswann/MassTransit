@@ -19,7 +19,7 @@ namespace MassTransit.Exceptions
     public class RequestException :
         MassTransitException
     {
-        readonly object _response;
+        private readonly object _response;
 
         public RequestException(string message, Exception innerException, object response)
             : base(message, innerException)

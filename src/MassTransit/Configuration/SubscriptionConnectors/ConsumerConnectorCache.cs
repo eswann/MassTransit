@@ -21,7 +21,7 @@ namespace MassTransit.SubscriptionConnectors
         [ThreadStatic]
         static ConsumerConnectorCache _current;
 
-        readonly GenericTypeCache<IConsumerConnector> _connectors;
+        private readonly GenericTypeCache<IConsumerConnector> _connectors;
 
         ConsumerConnectorCache()
         {

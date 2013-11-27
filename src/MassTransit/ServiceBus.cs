@@ -39,7 +39,7 @@ namespace MassTransit
     public class ServiceBus :
         IControlBus
     {
-        static readonly ILog _log;
+        private static readonly ILog _log;
 
         IConsumerPool _consumerPool;
         int _consumerThreadLimit = Environment.ProcessorCount*4;

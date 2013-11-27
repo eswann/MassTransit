@@ -24,7 +24,7 @@ namespace MassTransit.Containers.Tests
     public class Autofac_Consumer :
         When_registering_a_consumer
     {
-        readonly IContainer _container;
+        private readonly IContainer _container;
 
         public Autofac_Consumer()
         {
@@ -55,7 +55,7 @@ namespace MassTransit.Containers.Tests
     public class Autofac_Saga :
         When_registering_a_saga
     {
-        readonly IContainer _container;
+        private readonly IContainer _container;
 
         public Autofac_Saga()
         {

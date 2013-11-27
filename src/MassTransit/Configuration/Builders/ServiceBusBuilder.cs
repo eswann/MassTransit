@@ -40,10 +40,10 @@ namespace MassTransit.Builders
 
     public class ServiceBusBuilder : IServiceBusBuilder
     {
-        static readonly ILog _log = Logger.Get<ServiceBusBuilder>();
-        readonly IList<IBusServiceConfigurator> _busServiceConfigurators;
-        readonly IList<Action<ServiceBus>> _postCreateActions;
-        readonly IBusSettings _settings;
+        private static readonly ILog _log = Logger.Get<ServiceBusBuilder>();
+        private readonly IList<IBusServiceConfigurator> _busServiceConfigurators;
+        private readonly IList<Action<ServiceBus>> _postCreateActions;
+        private readonly IBusSettings _settings;
 
         public ServiceBusBuilder(IBusSettings settings)
         {

@@ -27,7 +27,7 @@ namespace MassTransit.SubscriptionConfigurators
         IInstanceSubscriptionConfigurator,
         ISubscriptionBuilderConfigurator
     {
-        readonly object _instance;
+        private readonly object _instance;
 
         public InstanceSubscriptionConfigurator(object instance)
         {

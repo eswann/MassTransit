@@ -24,9 +24,9 @@ namespace MassTransit
     public class ServiceContainer :
         IServiceContainer
     {
-        static readonly ILog _log = Logger.Get(typeof(ServiceContainer));
-        readonly IServiceBus _bus;
-        readonly ServiceCatalog _catalog;
+        private static readonly ILog _log = Logger.Get(typeof(ServiceContainer));
+        private readonly IServiceBus _bus;
+        private readonly ServiceCatalog _catalog;
         bool _disposed;
 
         public ServiceContainer(IServiceBus bus)

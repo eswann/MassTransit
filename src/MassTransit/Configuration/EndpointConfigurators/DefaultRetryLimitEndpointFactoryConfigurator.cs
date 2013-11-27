@@ -19,7 +19,7 @@ namespace MassTransit.EndpointConfigurators
     public class DefaultRetryLimitEndpointFactoryConfigurator :
         IEndpointFactoryBuilderConfigurator
     {
-        readonly int _retryLimit;
+        private readonly int _retryLimit;
 
         public DefaultRetryLimitEndpointFactoryConfigurator(int retryLimit)
         {

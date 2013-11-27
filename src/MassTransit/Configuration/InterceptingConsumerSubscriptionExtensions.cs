@@ -21,7 +21,7 @@ namespace MassTransit
 
     public static class InterceptingConsumerSubscriptionExtensions
     {
-        static readonly ILog _log = Logger.Get(typeof(ConsumerSubscriptionExtensions));
+        private static readonly ILog _log = Logger.Get(typeof(ConsumerSubscriptionExtensions));
 
         public static IConsumerSubscriptionConfigurator<TConsumer> InterceptingConsumer<TConsumer>(
             [NotNull] this ISubscriptionBusServiceConfigurator configurator,

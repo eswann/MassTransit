@@ -21,9 +21,9 @@ namespace MassTransit.Subscriptions.Coordinator
     public class PeerHandler :
         Actor
     {
-        static readonly ILog _log = Logger.Get(typeof(PeerHandler));
+        private static readonly ILog _log = Logger.Get(typeof(PeerHandler));
 
-        readonly SubscriptionObserver _observer;
+        private readonly SubscriptionObserver _observer;
         EndpointSubscriptionCache _endpointSubscriptionCache;
         Guid _peerId;
         Uri _peerUri;

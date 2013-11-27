@@ -21,8 +21,8 @@ namespace MassTransit.Saga.SubscriptionBuilders
         ISubscriptionBuilder
         where TSaga : class, ISaga
     {
-        readonly SagaConnector<TSaga> _connector;
-        readonly ReferenceFactory _referenceFactory;
+        private readonly SagaConnector<TSaga> _connector;
+        private readonly ReferenceFactory _referenceFactory;
 
         public SagaSubscriptionBuilder(ISagaRepository<TSaga> sagaRepository,
             ReferenceFactory referenceFactory)

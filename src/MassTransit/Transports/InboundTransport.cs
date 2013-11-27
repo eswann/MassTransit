@@ -24,12 +24,12 @@ namespace MassTransit.Transports
 
     public class InboundTransport : IInboundTransport
     {
-        static readonly ILog _log = Logger.Get(typeof(InboundTransport));
+        private static readonly ILog _log = Logger.Get(typeof(InboundTransport));
 
-        readonly IRabbitMqEndpointAddress _address;
-        readonly IConnectionHandler<TransportConnection> _connectionHandler;
-        readonly IMessageNameFormatter _messageNameFormatter;
-        readonly bool _purgeExistingMessages;
+        private readonly IRabbitMqEndpointAddress _address;
+        private readonly IConnectionHandler<TransportConnection> _connectionHandler;
+        private readonly IMessageNameFormatter _messageNameFormatter;
+        private readonly bool _purgeExistingMessages;
         Consumer _consumer;
         bool _disposed;
         Publisher _publisher;

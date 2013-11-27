@@ -26,12 +26,12 @@ namespace MassTransit.Transports
 
     public class TransportFactory : ITransportFactory
     {
-        readonly Cache<ConnectionFactory, IConnectionFactoryBuilder> _connectionFactoryBuilders;
-        readonly Cache<ConnectionFactory, IConnectionHandler<TransportConnection>> _inboundConnections;
-        readonly ILog _log = Logger.Get<TransportFactory>();
-        readonly IMessageNameFormatter _messageNameFormatter;
-        readonly IPublisherConfirmSettings _publisherConfirmSettings;
-        readonly Cache<ConnectionFactory, IConnectionHandler<TransportConnection>> _outboundConnections;
+        private readonly Cache<ConnectionFactory, IConnectionFactoryBuilder> _connectionFactoryBuilders;
+        private readonly Cache<ConnectionFactory, IConnectionHandler<TransportConnection>> _inboundConnections;
+        private readonly ILog _log = Logger.Get<TransportFactory>();
+        private readonly IMessageNameFormatter _messageNameFormatter;
+        private readonly IPublisherConfirmSettings _publisherConfirmSettings;
+        private readonly Cache<ConnectionFactory, IConnectionHandler<TransportConnection>> _outboundConnections;
         bool _disposed;
 
         public TransportFactory(IEnumerable<KeyValuePair<Uri, IConnectionFactoryBuilder>> connectionFactoryBuilders, 

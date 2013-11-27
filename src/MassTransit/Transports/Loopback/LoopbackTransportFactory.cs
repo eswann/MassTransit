@@ -18,8 +18,8 @@ namespace MassTransit.Transports.Loopback
     public class LoopbackTransportFactory :
         ITransportFactory
     {
-        readonly Cache<Uri, LoopbackTransport> _transports;
-        readonly IMessageNameFormatter _messageNameFormatter;
+        private readonly Cache<Uri, LoopbackTransport> _transports;
+        private readonly IMessageNameFormatter _messageNameFormatter;
 
         public LoopbackTransportFactory()
         {

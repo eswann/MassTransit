@@ -29,9 +29,9 @@ namespace MassTransit.Saga.SubscriptionConnectors
         where TSaga : SagaStateMachine<TSaga>, ISaga
         where TMessage : class
     {
-        readonly DataEvent<TSaga, TMessage> _dataEvent;
-        readonly ISagaPolicy<TSaga, TMessage> _policy;
-        readonly ISagaRepository<TSaga> _sagaRepository;
+        private readonly DataEvent<TSaga, TMessage> _dataEvent;
+        private readonly ISagaPolicy<TSaga, TMessage> _policy;
+        private readonly ISagaRepository<TSaga> _sagaRepository;
         Expression<Func<TSaga, TMessage, bool>> _bindExpression;
 
         public PropertySagaSubscriptionConnector(ISagaRepository<TSaga> sagaRepository,

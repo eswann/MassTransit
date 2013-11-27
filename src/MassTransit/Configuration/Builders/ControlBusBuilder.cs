@@ -31,11 +31,11 @@ namespace MassTransit.Builders
     public class ControlBusBuilder :
         IControlBusBuilder
     {
-        static readonly ILog _log = Logger.Get(typeof (ControlBusBuilder));
+        private static readonly ILog _log = Logger.Get(typeof (ControlBusBuilder));
 
-        readonly IList<IBusServiceConfigurator> _busServiceConfigurators;
-        readonly IList<Action<ServiceBus>> _postCreateActions;
-        readonly IBusSettings _settings;
+        private readonly IList<IBusServiceConfigurator> _busServiceConfigurators;
+        private readonly IList<Action<ServiceBus>> _postCreateActions;
+        private readonly IBusSettings _settings;
 
         public ControlBusBuilder([NotNull] IBusSettings settings)
         {

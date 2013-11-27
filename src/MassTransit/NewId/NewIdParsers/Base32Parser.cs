@@ -22,7 +22,7 @@ namespace MassTransit.NewIdParsers
 
         const string HexChars = "0123456789ABCDEF";
 
-        readonly string _chars;
+        private readonly string _chars;
 
         public Base32Parser(string chars)
         {

@@ -28,10 +28,10 @@ namespace MassTransit.Logging
         public static readonly LogLevel None = new LogLevel("None", 0, SourceLevels.Off, TraceEventType.Critical);
         public static readonly LogLevel Warn = new LogLevel("Warn", 3, SourceLevels.Warning, TraceEventType.Warning);
 
-        readonly int _index;
-        readonly string _name;
-        readonly SourceLevels _sourceLevel;
-        readonly TraceEventType _traceEventType;
+        private readonly int _index;
+        private readonly string _name;
+        private readonly SourceLevels _sourceLevel;
+        private readonly TraceEventType _traceEventType;
 
         LogLevel(string name, int index, SourceLevels sourceLevel, TraceEventType traceEventType)
         {

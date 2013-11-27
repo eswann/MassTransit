@@ -21,11 +21,11 @@ namespace MassTransit.Subscriptions.Coordinator
     public class BusSubscriptionRepository :
         SubscriptionRepository
     {
-        static readonly ILog _log = Logger.Get(typeof(BusSubscriptionRepository));
+        private static readonly ILog _log = Logger.Get(typeof(BusSubscriptionRepository));
 
-        readonly Fiber _fiber;
-        readonly Uri _busUri;
-        readonly SubscriptionStorage _storage;
+        private readonly Fiber _fiber;
+        private readonly Uri _busUri;
+        private readonly SubscriptionStorage _storage;
         bool _disposed;
 
         public BusSubscriptionRepository(Uri busUri, SubscriptionStorage storage)
