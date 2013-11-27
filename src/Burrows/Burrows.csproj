@@ -125,7 +125,7 @@
     <Compile Include="NewId\NewIdProviders\BestPossibleWorkerIdProvider.cs" />
     <Compile Include="NewId\NewIdProviders\HostNameSHA1WorkerIdProvider.cs" />
     <Compile Include="NewId\NewIdProviders\WMINetworkAddressWorkerIdProvider.cs" />
-    <Compile Include="Serialization\Custom\NonClosingStream.cs" />
+    <Compile Include="Serialization\NonClosingStream.cs" />
     <Compile Include="Serialization\IMessageSerializer.cs" />
     <Compile Include="Subscriptions\Coordinator\InMemorySubscriptionStorage.cs" />
     <Compile Include="Configuration\Configuration\InterceptingConsumerFactory.cs" />
