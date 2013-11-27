@@ -10,11 +10,11 @@
 // under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR 
 // CONDITIONS OF ANY KIND, either express or implied. See the License for the 
 // specific language governing permissions and limitations under the License.
-namespace MassTransit.Tests.Serialization
+namespace Burrows.Tests.Serialization
 {
     using System;
     using Magnum.TestFramework;
-    using MassTransit.Testing;
+    using Burrows.Testing;
 
     [Scenario]
     public class When_a_date_time_value_is_serialized

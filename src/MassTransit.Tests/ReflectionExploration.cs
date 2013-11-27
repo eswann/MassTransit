@@ -1,11 +1,11 @@
-namespace MassTransit.Tests
+namespace Burrows.Tests
 {
     using System;
     using System.Collections.Generic;
     using System.Linq;
     using Magnum.Extensions;
     using Magnum.TestFramework;
-    using MassTransit.Saga;
+    using Burrows.Saga;
     using NUnit.Framework;
     using TestFramework;
 

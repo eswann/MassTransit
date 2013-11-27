@@ -10,13 +10,13 @@
 // under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR 
 // CONDITIONS OF ANY KIND, either express or implied. See the License for the 
 // specific language governing permissions and limitations under the License.
-namespace MassTransit.Testing.ScenarioBuilders
+namespace Burrows.Testing.ScenarioBuilders
 {
     using System;
     using EndpointConfigurators;
     using Exceptions;
     using Magnum.Extensions;
-    using MassTransit.Configurators;
+    using Burrows.Configurators;
     using Scenarios;
     using Serialization;
     using Transports;

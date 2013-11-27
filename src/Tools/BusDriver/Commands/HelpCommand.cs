@@ -14,7 +14,7 @@ namespace BusDriver.Commands
 {
     using System.IO;
     using System.Reflection;
-    using MassTransit.Logging;
+    using Burrows.Logging;
 
     public class HelpCommand :
 		Command

@@ -10,13 +10,13 @@
 // under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR 
 // CONDITIONS OF ANY KIND, either express or implied. See the License for the 
 // specific language governing permissions and limitations under the License.
-namespace MassTransit.Saga.SubscriptionConnectors
+namespace Burrows.Saga.SubscriptionConnectors
 {
     using System;
     using Context;
-    using MassTransit.Pipeline;
-    using MassTransit.Pipeline.Configuration;
-    using MassTransit.Pipeline.Sinks;
+    using Burrows.Pipeline;
+    using Burrows.Pipeline.Configuration;
+    using Burrows.Pipeline.Sinks;
 
     public interface ISagaSubscriptionConnector :
 		ISagaConnector

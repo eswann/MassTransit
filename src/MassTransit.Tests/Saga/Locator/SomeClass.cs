@@ -1,4 +1,4 @@
-namespace MassTransit.Tests.Saga.Locator
+namespace Burrows.Tests.Saga.Locator
 {
 	public class SomeClass
 	{

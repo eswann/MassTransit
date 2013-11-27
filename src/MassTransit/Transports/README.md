@@ -4,7 +4,7 @@ This readme details the transport implementation.
 
 ## Transport aims
 
-Provide a first-citizen class transport to MassTransit that supports all the message patterns we'd want:
+Provide a first-citizen class transport to Burrows that supports all the message patterns we'd want:
 
  * Publish to any listener (that may or may not have subscribed already)
  * Polymorphic Message Routing

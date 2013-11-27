@@ -10,7 +10,7 @@
 // under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR 
 // CONDITIONS OF ANY KIND, either express or implied. See the License for the 
 // specific language governing permissions and limitations under the License.
-namespace MassTransit
+namespace Burrows
 {
     using System;
     using BusConfigurators;
@@ -18,7 +18,7 @@ namespace MassTransit
 
     /// <summary>
 	/// This is a static singleton instance of an IServiceBus. While it goes
-	/// against my very soul, it is here to ensure consistent usage of MassTransit
+	/// against my very soul, it is here to ensure consistent usage of Burrows
 	/// as a singleton. It is highly recommended that <see cref="ServiceBusFactory.New"/> be
 	/// used instead and the application maintain the reference to the IServiceBus.
 	/// </summary>

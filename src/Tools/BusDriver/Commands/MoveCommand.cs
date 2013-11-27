@@ -15,9 +15,9 @@ namespace BusDriver.Commands
     using System;
     using Formatting;
     using Magnum.Extensions;
-    using MassTransit.Context;
-    using MassTransit.Logging;
-    using MassTransit.Transports;
+    using Burrows.Context;
+    using Burrows.Logging;
+    using Burrows.Transports;
 
     public class MoveCommand :
 		Command

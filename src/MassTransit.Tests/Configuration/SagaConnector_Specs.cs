@@ -1,9 +1,9 @@
-namespace MassTransit.Tests.Configuration
+namespace Burrows.Tests.Configuration
 {
     using System.Linq;
     using Magnum.TestFramework;
-    using MassTransit.Saga;
-    using MassTransit.Saga.SubscriptionConnectors;
+    using Burrows.Saga;
+    using Burrows.Saga.SubscriptionConnectors;
     using Saga;
 
     [Scenario]

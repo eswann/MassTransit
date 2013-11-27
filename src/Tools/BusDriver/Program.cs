@@ -18,12 +18,12 @@ namespace BusDriver
     using Magnum.Caching;
     using Magnum.CommandLineParser;
     using Magnum.Extensions;
-    using MassTransit;
-    using MassTransit.Log4NetIntegration.Logging;
-    using MassTransit.Logging;
-    using MassTransit.Transports;
-    using MassTransit.Transports.Configuration.Extensions;
-    using MassTransit.Transports.Loopback;
+    using Burrows;
+    using Burrows.Log4NetIntegration.Logging;
+    using Burrows.Logging;
+    using Burrows.Transports;
+    using Burrows.Transports.Configuration.Extensions;
+    using Burrows.Transports.Loopback;
     using log4net.Appender;
     using log4net.Config;
     using log4net.Core;
@@ -204,7 +204,7 @@ namespace BusDriver
 
 			var filter = new LoggerMatchFilter();
 			filter.AcceptOnMatch = false;
-			filter.LoggerToMatch = "MassTransit";
+			filter.LoggerToMatch = "Burrows";
 
 			_appender.AddFilter(filter);
 

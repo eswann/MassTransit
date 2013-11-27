@@ -10,12 +10,12 @@
 // under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR 
 // CONDITIONS OF ANY KIND, either express or implied. See the License for the 
 // specific language governing permissions and limitations under the License.
-namespace MassTransit.Configurators
+namespace Burrows.Configurators
 {
     using System.Collections.Generic;
 
     /// <summary>
-	/// Base interface for all MassTransit configurators. This interface only
+	/// Base interface for all Burrows configurators. This interface only
 	/// contains a method for validating the validity of the configuration.
 	/// </summary>
 	public interface IConfigurator

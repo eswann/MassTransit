@@ -1,11 +1,11 @@
-﻿namespace MassTransit.Tests.Subscriptions
+﻿namespace Burrows.Tests.Subscriptions
 {
     using System.Linq;
     using BusConfigurators;
     using Magnum.Extensions;
     using Magnum.TestFramework;
-    using MassTransit.Subscriptions;
-    using MassTransit.Testing;
+    using Burrows.Subscriptions;
+    using Burrows.Testing;
     using NUnit.Framework;
     using TextFixtures;
 

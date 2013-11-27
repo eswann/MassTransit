@@ -10,13 +10,13 @@
 // under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR 
 // CONDITIONS OF ANY KIND, either express or implied. See the License for the 
 // specific language governing permissions and limitations under the License.
-namespace MassTransit
+namespace Burrows
 {
     using Logging;
 
     public static class EndpointLoggerExtensions
     {
-        private static readonly ILog _messages = Logger.Get("MassTransit.Messages");
+        private static readonly ILog _messages = Logger.Get("Burrows.Messages");
 
         public static void LogSkipped(this IEndpointAddress sourceAddress, string messageId)
         {

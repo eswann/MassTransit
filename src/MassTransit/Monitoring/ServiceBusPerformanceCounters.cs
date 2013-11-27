@@ -10,7 +10,7 @@
 // under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR 
 // CONDITIONS OF ANY KIND, either express or implied. See the License for the 
 // specific language governing permissions and limitations under the License.
-namespace MassTransit.Monitoring
+namespace Burrows.Monitoring
 {
     using System.Diagnostics;
     using System.Linq;
@@ -20,8 +20,8 @@ namespace MassTransit.Monitoring
 
     public class ServiceBusPerformanceCounters
 	{
-	    public const string CategoryName = "MassTransit";
-	    const string CategoryHelp = "MassTransit Performance Counters";
+	    public const string CategoryName = "Burrows";
+	    const string CategoryHelp = "Burrows Performance Counters";
 	    static readonly ServiceBusPerformanceCounters _instance;
 		static readonly ILog _log = Logger.Get(typeof (ServiceBusPerformanceCounters));
 

@@ -10,7 +10,7 @@
 // under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR 
 // CONDITIONS OF ANY KIND, either express or implied. See the License for the 
 // specific language governing permissions and limitations under the License.
-namespace MassTransit.Configuration
+namespace Burrows.Configuration
 {
     using BusConfigurators;
 
@@ -21,7 +21,7 @@ namespace MassTransit.Configuration
 	public interface IServiceBusEnvironment
 	{
 		/// <summary>
-		/// Called by MassTransit when the implementation class name matches the environment
+		/// Called by Burrows when the implementation class name matches the environment
 		/// name that is specified.
 		/// </summary>
 		/// <param name="configurator"></param>

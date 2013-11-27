@@ -10,13 +10,13 @@
 // under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR 
 // CONDITIONS OF ANY KIND, either express or implied. See the License for the 
 // specific language governing permissions and limitations under the License.
-namespace MassTransit.Tests.Testing
+namespace Burrows.Tests.Testing
 {
     using System;
     using System.Linq.Expressions;
     using Magnum.TestFramework;
-    using MassTransit.Saga;
-    using MassTransit.Testing;
+    using Burrows.Saga;
+    using Burrows.Testing;
 
     [Scenario]
 	public class When_a_saga_is_being_tested

@@ -1,4 +1,4 @@
-﻿namespace MassTransit.Tests.Serialization
+﻿namespace Burrows.Tests.Serialization
 {
     using System;
     using System.Diagnostics;
@@ -7,7 +7,7 @@
     using Context;
     using Magnum.Extensions;
     using Magnum.TestFramework;
-    using MassTransit.Serialization;
+    using Burrows.Serialization;
     using Messages;
     using NUnit.Framework;
 

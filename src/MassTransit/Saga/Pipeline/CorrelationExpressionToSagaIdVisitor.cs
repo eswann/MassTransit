@@ -1,4 +1,4 @@
-﻿namespace MassTransit.Saga.Pipeline
+﻿namespace Burrows.Saga.Pipeline
 {
     using System;
     using System.Linq.Expressions;

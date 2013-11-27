@@ -10,7 +10,7 @@
 // under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR 
 // CONDITIONS OF ANY KIND, either express or implied. See the License for the 
 // specific language governing permissions and limitations under the License.
-namespace MassTransit.Log4NetIntegration
+namespace Burrows.Log4NetIntegration
 {
     using System;
     using System.IO;
@@ -19,12 +19,12 @@ namespace MassTransit.Log4NetIntegration
     using Util;
 
     /// <summary>
-    /// Extensions for configuring MassTransit for log4net
+    /// Extensions for configuring Burrows for log4net
     /// </summary>
     public static class Log4NetConfigurationExtensions
     {
         /// <summary>
-        /// Specify that you want to use the Log4net logging engine for logging with MassTransit.
+        /// Specify that you want to use the Log4net logging engine for logging with Burrows.
         /// </summary>
         /// <param name="configurator"></param>
         public static void UseLog4Net([CanBeNull] this IServiceBusConfigurator configurator)
@@ -33,7 +33,7 @@ namespace MassTransit.Log4NetIntegration
         }
 
         /// <summary>
-        /// Specify that log4net should be used for logging MassTransit messages
+        /// Specify that log4net should be used for logging Burrows messages
         /// </summary>
         /// <param name="configurator"></param>
         /// <param name="configFileName">The name of the log4net xml configuration file</param>

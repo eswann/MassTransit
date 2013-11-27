@@ -10,11 +10,11 @@
 // under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR 
 // CONDITIONS OF ANY KIND, either express or implied. See the License for the 
 // specific language governing permissions and limitations under the License.
-namespace MassTransit.TestFramework.Transports
+namespace Burrows.TestFramework.Transports
 {
     using System;
     using System.Transactions;
-    using MassTransit.Transports;
+    using Burrows.Transports;
     using Messages;
     using NUnit.Framework;
 

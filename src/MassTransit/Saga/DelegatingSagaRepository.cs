@@ -1,10 +1,10 @@
-namespace MassTransit.Saga
+namespace Burrows.Saga
 {
     using System;
     using System.Collections.Generic;
     using System.Linq;
     using Context;
-    using MassTransit.Pipeline;
+    using Burrows.Pipeline;
 
     /// <summary>
     /// Decorates a saga repository with a callback method that is invoked before every

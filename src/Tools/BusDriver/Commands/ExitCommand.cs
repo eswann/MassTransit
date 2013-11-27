@@ -12,7 +12,7 @@
 // specific language governing permissions and limitations under the License.
 namespace BusDriver.Commands
 {
-    using MassTransit.Logging;
+    using Burrows.Logging;
 
     public class ExitCommand :
 		Command

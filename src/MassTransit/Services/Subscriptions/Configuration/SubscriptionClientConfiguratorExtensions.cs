@@ -10,7 +10,7 @@
 // under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR 
 // CONDITIONS OF ANY KIND, either express or implied. See the License for the 
 // specific language governing permissions and limitations under the License.
-namespace MassTransit.Services.Subscriptions.Configuration
+namespace Burrows.Services.Subscriptions.Configuration
 {
     using System;
     using BusConfigurators;
@@ -22,7 +22,7 @@ namespace MassTransit.Services.Subscriptions.Configuration
         /// <summary>
         /// Sets the address of the Subscription Service which routes messages to multiple subscribers
         /// from a single publisher.  The address of the Subscription Service is used by both 
-        /// publishers and subscribers, while routing is carried out by MassTransit.RuntimeServices
+        /// publishers and subscribers, while routing is carried out by Burrows.RuntimeServices
         /// </summary>
         /// <param name="configurator"></param>
         /// <param name="subscriptionServiceUri"></param>
@@ -36,7 +36,7 @@ namespace MassTransit.Services.Subscriptions.Configuration
         /// <summary>
         /// Sets the address of the Subscription Service which routes messages to multiple subscribers
         /// from a single publisher.  The address of the Subscription Service is used by both 
-        /// publishers and subscribers, while routing is carried out by MassTransit.RuntimeServices
+        /// publishers and subscribers, while routing is carried out by Burrows.RuntimeServices
         /// </summary>
         [Obsolete("The extension method on UseMsmq should be used instead")]
         public static void UseSubscriptionService(this IServiceBusConfigurator configurator, Uri subscriptionServiceUri)
@@ -47,7 +47,7 @@ namespace MassTransit.Services.Subscriptions.Configuration
         /// <summary>
         /// Sets the address of the Subscription Service which routes messages to multiple subscribers
         /// from a single publisher.  The address of the Subscription Service is used by both 
-        /// publishers and subscribers, while routing is carried out by MassTransit.RuntimeServices
+        /// publishers and subscribers, while routing is carried out by Burrows.RuntimeServices
         /// </summary>
         [Obsolete("The extension method on UseMsmq should be used instead")]
         public static void UseSubscriptionService(this IServiceBusConfigurator configurator,

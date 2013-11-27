@@ -16,8 +16,8 @@ namespace BusDriver.Commands
     using System.Text;
     using Formatting;
     using Magnum.Extensions;
-    using MassTransit.Logging;
-    using MassTransit.Transports;
+    using Burrows.Logging;
+    using Burrows.Transports;
 
     public class PeekCommand :
 		Command

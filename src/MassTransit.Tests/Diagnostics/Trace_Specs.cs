@@ -10,13 +10,13 @@
 // under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR 
 // CONDITIONS OF ANY KIND, either express or implied. See the License for the 
 // specific language governing permissions and limitations under the License.
-namespace MassTransit.Tests.Diagnostics
+namespace Burrows.Tests.Diagnostics
 {
     using Context;
     using Magnum.Extensions;
     using Magnum.TestFramework;
-    using MassTransit.Diagnostics.Tracing;
-    using MassTransit.Testing;
+    using Burrows.Diagnostics.Tracing;
+    using Burrows.Testing;
 
     [Scenario]
     public class When_tracing_messages_on_the_bus

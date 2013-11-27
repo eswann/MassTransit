@@ -18,10 +18,10 @@ namespace BusDriver.Commands
     using System.Threading;
     using Formatting;
     using Magnum.Extensions;
-    using MassTransit;
-    using MassTransit.Context;
-    using MassTransit.Diagnostics.Tracing;
-    using MassTransit.Logging;
+    using Burrows;
+    using Burrows.Context;
+    using Burrows.Diagnostics.Tracing;
+    using Burrows.Logging;
 
     public class TraceCommand :
 		Consumes<IReceivedMessageTraceList>.All,

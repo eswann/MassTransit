@@ -1,4 +1,4 @@
-namespace MassTransit.TestFramework
+namespace Burrows.TestFramework
 {
     using System;
     using System.Runtime.Serialization;

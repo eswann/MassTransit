@@ -1,4 +1,4 @@
-namespace MassTransit.Serialization.Custom.TypeSerializers
+namespace Burrows.Serialization.Custom.TypeSerializers
 {
     using System;
     using System.Xml;

@@ -10,13 +10,13 @@
 // under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR 
 // CONDITIONS OF ANY KIND, either express or implied. See the License for the 
 // specific language governing permissions and limitations under the License.
-namespace MassTransit.Tests.Pipeline
+namespace Burrows.Tests.Pipeline
 {
     using System;
     using Context;
-    using MassTransit.Pipeline;
-    using MassTransit.Pipeline.Configuration;
-    using MassTransit.Pipeline.Inspectors;
+    using Burrows.Pipeline;
+    using Burrows.Pipeline.Configuration;
+    using Burrows.Pipeline.Inspectors;
     using Messages;
     using NUnit.Framework;
     using Rhino.Mocks;

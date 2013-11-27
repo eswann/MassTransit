@@ -1,9 +1,10 @@
-﻿namespace MassTransit.Tests.Configuration
+﻿namespace Burrows.Tests.Configuration
 {
+    using Burrows.Saga.Configuration;
     using Examples.Sagas;
     using Examples.Sagas.Messages;
     using Magnum.TestFramework;
-    using MassTransit.Saga;
+    using Burrows.Saga;
     using Rhino.Mocks;
     using TestFramework;
 

@@ -1,4 +1,4 @@
-namespace MassTransit.SubscriptionConfigurators
+namespace Burrows.SubscriptionConfigurators
 {
     using System;
     using System.Collections.Generic;

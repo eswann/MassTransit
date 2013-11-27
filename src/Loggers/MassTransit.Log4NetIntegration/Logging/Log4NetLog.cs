@@ -10,11 +10,11 @@
 // under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR 
 // CONDITIONS OF ANY KIND, either express or implied. See the License for the 
 // specific language governing permissions and limitations under the License.
-namespace MassTransit.Log4NetIntegration.Logging
+namespace Burrows.Log4NetIntegration.Logging
 {
     using System;
     using System.Globalization;
-    using MassTransit.Logging;
+    using Burrows.Logging;
 
     public class Log4NetLog : ILog
     {

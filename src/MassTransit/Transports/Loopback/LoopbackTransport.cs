@@ -10,7 +10,7 @@
 // under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR 
 // CONDITIONS OF ANY KIND, either express or implied. See the License for the 
 // specific language governing permissions and limitations under the License.
-namespace MassTransit.Transports.Loopback
+namespace Burrows.Transports.Loopback
 {
     using System;
     using System.Collections.Generic;
@@ -20,7 +20,7 @@ namespace MassTransit.Transports.Loopback
     using Subscriptions.Coordinator;
 
     /// <summary>
-    /// The loopback transport is a built-in transport for MassTransit that 
+    /// The loopback transport is a built-in transport for Burrows that 
     /// works on messages in-memory. It is dependent on the <see cref="SubscriptionLoopback"/>
     /// that takes care of subscribing the buses in the process
     /// depending on what subscriptions are made.

@@ -1,4 +1,4 @@
-namespace MassTransit.Services.Timeout
+namespace Burrows.Services.Timeout
 {
     using System;
     using System.Collections.Generic;

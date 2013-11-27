@@ -1,4 +1,4 @@
-﻿namespace MassTransit.Tests
+﻿namespace Burrows.Tests
 {
     using System;
     using System.Collections.Generic;

@@ -10,7 +10,7 @@
 // under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR 
 // CONDITIONS OF ANY KIND, either express or implied. See the License for the 
 // specific language governing permissions and limitations under the License.
-namespace MassTransit
+namespace Burrows
 {
     using System;
     using Context;
@@ -20,12 +20,12 @@ namespace MassTransit
 
     /// <summary>
     /// <para>IEndpoint is implemented by an endpoint. An endpoint is an addressable location on the network.</para>
-    /// <para>In MassTransit, the endpoint ties together the inbound transport, the outbound transport,
+    /// <para>In Burrows, the endpoint ties together the inbound transport, the outbound transport,
     /// the error transport that ships problematic messages to the error queue, mesage retry trackers
     /// and serialization.</para>
     /// <para>It is up to the transports themselves to implement the correct connection handling and to
     /// to create the <see cref="IReceiveContext"/> from the bytes on the wire, which hands the message
-    /// over to MassTransit's internals.
+    /// over to Burrows's internals.
     /// </para>
     /// </summary>
     public interface IEndpoint :

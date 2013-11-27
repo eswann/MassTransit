@@ -10,7 +10,7 @@
 // under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR 
 // CONDITIONS OF ANY KIND, either express or implied. See the License for the 
 // specific language governing permissions and limitations under the License.
-namespace MassTransit.Context
+namespace Burrows.Context
 {
     using System;
     using System.Collections.Generic;
@@ -232,7 +232,7 @@ namespace MassTransit.Context
 
         /// <summary>
         /// Create a new <see cref="ReceiveContext"/> from the incoming 
-        /// stream; the stream should contain the MassTransit <see cref="Envelope"/>
+        /// stream; the stream should contain the Burrows <see cref="Envelope"/>
         /// which in turn contains both payload and meta-data/out-of-band data.
         /// </summary>
         /// <param name="bodyStream">Body stream to create receive context from</param>

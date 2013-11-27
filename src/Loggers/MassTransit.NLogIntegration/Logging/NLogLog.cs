@@ -10,10 +10,10 @@
 // under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR 
 // CONDITIONS OF ANY KIND, either express or implied. See the License for the 
 // specific language governing permissions and limitations under the License.
-namespace MassTransit.NLogIntegration.Logging
+namespace Burrows.NLogIntegration.Logging
 {
     using System;
-    using MassTransit.Logging;
+    using Burrows.Logging;
     using NLog;
     using Util;
 
@@ -60,28 +60,28 @@ namespace MassTransit.NLogIntegration.Logging
             get { return _log.IsFatalEnabled; }
         }
 
-        public void Log(MassTransit.Logging.LogLevel level, object message)
+        public void Log(Burrows.Logging.LogLevel level, object message)
         {
             _log.Log(GetNLogLevel(level), message);
         }
 
-        public void Log(MassTransit.Logging.LogLevel level, object message, Exception exception)
+        public void Log(Burrows.Logging.LogLevel level, object message, Exception exception)
         {
             _log.LogException(GetNLogLevel(level), message == null ? "" : message.ToString(), exception);
         }
 
-        public void Log(MassTransit.Logging.LogLevel level, LogOutputProvider messageProvider)
+        public void Log(Burrows.Logging.LogLevel level, LogOutputProvider messageProvider)
         {
             _log.Log(GetNLogLevel(level), ToGenerator(messageProvider));
         }
 
-        public void LogFormat(MassTransit.Logging.LogLevel level, IFormatProvider formatProvider, string format,
+        public void LogFormat(Burrows.Logging.LogLevel level, IFormatProvider formatProvider, string format,
                               params object[] args)
         {
             _log.Log(GetNLogLevel(level), formatProvider, format, args);
         }
 
-        public void LogFormat(MassTransit.Logging.LogLevel level, string format, params object[] args)
+        public void LogFormat(Burrows.Logging.LogLevel level, string format, params object[] args)
         {
             _log.Log(GetNLogLevel(level), format, args);
         }
@@ -211,19 +211,19 @@ namespace MassTransit.NLogIntegration.Logging
             _log.Log(NLog.LogLevel.Fatal, format, args);
         }
 
-        NLog.LogLevel GetNLogLevel(MassTransit.Logging.LogLevel level)
+        NLog.LogLevel GetNLogLevel(Burrows.Logging.LogLevel level)
         {
-            if (level == MassTransit.Logging.LogLevel.Fatal)
+            if (level == Burrows.Logging.LogLevel.Fatal)
                 return NLog.LogLevel.Fatal;
-            if (level == MassTransit.Logging.LogLevel.Error)
+            if (level == Burrows.Logging.LogLevel.Error)
                 return NLog.LogLevel.Error;
-            if (level == MassTransit.Logging.LogLevel.Warn)
+            if (level == Burrows.Logging.LogLevel.Warn)
                 return NLog.LogLevel.Warn;
-            if (level == MassTransit.Logging.LogLevel.Info)
+            if (level == Burrows.Logging.LogLevel.Info)
                 return NLog.LogLevel.Info;
-            if (level == MassTransit.Logging.LogLevel.Debug)
+            if (level == Burrows.Logging.LogLevel.Debug)
                 return NLog.LogLevel.Debug;
-            if (level == MassTransit.Logging.LogLevel.All)
+            if (level == Burrows.Logging.LogLevel.All)
                 return NLog.LogLevel.Trace;
 
             return NLog.LogLevel.Off;

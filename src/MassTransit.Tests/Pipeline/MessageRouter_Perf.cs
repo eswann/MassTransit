@@ -1,10 +1,10 @@
-namespace MassTransit.Tests.Pipeline
+namespace Burrows.Tests.Pipeline
 {
     using System.Diagnostics;
     using System.Threading;
     using Context;
-    using MassTransit.Pipeline;
-    using MassTransit.Pipeline.Sinks;
+    using Burrows.Pipeline;
+    using Burrows.Pipeline.Sinks;
     using Messages;
     using NUnit.Framework;
     using Rhino.Mocks;

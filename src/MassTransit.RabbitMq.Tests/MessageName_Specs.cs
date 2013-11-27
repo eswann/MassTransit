@@ -10,7 +10,7 @@
 // under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR 
 // CONDITIONS OF ANY KIND, either express or implied. See the License for the 
 // specific language governing permissions and limitations under the License.
-namespace MassTransit.RabbitMq.Tests
+namespace Burrows.RabbitMq.Tests
 {
     using System;
     using Magnum.TestFramework;
@@ -31,21 +31,21 @@ namespace MassTransit.RabbitMq.Tests
 		public void Should_handle_an_interface_name()
 		{
 			var name = _formatter.GetMessageName(typeof (NameEasyToo));
-			name.ToString().ShouldEqual("MassTransit.RabbitMq.Tests:NameEasyToo");
+			name.ToString().ShouldEqual("Burrows.RabbitMq.Tests:NameEasyToo");
 		}
 
 		[Then]
 		public void Should_handle_nested_classes()
 		{
             var name = _formatter.GetMessageName(typeof(Nested));
-			name.ToString().ShouldEqual("MassTransit.RabbitMq.Tests:When_converting_a_type_to_a_message_name-Nested");
+			name.ToString().ShouldEqual("Burrows.RabbitMq.Tests:When_converting_a_type_to_a_message_name-Nested");
 		}
 
 		[Then]
 		public void Should_handle_regular_classes()
 		{
             var name = _formatter.GetMessageName(typeof(NameEasy));
-			name.ToString().ShouldEqual("MassTransit.RabbitMq.Tests:NameEasy");
+			name.ToString().ShouldEqual("Burrows.RabbitMq.Tests:NameEasy");
 		}
 
 		[Then]
@@ -58,21 +58,21 @@ namespace MassTransit.RabbitMq.Tests
 		public void Should_handle_a_closed_single_generic()
 		{
             var name = _formatter.GetMessageName(typeof(NameGeneric<string>));
-			name.ToString().ShouldEqual("MassTransit.RabbitMq.Tests:NameGeneric--System:String--");
+			name.ToString().ShouldEqual("Burrows.RabbitMq.Tests:NameGeneric--System:String--");
 		}
 
 		[Then]
 		public void Should_handle_a_closed_double_generic()
 		{
             var name = _formatter.GetMessageName(typeof(NameDoubleGeneric<string, NameEasy>));
-			name.ToString().ShouldEqual("MassTransit.RabbitMq.Tests:NameDoubleGeneric--System:String::NameEasy--");
+			name.ToString().ShouldEqual("Burrows.RabbitMq.Tests:NameDoubleGeneric--System:String::NameEasy--");
 		}
 
 		[Then]
 		public void Should_handle_a_closed_double_generic_with_a_generic()
 		{
             var name = _formatter.GetMessageName(typeof(NameDoubleGeneric<NameGeneric<NameEasyToo>, NameEasy>));
-			name.ToString().ShouldEqual("MassTransit.RabbitMq.Tests:NameDoubleGeneric--NameGeneric--NameEasyToo--::NameEasy--");
+			name.ToString().ShouldEqual("Burrows.RabbitMq.Tests:NameDoubleGeneric--NameGeneric--NameEasyToo--::NameEasy--");
 		}
 
 		class Nested

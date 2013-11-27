@@ -10,14 +10,14 @@
 // under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR 
 // CONDITIONS OF ANY KIND, either express or implied. See the License for the 
 // specific language governing permissions and limitations under the License.
-namespace MassTransit.Transports.Configuration.Configurators
+namespace Burrows.Transports.Configuration.Configurators
 {
     using System.Collections.Generic;
     using System.Net.Security;
     using System.Security.Authentication;
     using Builders;
     using Magnum.Extensions;
-    using MassTransit.Configurators;
+    using Burrows.Configurators;
 
     /// <summary>
     /// Configures SSL/TLS for RabbitMQ. See http://www.rabbitmq.com/ssl.html

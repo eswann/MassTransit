@@ -1,4 +1,4 @@
-namespace MassTransit.Tests.Messages
+namespace Burrows.Tests.Messages
 {
     using System;
 

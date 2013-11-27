@@ -1,4 +1,4 @@
-namespace MassTransit.RabbitMq.Tests
+namespace Burrows.RabbitMq.Tests
 {
     using System;
     using BusConfigurators;

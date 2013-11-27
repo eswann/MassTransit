@@ -11,7 +11,7 @@
 // CONDITIONS OF ANY KIND, either express or implied. See the License for the 
 // specific language governing permissions and limitations under the License.
 
-namespace MassTransit.BusConfigurators
+namespace Burrows.BusConfigurators
 {
     using System;
     using System.Collections.Generic;
@@ -250,7 +250,7 @@ namespace MassTransit.BusConfigurators
 
                 string assemblyFileVersion = assemblyFileVersionInfo.FileVersion;
 
-                _log.InfoFormat("MassTransit v{0}/v{1}, .NET Framework v{2}",
+                _log.InfoFormat("Burrows v{0}/v{1}, .NET Framework v{2}",
                     assemblyFileVersion,
                     assemblyVersion,
                     Environment.Version);

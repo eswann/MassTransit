@@ -12,7 +12,7 @@
 // specific language governing permissions and limitations under the License.
 
 
-namespace MassTransit.Subscriptions.Coordinator
+namespace Burrows.Subscriptions.Coordinator
 {
     using Messages;
     using Util;

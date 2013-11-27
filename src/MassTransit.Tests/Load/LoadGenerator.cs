@@ -10,7 +10,7 @@
 // under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR 
 // CONDITIONS OF ANY KIND, either express or implied. See the License for the 
 // specific language governing permissions and limitations under the License.
-namespace MassTransit.Tests.Load
+namespace Burrows.Tests.Load
 {
     using System;
     using System.Collections.Generic;
@@ -21,7 +21,7 @@ namespace MassTransit.Tests.Load
     using Magnum;
     using Magnum.Extensions;
     using Magnum.TestFramework;
-    using MassTransit.Subscriptions;
+    using Burrows.Subscriptions;
     using Messages;
     using TestFramework;
 

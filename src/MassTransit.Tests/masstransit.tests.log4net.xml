@@ -6,15 +6,15 @@
     <appender-ref ref="console" />
   </root>
 
-  <logger name="MassTransit">
+  <logger name="Burrows">
     <level value="WARN" />
   </logger>
 
-<!--	<logger name="MassTransit.Subscriptions">-->
+<!--	<logger name="Burrows.Subscriptions">-->
 <!--		<level value="DEBUG" />-->
 <!--	</logger>-->
 
-   <logger name="MassTransit.Messages" additivity="false">
+   <logger name="Burrows.Messages" additivity="false">
     <level value="INFO" />
     <appender-ref ref="MessageLogAppender" />
     <appender-ref ref="console" />
@@ -29,7 +29,7 @@
   <appender name="LogFileAppender"
         type="log4net.Appender.RollingFileAppender" >
     <param name="File"
-         value="C:\LogFiles\MassTransit.ServiceBus.Tests.log" />
+         value="C:\LogFiles\Burrows.ServiceBus.Tests.log" />
     <param name="AppendToFile"
          value="false" />
     <rollingStyle value="Size" />
@@ -44,7 +44,7 @@
   <appender name="MessageLogAppender"
         type="log4net.Appender.RollingFileAppender" >
     <param name="File"
-         value="C:\LogFiles\MassTransit.ServiceBus.Tests.Messages.log" />
+         value="C:\LogFiles\Burrows.ServiceBus.Tests.Messages.log" />
     <param name="AppendToFile"
          value="false" />
     <rollingStyle value="Size" />

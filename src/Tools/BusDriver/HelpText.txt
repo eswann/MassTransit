@@ -1,5 +1,5 @@
 ﻿BusDriver is a command-line utility used to administer queues, service bus
-instances and other things related to MassTransit.
+instances and other things related to Burrows.
 
 Command-Line Reference
 

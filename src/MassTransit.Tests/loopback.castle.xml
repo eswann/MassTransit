@@ -14,7 +14,7 @@
 							maxThreads="20" />
       </bus>
       <transports>
-        <transport>MassTransit.Transports.LoopbackEndpoint, MassTransit</transport>
+        <transport>Burrows.Transports.LoopbackEndpoint, Burrows</transport>
       </transports>
     </facility>
   </facilities>

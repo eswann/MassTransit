@@ -10,7 +10,7 @@
 // under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR 
 // CONDITIONS OF ANY KIND, either express or implied. See the License for the 
 // specific language governing permissions and limitations under the License.
-namespace MassTransit.Tests.Serialization
+namespace Burrows.Tests.Serialization
 {
     using System;
     using System.Collections.Generic;
@@ -21,7 +21,7 @@ namespace MassTransit.Tests.Serialization
     using System.Xml.Linq;
     using Magnum.Reflection;
     using Magnum.TestFramework;
-    using MassTransit.Serialization;
+    using Burrows.Serialization;
     using NUnit.Framework;
     using Newtonsoft.Json;
     using Newtonsoft.Json.Linq;

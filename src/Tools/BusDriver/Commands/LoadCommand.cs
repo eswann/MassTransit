@@ -20,11 +20,11 @@ namespace BusDriver.Commands
     using Magnum.Extensions;
     using Magnum.FileSystem;
     using Magnum.FileSystem.Internal;
-    using MassTransit;
-    using MassTransit.Context;
-    using MassTransit.Exceptions;
-    using MassTransit.Logging;
-    using MassTransit.Transports;
+    using Burrows;
+    using Burrows.Context;
+    using Burrows.Exceptions;
+    using Burrows.Logging;
+    using Burrows.Transports;
 
     public class LoadCommand :
         Command

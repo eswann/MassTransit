@@ -10,7 +10,7 @@
 // under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR 
 // CONDITIONS OF ANY KIND, either express or implied. See the License for the 
 // specific language governing permissions and limitations under the License.
-namespace MassTransit.Tests.Saga.Locator
+namespace Burrows.Tests.Saga.Locator
 {
     using System;
     using System.Collections.Generic;
@@ -19,9 +19,9 @@ namespace MassTransit.Tests.Saga.Locator
     using System.Linq.Expressions;
     using Context;
     using Magnum.Extensions;
-    using MassTransit.Pipeline;
-    using MassTransit.Saga;
-    using MassTransit.Saga.Pipeline;
+    using Burrows.Pipeline;
+    using Burrows.Saga;
+    using Burrows.Saga.Pipeline;
     using NUnit.Framework;
 
     [TestFixture]

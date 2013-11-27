@@ -1,4 +1,4 @@
-namespace MassTransit.Tests.Serialization
+namespace Burrows.Tests.Serialization
 {
     using System.Text;
     using Context;

@@ -10,15 +10,15 @@
 // under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR 
 // CONDITIONS OF ANY KIND, either express or implied. See the License for the 
 // specific language governing permissions and limitations under the License.
-namespace MassTransit.Tests.Services.HealthMonitoring
+namespace Burrows.Tests.Services.HealthMonitoring
 {
     using System.Threading;
-    using MassTransit.Saga;
-    using MassTransit.Services.HealthMonitoring;
-    using MassTransit.Services.HealthMonitoring.Messages;
-    using MassTransit.Services.HealthMonitoring.Server;
-    using MassTransit.Services.Timeout.Messages;
-    using MassTransit.Transports.Loopback;
+    using Burrows.Saga;
+    using Burrows.Services.HealthMonitoring;
+    using Burrows.Services.HealthMonitoring.Messages;
+    using Burrows.Services.HealthMonitoring.Server;
+    using Burrows.Services.Timeout.Messages;
+    using Burrows.Transports.Loopback;
     using NUnit.Framework;
     using TestFramework;
     using TextFixtures;

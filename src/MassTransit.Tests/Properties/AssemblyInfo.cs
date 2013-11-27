@@ -18,11 +18,11 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 
-[assembly : AssemblyTitle("MassTransit.ServiceBus.Tests")]
+[assembly : AssemblyTitle("Burrows.ServiceBus.Tests")]
 [assembly : AssemblyDescription("")]
 [assembly : AssemblyConfiguration("")]
 [assembly : AssemblyCompany("RelayHealth")]
-[assembly : AssemblyProduct("MassTransit.ServiceBus.Tests")]
+[assembly : AssemblyProduct("Burrows.ServiceBus.Tests")]
 [assembly : AssemblyCopyright("Copyright © RelayHealth 2007")]
 [assembly : AssemblyTrademark("")]
 [assembly : AssemblyCulture("")]

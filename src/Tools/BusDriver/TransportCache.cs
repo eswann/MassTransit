@@ -15,9 +15,9 @@ namespace BusDriver
     using System;
     using System.Collections.Generic;
     using Magnum.Extensions;
-    using MassTransit;
-    using MassTransit.Exceptions;
-    using MassTransit.Transports;
+    using Burrows;
+    using Burrows.Exceptions;
+    using Burrows.Transports;
 
     public class TransportCache :
 		IDisposable

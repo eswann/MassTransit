@@ -10,13 +10,13 @@
 // under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR 
 // CONDITIONS OF ANY KIND, either express or implied. See the License for the 
 // specific language governing permissions and limitations under the License.
-namespace MassTransit.Pipeline
+namespace Burrows.Pipeline
 {
     using System;
     using System.IO;
     using Configuration;
     using Context;
-    using MassTransit.Configuration;
+    using Burrows.Configuration;
     using Sinks;
     using SubscriptionConnectors;
 
@@ -81,7 +81,7 @@ namespace MassTransit.Pipeline
 		}
 
 		/// <summary>
-		/// <see cref="Dispatch{T}(MassTransit.Pipeline.IInboundMessagePipeline,T)"/>: this one is for the outbound pipeline.
+		/// <see cref="Dispatch{T}(Burrows.Pipeline.IInboundMessagePipeline,T)"/>: this one is for the outbound pipeline.
 		/// </summary>
 		public static bool Dispatch<T>(this IOutboundMessagePipeline pipeline, T message, Func<T, bool> acknowledge)
 			where T : class

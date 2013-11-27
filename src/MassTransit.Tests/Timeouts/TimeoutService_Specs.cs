@@ -10,18 +10,18 @@
 // under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR 
 // CONDITIONS OF ANY KIND, either express or implied. See the License for the 
 // specific language governing permissions and limitations under the License.
-namespace MassTransit.Tests.Timeouts
+namespace Burrows.Tests.Timeouts
 {
     using System;
     using System.Diagnostics;
     using System.Linq;
     using Magnum.Extensions;
     using Magnum.TestFramework;
-    using MassTransit.Saga;
-    using MassTransit.Services.Timeout;
-    using MassTransit.Services.Timeout.Messages;
-    using MassTransit.Services.Timeout.Server;
-    using MassTransit.Testing;
+    using Burrows.Saga;
+    using Burrows.Services.Timeout;
+    using Burrows.Services.Timeout.Messages;
+    using Burrows.Services.Timeout.Server;
+    using Burrows.Testing;
     using NUnit.Framework;
     using TextFixtures;
 

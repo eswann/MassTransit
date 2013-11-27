@@ -1,4 +1,4 @@
-namespace MassTransit.Tests.TestConsumers
+namespace Burrows.Tests.TestConsumers
 {
     using System;
 

@@ -8,8 +8,8 @@
     <ProjectGuid>{9CE51963-9E51-48EE-A75F-62C9CB0CF23C}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>MassTransit.Containers.Tests</RootNamespace>
-    <AssemblyName>MassTransit.Containers.Tests</AssemblyName>
+    <RootNamespace>Burrows.Containers.Tests</RootNamespace>
+    <AssemblyName>Burrows.Containers.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\</SolutionDir>
@@ -101,13 +101,13 @@
     <Compile Include="Scenarios\SimpleMessage.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\MassTransit\MassTransit.csproj">
+    <ProjectReference Include="..\..\MassTransit\Burrows.csproj">
       <Project>{6EFD69FC-CBCC-4F85-AEE0-EFBA73F4D273}</Project>
-      <Name>MassTransit</Name>
+      <Name>Burrows</Name>
     </ProjectReference>
-    <ProjectReference Include="..\MassTransit.AutofacIntegration\MassTransit.AutofacIntegration.csproj">
+    <ProjectReference Include="..\MassTransit.AutofacIntegration\Burrows.AutofacIntegration.csproj">
       <Project>{A31F2C6B-C806-46FD-A4F3-C54209DD495C}</Project>
-      <Name>MassTransit.AutofacIntegration</Name>
+      <Name>Burrows.AutofacIntegration</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

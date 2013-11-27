@@ -1,4 +1,4 @@
-﻿namespace MassTransit.RabbitMq.Tests
+﻿namespace Burrows.RabbitMq.Tests
 {
     using BusConfigurators;
     using Context;
@@ -83,14 +83,14 @@
 //using System.Linq;
 //using System.Text;
 //
-//namespace MassTransit.Tests.Serialization
+//namespace Burrows.Tests.Serialization
 //{
 //    using Magnum.Extensions;
 //    using Magnum.TestFramework;
 //    using NUnit.Framework;
 //    using TestFramework;
 //    using TextFixtures;
-//    using MassTransit.Serialization;
+//    using Burrows.Serialization;
 //
 //    [TestFixture]
 //    public class When_publishing_a_message_without_specifying_a_serializer

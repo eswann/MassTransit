@@ -10,14 +10,14 @@
 // under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR 
 // CONDITIONS OF ANY KIND, either express or implied. See the License for the 
 // specific language governing permissions and limitations under the License.
-namespace MassTransit.Tests.Saga.StateMachine
+namespace Burrows.Tests.Saga.StateMachine
 {
     using System;
     using Magnum.Extensions;
     using Magnum.TestFramework;
-    using MassTransit.Pipeline.Inspectors;
-    using MassTransit.Saga;
-    using MassTransit.Saga.Configuration;
+    using Burrows.Pipeline.Inspectors;
+    using Burrows.Saga;
+    using Burrows.Saga.Configuration;
     using Messages;
     using NUnit.Framework;
     using TestFramework;

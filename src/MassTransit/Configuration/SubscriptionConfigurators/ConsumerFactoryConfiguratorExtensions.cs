@@ -10,7 +10,7 @@
 // under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR 
 // CONDITIONS OF ANY KIND, either express or implied. See the License for the 
 // specific language governing permissions and limitations under the License.
-namespace MassTransit.SubscriptionConfigurators
+namespace Burrows.SubscriptionConfigurators
 {
     using System;
     using System.Collections.Generic;
@@ -35,7 +35,7 @@ namespace MassTransit.SubscriptionConfigurators
                 .Distinct()
                 .Where(x => !(HasDefaultProtectedCtor(typeof(TConsumer)) || HasSinglePublicCtor(typeof(TConsumer))))
                 .Select(x => ("The {0} consumer should have a public or protected default constructor." +
-                              " Without an available constructor, MassTransit will initialize new consumer instances" +
+                              " Without an available constructor, Burrows will initialize new consumer instances" +
                               " without calling a constructor, which can lead to unpredictable behavior if the consumer" +
                               " depends upon logic in the constructor to be executed.")
                                  .FormatWith(x.MessageType.ToShortTypeName()))

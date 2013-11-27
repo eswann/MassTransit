@@ -10,7 +10,7 @@
 // under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR 
 // CONDITIONS OF ANY KIND, either express or implied. See the License for the 
 // specific language governing permissions and limitations under the License.
-namespace MassTransit.NLogIntegration
+namespace Burrows.NLogIntegration
 {
     using BusConfigurators;
     using Logging;
@@ -18,12 +18,12 @@ namespace MassTransit.NLogIntegration
     using Util;
 
     /// <summary>
-	/// Extensions for configuring NLog with MassTransit
+	/// Extensions for configuring NLog with Burrows
 	/// </summary>
     public static class NLogConfiguratorExtensions
     {
 		/// <summary>
-		/// Specify that you want to use the NLog logging framework with MassTransit.
+		/// Specify that you want to use the NLog logging framework with Burrows.
 		/// </summary>
 		/// <param name="configurator">Optional service bus configurator</param>
 		public static void UseNLog([CanBeNull] this IServiceBusConfigurator configurator)
@@ -32,13 +32,13 @@ namespace MassTransit.NLogIntegration
         }
 
         /// <summary>
-        /// Specify that you want to use the NLog logging framework with MassTransit.
+        /// Specify that you want to use the NLog logging framework with Burrows.
         /// </summary>
         /// <param name="configurator">Optional service bus configurator</param>
         /// <param name="factory">Required log-producing factory from NLog</param>
         public static void UseNLog([CanBeNull] this IServiceBusConfigurator configurator, [NotNull] LogFactory factory)
         {
-            MassTransit.Logging.Logger.UseLogger(new NLogLogger(factory));
+            Burrows.Logging.Logger.UseLogger(new NLogLogger(factory));
         }
     }
 }

@@ -10,10 +10,10 @@
 // under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR 
 // CONDITIONS OF ANY KIND, either express or implied. See the License for the 
 // specific language governing permissions and limitations under the License.
-namespace MassTransit.Tests.Services.Routing
+namespace Burrows.Tests.Services.Routing
 {
     using System;
-    using MassTransit.Services.Routing.Configuration;
+    using Burrows.Services.Routing.Configuration;
     using Messages;
     using NUnit.Framework;
     using TestFramework;

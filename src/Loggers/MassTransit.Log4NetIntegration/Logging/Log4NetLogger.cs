@@ -10,17 +10,17 @@
 // under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR 
 // CONDITIONS OF ANY KIND, either express or implied. See the License for the 
 // specific language governing permissions and limitations under the License.
-namespace MassTransit.Log4NetIntegration.Logging
+namespace Burrows.Log4NetIntegration.Logging
 {
     using System;
     using System.IO;
-    using MassTransit.Logging;
+    using Burrows.Logging;
     using log4net;
     using log4net.Config;
 
     public class Log4NetLogger : ILogger
     {
-        public MassTransit.Logging.ILog Get(string name)
+        public Burrows.Logging.ILog Get(string name)
         {
             return new Log4NetLog(LogManager.GetLogger(name));
         }

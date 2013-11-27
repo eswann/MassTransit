@@ -1,4 +1,4 @@
-namespace MassTransit.RabbitMq.Tests.Assumptions
+namespace Burrows.RabbitMq.Tests.Assumptions
 {
     using Magnum.Extensions;
     using Magnum.TestFramework;

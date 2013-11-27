@@ -10,10 +10,10 @@
 // under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR 
 // CONDITIONS OF ANY KIND, either express or implied. See the License for the 
 // specific language governing permissions and limitations under the License.
-namespace MassTransit.NLogIntegration.Logging
+namespace Burrows.NLogIntegration.Logging
 {
     using System;
-    using MassTransit.Logging;
+    using Burrows.Logging;
     using NLog;
     using Util;
 
@@ -38,7 +38,7 @@ namespace MassTransit.NLogIntegration.Logging
 
         public static void Use()
         {
-            MassTransit.Logging.Logger.UseLogger(new NLogLogger());
+            Burrows.Logging.Logger.UseLogger(new NLogLogger());
         }
     }
 }

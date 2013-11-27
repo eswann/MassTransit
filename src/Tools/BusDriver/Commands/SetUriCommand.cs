@@ -13,7 +13,7 @@
 namespace BusDriver.Commands
 {
     using System;
-    using MassTransit.Logging;
+    using Burrows.Logging;
 
     public class SetUriCommand :
 		Command

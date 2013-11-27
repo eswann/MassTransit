@@ -10,10 +10,10 @@
 // under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR 
 // CONDITIONS OF ANY KIND, either express or implied. See the License for the 
 // specific language governing permissions and limitations under the License.
-namespace MassTransit.Saga.SubscriptionBuilders
+namespace Burrows.Saga.SubscriptionBuilders
 {
-    using MassTransit.Pipeline;
-    using MassTransit.SubscriptionBuilders;
+    using Burrows.Pipeline;
+    using Burrows.SubscriptionBuilders;
     using SubscriptionConnectors;
     using Subscriptions;
 

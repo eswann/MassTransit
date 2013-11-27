@@ -10,7 +10,7 @@
 // under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR 
 // CONDITIONS OF ANY KIND, either express or implied. See the License for the 
 // specific language governing permissions and limitations under the License.
-namespace MassTransit
+namespace Burrows
 {
     using System;
     using System.Collections.Generic;
@@ -251,7 +251,7 @@ namespace MassTransit
         /// <summary>
         /// <see cref="IServiceBus.Publish{T}"/>: this is a "dynamically"
         /// typed overload - give it an interface as its type parameter,
-        /// and a loosely typed dictionary of values and the MassTransit
+        /// and a loosely typed dictionary of values and the Burrows
         /// underlying infrastructure will populate an object instance
         /// with the passed values. It actually does this with DynamicProxy
         /// in the background.
@@ -273,7 +273,7 @@ namespace MassTransit
         }
 
         /// <summary>
-        /// <see cref="Publish{T}(MassTransit.IServiceBus,object)"/>: this
+        /// <see cref="Publish{T}(Burrows.IServiceBus,object)"/>: this
         /// overload further takes an action; it allows you to set <see cref="IPublishContext"/>
         /// meta-data. Also <see cref="IServiceBus.Publish{T}"/>.
         /// </summary>

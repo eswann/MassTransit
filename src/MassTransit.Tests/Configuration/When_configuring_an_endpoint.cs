@@ -10,12 +10,12 @@
 // under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR 
 // CONDITIONS OF ANY KIND, either express or implied. See the License for the 
 // specific language governing permissions and limitations under the License.
-namespace MassTransit.Tests.Configuration
+namespace Burrows.Tests.Configuration
 {
     using Magnum.TestFramework;
-    using MassTransit.Serialization;
-    using MassTransit.Transports;
-    using MassTransit.Transports.Loopback;
+    using Burrows.Serialization;
+    using Burrows.Transports;
+    using Burrows.Transports.Loopback;
 
     [Scenario]
 	public class When_configuring_an_endpoint

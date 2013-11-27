@@ -1,10 +1,10 @@
-namespace MassTransit.Tests.Serialization
+namespace Burrows.Tests.Serialization
 {
     using System.IO;
     using System.Text;
     using Context;
     using Magnum.TestFramework;
-    using MassTransit.Serialization;
+    using Burrows.Serialization;
 
     [Scenario]
 	public class When_an_interface_message_is_bound

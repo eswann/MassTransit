@@ -1,4 +1,4 @@
-namespace MassTransit.Serialization.Custom
+namespace Burrows.Serialization.Custom
 {
     using System.IO;
 

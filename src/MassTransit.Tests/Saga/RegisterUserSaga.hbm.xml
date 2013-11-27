@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
-                   namespace="MassTransit.Tests"
-                   assembly="MassTransit.Tests"
+                   namespace="Burrows.Tests"
+                   assembly="Burrows.Tests"
                    default-lazy="false"
                    default-cascade="none" >
-  <class name="MassTransit.Tests.Saga.RegisterUserSaga, MassTransit.Tests">
+  <class name="Burrows.Tests.Saga.RegisterUserSaga, Burrows.Tests">
     <id name="CorrelationId" column="Id" access="property">
       <generator class="assigned" />
     </id>

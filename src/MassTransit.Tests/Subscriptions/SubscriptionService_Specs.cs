@@ -10,14 +10,14 @@
 // under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR 
 // CONDITIONS OF ANY KIND, either express or implied. See the License for the 
 // specific language governing permissions and limitations under the License.
-namespace MassTransit.Tests.Subscriptions
+namespace Burrows.Tests.Subscriptions
 {
     using System;
     using System.Diagnostics;
     using Magnum.Extensions;
-    using MassTransit.Pipeline.Inspectors;
-    using MassTransit.Services.Subscriptions.Messages;
-    using MassTransit.Transports.Loopback;
+    using Burrows.Pipeline.Inspectors;
+    using Burrows.Services.Subscriptions.Messages;
+    using Burrows.Transports.Loopback;
     using Messages;
     using NUnit.Framework;
     using TestConsumers;

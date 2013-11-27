@@ -16,11 +16,11 @@ namespace BusDriver.Commands
     using System.Threading;
     using Formatting;
     using Magnum.Extensions;
-    using MassTransit;
-    using MassTransit.Context;
-    using MassTransit.Diagnostics.Introspection;
-    using MassTransit.Diagnostics.Introspection.Messages;
-    using MassTransit.Logging;
+    using Burrows;
+    using Burrows.Context;
+    using Burrows.Diagnostics.Introspection;
+    using Burrows.Diagnostics.Introspection.Messages;
+    using Burrows.Logging;
 
     public class StatusCommand :
         Consumes<IBusStatus>.Context,

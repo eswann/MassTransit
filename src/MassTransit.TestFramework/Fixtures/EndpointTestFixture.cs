@@ -10,7 +10,7 @@
 // under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR 
 // CONDITIONS OF ANY KIND, either express or implied. See the License for the 
 // specific language governing permissions and limitations under the License.
-namespace MassTransit.TestFramework.Fixtures
+namespace Burrows.TestFramework.Fixtures
 {
     using System;
     using System.Collections.Generic;
@@ -20,7 +20,7 @@ namespace MassTransit.TestFramework.Fixtures
     using EndpointConfigurators;
     using Exceptions;
     using Magnum.Extensions;
-    using MassTransit.Transports;
+    using Burrows.Transports;
     using NUnit.Framework;
     using Saga;
     using Services.Subscriptions;

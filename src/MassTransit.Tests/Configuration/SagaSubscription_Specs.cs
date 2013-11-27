@@ -10,15 +10,16 @@
 // under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR 
 // CONDITIONS OF ANY KIND, either express or implied. See the License for the 
 // specific language governing permissions and limitations under the License.
-namespace MassTransit.Tests.Configuration
+namespace Burrows.Tests.Configuration
 {
+    using Burrows.Saga.Configuration;
     using Examples.Sagas;
     using Examples.Sagas.Messages;
     using Magnum.TestFramework;
-    using MassTransit.Saga;
-    using MassTransit.Services.Subscriptions.Messages;
-    using MassTransit.Services.Subscriptions.Server;
-    using MassTransit.Services.Subscriptions.Server.Messages;
+    using Burrows.Saga;
+    using Burrows.Services.Subscriptions.Messages;
+    using Burrows.Services.Subscriptions.Server;
+    using Burrows.Services.Subscriptions.Server.Messages;
     using Rhino.Mocks;
     using TestFramework;
 
