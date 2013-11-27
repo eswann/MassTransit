@@ -12,17 +12,9 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Transports.RabbitMq.Publish
 {
-    using System;
-
     public interface IPublisherConfirmSettings
     {
         bool UsePublisherConfirms { get; set; }
-
-        Action<ulong, string> RegisterMessageAction { get; set; }
-
-        Action<ulong, bool> Acktion { get; set; }
-
-        Action<ulong, bool> Nacktion { get; set; }
 
     }
 }

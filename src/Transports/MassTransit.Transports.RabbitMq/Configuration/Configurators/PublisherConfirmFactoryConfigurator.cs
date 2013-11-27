@@ -12,7 +12,6 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.Transports.RabbitMq.Configuration.Configurators
 {
-    using System;
     using System.Collections.Generic;
     using Builders;
     using MassTransit.Configurators;
@@ -31,48 +30,22 @@ namespace MassTransit.Transports.RabbitMq.Configuration.Configurators
         IRabbitMqTransportFactoryBuilderConfigurator
     {
         readonly bool _usePublisherConfirms;
-        readonly Action<ulong, string> _registerMessageAction;
-        readonly Action<ulong, bool> _acktion;
-        readonly Action<ulong, bool> _nacktion;
 
-        public PublisherConfirmFactoryConfigurator(bool usePublisherConfirms,
-                                                       Action<ulong, string> registerMessageAction,
-                                                       Action<ulong, bool> acktion, Action<ulong, bool> nacktion)
+        public PublisherConfirmFactoryConfigurator(bool usePublisherConfirms)
         {
             _usePublisherConfirms = usePublisherConfirms;
-            _registerMessageAction = registerMessageAction;
-            _acktion = acktion;
-            _nacktion = nacktion;
         }
 
         public IRabbitMqTransportFactoryBuilder Configure(IRabbitMqTransportFactoryBuilder builder)
         {
-            builder.SetPublisherConfirmSettings(
-                new PublisherConfirmSettings
-                {
-                    UsePublisherConfirms = _usePublisherConfirms,
-                    RegisterMessageAction = _registerMessageAction,
-                    Acktion = _acktion,
-                    Nacktion = _nacktion
-                }
-                );
+            builder.SetPublisherConfirmSettings(new PublisherConfirmSettings{ UsePublisherConfirms = _usePublisherConfirms });
 
             return builder;
         }
 
         public IEnumerable<IValidationResult> Validate()
         {
-            if (_usePublisherConfirms)
-            {
-                if (_registerMessageAction == null)
-                    yield return
-                        this.Failure("RegisterMessageAction", "RegisterMessageAction must be specified if publisher confirms are enabled");
-                if (_acktion == null)
-                    yield return this.Failure("Acktion", "Acktion must be specified if publisher confirms are enabled");
-                if (_nacktion == null)
-                    yield return
-                        this.Failure("Nacktion", "Nacktion must be specified if publisher confirms are enabled");
-            }
+            return null;
         }
     }
 }

@@ -25,7 +25,6 @@ namespace MassTransit.Tests
     using TestFramework;
     using TextFixtures;
 
-#if NET40
     [TestFixture]
     public class Publishing_request_using_the_task_parallel_library :
         LoopbackLocalAndRemoteTestFixture
@@ -215,5 +214,4 @@ namespace MassTransit.Tests
             public Guid TransactionId { get; set; }
         }
     }
-#endif
 }

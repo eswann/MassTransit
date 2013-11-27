@@ -12,14 +12,12 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.RequestResponse
 {
-#if NET40
     using System.Threading.Tasks;
 
     /// <summary>
     /// A task response handler provides access to the task itself
     /// </summary>
-    public interface ITaskResponseHandler :
-        IResponseHandler
+    public interface ITaskResponseHandler : IResponseHandler
     {
         /// <summary>
         /// Returns the Task for the response handler
@@ -38,7 +36,7 @@ namespace MassTransit.RequestResponse
         void HandleTimeout();
     }
 
-    public interface TaskResponseHandler<T> :
+    public interface ITaskResponseHandler<T> :
         ITaskResponseHandler
         where T : class
     {
@@ -47,5 +45,4 @@ namespace MassTransit.RequestResponse
         /// </summary>
         new Task<T> Task { get; }
     }
-#endif
 }

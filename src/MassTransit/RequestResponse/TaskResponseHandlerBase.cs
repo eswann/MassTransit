@@ -12,14 +12,13 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.RequestResponse
 {
-#if NET40
     using System;
     using System.Threading.Tasks;
     using Context;
 
     public abstract class TaskResponseHandlerBase<TResponse> :
         ResponseHandlerBase<TResponse>,
-        TaskResponseHandler<TResponse>
+        ITaskResponseHandler<TResponse>
         where TResponse : class
     {
         protected readonly TaskCompletionSource<TResponse> CompletionSource;
@@ -41,7 +40,7 @@ namespace MassTransit.RequestResponse
             get { return CompletionSource.Task; }
         }
 
-        Task<TResponse> TaskResponseHandler<TResponse>.Task
+        Task<TResponse> ITaskResponseHandler<TResponse>.Task
         {
             get { return CompletionSource.Task; }
         }
@@ -60,5 +59,4 @@ namespace MassTransit.RequestResponse
             CompletionSource.TrySetCanceled();
         }
     }
-#endif
 }

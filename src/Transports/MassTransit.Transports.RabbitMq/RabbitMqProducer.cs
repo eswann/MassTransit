@@ -16,9 +16,7 @@ namespace MassTransit.Transports.RabbitMq
     using System.Collections.Generic;
     using System.Linq;
     using Logging;
-#if NET40
     using System.Threading.Tasks;
-#endif
     using Magnum.Caching;
     using Magnum.Extensions;
     using Publish;
@@ -32,18 +30,19 @@ namespace MassTransit.Transports.RabbitMq
         readonly Cache<ulong, TaskCompletionSource<bool>> _confirms;
         static readonly ILog _log = Logger.Get<RabbitMqProducer>();
         readonly IRabbitMqEndpointAddress _address;
-        readonly object _lock = new object();
         readonly IPublisherConfirmSettings _publisherConfirmSettings;
-
+        readonly object _lock = new object();
         IModel _channel;
-        bool _immediate;
-        bool _mandatory;
 
         public RabbitMqProducer(IRabbitMqEndpointAddress address, IPublisherConfirmSettings publisherConfirmSettings)
         {
             _address = address;
             _publisherConfirmSettings = publisherConfirmSettings;
-            _confirms = new ConcurrentCache<ulong, TaskCompletionSource<bool>>();
+
+            if (_publisherConfirmSettings.UsePublisherConfirms)
+            {
+                _confirms = new ConcurrentCache<ulong, TaskCompletionSource<bool>>();
+            }
         }
 
         public void Bind(RabbitMqConnection connection)
@@ -57,11 +56,19 @@ namespace MassTransit.Transports.RabbitMq
 
                     BindEvents(channel);
 
+                    if (_publisherConfirmSettings.UsePublisherConfirms)
+                    {
+                        channel.ConfirmSelect();
+                    }
+
                     _channel = channel;
                 }
                 catch (Exception ex)
                 {
-                    channel.Cleanup(500, ex.Message);
+                    if (channel != null)
+                    {
+                        channel.Cleanup(500, ex.Message);
+                    }
 
                     throw new InvalidConnectionException(_address.Uri, "Invalid connection to host", ex);
                 }
@@ -74,8 +81,10 @@ namespace MassTransit.Transports.RabbitMq
             {
                 channel.BasicAcks += HandleAck;
                 channel.BasicNacks += HandleNack;
-                channel.ConfirmSelect();
             }
+            //channel.BasicReturn += HandleReturn;
+            //channel.FlowControl += HandleFlowControl;
+            channel.ModelShutdown += HandleModelShutdown;
         }
 
         public void Unbind(RabbitMqConnection connection)
@@ -90,6 +99,7 @@ namespace MassTransit.Transports.RabbitMq
                         {
                             WaitForPendingConfirms();
                         }
+
                         UnbindEvents(_channel);
                         _channel.Cleanup(200, "Producer Unbind");
                     }
@@ -99,6 +109,8 @@ namespace MassTransit.Transports.RabbitMq
                     if (_channel != null)
                         _channel.Dispose();
                     _channel = null;
+
+                    FailPendingConfirms();
                 }
             }
         }
@@ -125,6 +137,26 @@ namespace MassTransit.Transports.RabbitMq
                 channel.BasicAcks -= HandleAck;
                 channel.BasicNacks -= HandleNack;
             }
+            //channel.BasicReturn -= HandleReturn;
+            //channel.FlowControl -= HandleFlowControl;
+            channel.ModelShutdown -= HandleModelShutdown;
+        }
+
+        void FailPendingConfirms()
+        {
+            try
+            {
+                var exception = new MessageNotConfirmedException(_address.Uri,
+                    "Publish not confirmed before channel closed");
+
+                _confirms.Each((id, task) => task.TrySetException(exception));
+            }
+            catch (Exception ex)
+            {
+                _log.Error("Exception while failing pending confirms", ex);
+            }
+
+            _confirms.Clear();
         }
 
         public IBasicProperties CreateProperties()
@@ -145,30 +177,85 @@ namespace MassTransit.Transports.RabbitMq
                 if (_channel == null)
                     throw new InvalidConnectionException(_address.Uri, "No connection to RabbitMQ Host");
 
-                if (_publisherConfirmSettings.UsePublisherConfirms)
-                {
-                    var clientMessageId = (string)properties.Headers[PublisherConfirmSettings.ClientMessageId];
-
-                    if (clientMessageId != null && _publisherConfirmSettings.RegisterMessageAction != null)
-                    {
-                        _publisherConfirmSettings.RegisterMessageAction(_channel.NextPublishSeqNo, clientMessageId);
-                    }
-                }
-
                 _channel.BasicPublish(exchangeName, "", properties, body);
             }
         }
 
+        public Task PublishAsync(string exchangeName, IBasicProperties properties, byte[] body)
+        {
+            lock (_lock)
+            {
+                if (_channel == null)
+                    throw new InvalidConnectionException(_address.Uri, "No connection to RabbitMQ Host");
+
+                ulong deliveryTag = _channel.NextPublishSeqNo;
+
+                var task = new TaskCompletionSource<bool>();
+                _confirms.Add(deliveryTag, task);
+
+                try
+                {
+                    _channel.BasicPublish(exchangeName, "", properties, body);
+                }
+                catch
+                {
+                    _confirms.Remove(deliveryTag);
+                    throw;
+                }
+
+                return task.Task;
+            }
+        }
+
+        void HandleModelShutdown(IModel model, ShutdownEventArgs reason)
+        {
+            if (_publisherConfirmSettings.UsePublisherConfirms)
+            {
+                try
+                {
+                    FailPendingConfirms();
+                }
+                catch (Exception ex)
+                {
+                    _log.Error("Fail pending confirms failed during model shutdown", ex);
+                }
+            }
+        }
 
         void HandleNack(IModel model, BasicNackEventArgs args)
         {
-            _publisherConfirmSettings.Nacktion(args.DeliveryTag, args.Multiple);
+            IEnumerable<ulong> ids = Enumerable.Repeat(args.DeliveryTag, 1);
+            if (args.Multiple)
+                ids = _confirms.GetAllKeys().Where(x => x <= args.DeliveryTag);
+
+            var exception = new InvalidOperationException("Publish was nacked by the broker");
+
+            foreach (ulong id in ids)
+            {
+                _confirms[id].TrySetException(exception);
+                _confirms.Remove(id);
+            }
         }
 
         void HandleAck(IModel model, BasicAckEventArgs args)
         {
-            _publisherConfirmSettings.Acktion(args.DeliveryTag, args.Multiple);
+            IEnumerable<ulong> ids = Enumerable.Repeat(args.DeliveryTag, 1);
+            if (args.Multiple)
+                ids = _confirms.GetAllKeys().Where(x => x <= args.DeliveryTag);
+
+            foreach (ulong id in ids)
+            {
+                _confirms[id].TrySetResult(true);
+                _confirms.Remove(id);
+            }
         }
 
+        //void HandleFlowControl(IModel sender, FlowControlEventArgs args)
+        //{
+        //}
+
+        //void HandleReturn(IModel model, BasicReturnEventArgs args)
+        //{
+        //}
     }
 }

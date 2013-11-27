@@ -12,7 +12,6 @@
 // specific language governing permissions and limitations under the License.
 namespace MassTransit.RequestResponse.Configurators
 {
-#if NET40
     using System;
     using System.Threading;
     using System.Threading.Tasks;
@@ -22,9 +21,7 @@ namespace MassTransit.RequestResponse.Configurators
     /// Configures a request and the associated response handler behavior
     /// </summary>
     /// <typeparam name="TRequest">The message type of the request</typeparam>
-    public interface ITaskRequestConfigurator<TRequest> :
-        IRequestConfigurator<TRequest>
-        where TRequest : class
+    public interface ITaskRequestConfigurator<TRequest> : IRequestConfigurator<TRequest> where TRequest : class
     {
         /// <summary>
         /// Configures a handler to be called if a response of the specified type
@@ -33,8 +30,7 @@ namespace MassTransit.RequestResponse.Configurators
         /// </summary>
         /// <typeparam name="T">The message type of the response</typeparam>
         /// <param name="handler">The handler to call with the response message</param>
-        Task<T> Handle<T>(Action<T> handler)
-            where T : class;
+        Task<T> Handle<T>(Action<T> handler) where T : class;
 
         /// <summary>
         /// Configures a handler to be called if a response of the specified type
@@ -73,7 +69,7 @@ namespace MassTransit.RequestResponse.Configurators
         public Task<T> Handle<T>(Action<T> handler)
             where T : class
         {
-            TaskResponseHandler<T> responseHandler = AddHandler(typeof(T),
+            ITaskResponseHandler<T> responseHandler = AddHandler(typeof(T),
                 () => new CompleteTaskResponseHandler<T>(RequestId, handler));
 
             return responseHandler.Task;
@@ -82,7 +78,7 @@ namespace MassTransit.RequestResponse.Configurators
         public Task<T> Handle<T>(Action<IConsumeContext<T>, T> handler)
             where T : class
         {
-            TaskResponseHandler<T> responseHandler = AddHandler(typeof(T),
+            ITaskResponseHandler<T> responseHandler = AddHandler(typeof(T),
                 () => new CompleteTaskResponseHandler<T>(RequestId, handler));
 
             return responseHandler.Task;
@@ -90,7 +86,7 @@ namespace MassTransit.RequestResponse.Configurators
 
         public Task<Fault<TRequest>> HandleFault(Action<Fault<TRequest>> handler)
         {
-            TaskResponseHandler<Fault<TRequest>> responseHandler = AddHandler(typeof(Fault<TRequest>),
+            ITaskResponseHandler<Fault<TRequest>> responseHandler = AddHandler(typeof(Fault<TRequest>),
                 () => new CompleteTaskResponseHandler<Fault<TRequest>>(RequestId, handler));
 
             return responseHandler.Task;
@@ -98,7 +94,7 @@ namespace MassTransit.RequestResponse.Configurators
 
         public Task<Fault<TRequest>> HandleFault(Action<IConsumeContext<Fault<TRequest>>, Fault<TRequest>> handler)
         {
-            TaskResponseHandler<Fault<TRequest>> responseHandler = AddHandler(typeof(Fault<TRequest>),
+            ITaskResponseHandler<Fault<TRequest>> responseHandler = AddHandler(typeof(Fault<TRequest>),
                 () => new CompleteTaskResponseHandler<Fault<TRequest>>(RequestId, handler));
 
             return responseHandler.Task;
@@ -124,5 +120,4 @@ namespace MassTransit.RequestResponse.Configurators
             return request;
         }
     }
-#endif
 }

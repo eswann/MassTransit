@@ -16,6 +16,7 @@ namespace MassTransit.Transports.RabbitMq
     using System.Globalization;
     using System.IO;
     using Context;
+    using Exceptions;
     using Magnum;
     using Publish;
     using RabbitMQ.Client;
@@ -28,7 +29,6 @@ namespace MassTransit.Transports.RabbitMq
         readonly IRabbitMqEndpointAddress _address;
         readonly IPublisherConfirmSettings _publisherConfirmSettings;
         readonly IConnectionHandler<RabbitMqConnection> _connectionHandler;
-        
         RabbitMqProducer _producer;
 
         public OutboundRabbitMqTransport(IRabbitMqEndpointAddress address,
@@ -36,8 +36,8 @@ namespace MassTransit.Transports.RabbitMq
             IConnectionHandler<RabbitMqConnection> connectionHandler)
         {
             _address = address;
-            _connectionHandler = connectionHandler;
             _publisherConfirmSettings = publisherConfirmSettings;
+            _connectionHandler = connectionHandler;
         }
 
         public IEndpointAddress Address
@@ -50,48 +50,58 @@ namespace MassTransit.Transports.RabbitMq
             AddProducerBinding();
 
             _connectionHandler.Use(connection =>
+            {
+                try
                 {
-                    try
+                    IBasicProperties properties = _producer.CreateProperties();
+
+                    properties.SetPersistent(true);
+                    properties.MessageId = context.MessageId ?? properties.MessageId ?? NewId.Next().ToString();
+                    if (context.ExpirationTime.HasValue)
                     {
-                        IBasicProperties properties = _producer.CreateProperties();
+                        DateTime value = context.ExpirationTime.Value;
+                        properties.Expiration =
+                            (value.Kind == DateTimeKind.Utc
+                                 ? value - SystemUtil.UtcNow
+                                 : value - SystemUtil.Now).
+                                TotalMilliseconds.ToString("F0", CultureInfo.InvariantCulture);
+                    }
 
-                        properties.SetPersistent(true);
-                        properties.MessageId = context.MessageId ?? properties.MessageId ?? NewId.Next().ToString();
-                        properties.CorrelationId = context.CorrelationId ?? "";
-                        if (context.ExpirationTime.HasValue)
+                    using (var body = new MemoryStream())
+                    {
+                        context.SerializeTo(body);
+                        properties.Headers = context.Headers.ToDictionary(entry => entry.Key, entry => (object)entry.Value);
+                        properties.Headers["Content-Type"] = context.ContentType;
+
+                        if (_publisherConfirmSettings.UsePublisherConfirms)
                         {
-                            DateTime value = context.ExpirationTime.Value;
-                            properties.Expiration =
-                                (value.Kind == DateTimeKind.Utc
-                                     ? value - SystemUtil.UtcNow
-                                     : value - SystemUtil.Now).
-                                    TotalMilliseconds.ToString("F0", CultureInfo.InvariantCulture);
+                            var task = _producer.PublishAsync(_address.Name, properties, body.ToArray());
+                            task.Wait();
                         }
-
-                        using (var body = new MemoryStream())
+                        else
                         {
-                            context.SerializeTo(body);
-                            properties.Headers = context.Headers.ToDictionary(entry => entry.Key, entry => (object)entry.Value);
-                            properties.Headers["Content-Type"]=context.ContentType;
-
                             _producer.Publish(_address.Name, properties, body.ToArray());
-
-                            _address.LogSent(context.MessageId ?? properties.MessageId ?? "", context.MessageType);
                         }
+                        _address.LogSent(context.MessageId ?? properties.MessageId ?? "", context.MessageType);
                     }
-                    catch (AlreadyClosedException ex)
-                    {
-                        throw new InvalidConnectionException(_address.Uri, "Connection was already closed", ex);
-                    }
-                    catch (EndOfStreamException ex)
-                    {
-                        throw new InvalidConnectionException(_address.Uri, "Connection was closed", ex);
-                    }
-                    catch (OperationInterruptedException ex)
-                    {
-                        throw new InvalidConnectionException(_address.Uri, "Operation was interrupted", ex);
-                    }
-                });
+                }
+                catch (AggregateException ex)
+                {
+                    throw new TransportException(_address.Uri, "Publisher did not confirm message", ex.InnerException);
+                }
+                catch (AlreadyClosedException ex)
+                {
+                    throw new InvalidConnectionException(_address.Uri, "Connection was already closed", ex);
+                }
+                catch (EndOfStreamException ex)
+                {
+                    throw new InvalidConnectionException(_address.Uri, "Connection was closed", ex);
+                }
+                catch (OperationInterruptedException ex)
+                {
+                    throw new InvalidConnectionException(_address.Uri, "Operation was interrupted", ex);
+                }
+            });
         }
 
         public void Dispose()
