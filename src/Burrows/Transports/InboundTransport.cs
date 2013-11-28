@@ -12,6 +12,7 @@
 // specific language governing permissions and limitations under the License.
 
 using Burrows.Endpoints;
+using Burrows.Transports.Bindings;
 
 namespace Burrows.Transports
 {
@@ -33,9 +34,9 @@ namespace Burrows.Transports
         private readonly IConnectionHandler<TransportConnection> _connectionHandler;
         private readonly IMessageNameFormatter _messageNameFormatter;
         private readonly bool _purgeExistingMessages;
-        Consumer _consumer;
+        ConsumerBinding _consumer;
         bool _disposed;
-        Publisher _publisher;
+        PublisherBinding _publisher;
 
         public InboundTransport(IRabbitEndpointAddress address,
             IConnectionHandler<TransportConnection> connectionHandler,
@@ -180,7 +181,7 @@ namespace Burrows.Transports
             if (_consumer != null)
                 return;
 
-            _consumer = new Consumer(_address, _purgeExistingMessages);
+            _consumer = new ConsumerBinding(_address, _purgeExistingMessages);
 
             _connectionHandler.AddBinding(_consumer);
         }
@@ -190,7 +191,7 @@ namespace Burrows.Transports
             if (_publisher != null)
                 return;
 
-            _publisher = new Publisher(_address);
+            _publisher = new PublisherBinding(_address);
 
             _connectionHandler.AddBinding(_publisher);
         }

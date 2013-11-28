@@ -11,6 +11,7 @@
 // CONDITIONS OF ANY KIND, either express or implied. See the License for the 
 // specific language governing permissions and limitations under the License.
 
+using Burrows.BusConfigurators;
 using Burrows.Endpoints;
 
 namespace Burrows.Builders
@@ -38,9 +39,9 @@ namespace Burrows.Builders
 
         private readonly IList<IBusServiceConfigurator> _busServiceConfigurators;
         private readonly IList<Action<ServiceBus>> _postCreateActions;
-        private readonly IBusSettings _settings;
+        private readonly ServiceBusSettings _settings;
 
-        public ControlBusBuilder([NotNull] IBusSettings settings)
+        public ControlBusBuilder([NotNull] ServiceBusSettings settings)
         {
             Guard.AgainstNull(settings, "settings");
 
@@ -53,7 +54,7 @@ namespace Burrows.Builders
             subscriptionCoordinatorConfigurator.Configure(this);
         }
 
-        public IBusSettings Settings
+        public ServiceBusSettings Settings
         {
             get { return _settings; }
         }

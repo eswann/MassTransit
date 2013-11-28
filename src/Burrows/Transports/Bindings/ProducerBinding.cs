@@ -15,9 +15,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Burrows.Endpoints;
 using Burrows.Exceptions;
 using Burrows.Logging;
-using Burrows.Transports;
 using Burrows.Transports.Publish;
 using Burrows.Transports.Rabbit;
 using Magnum.Caching;
@@ -25,18 +25,18 @@ using Magnum.Extensions;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
 
-namespace Burrows.Endpoints
+namespace Burrows.Transports.Bindings
 {
-    public class Producer : IConnectionBinding<TransportConnection>
+    public class ProducerBinding : IConnectionBinding
     {
         private readonly Cache<ulong, TaskCompletionSource<bool>> _confirms;
-        private static readonly ILog _log = Logger.Get<Producer>();
+        private static readonly ILog _log = Logger.Get<ProducerBinding>();
         private readonly IEndpointAddress _address;
         private readonly IPublisherConfirmSettings _publisherConfirmSettings;
         private readonly object _lock = new object();
         IModel _channel;
 
-        public Producer(IEndpointAddress address, IPublisherConfirmSettings publisherConfirmSettings)
+        public ProducerBinding(IEndpointAddress address, IPublisherConfirmSettings publisherConfirmSettings)
         {
             _address = address;
             _publisherConfirmSettings = publisherConfirmSettings;

@@ -28,7 +28,7 @@ namespace Burrows
 		static readonly EndpointFactoryDefaultSettings _defaultSettings = new EndpointFactoryDefaultSettings();
 
 		[NotNull]
-		public static IEndpointCache New([NotNull] Action<IEndpointFactoryConfigurator> configure)
+		public static EndpointCache New([NotNull] Action<IEndpointFactoryConfigurator> configure)
 		{
 			Guard.AgainstNull(configure, "configure");
 
@@ -42,7 +42,7 @@ namespace Burrows
 			{
 				IEndpointFactory endpointFactory = configurator.CreateEndpointFactory();
 
-				IEndpointCache endpointCache = new EndpointCache(endpointFactory);
+				EndpointCache endpointCache = new EndpointCache(endpointFactory);
 
 				return endpointCache;
 			}

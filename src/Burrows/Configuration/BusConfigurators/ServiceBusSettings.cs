@@ -16,10 +16,8 @@ using Burrows.Endpoints;
 namespace Burrows.BusConfigurators
 {
     using System;
-    using Configuration;
 
-    public class ServiceBusSettings :
-		IBusSettings
+    public class ServiceBusSettings 
 	{
 		public ServiceBusSettings(ServiceBusDefaultSettings defaultSettings)
 		{
@@ -33,7 +31,7 @@ namespace Burrows.BusConfigurators
 		    EnablePerformanceCounters = defaultSettings.EnablePerformanceCounters;
 		}
 
-		public ServiceBusSettings(IBusSettings settings)
+        public ServiceBusSettings(ServiceBusSettings settings)
 		{
 			AutoStart = settings.AutoStart;
 			ConcurrentConsumerLimit = settings.ConcurrentConsumerLimit;

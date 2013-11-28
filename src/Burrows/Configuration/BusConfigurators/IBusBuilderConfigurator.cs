@@ -20,8 +20,7 @@ namespace Burrows.BusConfigurators
     /// <summary>
 	/// A thing that configures the thing that builds the bus.
 	/// </summary>
-	public interface IBusBuilderConfigurator :
-		IConfigurator
+	public interface IBusBuilderConfigurator : IConfigurator
 	{
 		/// <summary>
 		/// Pays the bus builder a visit and return a new builder

@@ -32,10 +32,10 @@ namespace Burrows.Builders
         private readonly ITransportSettings _errorSettings;
         private readonly OutboundTransportFactory _errorTransportFactory;
         private readonly Func<IInboundMessageTracker> _messageTrackerFactory;
-        private readonly IEndpointSettings _settings;
+        private readonly EndpointSettings _settings;
         private readonly DuplexTransportFactory _transportFactory;
 
-        public EndpointBuilder([NotNull] IEndpointAddress address, [NotNull] IEndpointSettings settings,
+        public EndpointBuilder([NotNull] IEndpointAddress address, [NotNull] EndpointSettings settings,
             [NotNull] ITransportSettings errorSettings, [NotNull] DuplexTransportFactory transportFactory,
             [NotNull] OutboundTransportFactory errorTransportFactory,
             [NotNull] Func<IInboundMessageTracker> messageTrackerFactory)

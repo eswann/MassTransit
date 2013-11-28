@@ -10,6 +10,9 @@
 // under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR 
 // CONDITIONS OF ANY KIND, either express or implied. See the License for the 
 // specific language governing permissions and limitations under the License.
+
+using Burrows.Transports.Bindings;
+
 namespace Burrows.Transports
 {
     using System;
@@ -30,22 +33,21 @@ namespace Burrows.Transports
     /// Wraps the management of a connection to apply reconnect and retry strategies
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public interface IConnectionHandler<T> :
-        IDisposable
-        where T : ITransportConnection
+    public interface IConnectionHandler<T> : IDisposable
+        where T : TransportConnection
     {
         void Use(Action<T> callback);
 
-        void AddBinding(IConnectionBinding<T> binding);
-        void RemoveBinding(IConnectionBinding<T> binding);
+        void AddBinding(IConnectionBinding binding);
+        void RemoveBinding(IConnectionBinding binding);
     }
 
     public class ConnectionHandler<T> :
         IConnectionHandler<T>,
         IConnectionHandler
-        where T : ITransportConnection
+        where T : TransportConnection
     {
-        private readonly HashSet<IConnectionBinding<T>> _bindings;
+        private readonly HashSet<IConnectionBinding> _bindings;
         private readonly T _connection;
         private readonly object _lock = new object();
         private readonly ILog _log = Logger.Get(typeof (ConnectionHandler<T>));
@@ -56,7 +58,7 @@ namespace Burrows.Transports
 
         public ConnectionHandler(T connection)
         {
-            _bindings = new HashSet<IConnectionBinding<T>>();
+            _bindings = new HashSet<IConnectionBinding>();
 
             _connection = connection;
             _policyChain = new ConnectionPolicyChain(this);
@@ -117,7 +119,7 @@ namespace Burrows.Transports
         }
 
 
-        public void AddBinding(IConnectionBinding<T> binding)
+        public void AddBinding(IConnectionBinding binding)
         {
             lock (_lock)
             {
@@ -129,7 +131,7 @@ namespace Burrows.Transports
             }
         }
 
-        public void RemoveBinding(IConnectionBinding<T> binding)
+        public void RemoveBinding(IConnectionBinding binding)
         {
             lock (_lock)
             {

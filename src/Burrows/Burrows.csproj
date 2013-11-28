@@ -113,6 +113,7 @@
     <Compile Include="Configuration\ShutdownConfigurationExtensions.cs" />
     <Compile Include="Configuration\InterceptorExtensions.cs" />
     <Compile Include="Endpoints\EndpointExtensions.cs" />
+    <Compile Include="Endpoints\IEndpointCache.cs" />
     <Compile Include="IFault.cs" />
     <Compile Include="NewId\INewIdFormatter.cs" />
     <Compile Include="NewId\INewIdParser.cs" />
@@ -125,6 +126,20 @@
     <Compile Include="NewId\NewIdProviders\BestPossibleWorkerIdProvider.cs" />
     <Compile Include="NewId\NewIdProviders\HostNameSHA1WorkerIdProvider.cs" />
     <Compile Include="NewId\NewIdProviders\WMINetworkAddressWorkerIdProvider.cs" />
+    <Compile Include="BackedPublisher\BackingStores\BackingStoreMethod.cs" />
+    <Compile Include="BackedPublisher\PublishingConfigurationExtensions.cs" />
+    <Compile Include="BackedPublisher\Confirmer.cs" />
+    <Compile Include="BackedPublisher\IConfirmer.cs" />
+    <Compile Include="BackedPublisher\IPublisher.cs" />
+    <Compile Include="BackedPublisher\BackingStores\IUnconfirmedMessageRepository.cs" />
+    <Compile Include="BackedPublisher\BackingStores\IUnconfirmedMessageRepositoryFactory.cs" />
+    <Compile Include="BackedPublisher\Publisher.cs" />
+    <Compile Include="BackedPublisher\PublishSettings.cs" />
+    <Compile Include="BackedPublisher\UnconfirmedMessage.cs" />
+    <Compile Include="BackedPublisher\BackingStores\UnconfirmedMessageFileRepository.cs" />
+    <Compile Include="BackedPublisher\BackingStores\UnconfirmedMessageMemoryRepository.cs" />
+    <Compile Include="BackedPublisher\BackingStores\UnconfirmedMessageRepositoryFactory.cs" />
+    <Compile Include="BackedPublisher\BackingStores\UnconfirmedMessageSqlRepository.cs" />
     <Compile Include="Serialization\NonClosingStream.cs" />
     <Compile Include="Serialization\IMessageSerializer.cs" />
     <Compile Include="Subscriptions\Coordinator\InMemorySubscriptionStorage.cs" />
@@ -145,7 +160,6 @@
     <Compile Include="Diagnostics\IntrospectionExtensions.cs" />
     <Compile Include="Configuration\BusServiceConfigurationExtensions.cs" />
     <Compile Include="Configuration\IBusServiceLayer.cs" />
-    <Compile Include="Configuration\Configuration\IBusSettings.cs" />
     <Compile Include="Configuration\Configuration\DelegateConsumerFactory.cs" />
     <Compile Include="Configuration\Configuration\DelegateMessageInterceptor.cs" />
     <Compile Include="Configuration\Configuration\IServiceBusEnvironment.cs" />
@@ -565,7 +579,7 @@
     <Compile Include="Transports\Configuration\Extensions\TransportServiceBusExtensions.cs" />
     <Compile Include="Transports\Configuration\Extensions\TransportFactoryExtensions.cs" />
     <Compile Include="Transports\ExchangeBinding.cs" />
-    <Compile Include="Transports\IConnectionBinding.cs" />
+    <Compile Include="Transports\Bindings\IConnectionBinding.cs" />
     <Compile Include="Transports\ConnectionHandler.cs" />
     <Compile Include="Transports\ConnectionPolicyChain.cs" />
     <Compile Include="Transports\ConnectOnFirstUsePolicy.cs" />
@@ -594,10 +608,10 @@
     <Compile Include="Exceptions\AddressException.cs" />
     <Compile Include="Endpoints\RabbitEndpointAddress.cs" />
     <Compile Include="Transports\TransportConnection.cs" />
-    <Compile Include="Endpoints\Consumer.cs" />
+    <Compile Include="Transports\Bindings\ConsumerBinding.cs" />
     <Compile Include="Transports\MessageNameFormatter.cs" />
-    <Compile Include="Endpoints\Producer.cs" />
-    <Compile Include="Endpoints\Publisher.cs" />
+    <Compile Include="Transports\Bindings\ProducerBinding.cs" />
+    <Compile Include="Transports\Bindings\PublisherBinding.cs" />
     <Compile Include="Transports\SubscriptionBinder.cs" />
     <Compile Include="Transports\TransportFactory.cs" />
     <Compile Include="Transports\ReconnectPolicy.cs" />
@@ -607,7 +621,6 @@
     <Compile Include="Endpoints\EndpointCacheExtensions.cs" />
     <Compile Include="Endpoints\EndpointFactory.cs" />
     <Compile Include="Endpoints\IEndpointFactory.cs" />
-    <Compile Include="Endpoints\IEndpointSettings.cs" />
     <Compile Include="Transports\ITransportFactory.cs" />
     <Compile Include="Consumes.cs" />
     <Compile Include="IAmCorrelatedBy.cs" />
@@ -728,7 +741,6 @@
     <Compile Include="Services\Subscriptions\Server\SubscriptionSaga.cs" />
     <Compile Include="Services\Subscriptions\SubscriptionConsumer.cs" />
     <Compile Include="Services\Subscriptions\SubscriptionPublisher.cs" />
-    <Compile Include="Endpoints\IEndpointCache.cs" />
     <Compile Include="Configuration\BusServiceConfigurators\IBusServiceConfigurator.cs" />
     <Compile Include="Exceptions\ConfigurationException.cs" />
     <Compile Include="Endpoints\EndpointCache.cs" />

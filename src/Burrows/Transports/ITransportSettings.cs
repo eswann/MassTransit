@@ -15,9 +15,6 @@ using Burrows.Endpoints;
 
 namespace Burrows.Transports
 {
-    using System;
-    using System.Transactions;
-
     public interface ITransportSettings
 	{
 		/// <summary>

@@ -12,15 +12,15 @@
 // specific language governing permissions and limitations under the License.
 
 using System;
-using Burrows.Transports;
+using Burrows.Endpoints;
 using Burrows.Transports.Rabbit;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
 using RabbitMQ.Util;
 
-namespace Burrows.Endpoints
+namespace Burrows.Transports.Bindings
 {
-    public class Consumer : IConnectionBinding<TransportConnection>
+    public class ConsumerBinding : IConnectionBinding
     {
         private readonly IRabbitEndpointAddress _address;
         private readonly object _lock = new object();
@@ -29,7 +29,7 @@ namespace Burrows.Endpoints
         bool _purgeOnBind;
         private readonly string _consumerTag;
 
-        public Consumer(IRabbitEndpointAddress address, bool purgeOnBind)
+        public ConsumerBinding(IRabbitEndpointAddress address, bool purgeOnBind)
         {
             _address = address;
             _purgeOnBind = purgeOnBind;

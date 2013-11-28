@@ -18,8 +18,7 @@ namespace Burrows.Configuration
     using Exceptions;
     using Pipeline;
 
-    public class DelegateConsumerFactory<TConsumer> :
-        IConsumerFactory<TConsumer>
+    public class DelegateConsumerFactory<TConsumer> : IConsumerFactory<TConsumer>
         where TConsumer : class
     {
         private readonly Func<TConsumer> _factoryMethod;

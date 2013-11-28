@@ -18,9 +18,7 @@ using Burrows.Util;
 
 namespace Burrows.Endpoints
 {
-    public class EndpointSettings :
-        TransportSettings,
-        IEndpointSettings
+    public class EndpointSettings : TransportSettings
     {
         public EndpointSettings(IEndpointAddress address)
             : base(address)
@@ -28,7 +26,7 @@ namespace Burrows.Endpoints
             ErrorAddress = GetErrorEndpointAddress();
         }
 
-        public EndpointSettings(IEndpointAddress address, IEndpointSettings source)
+        public EndpointSettings(IEndpointAddress address, EndpointSettings source)
             : base(address, source)
         {
             Guard.AgainstNull(source, "source");

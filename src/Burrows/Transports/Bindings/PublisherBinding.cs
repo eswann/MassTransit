@@ -13,13 +13,13 @@
 
 using System;
 using System.Collections.Generic;
-using Burrows.Transports;
+using Burrows.Endpoints;
 using Burrows.Transports.Rabbit;
 using RabbitMQ.Client;
 
-namespace Burrows.Endpoints
+namespace Burrows.Transports.Bindings
 {
-    public class Publisher : IConnectionBinding<TransportConnection>
+    public class PublisherBinding : IConnectionBinding
     {
         private readonly IRabbitEndpointAddress _address;
         private readonly object _bindings = new object();
@@ -28,7 +28,7 @@ namespace Burrows.Endpoints
         private readonly object _lock = new object();
         IModel _channel;
 
-        public Publisher(IRabbitEndpointAddress address)
+        public PublisherBinding(IRabbitEndpointAddress address)
         {
             _address = address;
             _exchangeBindings = new HashSet<ExchangeBinding>();

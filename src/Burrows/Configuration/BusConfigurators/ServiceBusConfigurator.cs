@@ -20,13 +20,11 @@ namespace Burrows.BusConfigurators
     using System.Diagnostics;
     using System.Linq;
     using Builders;
-    using Configuration;
     using Configurators;
     using EndpointConfigurators;
     using Logging;
     using Magnum.Extensions;
     using SubscriptionConfigurators;
-    using Transports;
     using Util;
 
     /// <summary>
@@ -46,7 +44,7 @@ namespace Burrows.BusConfigurators
         /// Specifies the builder factory to use when the service is invoked
         /// </summary>
         /// <param name="builderFactory"></param>
-        void UseBusBuilder(Func<IBusSettings, IBusBuilder> builderFactory);
+        void UseBusBuilder(Func<ServiceBusSettings, IBusBuilder> builderFactory);
 
         /// <summary>
         /// Adds a configurator to the subscription coordinator builder
@@ -111,7 +109,7 @@ namespace Burrows.BusConfigurators
         private readonly ServiceBusSettings _settings;
 
         private readonly SubscriptionRouterConfigurator _subscriptionRouterConfigurator;
-        Func<IBusSettings, IBusBuilder> _builderFactory;
+        Func<ServiceBusSettings, IBusBuilder> _builderFactory;
 
         public ServiceBusConfigurator(ServiceBusDefaultSettings defaultSettings)
         {
@@ -150,7 +148,7 @@ namespace Burrows.BusConfigurators
                 yield return result;
         }
 
-        public void UseBusBuilder(Func<IBusSettings, IBusBuilder> builderFactory)
+        public void UseBusBuilder(Func<ServiceBusSettings, IBusBuilder> builderFactory)
         {
             _builderFactory = builderFactory;
         }
@@ -283,7 +281,7 @@ namespace Burrows.BusConfigurators
             return endpointCache;
         }
 
-        static IBusBuilder DefaultBuilderFactory(IBusSettings settings)
+        static IBusBuilder DefaultBuilderFactory(ServiceBusSettings settings)
         {
             return new ServiceBusBuilder(settings);
         }

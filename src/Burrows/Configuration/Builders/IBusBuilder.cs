@@ -10,6 +10,9 @@
 // under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR 
 // CONDITIONS OF ANY KIND, either express or implied. See the License for the 
 // specific language governing permissions and limitations under the License.
+
+using Burrows.BusConfigurators;
+
 namespace Burrows.Builders
 {
     using System;
@@ -25,7 +28,7 @@ namespace Burrows.Builders
 		/// <summary>
 		/// The settings to creating the bus, including address, etc.
 		/// </summary>
-		IBusSettings Settings { get; }
+		ServiceBusSettings Settings { get; }
 
 		/// <summary>
 		/// Builds the bus instance

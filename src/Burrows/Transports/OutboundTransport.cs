@@ -12,6 +12,7 @@
 // specific language governing permissions and limitations under the License.
 
 using Burrows.Endpoints;
+using Burrows.Transports.Bindings;
 
 namespace Burrows.Transports
 {
@@ -32,7 +33,7 @@ namespace Burrows.Transports
         private readonly IRabbitEndpointAddress _address;
         private readonly IPublisherConfirmSettings _publisherConfirmSettings;
         private readonly IConnectionHandler<TransportConnection> _connectionHandler;
-        Producer _producer;
+        ProducerBinding _producer;
 
         public OutboundTransport(IRabbitEndpointAddress address,
             IPublisherConfirmSettings publisherConfirmSettings,
@@ -117,7 +118,7 @@ namespace Burrows.Transports
             if (_producer != null)
                 return;
 
-            _producer = new Producer(_address, _publisherConfirmSettings);
+            _producer = new ProducerBinding(_address, _publisherConfirmSettings);
 
             _connectionHandler.AddBinding(_producer);
         }
