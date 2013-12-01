@@ -19,7 +19,7 @@ namespace Burrows.Saga.SubscriptionConnectors
     public class OrchestratesSagaSubscriptionConnector<TSaga, TMessage> :
 		SagaSubscriptionConnector<TSaga, TMessage>
 		where TSaga : class, ISaga, IOrchestrate<TMessage>
-		where TMessage : class, IAmCorrelatedBy<Guid>
+		where TMessage : class, ICorrelatedBy<Guid>
 	{
 		public OrchestratesSagaSubscriptionConnector(ISagaRepository<TSaga> sagaRepository)
 			: base(sagaRepository, new ExistingOrIgnoreSagaPolicy<TSaga, TMessage>(x => false))

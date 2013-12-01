@@ -296,7 +296,7 @@ namespace Burrows.Tests.Configuration
 			{
 			}
 
-			Guid IAmCorrelatedBy<Guid>.CorrelationId
+			Guid ICorrelatedBy<Guid>.CorrelationId
 			{
 				get { return default(Guid); }
 			}
@@ -305,7 +305,7 @@ namespace Burrows.Tests.Configuration
 			{
 			}
 
-			int IAmCorrelatedBy<int>.CorrelationId
+			int ICorrelatedBy<int>.CorrelationId
 			{
 				get { return default(int); }
 			}
@@ -314,7 +314,7 @@ namespace Burrows.Tests.Configuration
 			{
 			}
 
-			string IAmCorrelatedBy<string>.CorrelationId
+			string ICorrelatedBy<string>.CorrelationId
 			{
 				get { return default(string); }
 			}
@@ -323,14 +323,14 @@ namespace Burrows.Tests.Configuration
 			{
 			}
 
-			long IAmCorrelatedBy<long>.CorrelationId
+			long ICorrelatedBy<long>.CorrelationId
 			{
 				get { return default(long); }
 			}
 		}
 
 
-		class A : IAmCorrelatedBy<Guid>
+		class A : ICorrelatedBy<Guid>
 		{
 			public Guid CorrelationId
 			{
@@ -338,7 +338,7 @@ namespace Burrows.Tests.Configuration
 			}
 		}
 
-		class B : IAmCorrelatedBy<int>
+		class B : ICorrelatedBy<int>
 		{
 			public int CorrelationId
 			{
@@ -346,7 +346,7 @@ namespace Burrows.Tests.Configuration
 			}
 		}
 
-		class D<T> : IAmCorrelatedBy<string>
+		class D<T> : ICorrelatedBy<string>
 		{
 			public string CorrelationId
 			{
@@ -354,7 +354,7 @@ namespace Burrows.Tests.Configuration
 			}
 		}
 
-		interface IC : IAmCorrelatedBy<long>
+		interface IC : ICorrelatedBy<long>
 		{
 		}
 	}

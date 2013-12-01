@@ -19,7 +19,7 @@ namespace Burrows.Services.Timeout.Messages
 	/// </summary>
     [Serializable]
     public class CancelTimeout :
-        IAmCorrelatedBy<Guid>
+        ICorrelatedBy<Guid>
     {
         /*
         /// <summary>

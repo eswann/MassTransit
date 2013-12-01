@@ -19,14 +19,14 @@ namespace Burrows.Pipeline.Configuration
 
     public class OutboundCorrelatedMessageRouterConfiguratorScope<TMessage, TKey> :
 		PipelineInspectorBase<OutboundCorrelatedMessageRouterConfiguratorScope<TMessage, TKey>>
-		where TMessage : class, IAmCorrelatedBy<TKey>
+		where TMessage : class, ICorrelatedBy<TKey>
 	{
 		public CorrelatedMessageRouter<IBusPublishContext<TMessage>, TMessage, TKey> Router { get; private set; }
 
 		[UsedImplicitly]
 		public bool Inspect<T, TM, TK>(CorrelatedMessageRouter<T, TM, TK> router)
 			where T : class, IMessageContext<TM>
-			where TM : class, IAmCorrelatedBy<TK>
+			where TM : class, ICorrelatedBy<TK>
 		{
 			if (typeof (T) == typeof (IBusPublishContext<TMessage>) && typeof (TM) == typeof (TMessage) &&
 			    typeof (TK) == typeof (TKey))

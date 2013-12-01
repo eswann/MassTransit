@@ -59,7 +59,7 @@ namespace Burrows.Services.Subscriptions
 		}
 
 		public UnsubscribeAction SubscribedTo<TMessage, TKey>(TKey correlationId)
-			where TMessage : class, IAmCorrelatedBy<TKey>
+			where TMessage : class, ICorrelatedBy<TKey>
 		{
 			return _service.SubscribedTo<TMessage, TKey>(correlationId, _bus.Endpoint.Address.Uri);
 		}

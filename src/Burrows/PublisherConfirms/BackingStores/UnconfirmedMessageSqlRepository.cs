@@ -4,17 +4,16 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
-using System.Reflection;
+using System.Threading.Tasks;
 using Burrows.Logging;
 using Newtonsoft.Json;
 
-namespace Burrows.BackedPublisher.BackingStores
+namespace Burrows.PublisherConfirms.BackingStores
 {
     public class UnconfirmedMessageSqlRepository : IUnconfirmedMessageRepository
     {
         private static readonly ILog _log = Logger.Get<UnconfirmedMessageSqlRepository>();
         private readonly PublishSettings _publishSettings;
-        //private static readonly Assembly _messagesAssembly = typeof(IMessage).Assembly;
         private readonly ConcurrentDictionary<string, Type> _cachedTypes = new ConcurrentDictionary<string, Type>();
 
         public UnconfirmedMessageSqlRepository(PublishSettings publishSettings)
@@ -22,9 +21,9 @@ namespace Burrows.BackedPublisher.BackingStores
             _publishSettings = publishSettings;
         }
 
-        public IEnumerable<Object> GetAndDeleteMessages(string publisherId, int pageSize)
+        public async Task<IEnumerable<ConfirmableMessage>> GetAndDeleteMessages(string publisherId, int pageSize)
         {
-            var results = new List<Object>();
+            var results = new List<ConfirmableMessage>();
 
             using (var dbConnection = new SqlConnection(_publishSettings.ConnectionString))
             {
@@ -41,9 +40,9 @@ namespace Burrows.BackedPublisher.BackingStores
                     param2.DbType = DbType.Int32;
                     
                     dbConnection.Open();
-                    using (var reader = command.ExecuteReader(CommandBehavior.CloseConnection))
+                    using (var reader = await command.ExecuteReaderAsync(CommandBehavior.CloseConnection))
                     {
-                        while (reader.Read())
+                        while (await reader.ReadAsync())
                         {
                             try
                             {
@@ -52,11 +51,10 @@ namespace Burrows.BackedPublisher.BackingStores
                                 Type messageType;
                                 if (!_cachedTypes.TryGetValue(messageTypeKey, out messageType))
                                 {
-                                    //messageType = _messagesAssembly.GetType(messageTypeKey, true);
-                                    //_cachedTypes.TryAdd(messageTypeKey, messageType);
+                                    _cachedTypes.TryAdd(messageTypeKey, messageType);
                                 }
 
-                                var message = JsonConvert.DeserializeObject(reader.GetString(1), messageType);
+                                var message = (ConfirmableMessage)JsonConvert.DeserializeObject(reader.GetString(1), messageType);
                                 results.Add(message);
                             }
                             catch (Exception ex)
@@ -70,22 +68,22 @@ namespace Burrows.BackedPublisher.BackingStores
             return results;
         }
 
-        public void StoreMessages(ConcurrentQueue<Object> messages, string publisherId)
+        public async Task StoreMessages(ConcurrentQueue<ConfirmableMessage> messages, string publisherId)
         {
             var messagesToInsert = CreateInsertDataTable();
 
-            IEnumerable<Object> messagesToProcess;
+            IEnumerable<ConfirmableMessage> messagesToProcess;
 
             bool hasMessages = GetNextMessageBatchFromQueue(messages, out messagesToProcess);
 
             while (hasMessages)
             {
-                InsertMessages(publisherId, messagesToProcess, messagesToInsert);
+                await InsertMessages(publisherId, messagesToProcess, messagesToInsert);
                 hasMessages = GetNextMessageBatchFromQueue(messages, out messagesToProcess);
             }
         }
 
-        public void StoreMessages(IEnumerable<Object> messages, string publisherId)
+        public async Task StoreMessages(IEnumerable<ConfirmableMessage> messages, string publisherId)
         {
             int skip = 0;
             int take = _publishSettings.InsertStoredMessagesBatchSize;
@@ -96,7 +94,7 @@ namespace Burrows.BackedPublisher.BackingStores
 
             while (messagesToProcess.Any())
             {
-                InsertMessages(publisherId, messagesToProcess, messagesToInsert);
+                await InsertMessages(publisherId, messagesToProcess, messagesToInsert);
                 skip = skip + take;
                 messagesToProcess = messages.Skip(skip).Take(take);
             }
@@ -112,11 +110,11 @@ namespace Burrows.BackedPublisher.BackingStores
             return messagesToInsert;
         }
 
-        private void InsertMessages(string publisherId, IEnumerable<Object> messagesToProcess, DataTable messagesToInsert)
+        private async Task InsertMessages(string publisherId, IEnumerable<ConfirmableMessage> messagesToProcess, DataTable messagesToInsert)
         {
             foreach (var message in messagesToProcess)
             {
-                //messagesToInsert.Rows.Add(message.MessageId, message.GetType().FullName, JsonConvert.SerializeObject(message));
+                messagesToInsert.Rows.Add(message.Id, message.GetType().FullName, JsonConvert.SerializeObject(message));
             }
 
             using (var dbConnection = new SqlConnection(_publishSettings.ConnectionString))
@@ -134,17 +132,17 @@ namespace Burrows.BackedPublisher.BackingStores
                     param2.SqlDbType = SqlDbType.Structured;
 
                     dbConnection.Open();
-                    command.ExecuteNonQuery();
+                    await command.ExecuteNonQueryAsync();
                 }
             }
             messagesToInsert.Clear();
         }
 
-        private bool GetNextMessageBatchFromQueue(ConcurrentQueue<Object> concurrentQueue, out IEnumerable<Object> messagesToProcess)
+        private bool GetNextMessageBatchFromQueue(ConcurrentQueue<ConfirmableMessage> concurrentQueue, out IEnumerable<ConfirmableMessage> messagesToProcess)
         {
-            var messages = new List<Object>(_publishSettings.InsertStoredMessagesBatchSize);
+            var messages = new List<ConfirmableMessage>(_publishSettings.InsertStoredMessagesBatchSize);
 
-            Object message;
+            ConfirmableMessage message;
             int messageCount = 0;
 
             for (int i = 0; i < _publishSettings.InsertStoredMessagesBatchSize; i++)

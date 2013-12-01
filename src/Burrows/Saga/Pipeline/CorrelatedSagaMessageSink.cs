@@ -19,7 +19,7 @@ namespace Burrows.Saga.Pipeline
 
     public class CorrelatedSagaMessageSink<TSaga, TMessage> :
 		SagaMessageSinkBase<TSaga, TMessage>
-		where TMessage : class, IAmCorrelatedBy<Guid>
+		where TMessage : class, ICorrelatedBy<Guid>
 		where TSaga : class, ISaga, Consumes<TMessage>.All
 	{
 		public CorrelatedSagaMessageSink(ISagaRepository<TSaga> repository, ISagaPolicy<TSaga, TMessage> policy)

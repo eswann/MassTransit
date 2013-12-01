@@ -20,7 +20,7 @@ namespace Burrows.Saga
     /// <typeparam name="TMessage"></typeparam>
     public interface InitiatedBy<TMessage> :
         IOrchestrate<TMessage>
-        where TMessage : class, IAmCorrelatedBy<Guid>
+        where TMessage : class, ICorrelatedBy<Guid>
     {
     }
 }

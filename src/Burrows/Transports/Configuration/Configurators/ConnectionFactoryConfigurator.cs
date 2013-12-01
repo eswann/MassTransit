@@ -21,8 +21,7 @@ namespace Burrows.Transports.Configuration.Configurators
     using Builders;
     using Burrows.Configurators;
 
-    public interface IConnectionFactoryConfigurator :
-    IConfigurator
+    public interface IConnectionFactoryConfigurator : IConfigurator
     {
         void UseSsl(Action<ISslConnectionFactoryConfigurator> configureSsl);
         void SetRequestedHeartbeat(ushort requestedHeartbeat);

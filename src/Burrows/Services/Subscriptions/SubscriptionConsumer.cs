@@ -66,7 +66,7 @@ namespace Burrows.Services.Subscriptions
 		}
 
 		public UnsubscribeAction SubscribedTo<TMessage, TKey>(TKey correlationId, Uri endpointUri)
-			where TMessage : class, IAmCorrelatedBy<TKey>
+			where TMessage : class, ICorrelatedBy<TKey>
 		{
 			if (endpointUri == _bus.Endpoint.Address.Uri)
 				return () => true;

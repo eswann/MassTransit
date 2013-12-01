@@ -101,13 +101,13 @@ namespace Burrows.TestFramework
         }
 
         public static void ShouldContain<TMessage>(this IEndpoint endpoint, TMessage expectedMessage)
-            where TMessage : class, IAmCorrelatedBy<Guid>
+            where TMessage : class, ICorrelatedBy<Guid>
         {
             endpoint.ShouldContain(expectedMessage, TimeSpan.Zero);
         }
 
         public static void ShouldContain<TMessage>(this IEndpoint endpoint, TMessage expectedMessage, TimeSpan timeout)
-            where TMessage : class, IAmCorrelatedBy<Guid>
+            where TMessage : class, ICorrelatedBy<Guid>
         {
             var future = new Future<TMessage>();
 
@@ -157,7 +157,7 @@ namespace Burrows.TestFramework
         }
 
         public static void ShouldNotContain<TMessage>(this IEndpoint endpoint, TMessage expectedMessage)
-            where TMessage : class, IAmCorrelatedBy<Guid>
+            where TMessage : class, ICorrelatedBy<Guid>
         {
             endpoint.Receive(context =>
                 {

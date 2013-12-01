@@ -26,7 +26,7 @@ namespace Burrows.Pipeline.Configuration
         }
 
         public CorrelatedMessageRouter<IConsumeContext<TMessage>, TMessage, TKey> FindOrCreate<TMessage, TKey>()
-            where TMessage : class, IAmCorrelatedBy<TKey>
+            where TMessage : class, ICorrelatedBy<TKey>
         {
             var configurator = new InboundMessageRouterConfigurator(_sink);
 
@@ -40,7 +40,7 @@ namespace Burrows.Pipeline.Configuration
 
         static CorrelatedMessageRouter<IConsumeContext<TMessage>, TMessage, TKey> ConfigureRouter<TMessage, TKey>(
             MessageRouter<IConsumeContext<TMessage>> inputRouter)
-            where TMessage : class, IAmCorrelatedBy<TKey>
+            where TMessage : class, ICorrelatedBy<TKey>
         {
             if (inputRouter == null)
                 throw new PipelineException("The input router was not found");

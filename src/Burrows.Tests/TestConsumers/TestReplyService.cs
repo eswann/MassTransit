@@ -18,8 +18,8 @@ namespace Burrows.Tests.TestConsumers
     public class TestReplyService<TMessage, TKey, TReplyMessage> :
 		TestConsumerBase<TMessage>,
 		Consumes<TMessage>.All
-		where TMessage : class, IAmCorrelatedBy<TKey>
-		where TReplyMessage : class, IAmCorrelatedBy<TKey>
+		where TMessage : class, ICorrelatedBy<TKey>
+		where TReplyMessage : class, ICorrelatedBy<TKey>
 	{
 		public override void Consume(TMessage message)
 		{

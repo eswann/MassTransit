@@ -76,8 +76,8 @@ namespace Burrows.Tests.Groups
 
 	public static class OIUWERO
 	{
-		public static CorrelatedMessageGroup<TKey> CombineWith<TMessage, TKey>(this IAmCorrelatedBy<TKey> message, params TMessage[] messages)
-			where TMessage : IAmCorrelatedBy<TKey>
+		public static CorrelatedMessageGroup<TKey> CombineWith<TMessage, TKey>(this ICorrelatedBy<TKey> message, params TMessage[] messages)
+			where TMessage : ICorrelatedBy<TKey>
 		{
 			var group = new CorrelatedMessageGroup<TKey> {message};
 
@@ -95,13 +95,13 @@ namespace Burrows.Tests.Groups
 
 
 		public void Add<TMessage>(TMessage message) 
-			where TMessage : IAmCorrelatedBy<TKey>
+			where TMessage : ICorrelatedBy<TKey>
 		{
 			_messages.Add(message);
 		}
 
 		public void AddRange<TMessage>(IEnumerable<TMessage> messages)
-			where TMessage : IAmCorrelatedBy<TKey>
+			where TMessage : ICorrelatedBy<TKey>
 		{
 			foreach (var message in messages)
 			{
@@ -110,7 +110,7 @@ namespace Burrows.Tests.Groups
 		}
 
 		public CorrelatedMessageGroup<TKey> CombineWith<TMessage>(params TMessage[] messages)
-			where TMessage : IAmCorrelatedBy<TKey>
+			where TMessage : ICorrelatedBy<TKey>
 		{
 			AddRange(messages);
 
@@ -145,7 +145,7 @@ namespace Burrows.Tests.Groups
 
 	[Serializable]
 	public class AddOrderItem :
-		IAmCorrelatedBy<Guid>
+		ICorrelatedBy<Guid>
 	{
 		private readonly Guid _transactionId;
 
@@ -162,7 +162,7 @@ namespace Burrows.Tests.Groups
 
 	[Serializable]
 	public class CreateOrder : 
-		IAmCorrelatedBy<Guid>
+		ICorrelatedBy<Guid>
 	{
 		private readonly Guid _transactionId;
 

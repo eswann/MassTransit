@@ -16,7 +16,7 @@ namespace Burrows.Tests.Messages
 
     [Serializable]
 	public class RequestMessage :
-		IAmCorrelatedBy<Guid>
+		ICorrelatedBy<Guid>
 	{
     	public RequestMessage()
     	{

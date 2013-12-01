@@ -33,9 +33,7 @@ namespace Burrows.Transports.Configuration.Configurators
     }
 
 
-    public class SslConnectionFactoryConfigurator :
-        ISslConnectionFactoryConfigurator,
-        IConnectionFactoryBuilderConfigurator
+    public class SslConnectionFactoryConfigurator : ISslConnectionFactoryConfigurator, IConnectionFactoryBuilderConfigurator
     {
         SslPolicyErrors _acceptablePolicyErrors;
         string _certificatePath;

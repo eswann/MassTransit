@@ -16,7 +16,7 @@ namespace Burrows.Services.Timeout.Messages
 
     [Serializable]
 	public class TimeoutCancelled :
-		IAmCorrelatedBy<Guid>
+		ICorrelatedBy<Guid>
 	{
 		public int Tag { get; set; }
 		public Guid CorrelationId { get; set; }

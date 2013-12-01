@@ -16,7 +16,7 @@ namespace Burrows.Tests.Saga.Messages
 
     [Serializable]
 	public class CorrelatedMessage :
-		IAmCorrelatedBy<Guid>
+		ICorrelatedBy<Guid>
 	{
 		public CorrelatedMessage(Guid correlationId)
 		{

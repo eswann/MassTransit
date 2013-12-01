@@ -52,12 +52,12 @@ namespace Burrows.Tests.Saga.StateMachine
         public IServiceBus Bus { get; set; }
     }
 
-    public class First : IAmCorrelatedBy<Guid>
+    public class First : ICorrelatedBy<Guid>
     {
         public Guid CorrelationId { get; set; }
     }
 
-    public class Second : IAmCorrelatedBy<Guid>
+    public class Second : ICorrelatedBy<Guid>
     {
         public Guid CorrelationId { get; set; }
     }

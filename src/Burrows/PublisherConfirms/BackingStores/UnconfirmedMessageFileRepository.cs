@@ -4,11 +4,12 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using Burrows.Logging;
 using Newtonsoft.Json;
 
-namespace Burrows.BackedPublisher.BackingStores
+namespace Burrows.PublisherConfirms.BackingStores
 {
     public class UnconfirmedMessageFileRepository : IUnconfirmedMessageRepository
     {
@@ -20,7 +21,6 @@ namespace Burrows.BackedPublisher.BackingStores
         
         private readonly List<string> _existingDirectories = new List<string>();
 
-        //private static readonly Assembly _messagesAssembly = typeof(IMessage).Assembly;
         private readonly ConcurrentDictionary<string, Type> _cachedTypes = new ConcurrentDictionary<string, Type>();
         
         public UnconfirmedMessageFileRepository(PublishSettings publishSettings)
@@ -33,9 +33,9 @@ namespace Burrows.BackedPublisher.BackingStores
                 _filePath += Path.DirectorySeparatorChar;
         }
 
-        public IEnumerable<Object> GetAndDeleteMessages(string publisherId, int pageSize)
+        public async Task<IEnumerable<ConfirmableMessage>> GetAndDeleteMessages(string publisherId, int pageSize)
         {
-            var results = new List<Object>();
+            var results = new List<ConfirmableMessage>();
             var path = GetOrCreateDirectory(publisherId);
             var files = Directory.EnumerateFiles(path).OrderBy(x => x).Take(pageSize);
 
@@ -44,7 +44,7 @@ namespace Burrows.BackedPublisher.BackingStores
                 string messageText;
                 using (var streamReader = new StreamReader(filePath))
                 {
-                    messageText = streamReader.ReadToEnd();
+                    messageText = await streamReader.ReadToEndAsync();
                 }
 
                 string[] segments = messageText.Split(MessageSegmentDelimiter);
@@ -56,11 +56,10 @@ namespace Burrows.BackedPublisher.BackingStores
                     Type messageType;
                     if (!_cachedTypes.TryGetValue(messageTypeKey, out messageType))
                     {
-                        //messageType = _messagesAssembly.GetType(messageTypeKey, true);
-                        //_cachedTypes.TryAdd(messageTypeKey, messageType);
+                        _cachedTypes.TryAdd(messageTypeKey, messageType);
                     }
 
-                    var message = JsonConvert.DeserializeObject(segments[1], messageType);
+                    var message = (ConfirmableMessage)JsonConvert.DeserializeObject(segments[1], messageType);
                     results.Add(message);
                     try
                     {
@@ -80,35 +79,35 @@ namespace Burrows.BackedPublisher.BackingStores
             return results;
         }
 
-        public void StoreMessages(ConcurrentQueue<Object> messages, string publisherId)
+        public async Task StoreMessages(ConcurrentQueue<ConfirmableMessage> messages, string publisherId)
         {
             string path = GetOrCreateDirectory(publisherId);
 
-            Object message;
+            ConfirmableMessage message;
             while (messages.TryDequeue(out message))
             {
-                StoreMessage(message, path);
+               await StoreMessage(message, path);
             }
         }
 
-        public void StoreMessages(IEnumerable<Object> messages, string publisherId)
+        public async Task StoreMessages(IEnumerable<ConfirmableMessage> messages, string publisherId)
         {
             string path = GetOrCreateDirectory(publisherId);
 
             foreach (var message in messages)
             {
-                StoreMessage(message, path);
+                await StoreMessage(message, path);
             }
         }
 
-        private async void StoreMessage(Object message, string path)
+        private async Task StoreMessage(ConfirmableMessage message, string path)
         {
             var messageText = message.GetType().FullName + MessageSegmentDelimiter + JsonConvert.SerializeObject(message);
 
-            //using (var outfile = new StreamWriter(path + Path.DirectorySeparatorChar + message.MessageId + ".txt"))
-            //{
-            //    await outfile.WriteAsync(messageText);
-            //}
+            using (var outfile = new StreamWriter(path + Path.DirectorySeparatorChar + message.Id + ".txt"))
+            {
+                await outfile.WriteAsync(messageText);
+            }
         }
 
         private string GetOrCreateDirectory(string publisherId)

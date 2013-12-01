@@ -16,7 +16,7 @@ namespace Burrows.Services.Timeout.Messages
 
     [Serializable]
     public class TimeoutExpired :
-        IAmCorrelatedBy<Guid>
+        ICorrelatedBy<Guid>
     {
     	public Guid CorrelationId { get; set; }
 		public int Tag { get; set; }

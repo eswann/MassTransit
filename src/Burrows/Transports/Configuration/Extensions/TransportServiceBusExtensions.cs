@@ -22,7 +22,6 @@ namespace Burrows.Transports.Configuration.Extensions
     using EndpointConfigurators;
     using Magnum.Extensions;
     using Pipeline.Configuration;
-    using Publish;
 
     public static class TransportServiceBusExtensions
     {

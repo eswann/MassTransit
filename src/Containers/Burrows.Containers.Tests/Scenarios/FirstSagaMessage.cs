@@ -15,7 +15,7 @@ namespace Burrows.Containers.Tests.Scenarios
     using System;
 
     public class FirstSagaMessage :
-        IAmCorrelatedBy<Guid>
+        ICorrelatedBy<Guid>
     {
         public Guid CorrelationId { get; set; }
     }

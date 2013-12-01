@@ -1,7 +1,7 @@
 ﻿using System;
-using Burrows.BackedPublisher.BackingStores;
+using Burrows.PublisherConfirms.BackingStores;
 
-namespace Burrows.BackedPublisher
+namespace Burrows.PublisherConfirms
 {
     public class PublishSettings
     {

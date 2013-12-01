@@ -156,20 +156,20 @@ namespace Burrows.Tests.Testing
 		}
 
 		class A :
-			IAmCorrelatedBy<Guid>
+			ICorrelatedBy<Guid>
 		{
 			public string Value { get; set; }
 			public Guid CorrelationId { get; set; }
 		}
 
 		class Aa :
-			IAmCorrelatedBy<Guid>
+			ICorrelatedBy<Guid>
 		{
 			public Guid CorrelationId { get; set; }
 		}
 
 		class B :
-			IAmCorrelatedBy<Guid>
+			ICorrelatedBy<Guid>
 		{
 			public Guid CorrelationId { get; set; }
 		}

@@ -18,7 +18,7 @@ namespace Burrows.Saga
 
     public class CorrelatedSagaLocator<TMessage> :
 		ISagaLocator<TMessage>
-		where TMessage : class, IAmCorrelatedBy<Guid>
+		where TMessage : class, ICorrelatedBy<Guid>
 	{
 		public IEnumerable<Guid> Find(IConsumeContext<TMessage> context)
 		{

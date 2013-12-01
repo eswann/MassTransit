@@ -27,7 +27,7 @@ namespace Burrows.Pipeline
 	{
 		public static IEnumerable<Action<IConsumeContext<TMessage>>> ForInitiatedBy<TInstance, TMessage>(TInstance instance)
 			where TInstance : InitiatedBy<TMessage>
-			where TMessage : class, IAmCorrelatedBy<Guid>
+			where TMessage : class, ICorrelatedBy<Guid>
 		{
 			yield return x =>
 				{
@@ -41,7 +41,7 @@ namespace Burrows.Pipeline
 		public static IEnumerable<Action<IConsumeContext<TMessage>>> ForDataEvent<TInstance, TMessage>(TInstance instance,
 		                                                                                               Event<TMessage> eevent)
 			where TInstance : SagaStateMachine<TInstance>
-			where TMessage : class, IAmCorrelatedBy<Guid>
+			where TMessage : class, ICorrelatedBy<Guid>
 		{
 			yield return x =>
 				{

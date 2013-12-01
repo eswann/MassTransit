@@ -10,21 +10,13 @@
 // under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR 
 // CONDITIONS OF ANY KIND, either express or implied. See the License for the 
 // specific language governing permissions and limitations under the License.
-namespace Burrows.Transports.Publish
-{
-    using System;
 
+using System;
+
+namespace Burrows.Transports.PublisherConfirm
+{
     public class PublisherConfirmSettings : IPublisherConfirmSettings
     {
-        public const string ClientMessageId = "ClientMessageId";
-
         public bool UsePublisherConfirms { get; set; }
-
-        public Action<ulong, string> RegisterMessageAction { get; set; }
-
-        public Action<ulong, bool> Acktion { get; set; }
-
-        public Action<ulong, bool> Nacktion { get; set; }
-
     }
 }

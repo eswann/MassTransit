@@ -70,7 +70,7 @@ namespace Burrows.Tests
         }
 
         public interface IProxyMe :
-            IAmCorrelatedBy<Guid>
+            ICorrelatedBy<Guid>
         {
             int IntValue { get; }
             string StringValue { get; }
@@ -129,7 +129,7 @@ namespace Burrows.Tests
         }
 
         public interface IProxyMe :
-            IAmCorrelatedBy<Guid>
+            ICorrelatedBy<Guid>
         {
             int IntValue { get; }
             string StringValue { get; }

@@ -24,6 +24,6 @@ namespace Burrows.Pipeline
 			where TMessage : class;
 
 		UnsubscribeAction SubscribedTo<TMessage, TKey>(TKey correlationId, Uri endpointUri)
-			where TMessage : class, IAmCorrelatedBy<TKey>;
+			where TMessage : class, ICorrelatedBy<TKey>;
 	}
 }

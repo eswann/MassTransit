@@ -104,8 +104,8 @@ namespace Burrows
     [Serializable]
     public class Fault<TMessage, TKey> :
         Fault<TMessage>,
-        IAmCorrelatedBy<TKey>
-        where TMessage : class, IAmCorrelatedBy<TKey>
+        ICorrelatedBy<TKey>
+        where TMessage : class, ICorrelatedBy<TKey>
     {
         /// <summary>
         /// Creates a new Fault message for the failed correlated message

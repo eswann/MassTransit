@@ -16,13 +16,11 @@ using Burrows.Transports.Rabbit;
 namespace Burrows.Transports
 {
     using System;
-    using Logging;
     using Magnum.Extensions;
     using RabbitMQ.Client;
 
     public class TransportConnection : IDisposable
     {
-        private static readonly ILog _log = Logger.Get<TransportConnection>();
         private readonly ConnectionFactory _connectionFactory;
         IConnection _connection;
         bool _disposed;

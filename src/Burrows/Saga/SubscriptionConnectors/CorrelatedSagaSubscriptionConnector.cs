@@ -26,7 +26,7 @@ namespace Burrows.Saga.SubscriptionConnectors
     public class CorrelatedSagaSubscriptionConnector<TSaga, TMessage> :
 		ISagaSubscriptionConnector
 		where TSaga : SagaStateMachine<TSaga>, ISaga
-		where TMessage : class, IAmCorrelatedBy<Guid>
+		where TMessage : class, ICorrelatedBy<Guid>
 	{
 		readonly DataEvent<TSaga, TMessage> _dataEvent;
 		readonly ISagaPolicy<TSaga, TMessage> _policy;

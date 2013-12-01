@@ -72,14 +72,14 @@ namespace Burrows.Tests
             }
         }
 
-        class X : IAmCorrelatedBy<Guid>
+        class X : ICorrelatedBy<Guid>
         {
             public Guid CorrelationId
             {
                 get { return Guid.Empty; }
             }
         }
-        class Y : IAmCorrelatedBy<Guid>
+        class Y : ICorrelatedBy<Guid>
         {
             public Guid CorrelationId
             {

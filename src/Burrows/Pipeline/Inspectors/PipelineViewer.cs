@@ -101,7 +101,7 @@ namespace Burrows.Pipeline.Inspectors
         }
 
         public bool Inspect<T, TMessage, TKey>(CorrelatedMessageRouter<T, TMessage, TKey> sink)
-            where TMessage : class, IAmCorrelatedBy<TKey>
+            where TMessage : class, ICorrelatedBy<TKey>
             where T : class, IMessageContext<TMessage>
         {
             Append(string.Format("Correlated by {1} ({0})", GetMessageName<TMessage>(), typeof(TKey).ToFriendlyName()));
@@ -111,7 +111,7 @@ namespace Burrows.Pipeline.Inspectors
 
         public bool Inspect<T, TMessage, TKey>(CorrelatedMessageSinkRouter<T, TMessage, TKey> sink)
             where T : class
-            where TMessage : class, IAmCorrelatedBy<TKey>
+            where TMessage : class, ICorrelatedBy<TKey>
         {
             Append(string.Format("Routed for Correlation Id {1} ({0})", GetMessageName<TMessage>(), sink.CorrelationId));
 
@@ -164,7 +164,7 @@ namespace Burrows.Pipeline.Inspectors
         }
 
         public bool Inspect<TComponent, TMessage>(CorrelatedSagaMessageSink<TComponent, TMessage> sink)
-            where TMessage : class, IAmCorrelatedBy<Guid>
+            where TMessage : class, ICorrelatedBy<Guid>
             where TComponent : class, Consumes<TMessage>.All, ISaga
         {
             string policyDescription = GetPolicy(sink.Policy);
@@ -202,7 +202,7 @@ namespace Burrows.Pipeline.Inspectors
         }
 
         public bool Inspect<TComponent, TMessage>(CorrelatedSagaStateMachineMessageSink<TComponent, TMessage> sink)
-            where TMessage : class, IAmCorrelatedBy<Guid>
+            where TMessage : class, ICorrelatedBy<Guid>
             where TComponent : SagaStateMachine<TComponent>, ISaga
         {
             string policyDescription = GetPolicy(sink.Policy);

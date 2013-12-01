@@ -15,7 +15,7 @@ namespace Burrows.Tests.Saga
     using System;
 
     public class SimpleSagaMessageBase :
-		IAmCorrelatedBy<Guid>
+		ICorrelatedBy<Guid>
 	{
 		public SimpleSagaMessageBase()
 		{

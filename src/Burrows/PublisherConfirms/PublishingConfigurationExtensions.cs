@@ -1,13 +1,13 @@
-﻿using Burrows.BackedPublisher.BackingStores;
-using Burrows.BusConfigurators;
+﻿using Burrows.BusConfigurators;
+using Burrows.PublisherConfirms.BackingStores;
 using Burrows.Transports.Configuration.Extensions;
 
-namespace Burrows.BackedPublisher
+namespace Burrows.PublisherConfirms
 {
     public static class PublishingConfigurationExtensions
     {
 
-        public static PublishSettings UseRabbitWithPublisherConfirms(this ServiceBusConfigurator sbc, PublishSettings publishSettings, IConfirmer confirmer)
+        public static PublishSettings UseRabbitWithPublisherConfirms(this ServiceBusConfigurator sbc, PublishSettings publishSettings)
         {
             publishSettings.UsePublisherConfirms = true;
 

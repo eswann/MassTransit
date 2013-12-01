@@ -15,7 +15,7 @@ namespace Burrows.Tests.Load.Messages
     using System;
 
     public interface First :
-		IAmCorrelatedBy<Guid>
+		ICorrelatedBy<Guid>
 	{
 		DateTime CreatedAt { get; }
 	}

@@ -15,7 +15,7 @@ namespace Burrows.Tests.Messages
     using System;
 
     public class ResponseMessage :
-		IAmCorrelatedBy<Guid>
+		ICorrelatedBy<Guid>
 	{
 		private readonly Guid _correlationId;
 

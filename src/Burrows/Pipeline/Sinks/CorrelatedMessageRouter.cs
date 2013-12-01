@@ -26,7 +26,7 @@ namespace Burrows.Pipeline.Sinks
     /// <typeparam name="T"></typeparam>
     public class CorrelatedMessageRouter<T, TMessage, TKey> :
         IPipelineSink<T>
-        where TMessage : class, IAmCorrelatedBy<TKey>
+        where TMessage : class, ICorrelatedBy<TKey>
         where T : class, IMessageContext<TMessage>
     {
         private readonly Atomic<Dictionary<TKey, CorrelatedMessageSinkRouter<T, TMessage, TKey>>> _output;

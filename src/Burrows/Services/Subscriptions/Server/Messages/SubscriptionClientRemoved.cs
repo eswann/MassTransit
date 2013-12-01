@@ -16,7 +16,7 @@ namespace Burrows.Services.Subscriptions.Server.Messages
 
     [Serializable]
 	public class SubscriptionClientRemoved : 
-		IAmCorrelatedBy<Guid>
+		ICorrelatedBy<Guid>
 	{
 		public Guid CorrelationId { get; set; }
 		public Uri ControlUri { get; set; }

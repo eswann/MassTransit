@@ -19,7 +19,7 @@ namespace Burrows.Saga.SubscriptionConnectors
     public class InitiatedBySagaSubscriptionConnector<TSaga, TMessage> :
 		SagaSubscriptionConnector<TSaga, TMessage>
 		where TSaga : class, ISaga, InitiatedBy<TMessage>
-		where TMessage : class, IAmCorrelatedBy<Guid>
+		where TMessage : class, ICorrelatedBy<Guid>
 	{
 		public InitiatedBySagaSubscriptionConnector(ISagaRepository<TSaga> sagaRepository)
 			: base(sagaRepository, new InitiatingSagaPolicy<TSaga, TMessage>(x => x.CorrelationId, x => false))

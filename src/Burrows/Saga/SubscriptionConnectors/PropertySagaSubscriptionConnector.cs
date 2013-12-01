@@ -87,7 +87,7 @@ namespace Burrows.Saga.SubscriptionConnectors
             if (exp != null)
                 return exp.Compile();
 
-            if (typeof(TMessage).Implements<IAmCorrelatedBy<Guid>>())
+            if (typeof(TMessage).Implements<ICorrelatedBy<Guid>>())
             {
                 Type genericType = typeof(Correlated<>).MakeGenericType(typeof(TSaga), typeof(TMessage), typeof(TMessage));
                 
@@ -101,7 +101,7 @@ namespace Burrows.Saga.SubscriptionConnectors
 
         class Correlated<T> :
             ICorrelated<T>
-            where T : IAmCorrelatedBy<Guid>
+            where T : ICorrelatedBy<Guid>
         {
             public Func<T, Guid> CorrelationIdSelector
             {

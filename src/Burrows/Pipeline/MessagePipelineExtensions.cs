@@ -194,7 +194,7 @@ namespace Burrows.Pipeline
 	    public static UnsubscribeAction ConnectEndpoint<TMessage, TKey>(this IOutboundMessagePipeline pipeline,
 		                                                                TKey correlationId,
 		                                                                IEndpoint endpoint)
-			where TMessage : class, IAmCorrelatedBy<TKey>
+			where TMessage : class, ICorrelatedBy<TKey>
 		{
 			var correlatedConfigurator = new OutboundCorrelatedMessageRouterConfigurator(pipeline);
 

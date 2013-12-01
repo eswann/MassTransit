@@ -17,7 +17,6 @@ namespace Burrows.Builders
 {
     using System;
     using BusServiceConfigurators;
-    using Configuration;
 
     /// <summary>
 	/// A BusBuilder is the base interface for building service, and includes things like

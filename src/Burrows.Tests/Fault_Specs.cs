@@ -86,7 +86,7 @@ namespace Burrows.Tests
 		}
 
 		public class Hello :
-			IAmCorrelatedBy<Guid>
+			ICorrelatedBy<Guid>
 		{
 			protected Hello()
 			{

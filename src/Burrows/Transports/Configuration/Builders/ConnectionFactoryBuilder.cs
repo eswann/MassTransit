@@ -29,8 +29,7 @@ namespace Burrows.Transports.Configuration.Builders
         void Add(Func<ConnectionFactory, ConnectionFactory> callback);
     }
 
-    public class ConnectionFactoryBuilder :
-        IConnectionFactoryBuilder
+    public class ConnectionFactoryBuilder : IConnectionFactoryBuilder
     {
         private readonly IRabbitEndpointAddress _address;
         private readonly IList<Func<ConnectionFactory, ConnectionFactory>> _connectionFactoryConfigurators;
@@ -48,7 +47,7 @@ namespace Burrows.Transports.Configuration.Builders
             var clientProperties = new Dictionary<string, object>
                 {
                     {"client_api", "Burrows"},
-                    {"masstransit_version", typeof (IServiceBus).Assembly.GetName().Version.ToString()},
+                    {"burrows_version", typeof (IServiceBus).Assembly.GetName().Version.ToString()},
                     {"net_version", Environment.Version.ToString()},
                     {"hostname", Environment.MachineName},
                     {"connected", DateTimeOffset.Now.ToString("R")},

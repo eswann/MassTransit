@@ -16,7 +16,7 @@ namespace Burrows.Services.HealthMonitoring.Messages
 
     [Serializable]
 	public class EndpointMessageBase :
-		IAmCorrelatedBy<Guid>
+		ICorrelatedBy<Guid>
 	{
 		public Uri ControlUri { get; set; }
 		public Uri DataUri { get; set; }

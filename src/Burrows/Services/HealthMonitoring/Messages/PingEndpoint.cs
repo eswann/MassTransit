@@ -16,7 +16,7 @@ namespace Burrows.Services.HealthMonitoring.Messages
 
     [Serializable]
 	public class PingEndpoint :
-		IAmCorrelatedBy<Guid>
+		ICorrelatedBy<Guid>
 	{
 		public PingEndpoint(Guid correlationId)
 		{

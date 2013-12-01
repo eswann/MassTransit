@@ -18,7 +18,7 @@ namespace Burrows.Saga
     /// Defines a component as a saga
     /// </summary>
     public interface ISaga :
-        IAmCorrelatedBy<Guid>
+        ICorrelatedBy<Guid>
     {
 		IServiceBus Bus { set; get; }
     }

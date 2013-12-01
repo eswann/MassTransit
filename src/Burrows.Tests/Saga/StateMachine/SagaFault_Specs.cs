@@ -126,7 +126,7 @@ namespace Burrows.Tests.Saga.StateMachine
 	}
 
 	public class CreateCustomerMessage :
-		IAmCorrelatedBy<Guid>
+		ICorrelatedBy<Guid>
 	{
 		public Guid CorrelationId
 		{
@@ -134,7 +134,7 @@ namespace Burrows.Tests.Saga.StateMachine
 		}
 	}
 
-	public class AgencyCreatedMessage : IAmCorrelatedBy<Guid>
+	public class AgencyCreatedMessage : ICorrelatedBy<Guid>
 	{
 		public Guid CorrelationId
 		{
@@ -142,7 +142,7 @@ namespace Burrows.Tests.Saga.StateMachine
 		}
 	}
 
-	public class CreateAgencyMessage : IAmCorrelatedBy<Guid>
+	public class CreateAgencyMessage : ICorrelatedBy<Guid>
 	{
 		public Guid CorrelationId
 		{
@@ -150,7 +150,7 @@ namespace Burrows.Tests.Saga.StateMachine
 		}
 	}
 
-	public class UpdateAccountMessage : IAmCorrelatedBy<Guid>
+	public class UpdateAccountMessage : ICorrelatedBy<Guid>
 	{
 		public Guid CorrelationId
 		{
@@ -158,7 +158,7 @@ namespace Burrows.Tests.Saga.StateMachine
 		}
 	}
 
-	public class CustomerCreatedMessage : IAmCorrelatedBy<Guid>
+	public class CustomerCreatedMessage : ICorrelatedBy<Guid>
 	{
 		public bool CreateAgency { get; set; }
 
@@ -168,7 +168,7 @@ namespace Burrows.Tests.Saga.StateMachine
 		}
 	}
 
-	public class InitiateCreateAccountMessage : IAmCorrelatedBy<Guid>
+	public class InitiateCreateAccountMessage : ICorrelatedBy<Guid>
 	{
 		public Guid CorrelationId
 		{

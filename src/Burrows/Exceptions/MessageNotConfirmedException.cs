@@ -16,8 +16,7 @@ namespace Burrows.Exceptions
     using System.Runtime.Serialization;
 
     [Serializable]
-    public class MessageNotConfirmedException :
-        TransportException
+    public class MessageNotConfirmedException : TransportException
     {
         public MessageNotConfirmedException()
         {

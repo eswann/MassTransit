@@ -60,7 +60,7 @@ namespace Burrows.Pipeline.Configuration
 		}
 
 		public UnsubscribeAction SubscribedTo<TMessage, TKey>(TKey correlationId)
-			where TMessage : class, IAmCorrelatedBy<TKey>
+			where TMessage : class, ICorrelatedBy<TKey>
 		{
 			UnsubscribeAction result = () => true;
 

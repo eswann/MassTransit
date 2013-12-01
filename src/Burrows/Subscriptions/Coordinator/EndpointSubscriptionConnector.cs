@@ -45,7 +45,7 @@ namespace Burrows.Subscriptions.Coordinator
 
     public class EndpointSubscriptionConnector<TMessage, TKey> :
         EndpointSubscriptionConnector
-        where TMessage : class, IAmCorrelatedBy<TKey>
+        where TMessage : class, ICorrelatedBy<TKey>
     {
         private readonly IServiceBus _bus;
         private readonly Func<string, TKey> _converter;

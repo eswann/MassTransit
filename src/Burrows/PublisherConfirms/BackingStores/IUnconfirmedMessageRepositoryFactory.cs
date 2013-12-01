@@ -1,4 +1,4 @@
-﻿namespace Burrows.BackedPublisher.BackingStores
+﻿namespace Burrows.PublisherConfirms.BackingStores
 {
     public interface IUnconfirmedMessageRepositoryFactory
     {

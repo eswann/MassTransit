@@ -54,7 +54,7 @@ namespace Burrows.Subscriptions.Coordinator
         {
             Type correlationType = messageType.GetInterfaces()
                 .Where(x => x.IsGenericType)
-                .Where(x => x.GetGenericTypeDefinition() == typeof (IAmCorrelatedBy<>))
+                .Where(x => x.GetGenericTypeDefinition() == typeof (ICorrelatedBy<>))
                 .Select(x => x.GetGenericArguments()[0])
                 .FirstOrDefault();
 
@@ -77,7 +77,7 @@ namespace Burrows.Subscriptions.Coordinator
 
         [UsedImplicitly]
         EndpointSubscriptionConnector CreateCorrelatedConnector<TMessage, TKey>(IServiceBus bus)
-            where TMessage : class, IAmCorrelatedBy<TKey>
+            where TMessage : class, ICorrelatedBy<TKey>
         {
             return new EndpointSubscriptionConnector<TMessage, TKey>(bus, GetKeyConverter<TKey>());
         }

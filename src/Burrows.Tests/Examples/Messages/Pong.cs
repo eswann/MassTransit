@@ -17,7 +17,7 @@ namespace Burrows.Tests.Examples.Messages
     [Serializable]
 	public class Pong :
 		IEquatable<Pong>,
-		IAmCorrelatedBy<Guid>
+		ICorrelatedBy<Guid>
 	{
 		private Guid _id;
 

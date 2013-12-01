@@ -51,7 +51,7 @@ namespace Burrows.Tests.Subscriptions
 		}
 
 		public class IncomingMessage :
-			IAmCorrelatedBy<string>
+			ICorrelatedBy<string>
 		{
 			public string CorrelationId { get; set; }
 		}

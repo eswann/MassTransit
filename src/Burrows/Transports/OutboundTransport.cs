@@ -13,6 +13,7 @@
 
 using Burrows.Endpoints;
 using Burrows.Transports.Bindings;
+using Burrows.Transports.PublisherConfirm;
 
 namespace Burrows.Transports
 {
@@ -23,7 +24,6 @@ namespace Burrows.Transports
     using Context;
     using Exceptions;
     using Magnum;
-    using Publish;
     using RabbitMQ.Client;
     using RabbitMQ.Client.Exceptions;
 

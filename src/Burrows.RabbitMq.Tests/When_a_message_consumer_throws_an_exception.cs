@@ -69,7 +69,7 @@ namespace Burrows.RabbitMq.Tests
         }
 
         class A :
-            IAmCorrelatedBy<Guid>
+            ICorrelatedBy<Guid>
         {
             public string StringA { get; set; }
 

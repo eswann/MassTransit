@@ -18,7 +18,7 @@ using System.Threading.Tasks;
 using Burrows.Endpoints;
 using Burrows.Exceptions;
 using Burrows.Logging;
-using Burrows.Transports.Publish;
+using Burrows.Transports.PublisherConfirm;
 using Burrows.Transports.Rabbit;
 using Magnum.Caching;
 using Magnum.Extensions;
@@ -29,11 +29,11 @@ namespace Burrows.Transports.Bindings
 {
     public class ProducerBinding : IConnectionBinding
     {
-        private readonly Cache<ulong, TaskCompletionSource<bool>> _confirms;
         private static readonly ILog _log = Logger.Get<ProducerBinding>();
         private readonly IEndpointAddress _address;
         private readonly IPublisherConfirmSettings _publisherConfirmSettings;
         private readonly object _lock = new object();
+        readonly Cache<ulong, TaskCompletionSource<bool>> _confirms;
         IModel _channel;
 
         public ProducerBinding(IEndpointAddress address, IPublisherConfirmSettings publisherConfirmSettings)
@@ -83,10 +83,10 @@ namespace Burrows.Transports.Bindings
             {
                 channel.BasicAcks += HandleAck;
                 channel.BasicNacks += HandleNack;
+                channel.ModelShutdown += HandleModelShutdown;
             }
             //channel.BasicReturn += HandleReturn;
             //channel.FlowControl += HandleFlowControl;
-            channel.ModelShutdown += HandleModelShutdown;
         }
 
         public void Unbind(TransportConnection connection)
@@ -117,48 +117,16 @@ namespace Burrows.Transports.Bindings
             }
         }
 
-        void WaitForPendingConfirms()
-        {
-            try
-            {
-                bool timedOut;
-                _channel.WaitForConfirms(60.Seconds(), out timedOut);
-                if (timedOut)
-                    _log.WarnFormat("Timeout waiting for all pending confirms on {0}", _address.Uri);
-            }
-            catch (Exception ex)
-            {
-                _log.Error("Waiting for pending confirms threw an exception", ex);
-            }
-        }
-
-        void UnbindEvents(IModel channel)
+        private void UnbindEvents(IModel channel)
         {
             if (_publisherConfirmSettings.UsePublisherConfirms)
             {
                 channel.BasicAcks -= HandleAck;
                 channel.BasicNacks -= HandleNack;
+                channel.ModelShutdown -= HandleModelShutdown;
             }
             //channel.BasicReturn -= HandleReturn;
             //channel.FlowControl -= HandleFlowControl;
-            channel.ModelShutdown -= HandleModelShutdown;
-        }
-
-        void FailPendingConfirms()
-        {
-            try
-            {
-                var exception = new MessageNotConfirmedException(_address.Uri,
-                    "Publish not confirmed before channel closed");
-
-                _confirms.Each((id, task) => task.TrySetException(exception));
-            }
-            catch (Exception ex)
-            {
-                _log.Error("Exception while failing pending confirms", ex);
-            }
-
-            _confirms.Clear();
         }
 
         public IBasicProperties CreateProperties()
@@ -209,22 +177,7 @@ namespace Burrows.Transports.Bindings
             }
         }
 
-        void HandleModelShutdown(IModel model, ShutdownEventArgs reason)
-        {
-            if (_publisherConfirmSettings.UsePublisherConfirms)
-            {
-                try
-                {
-                    FailPendingConfirms();
-                }
-                catch (Exception ex)
-                {
-                    _log.Error("Fail pending confirms failed during model shutdown", ex);
-                }
-            }
-        }
-
-        void HandleNack(IModel model, BasicNackEventArgs args)
+        private void HandleNack(IModel model, BasicNackEventArgs args)
         {
             IEnumerable<ulong> ids = Enumerable.Repeat(args.DeliveryTag, 1);
             if (args.Multiple)
@@ -239,7 +192,7 @@ namespace Burrows.Transports.Bindings
             }
         }
 
-        void HandleAck(IModel model, BasicAckEventArgs args)
+        private void HandleAck(IModel model, BasicAckEventArgs args)
         {
             IEnumerable<ulong> ids = Enumerable.Repeat(args.DeliveryTag, 1);
             if (args.Multiple)
@@ -252,6 +205,18 @@ namespace Burrows.Transports.Bindings
             }
         }
 
+        void HandleModelShutdown(IModel model, ShutdownEventArgs reason)
+        {
+            try
+            {
+                FailPendingConfirms();
+            }
+            catch (Exception ex)
+            {
+                _log.Error("Fail pending confirms failed during model shutdown", ex);
+            }
+        }
+
         //void HandleFlowControl(IModel sender, FlowControlEventArgs args)
         //{
         //}
@@ -259,5 +224,40 @@ namespace Burrows.Transports.Bindings
         //void HandleReturn(IModel model, BasicReturnEventArgs args)
         //{
         //}
+
+        private void WaitForPendingConfirms()
+        {
+            try
+            {
+                bool timedOut;
+                _channel.WaitForConfirms(60.Seconds(), out timedOut);
+                if (timedOut)
+                    _log.WarnFormat("Timeout waiting for all pending confirms on {0}", _address.Uri);
+            }
+            catch (Exception ex)
+            {
+                _log.Error("Waiting for pending confirms threw an exception", ex);
+            }
+        }
+
+        private void FailPendingConfirms()
+        {
+            if (_publisherConfirmSettings.UsePublisherConfirms)
+            {
+                try
+                {
+                    var exception = new MessageNotConfirmedException(_address.Uri,
+                                                                     "Publish not confirmed before channel closed");
+
+                    _confirms.Each((id, task) => task.TrySetException(exception));
+                }
+                catch (Exception ex)
+                {
+                    _log.Error("Exception while failing pending confirms", ex);
+                }
+
+                _confirms.Clear();
+            }
+        }
     }
 }

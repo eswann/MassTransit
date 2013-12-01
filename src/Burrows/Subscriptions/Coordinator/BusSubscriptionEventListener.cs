@@ -44,7 +44,7 @@ namespace Burrows.Subscriptions.Coordinator
         }
 
         public UnsubscribeAction SubscribedTo<TMessage, TKey>(TKey correlationId)
-            where TMessage : class, IAmCorrelatedBy<TKey>
+            where TMessage : class, ICorrelatedBy<TKey>
         {
             return Subscribe<TMessage>(string.Format("{0}", correlationId));
         }

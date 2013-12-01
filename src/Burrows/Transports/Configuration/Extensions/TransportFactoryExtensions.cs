@@ -20,15 +20,16 @@ namespace Burrows.Transports.Configuration.Extensions
     using Configurators;
 
     public static class TransportFactoryExtensions
-	{
-		public static void ConfigureHost(this ITransportFactoryConfigurator configurator, Uri hostAddress,
-		                                 Action<IConnectionFactoryConfigurator> configureHost)
-		{
-			var hostConfigurator = new ConnectionFactoryConfigurator(RabbitEndpointAddress.Parse(hostAddress));
-			configureHost(hostConfigurator);
+    {
+        public static void ConfigureHost(this ITransportFactoryConfigurator configurator, Uri hostAddress,
+                                         Action<IConnectionFactoryConfigurator> configureHost)
+        {
+            var hostConfigurator = new ConnectionFactoryConfigurator(RabbitEndpointAddress.Parse(hostAddress));
+            configureHost(hostConfigurator);
 
-			configurator.AddConfigurator(hostConfigurator);
-		}
+            configurator.AddConfigurator(hostConfigurator);
+        }
+
 
         public static void UsePublisherConfirms(this ITransportFactoryConfigurator configurator)
         {
@@ -36,5 +37,5 @@ namespace Burrows.Transports.Configuration.Extensions
 
             configurator.AddConfigurator(hostConfigurator);
         }
-	}
+    }
 }

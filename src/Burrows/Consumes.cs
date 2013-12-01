@@ -90,7 +90,7 @@ namespace Burrows
 		/// </summary>
 		/// <typeparam name="TCorrelationId">The type of the CorrelationId to match</typeparam>
 		public interface For<TCorrelationId> :
-			All, IAmCorrelatedBy<TCorrelationId>
+			All, ICorrelatedBy<TCorrelationId>
 		{
 		}
 

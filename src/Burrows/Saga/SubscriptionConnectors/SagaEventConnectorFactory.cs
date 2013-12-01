@@ -56,7 +56,7 @@ namespace Burrows.Saga.SubscriptionConnectors
 					new[] {typeof (TSaga), typeof (TMessage)},
 					new object[] {_sagaRepository, _dataEvent, _states, _policyFactory, _removeExpression, eventBinder});
 			}
-			else if (typeof (TMessage).Implements<IAmCorrelatedBy<Guid>>())
+			else if (typeof (TMessage).Implements<ICorrelatedBy<Guid>>())
 			{
 				yield return (ISagaSubscriptionConnector)FastActivator.Create(typeof(CorrelatedSagaSubscriptionConnector<,>),
 					new[] {typeof (TSaga), typeof (TMessage)},

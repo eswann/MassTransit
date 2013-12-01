@@ -20,7 +20,7 @@ namespace Burrows.Saga
     /// <typeparam name="TMessage">The type of message to consume</typeparam>
     public interface IOrchestrate<TMessage> :
         Consumes<TMessage>.All
-        where TMessage : class, IAmCorrelatedBy<Guid>
+        where TMessage : class, ICorrelatedBy<Guid>
     {
     }
 }

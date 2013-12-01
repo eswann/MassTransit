@@ -138,7 +138,7 @@ namespace Burrows.TestFramework
 		}
 
 		public static void ShouldHaveCorrelatedSubscriptionFor<TMessage, TKey>(this IServiceBus bus, string correlationId)
-			where TMessage : IAmCorrelatedBy<TKey>
+			where TMessage : ICorrelatedBy<TKey>
 		{
 			DateTime giveUpAt = DateTime.Now + Timeout;
 

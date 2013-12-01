@@ -1,5 +1,5 @@
 ﻿
-namespace Burrows.BackedPublisher.BackingStores
+namespace Burrows.PublisherConfirms.BackingStores
 {
     public class UnconfirmedMessageRepositoryFactory : IUnconfirmedMessageRepositoryFactory
     {

@@ -126,20 +126,22 @@
     <Compile Include="NewId\NewIdProviders\BestPossibleWorkerIdProvider.cs" />
     <Compile Include="NewId\NewIdProviders\HostNameSHA1WorkerIdProvider.cs" />
     <Compile Include="NewId\NewIdProviders\WMINetworkAddressWorkerIdProvider.cs" />
-    <Compile Include="BackedPublisher\BackingStores\BackingStoreMethod.cs" />
-    <Compile Include="BackedPublisher\PublishingConfigurationExtensions.cs" />
-    <Compile Include="BackedPublisher\Confirmer.cs" />
-    <Compile Include="BackedPublisher\IConfirmer.cs" />
-    <Compile Include="BackedPublisher\IPublisher.cs" />
-    <Compile Include="BackedPublisher\BackingStores\IUnconfirmedMessageRepository.cs" />
-    <Compile Include="BackedPublisher\BackingStores\IUnconfirmedMessageRepositoryFactory.cs" />
-    <Compile Include="BackedPublisher\Publisher.cs" />
-    <Compile Include="BackedPublisher\PublishSettings.cs" />
-    <Compile Include="BackedPublisher\UnconfirmedMessage.cs" />
-    <Compile Include="BackedPublisher\BackingStores\UnconfirmedMessageFileRepository.cs" />
-    <Compile Include="BackedPublisher\BackingStores\UnconfirmedMessageMemoryRepository.cs" />
-    <Compile Include="BackedPublisher\BackingStores\UnconfirmedMessageRepositoryFactory.cs" />
-    <Compile Include="BackedPublisher\BackingStores\UnconfirmedMessageSqlRepository.cs" />
+    <Compile Include="PublisherConfirms\BackingStores\BackingStoreMethod.cs" />
+    <Compile Include="PublisherConfirms\BackingStores\IUnconfirmedMessageRepository.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="PublisherConfirms\PublishingConfigurationExtensions.cs" />
+    <Compile Include="PublisherConfirms\Confirmer.cs" />
+    <Compile Include="PublisherConfirms\IConfirmer.cs" />
+    <Compile Include="PublisherConfirms\IPublisher.cs" />
+    <Compile Include="PublisherConfirms\BackingStores\IUnconfirmedMessageRepositoryFactory.cs" />
+    <Compile Include="PublisherConfirms\Publisher.cs" />
+    <Compile Include="PublisherConfirms\PublishSettings.cs" />
+    <Compile Include="PublisherConfirms\ConfirmableMessage.cs" />
+    <Compile Include="PublisherConfirms\BackingStores\UnconfirmedMessageFileRepository.cs" />
+    <Compile Include="PublisherConfirms\BackingStores\UnconfirmedMessageMemoryRepository.cs" />
+    <Compile Include="PublisherConfirms\BackingStores\UnconfirmedMessageRepositoryFactory.cs" />
+    <Compile Include="PublisherConfirms\BackingStores\UnconfirmedMessageSqlRepository.cs" />
     <Compile Include="Serialization\NonClosingStream.cs" />
     <Compile Include="Serialization\IMessageSerializer.cs" />
     <Compile Include="Subscriptions\Coordinator\InMemorySubscriptionStorage.cs" />
@@ -601,10 +603,10 @@
     <Compile Include="Exceptions\MessageNotConfirmedException.cs" />
     <Compile Include="Transports\MessageTrackerFactory.cs" />
     <Compile Include="Transports\OutboundTransport.cs" />
-    <Compile Include="Transports\Publish\IPublisherConfirmSettings.cs" />
+    <Compile Include="Transports\PublisherConfirm\IPublisherConfirmSettings.cs" />
     <Compile Include="Pipeline\RabbitPublishEndpointInterceptor.cs" />
     <Compile Include="Pipeline\Sinks\PublishEndpointSinkLocator.cs" />
-    <Compile Include="Transports\Publish\PublisherConfirmSettings.cs" />
+    <Compile Include="Transports\PublisherConfirm\PublisherConfirmSettings.cs" />
     <Compile Include="Exceptions\AddressException.cs" />
     <Compile Include="Endpoints\RabbitEndpointAddress.cs" />
     <Compile Include="Transports\TransportConnection.cs" />
@@ -623,7 +625,7 @@
     <Compile Include="Endpoints\IEndpointFactory.cs" />
     <Compile Include="Transports\ITransportFactory.cs" />
     <Compile Include="Consumes.cs" />
-    <Compile Include="IAmCorrelatedBy.cs" />
+    <Compile Include="ICorrelatedBy.cs" />
     <Compile Include="Exceptions\ConventionException.cs" />
     <Compile Include="Exceptions\MessageException.cs" />
     <Compile Include="Exceptions\ShutDownException.cs" />
@@ -773,9 +775,7 @@
     <Compile Include="Services\Timeout\RemoteTimeoutViewer.cs" />
     <Compile Include="Util\SequenceNumberGenerator.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Pipeline\Configuration\Subscribers\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
       <Visible>False</Visible>

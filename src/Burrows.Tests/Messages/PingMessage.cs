@@ -17,7 +17,7 @@ namespace Burrows.Tests.Messages
     [Serializable]
 	public class PingMessage :
 		IEquatable<PingMessage>,
-		IAmCorrelatedBy<Guid>
+		ICorrelatedBy<Guid>
 	{
 		private Guid _id = new Guid("D62C9B1C-8E31-4D54-ADD7-C624D56085A4");
 

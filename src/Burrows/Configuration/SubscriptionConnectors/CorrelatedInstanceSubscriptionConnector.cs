@@ -21,7 +21,7 @@ namespace Burrows.SubscriptionConnectors
     public class CorrelatedInstanceSubscriptionConnector<TConsumer, TMessage, TKey> :
 		IInstanceSubscriptionConnector
 		where TConsumer : class, Consumes<TMessage>.For<TKey>
-		where TMessage : class, IAmCorrelatedBy<TKey>
+		where TMessage : class, ICorrelatedBy<TKey>
 	{
 		public Type MessageType
 		{

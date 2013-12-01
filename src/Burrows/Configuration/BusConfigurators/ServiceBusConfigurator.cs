@@ -37,8 +37,7 @@ namespace Burrows.BusConfigurators
     /// Documentation is at http://readthedocs.org/docs/masstransit/en/latest/configuration/index.html
     /// </para>
     /// </summary>
-    public interface IServiceBusConfigurator :
-        IEndpointFactoryConfigurator
+    public interface IServiceBusConfigurator : IEndpointFactoryConfigurator
     {
         /// <summary>
         /// Specifies the builder factory to use when the service is invoked
@@ -99,8 +98,7 @@ namespace Burrows.BusConfigurators
     /// <see cref="IServiceBusConfigurator"/>. Core implementation of service bus
     /// configurator.
     /// </summary>
-    public class ServiceBusConfigurator :
-        IServiceBusConfigurator
+    public class ServiceBusConfigurator : IServiceBusConfigurator
     {
         private static readonly ILog _log = Logger.Get(typeof (ServiceBusConfigurator));
 

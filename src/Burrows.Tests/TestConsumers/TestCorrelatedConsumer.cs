@@ -17,7 +17,7 @@ namespace Burrows.Tests.TestConsumers
     public class TestCorrelatedConsumer<TMessage, TKey> :
 		TestConsumerBase<TMessage>,
 		Consumes<TMessage>.For<TKey>
-		where TMessage : class, IAmCorrelatedBy<Guid>
+		where TMessage : class, ICorrelatedBy<Guid>
 	{
 		readonly TKey _correlationId;
 

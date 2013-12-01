@@ -22,7 +22,7 @@ namespace Burrows.Saga.Pipeline
 
     public class CorrelatedSagaStateMachineMessageSink<TSaga, TMessage> :
 		SagaMessageSinkBase<TSaga, TMessage>
-		where TMessage : class, IAmCorrelatedBy<Guid>
+		where TMessage : class, ICorrelatedBy<Guid>
 		where TSaga : SagaStateMachine<TSaga>, ISaga
 	{
 		static readonly ILog _log =

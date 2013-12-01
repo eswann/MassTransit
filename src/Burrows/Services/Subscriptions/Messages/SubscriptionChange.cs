@@ -16,7 +16,7 @@ namespace Burrows.Services.Subscriptions.Messages
 
     [Serializable]
     public abstract class SubscriptionChange :
-        IAmCorrelatedBy<Guid>
+        ICorrelatedBy<Guid>
     {
         protected SubscriptionChange()
         {

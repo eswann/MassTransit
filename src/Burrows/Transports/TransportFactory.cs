@@ -12,6 +12,7 @@
 // specific language governing permissions and limitations under the License.
 
 using Burrows.Endpoints;
+using Burrows.Transports.PublisherConfirm;
 
 namespace Burrows.Transports
 {
@@ -24,7 +25,6 @@ namespace Burrows.Transports
     using Logging;
     using Magnum.Caching;
     using Magnum.Extensions;
-    using Publish;
     using RabbitMQ.Client;
 
     public class TransportFactory : ITransportFactory
@@ -245,7 +245,7 @@ namespace Burrows.Transports
         }
 
 
-        class ConnectionFactoryEquality :
+        private class ConnectionFactoryEquality :
             IEqualityComparer<ConnectionFactory>
         {
             public bool Equals(ConnectionFactory x, ConnectionFactory y)

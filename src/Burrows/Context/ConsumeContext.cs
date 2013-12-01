@@ -185,7 +185,7 @@ namespace Burrows.Context
 
             Type correlationType = typeof(TMessage).GetInterfaces()
                 .Where(x => x.IsGenericType)
-                .Where(x => x.GetGenericTypeDefinition() == typeof(IAmCorrelatedBy<>))
+                .Where(x => x.GetGenericTypeDefinition() == typeof(ICorrelatedBy<>))
                 .Select(x => x.GetGenericArguments()[0])
                 .DefaultIfEmpty(null)
                 .FirstOrDefault();
@@ -215,7 +215,7 @@ namespace Burrows.Context
 
         [UsedImplicitly]
         void CreateAndSendCorrelatedFault<T, TKey>(T message, Exception exception)
-            where T : class, IAmCorrelatedBy<TKey>
+            where T : class, ICorrelatedBy<TKey>
         {
             var fault = new Fault<T, TKey>(message, exception);
             var bus = Bus;

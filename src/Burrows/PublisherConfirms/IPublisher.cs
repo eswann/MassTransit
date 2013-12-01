@@ -1,5 +1,5 @@
 ﻿
-namespace Burrows.BackedPublisher
+namespace Burrows.PublisherConfirms
 {
     public interface IPublisher
     {

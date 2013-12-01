@@ -16,7 +16,7 @@ namespace Burrows.Services.Subscriptions.Messages
 
     [Serializable]
 	public class SubscriptionClientMessageBase :
-		IAmCorrelatedBy<Guid>
+		ICorrelatedBy<Guid>
 	{
 		protected SubscriptionClientMessageBase(Guid clientId, Uri controlUri, Uri dataUri)
 		{

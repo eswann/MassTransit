@@ -15,7 +15,7 @@ namespace Burrows.Tests.Examples.Sagas.Messages
     using System;
 
     public class FinishSimpleSaga :
-		IAmCorrelatedBy<Guid>
+		ICorrelatedBy<Guid>
 	{
 		public Guid CorrelationId { get; set; }
 	}

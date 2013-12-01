@@ -86,7 +86,7 @@ namespace Burrows
             if (type.Namespace.StartsWith("System."))
                 return false;
 
-            if (type.IsGenericType && type.GetGenericTypeDefinition() == typeof(IAmCorrelatedBy<>))
+            if (type.IsGenericType && type.GetGenericTypeDefinition() == typeof(ICorrelatedBy<>))
                 return false;
 
             return true;

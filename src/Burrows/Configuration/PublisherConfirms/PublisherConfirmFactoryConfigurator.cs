@@ -11,11 +11,11 @@
 // CONDITIONS OF ANY KIND, either express or implied. See the License for the 
 // specific language governing permissions and limitations under the License.
 
-using System.Collections.Generic;
-using Burrows.Transports.Configuration.Builders;
 using Burrows.Configurators;
+using Burrows.Transports.Configuration.Builders;
 using Burrows.Transports.Configuration.Configurators;
-using Burrows.Transports.Publish;
+using Burrows.Transports.PublisherConfirm;
+using System.Collections.Generic;
 
 namespace Burrows.PublisherConfirms
 {
@@ -31,7 +31,7 @@ namespace Burrows.PublisherConfirms
         IPublisherConfirmFactoryConfigurator,
         ITransportFactoryBuilderConfigurator
     {
-        private readonly bool _usePublisherConfirms;
+        readonly bool _usePublisherConfirms;
 
         public PublisherConfirmFactoryConfigurator(bool usePublisherConfirms)
         {
