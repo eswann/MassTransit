@@ -76,7 +76,7 @@ namespace Burrows.Advanced
 			string environmentName = DefaultTypeNameConvention(typeof (TEnvironment));
 
 			// do not collapse or 3.5 won't build
-			configurator.Add(environmentName, () => environmentFactory());
+			configurator.Add(environmentName, environmentFactory);
 		}
 
 		/// <summary>

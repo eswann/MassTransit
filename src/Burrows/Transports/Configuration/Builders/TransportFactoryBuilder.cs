@@ -22,14 +22,14 @@ namespace Burrows.Transports.Configuration.Builders
     {
         void AddConnectionFactoryBuilder(Uri uri, IConnectionFactoryBuilder connectionFactoryBuilder);
 
-        void SetPublisherConfirmSettings(IPublisherConfirmSettings publisherConfirmSettings);
+        void SetPublisherConfirmSettings(PublisherConfirmSettings publisherConfirmSettings);
     }
 
     public class TransportFactoryBuilder :
         ITransportFactoryBuilder
     {
         private readonly IDictionary<Uri, IConnectionFactoryBuilder> _connectionFactoryBuilders;
-        IPublisherConfirmSettings _publisherConfirmSettings = new PublisherConfirmSettings();
+        PublisherConfirmSettings _publisherConfirmSettings = new PublisherConfirmSettings();
 
         public TransportFactoryBuilder()
         {
@@ -42,7 +42,7 @@ namespace Burrows.Transports.Configuration.Builders
         }
 
 
-        public void SetPublisherConfirmSettings(IPublisherConfirmSettings publisherConfirmSettings)
+        public void SetPublisherConfirmSettings(PublisherConfirmSettings publisherConfirmSettings)
         {
             _publisherConfirmSettings = publisherConfirmSettings;
         }

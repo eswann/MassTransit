@@ -21,7 +21,7 @@ namespace Burrows.PublisherConfirms.BackingStores
             _publishSettings = publishSettings;
         }
 
-        public async Task<IEnumerable<ConfirmableMessage>> GetAndDeleteMessages(string publisherId, int pageSize)
+        public async Task<IList<ConfirmableMessage>> GetAndDeleteMessages(string publisherId, int pageSize)
         {
             var results = new List<ConfirmableMessage>();
 

@@ -11,6 +11,7 @@
 // CONDITIONS OF ANY KIND, either express or implied. See the License for the 
 // specific language governing permissions and limitations under the License.
 
+using System;
 using Burrows.Configurators;
 using Burrows.Transports.Configuration.Builders;
 using Burrows.Transports.Configuration.Configurators;
@@ -31,23 +32,42 @@ namespace Burrows.PublisherConfirms
         IPublisherConfirmFactoryConfigurator,
         ITransportFactoryBuilderConfigurator
     {
-        readonly bool _usePublisherConfirms;
+        private readonly bool _usePublisherConfirms;
+        private readonly Action<IEnumerable<string>> _acktion;
+        private readonly Action<IEnumerable<string>> _nacktion;
 
-        public PublisherConfirmFactoryConfigurator(bool usePublisherConfirms)
+        public PublisherConfirmFactoryConfigurator(bool usePublisherConfirms,
+                                                       Action<IEnumerable<string>> acktion, Action<IEnumerable<string>> nacktion)
         {
             _usePublisherConfirms = usePublisherConfirms;
+            _acktion = acktion;
+            _nacktion = nacktion;
         }
 
         public ITransportFactoryBuilder Configure(ITransportFactoryBuilder builder)
         {
-            builder.SetPublisherConfirmSettings(new PublisherConfirmSettings{ UsePublisherConfirms = _usePublisherConfirms });
+            builder.SetPublisherConfirmSettings(
+                new PublisherConfirmSettings
+                    {
+                        UsePublisherConfirms = _usePublisherConfirms,
+                        Acktion = _acktion,
+                        Nacktion = _nacktion
+                    }
+                );
 
             return builder;
         }
 
         public IEnumerable<IValidationResult> Validate()
         {
-            return null;
+            if (_usePublisherConfirms)
+            {
+                if (_acktion == null)
+                    yield return this.Failure("Acktion", "Acktion must be specified if publisher confirms are enabled");
+                if (_nacktion == null)
+                    yield return
+                        this.Failure("Nacktion", "Nacktion must be specified if publisher confirms are enabled");
+            }
         }
     }
 }

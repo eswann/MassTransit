@@ -33,7 +33,7 @@ namespace Burrows.PublisherConfirms.BackingStores
                 _filePath += Path.DirectorySeparatorChar;
         }
 
-        public async Task<IEnumerable<ConfirmableMessage>> GetAndDeleteMessages(string publisherId, int pageSize)
+        public async Task<IList<ConfirmableMessage>> GetAndDeleteMessages(string publisherId, int pageSize)
         {
             var results = new List<ConfirmableMessage>();
             var path = GetOrCreateDirectory(publisherId);

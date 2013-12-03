@@ -16,8 +16,7 @@ namespace Burrows.Exceptions
     using System.Runtime.Serialization;
 
     [Serializable]
-    public class TransportException :
-        AbstractUriException
+    public class TransportException : AbstractUriException
     {
         public TransportException()
         {

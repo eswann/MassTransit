@@ -11,6 +11,7 @@
 // CONDITIONS OF ANY KIND, either express or implied. See the License for the 
 // specific language governing permissions and limitations under the License.
 
+using System.Collections.Generic;
 using Burrows.Endpoints;
 using Burrows.PublisherConfirms;
 
@@ -31,11 +32,12 @@ namespace Burrows.Transports.Configuration.Extensions
         }
 
 
-        public static void UsePublisherConfirms(this ITransportFactoryConfigurator configurator)
+        public static void UsePublisherConfirms(this ITransportFactoryConfigurator configurator, Action<IEnumerable<string>> acktion, Action<IEnumerable<string>> nacktion)
         {
-            var hostConfigurator = new PublisherConfirmFactoryConfigurator(true);
+            var hostConfigurator = new PublisherConfirmFactoryConfigurator(true, acktion, nacktion);
 
             configurator.AddConfigurator(hostConfigurator);
         }
+
     }
 }

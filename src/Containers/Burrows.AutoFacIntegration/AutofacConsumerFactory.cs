@@ -19,9 +19,7 @@ namespace Burrows.AutofacIntegration
     using Exceptions;
     using Pipeline;
 
-    public class AutofacConsumerFactory<T> :
-        IConsumerFactory<T>
-        where T : class
+    public class AutofacConsumerFactory<T> : IConsumerFactory<T> where T : class
     {
         private readonly ILifetimeScope _scope;
         private readonly string _name;

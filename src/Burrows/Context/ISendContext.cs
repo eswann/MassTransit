@@ -18,9 +18,7 @@ namespace Burrows.Context
     using System;
     using System.IO;
 
-    public interface ISendContext<T> :
-        ISendContext,
-        IMessageContext<T>
+    public interface ISendContext<T> : ISendContext, IMessageContext<T>
         where T : class
     {
         /// <summary>

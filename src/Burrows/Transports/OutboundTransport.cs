@@ -22,7 +22,6 @@ namespace Burrows.Transports
     using System.IO;
     using System.Linq;
     using Context;
-    using Exceptions;
     using Magnum;
     using RabbitMQ.Client;
     using RabbitMQ.Client.Exceptions;
@@ -31,12 +30,12 @@ namespace Burrows.Transports
         IOutboundTransport
     {
         private readonly IRabbitEndpointAddress _address;
-        private readonly IPublisherConfirmSettings _publisherConfirmSettings;
+        private readonly PublisherConfirmSettings _publisherConfirmSettings;
         private readonly IConnectionHandler<TransportConnection> _connectionHandler;
         ProducerBinding _producer;
 
         public OutboundTransport(IRabbitEndpointAddress address,
-            IPublisherConfirmSettings publisherConfirmSettings,
+            PublisherConfirmSettings publisherConfirmSettings,
             IConnectionHandler<TransportConnection> connectionHandler)
         {
             _address = address;
@@ -77,21 +76,10 @@ namespace Burrows.Transports
                         properties.Headers = context.Headers.ToDictionary(entry => entry.Key, entry => (object)entry.Value);
                         properties.Headers["Content-Type"] = context.ContentType;
 
-                        if (_publisherConfirmSettings.UsePublisherConfirms)
-                        {
-                            var task = _producer.PublishAsync(_address.Name, properties, body.ToArray());
-                            task.Wait();
-                        }
-                        else
-                        {
-                            _producer.Publish(_address.Name, properties, body.ToArray());
-                        }
+                        _producer.Publish(_address.Name, properties, body.ToArray());
+                        
                         _address.LogSent(context.MessageId ?? properties.MessageId ?? "", context.MessageType);
                     }
-                }
-                catch (AggregateException ex)
-                {
-                    throw new TransportException(_address.Uri, "Publisher did not confirm message", ex.InnerException);
                 }
                 catch (AlreadyClosedException ex)
                 {

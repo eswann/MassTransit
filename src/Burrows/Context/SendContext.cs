@@ -18,9 +18,7 @@ namespace Burrows.Context
     using System;
     using System.IO;
 
-    public class SendContext<T> :
-        MessageContext,
-        ISendContext<T>
+    public class SendContext<T> : MessageContext, ISendContext<T>
         where T : class
     {
         private readonly T _message;

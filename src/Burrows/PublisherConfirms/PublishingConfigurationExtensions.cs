@@ -11,15 +11,24 @@ namespace Burrows.PublisherConfirms
         {
             publishSettings.UsePublisherConfirms = true;
 
-            sbc.UseRabbitMq(conf => conf.UsePublisherConfirms());
+            var confirmer = new Confirmer();
+
+            sbc.UseRabbitMq(conf => conf.UsePublisherConfirms(confirmer.RecordPublicationSuccess, confirmer.RecordPublicationFailure));
             return publishSettings;
         }
 
-        public static PublishSettings WithBackingStore(this PublishSettings publishSettings,
-                                                            string fileRepositoryPath = "MessageBackingStore")
+        public static PublishSettings WithFileBackingStore(this PublishSettings publishSettings, string fileRepositoryPath = "MessageBackingStore")
         {
             publishSettings.BackingStoreMethod = BackingStoreMethod.FileSystem;
             publishSettings.FileRepositoryPath = fileRepositoryPath;
+
+            return publishSettings;
+        }
+
+        public static PublishSettings WithSqlBackingStore(this PublishSettings publishSettings, string connectionString)
+        {
+            publishSettings.BackingStoreMethod = BackingStoreMethod.SqlServer;
+            publishSettings.ConnectionString = connectionString;
 
             return publishSettings;
         }

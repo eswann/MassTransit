@@ -12,15 +12,14 @@
 // specific language governing permissions and limitations under the License.
 
 using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using Burrows.Endpoints;
 using Burrows.Exceptions;
 using Burrows.Logging;
 using Burrows.Transports.PublisherConfirm;
 using Burrows.Transports.Rabbit;
-using Magnum.Caching;
 using Magnum.Extensions;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
@@ -31,19 +30,22 @@ namespace Burrows.Transports.Bindings
     {
         private static readonly ILog _log = Logger.Get<ProducerBinding>();
         private readonly IEndpointAddress _address;
-        private readonly IPublisherConfirmSettings _publisherConfirmSettings;
+        private readonly PublisherConfirmSettings _publisherConfirmSettings;
         private readonly object _lock = new object();
-        readonly Cache<ulong, TaskCompletionSource<bool>> _confirms;
+
+        private readonly ConcurrentDictionary<ulong, string> _confirms;
+            
+
         IModel _channel;
 
-        public ProducerBinding(IEndpointAddress address, IPublisherConfirmSettings publisherConfirmSettings)
+        public ProducerBinding(IEndpointAddress address, PublisherConfirmSettings publisherConfirmSettings)
         {
             _address = address;
             _publisherConfirmSettings = publisherConfirmSettings;
 
             if (_publisherConfirmSettings.UsePublisherConfirms)
             {
-                _confirms = new ConcurrentCache<ulong, TaskCompletionSource<bool>>();
+                _confirms = new ConcurrentDictionary<ulong, string>();
             }
         }
 
@@ -147,62 +149,52 @@ namespace Burrows.Transports.Bindings
                 if (_channel == null)
                     throw new InvalidConnectionException(_address.Uri, "No connection to RabbitMQ Host");
 
+                if (_publisherConfirmSettings.UsePublisherConfirms)
+                {
+                    _confirms.TryAdd(_channel.NextPublishSeqNo, (string)properties.Headers[PublisherConfirmSettings.ClientMessageId]);
+                }
+
                 _channel.BasicPublish(exchangeName, "", properties, body);
-            }
-        }
-
-        public Task PublishAsync(string exchangeName, IBasicProperties properties, byte[] body)
-        {
-            lock (_lock)
-            {
-                if (_channel == null)
-                    throw new InvalidConnectionException(_address.Uri, "No connection to RabbitMQ Host");
-
-                ulong deliveryTag = _channel.NextPublishSeqNo;
-
-                var task = new TaskCompletionSource<bool>();
-                _confirms.Add(deliveryTag, task);
-
-                try
-                {
-                    _channel.BasicPublish(exchangeName, "", properties, body);
-                }
-                catch
-                {
-                    _confirms.Remove(deliveryTag);
-                    throw;
-                }
-
-                return task.Task;
-            }
-        }
-
-        private void HandleNack(IModel model, BasicNackEventArgs args)
-        {
-            IEnumerable<ulong> ids = Enumerable.Repeat(args.DeliveryTag, 1);
-            if (args.Multiple)
-                ids = _confirms.GetAllKeys().Where(x => x <= args.DeliveryTag);
-
-            var exception = new InvalidOperationException("Publish was nacked by the broker");
-
-            foreach (ulong id in ids)
-            {
-                _confirms[id].TrySetException(exception);
-                _confirms.Remove(id);
             }
         }
 
         private void HandleAck(IModel model, BasicAckEventArgs args)
         {
-            IEnumerable<ulong> ids = Enumerable.Repeat(args.DeliveryTag, 1);
-            if (args.Multiple)
-                ids = _confirms.GetAllKeys().Where(x => x <= args.DeliveryTag);
+            var confirmIds = GetConfirmIds(args.DeliveryTag, args.Multiple);
 
-            foreach (ulong id in ids)
+            if (confirmIds.Count > 0)
+                _publisherConfirmSettings.Acktion(confirmIds);
+        }
+
+        private void HandleNack(IModel model, BasicNackEventArgs args)
+        {
+            var confirmIds = GetConfirmIds(args.DeliveryTag, args.Multiple);
+
+            if (confirmIds.Count > 0)
+                _publisherConfirmSettings.Nacktion(confirmIds);
+        }
+
+        private List<string> GetConfirmIds(ulong deliveryTag, bool multiple)
+        {
+            var confirmIds = new List<string>();
+            string clientMessageId;
+            if (multiple)
             {
-                _confirms[id].TrySetResult(true);
-                _confirms.Remove(id);
+                IEnumerable<ulong> confirmKeysToRemove = _confirms.Keys.Where(x => x <= deliveryTag);
+
+                foreach (var confirmKey in confirmKeysToRemove)
+                {
+                    _confirms.TryRemove(confirmKey, out clientMessageId);
+                    confirmIds.Add(clientMessageId);
+                }
             }
+            else
+            {
+                _confirms.TryRemove(deliveryTag, out clientMessageId);
+                confirmIds.Add(clientMessageId);
+            }
+
+            return confirmIds;
         }
 
         void HandleModelShutdown(IModel model, ShutdownEventArgs reason)
@@ -244,19 +236,10 @@ namespace Burrows.Transports.Bindings
         {
             if (_publisherConfirmSettings.UsePublisherConfirms)
             {
-                try
-                {
-                    var exception = new MessageNotConfirmedException(_address.Uri,
-                                                                     "Publish not confirmed before channel closed");
-
-                    _confirms.Each((id, task) => task.TrySetException(exception));
-                }
-                catch (Exception ex)
-                {
-                    _log.Error("Exception while failing pending confirms", ex);
-                }
-
+                var confirmIds = _confirms.Values.ToList();
                 _confirms.Clear();
+
+                _publisherConfirmSettings.Nacktion(confirmIds);
             }
         }
     }

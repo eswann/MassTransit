@@ -130,16 +130,24 @@
     <Compile Include="PublisherConfirms\BackingStores\IUnconfirmedMessageRepository.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="PublisherConfirms\BackingStores\UnconfirmedMessageMemoryRepository.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="PublisherConfirms\ConfirmableMessage.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="PublisherConfirms\Confirmer.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="PublisherConfirms\IConfirmer.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="PublisherConfirms\PublishingConfigurationExtensions.cs" />
-    <Compile Include="PublisherConfirms\Confirmer.cs" />
-    <Compile Include="PublisherConfirms\IConfirmer.cs" />
     <Compile Include="PublisherConfirms\IPublisher.cs" />
     <Compile Include="PublisherConfirms\BackingStores\IUnconfirmedMessageRepositoryFactory.cs" />
     <Compile Include="PublisherConfirms\Publisher.cs" />
     <Compile Include="PublisherConfirms\PublishSettings.cs" />
-    <Compile Include="PublisherConfirms\ConfirmableMessage.cs" />
     <Compile Include="PublisherConfirms\BackingStores\UnconfirmedMessageFileRepository.cs" />
-    <Compile Include="PublisherConfirms\BackingStores\UnconfirmedMessageMemoryRepository.cs" />
     <Compile Include="PublisherConfirms\BackingStores\UnconfirmedMessageRepositoryFactory.cs" />
     <Compile Include="PublisherConfirms\BackingStores\UnconfirmedMessageSqlRepository.cs" />
     <Compile Include="Serialization\NonClosingStream.cs" />
@@ -600,10 +608,8 @@
     <Compile Include="Endpoints\IEndpointManagement.cs" />
     <Compile Include="Endpoints\RabbitEndpointManagement.cs" />
     <Compile Include="Transports\MessageName.cs" />
-    <Compile Include="Exceptions\MessageNotConfirmedException.cs" />
     <Compile Include="Transports\MessageTrackerFactory.cs" />
     <Compile Include="Transports\OutboundTransport.cs" />
-    <Compile Include="Transports\PublisherConfirm\IPublisherConfirmSettings.cs" />
     <Compile Include="Pipeline\RabbitPublishEndpointInterceptor.cs" />
     <Compile Include="Pipeline\Sinks\PublishEndpointSinkLocator.cs" />
     <Compile Include="Transports\PublisherConfirm\PublisherConfirmSettings.cs" />

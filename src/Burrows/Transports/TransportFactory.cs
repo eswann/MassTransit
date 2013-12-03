@@ -33,12 +33,12 @@ namespace Burrows.Transports
         private readonly Cache<ConnectionFactory, IConnectionHandler<TransportConnection>> _inboundConnections;
         private readonly ILog _log = Logger.Get<TransportFactory>();
         private readonly IMessageNameFormatter _messageNameFormatter;
-        private readonly IPublisherConfirmSettings _publisherConfirmSettings;
+        private readonly PublisherConfirmSettings _publisherConfirmSettings;
         private readonly Cache<ConnectionFactory, IConnectionHandler<TransportConnection>> _outboundConnections;
         bool _disposed;
 
         public TransportFactory(IEnumerable<KeyValuePair<Uri, IConnectionFactoryBuilder>> connectionFactoryBuilders, 
-            IPublisherConfirmSettings publisherConfirmSettings)
+            PublisherConfirmSettings publisherConfirmSettings)
         {
             _publisherConfirmSettings = publisherConfirmSettings;
             _inboundConnections = new ConcurrentCache<ConnectionFactory, IConnectionHandler<TransportConnection>>(

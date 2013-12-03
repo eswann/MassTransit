@@ -12,11 +12,19 @@
 // specific language governing permissions and limitations under the License.
 
 using System;
+using System.Collections.Generic;
 
 namespace Burrows.Transports.PublisherConfirm
 {
-    public class PublisherConfirmSettings : IPublisherConfirmSettings
+    public class PublisherConfirmSettings
     {
+        public const string ClientMessageId = "ClientMessageId";
+
         public bool UsePublisherConfirms { get; set; }
+
+        public Action<IEnumerable<string>> Acktion { get; set; }
+
+        public Action<IEnumerable<string>> Nacktion { get; set; }
+
     }
 }

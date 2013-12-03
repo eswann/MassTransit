@@ -11,11 +11,14 @@ namespace Burrows.PublisherConfirms
 {
     public class Publisher : IDisposable, IPublisher
     {
-        private readonly ConcurrentQueue<ConfirmableMessage> _messageBuffer = new ConcurrentQueue<ConfirmableMessage>();
+        private readonly ConcurrentQueue<ConfirmableMessage> _unpublishedMessageBuffer = new ConcurrentQueue<ConfirmableMessage>();
 
         private readonly object _failuresLock = new object();
         private volatile bool _publicationEnabled = true;
+
+// ReSharper disable NotAccessedField.Local
         private readonly Timer _checkOfflineTasksTimer;
+// ReSharper restore NotAccessedField.Local
 
         private int _successiveFailures;
         private long _lastMessageBufferStoreTimestamp;
@@ -25,7 +28,7 @@ namespace Burrows.PublisherConfirms
         private bool _disposed;
 
         private readonly IConfirmer _confirmer;
-        private readonly IUnconfirmedMessageRepository _unconfirmedMessageRepository;
+        private readonly IUnconfirmedMessageRepository _messageRepository;
         private readonly PublishSettings _publishSettings;
         private readonly Lazy<IServiceBus> _serviceBus;
         private static readonly ILog _log = Logger.Get<Publisher>();
@@ -37,7 +40,7 @@ namespace Burrows.PublisherConfirms
             _publishSettings.Validate();
 
             _confirmer = confirmer;
-            _unconfirmedMessageRepository = unconfirmedMessageRepositoryFactory.Create();
+            _messageRepository = unconfirmedMessageRepositoryFactory.Create();
             _serviceBus = serviceBus;
 
             _confirmer.PublicationFailed += OnPublicationFailed;
@@ -50,36 +53,46 @@ namespace Burrows.PublisherConfirms
             RepublishStoredMessages().Wait();
         }
 
+        /// <summary>
+        /// Performs message publication.
+        /// </summary>
+        /// <typeparam name="T">Type to publish</typeparam>
+        /// <param name="message">Message to publish</param>
+        /// <param name="forcePublish">Force a publish even if publishing is not currently enabled</param>
         public void Publish<T>(T message, bool forcePublish = false)
         {
-            var confirmableMessage = new ConfirmableMessage
-            {
-                Id = Guid.NewGuid().ToString("N"),
-                Message = message,
-                Type = typeof(T)
-            };
+            var confirmableMessage = new ConfirmableMessage(message, typeof(T));
 
-            if (PublicationEnabled || forcePublish)
+            if (PublishImmediately || forcePublish)
             {
                 try
                 {
+                    _confirmer.RecordPublicationAttempt(confirmableMessage);
                     _serviceBus.Value.Publish(message, context => context.SetHeader("ClientMessageId", confirmableMessage.Id));
                 }
                 catch (Exception ex)
                 {
-                    _messageBuffer.Enqueue(confirmableMessage);
-                    OnPublicationFailed();
+                    _confirmer.RecordPublicationFailure(new[]{confirmableMessage.Id});
                     _log.Error("An error occurred while publishing to MassTransit", ex);
                 }
             }
             else
             {
-                _messageBuffer.Enqueue(confirmableMessage);
+                _unpublishedMessageBuffer.Enqueue(confirmableMessage);
             }
         }
 
-        private void OnPublicationFailed()
+        /// <summary>
+        /// Called by the confirmer when publication fails.  
+        /// Adds unconfirmed messages to the unpublished buffer and shuts down publication after enough successive failures.
+        /// </summary>
+        private void OnPublicationFailed(IEnumerable<ConfirmableMessage> messages)
         {
+            foreach (var message in messages)
+            {
+                _unpublishedMessageBuffer.Enqueue(message);
+            }
+            
             Interlocked.Increment(ref _successiveFailures);
 
             if (_publicationEnabled && _successiveFailures >= _publishSettings.MaxSuccessiveFailures)
@@ -87,12 +100,15 @@ namespace Burrows.PublisherConfirms
                 lock (_failuresLock)
                 {
                     _publicationEnabled = false;
-                    PersistUnconfirmedMessages();
                 }
             }
         }
 
-        private void OnPublicationSucceeded()
+        /// <summary>
+        /// Called by the confirmer when publication succeeds.  
+        /// Typically used to publish stored messages when recovering from a rabbit failure state.
+        /// </summary>
+        private void OnPublicationSucceeded(IEnumerable<ConfirmableMessage> unconfirmedMessages)
         {
             Interlocked.Exchange(ref _successiveFailures, 0);
 
@@ -103,56 +119,59 @@ namespace Burrows.PublisherConfirms
                     _publicationEnabled = _successiveFailures < _publishSettings.MaxSuccessiveFailures;
                     if (_publicationEnabled)
                     {
+                        //Good to go again, republish stored messages.
                         RepublishStoredMessages().Wait();
                     }
                 }
             }
         }
 
+        /// <summary>
+        /// Is publishing currently enabled or has it been shut down due to errors.
+        /// </summary>
         public bool PublicationEnabled
         {
             get { return _publicationEnabled; }
         }
 
-        private void PersistUnconfirmedMessages()
+        private bool PublishImmediately
         {
-            Task.Factory.StartNew(() =>
-            {
-                var unconfirmedMessages = _confirmer.GetUnconfirmedMessages();
-                _unconfirmedMessageRepository.StoreMessages(unconfirmedMessages, _publishSettings.PublisherId);
-                _confirmer.RemoveUnconfirmedMessages(unconfirmedMessages);
-            });
+            get { return _publicationEnabled && !Convert.ToBoolean(_retryingPublish); }
         }
 
+        /// <summary>
+        /// The timer kicks this off to see if we need to retry stored messages or process buffered messages.
+        /// </summary>
+        /// <param name="state"></param>
         private void CheckOfflineTasks(object state)
         {
             var checkTime = DateTime.UtcNow.Ticks;
 
-            if ((checkTime - _lastPublishRetryTimestamp) / TimeSpan.TicksPerMillisecond >=
-                _publishSettings.PublishRetryInterval)
+            if ((checkTime - _lastPublishRetryTimestamp) / TimeSpan.TicksPerMillisecond >= _publishSettings.PublishRetryInterval)
             {
-                RepublishStoredMessage().Wait();
+                RepublishOneStoredMessage().Wait();
             }
 
             checkTime = DateTime.UtcNow.Ticks;
-            if ((checkTime - _lastMessageBufferStoreTimestamp) / TimeSpan.TicksPerMillisecond >=
-                _publishSettings.ProcessBufferedMessagesInterval)
+            if ((checkTime - _lastMessageBufferStoreTimestamp) / TimeSpan.TicksPerMillisecond >= _publishSettings.ProcessBufferedMessagesInterval)
             {
                 ProcessBufferedMessages();
             }
         }
 
+        /// <summary>
+        /// Run every now and then to clear the buffer if it has messages trapped, note, this is a failsafe that should rarely be needed.
+        /// </summary>
         private void ProcessBufferedMessages()
         {
-            if (Convert.ToBoolean(_retryingPublish) ||
-                Convert.ToBoolean(Interlocked.CompareExchange(ref _processingBufferedMessages, 1, 0)))
+            if (Convert.ToBoolean(_retryingPublish) || Convert.ToBoolean(Interlocked.CompareExchange(ref _processingBufferedMessages, 1, 0)))
                 return;
 
             if (_publicationEnabled)
             {
                 try
                 {
-                    RepublishFromBuffer();
+                    PublishFromBuffer();
                 }
                 finally
                 {
@@ -166,7 +185,7 @@ namespace Burrows.PublisherConfirms
                                           {
                                               try
                                               {
-                                                  _unconfirmedMessageRepository.StoreMessages(_messageBuffer, _publishSettings .PublisherId);
+                                                  _messageRepository.StoreMessages(_unpublishedMessageBuffer, _publishSettings .PublisherId);
                                               }
                                               finally
                                               {
@@ -175,9 +194,12 @@ namespace Burrows.PublisherConfirms
                                               }
                                           });
             }
-
         }
 
+
+        /// <summary>
+        /// Used when attempting to republish all stored messages.
+        /// </summary>
         private async Task RepublishStoredMessages()
         {
             if (!_publicationEnabled)
@@ -192,11 +214,10 @@ namespace Burrows.PublisherConfirms
                     //Retry messages in the DB first
                     while (_publicationEnabled)
                     {
-                        IEnumerable<ConfirmableMessage> storedMessages =
-                            await _unconfirmedMessageRepository.GetAndDeleteMessages(_publishSettings.PublisherId,
-                                                                               _publishSettings.GetStoredMessagesBatchSize);
+                        IList<ConfirmableMessage> storedMessages = 
+                            await _messageRepository.GetAndDeleteMessages(_publishSettings.PublisherId, _publishSettings.GetStoredMessagesBatchSize);
 
-                        if (!storedMessages.Any())
+                        if (storedMessages.Count <= 0)
                             break;
 
                         foreach (var storedMessage in storedMessages)
@@ -205,7 +226,7 @@ namespace Burrows.PublisherConfirms
                         }
                     }
 
-                    RepublishFromBuffer();
+                    PublishFromBuffer();
                 }
                 finally
                 {
@@ -214,7 +235,10 @@ namespace Burrows.PublisherConfirms
             });
         }
 
-        private async Task RepublishStoredMessage()
+        /// <summary>
+        /// Used when attempting to see whether or not publishing can be restarted
+        /// </summary>
+        private async Task RepublishOneStoredMessage()
         {
             if (_publicationEnabled || Convert.ToBoolean(_processingBufferedMessages) || Convert.ToBoolean(Interlocked.CompareExchange(ref _retryingPublish, 1, 0)))
                 return;
@@ -223,7 +247,7 @@ namespace Burrows.PublisherConfirms
             {
                 try
                 {
-                    ConfirmableMessage message = (await _unconfirmedMessageRepository.GetAndDeleteMessages(_publishSettings.PublisherId, 1)).FirstOrDefault();
+                    ConfirmableMessage message = (await _messageRepository.GetAndDeleteMessages(_publishSettings.PublisherId, 1)).FirstOrDefault();
 
                     if (message != null)
                     {
@@ -238,12 +262,15 @@ namespace Burrows.PublisherConfirms
             });
         }
 
-        private void RepublishFromBuffer()
+        /// <summary>
+        /// Publish all messages from the buffer if publication is turned on.
+        /// </summary>
+        private void PublishFromBuffer()
         {
             ConfirmableMessage message;
-            while (_publicationEnabled && _messageBuffer.TryDequeue(out message))
+            while (_publicationEnabled && _unpublishedMessageBuffer.TryDequeue(out message))
             {
-                Publish(message);
+                Publish(message, true);
             }
         }
 
