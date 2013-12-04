@@ -10,14 +10,15 @@
 // under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR 
 // CONDITIONS OF ANY KIND, either express or implied. See the License for the 
 // specific language governing permissions and limitations under the License.
-namespace Burrows.RabbitMq.Tests
-{
-    using System;
-    using System.Net;
-    using Magnum.TestFramework;
-    using NUnit.Framework;
-    using Transports.Configuration.Extensions;
 
+using System;
+using System.Net;
+using Magnum.TestFramework;
+using NUnit.Framework;
+using Burrows.Transports.Configuration.Extensions;
+
+namespace Burrows.Tests.RabbitMq
+{
     [Scenario, Explicit]
     public class When_connecting_to_a_rabbit_mq_server_using_ssl
     {

@@ -9,8 +9,6 @@ namespace Burrows.PublisherConfirms
         private int _publishRetryInteval = 30000;
         private int _processBufferedMessagesInterval = 5000;
         private int _timerCheckInterval = 1000;
-        private int _deleteStoredMessagesBatchSize = 500;
-        private int _insertStoredMessagesBatchSize = 200;
         private int _getStoredMessagesBatchSize = 200;
         private string _fileRepositoryPath = "BurrowBackingStore";
 
@@ -25,18 +23,6 @@ namespace Burrows.PublisherConfirms
         {
             get { return _maxSuccessiveFailures; }
             set { _maxSuccessiveFailures = value; }
-        }
-
-        public int DeleteStoredMessagesBatchSize
-        {
-            get { return _deleteStoredMessagesBatchSize; }
-            set { _deleteStoredMessagesBatchSize = value; }
-        }
-
-        public int InsertStoredMessagesBatchSize
-        {
-            get { return _insertStoredMessagesBatchSize; }
-            set { _insertStoredMessagesBatchSize = value; }
         }
 
         public int GetStoredMessagesBatchSize
@@ -69,18 +55,12 @@ namespace Burrows.PublisherConfirms
             set { _fileRepositoryPath = value; }
         }
 
-        public string ConnectionString { get; set; }
-
 
         public void Validate()
         {
             if (!UsePublisherConfirms)
                 return;
 
-            if (BackingStoreMethod == BackingStoreMethod.SqlServer && string.IsNullOrWhiteSpace(ConnectionString))
-            {
-                throw new InvalidOperationException("ConnectionStringName must be specified.");
-            }
             if (BackingStoreMethod == BackingStoreMethod.FileSystem && string.IsNullOrWhiteSpace(FileRepositoryPath))
             {
                 throw new InvalidOperationException("FileRepositoryPath must be specified.");
@@ -92,14 +72,6 @@ namespace Burrows.PublisherConfirms
             if (MaxSuccessiveFailures <= 0)
             {
                 throw new InvalidOperationException("MaxSuccessiveFailures must be greater than 0.");
-            }
-            if (DeleteStoredMessagesBatchSize <= 0)
-            {
-                throw new InvalidOperationException("DeleteStoredMessagesBatchSize must be greater than 0.");
-            }
-            if (InsertStoredMessagesBatchSize <= 0)
-            {
-                throw new InvalidOperationException("InsertStoredMessagesBatchSize must be greater than 0.");
             }
             if (GetStoredMessagesBatchSize <= 0)
             {

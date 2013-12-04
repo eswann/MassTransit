@@ -12,14 +12,13 @@
 // specific language governing permissions and limitations under the License.
 
 using Burrows.Endpoints;
+using System;
+using Burrows.Tests.Framework.Messages;
+using Burrows.Transports;
+using NUnit.Framework;
 
-namespace Burrows.TestFramework.Transports
+namespace Burrows.Tests.Framework.Transports
 {
-    using System;
-    using Burrows.Transports;
-    using Messages;
-    using NUnit.Framework;
-
     public abstract class TransportReceivingContract<TTransportFactory>
 		where TTransportFactory : class, ITransportFactory, new()
 	{

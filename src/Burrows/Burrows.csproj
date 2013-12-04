@@ -149,7 +149,6 @@
     <Compile Include="PublisherConfirms\PublishSettings.cs" />
     <Compile Include="PublisherConfirms\BackingStores\UnconfirmedMessageFileRepository.cs" />
     <Compile Include="PublisherConfirms\BackingStores\UnconfirmedMessageRepositoryFactory.cs" />
-    <Compile Include="PublisherConfirms\BackingStores\UnconfirmedMessageSqlRepository.cs" />
     <Compile Include="Serialization\NonClosingStream.cs" />
     <Compile Include="Serialization\IMessageSerializer.cs" />
     <Compile Include="Subscriptions\Coordinator\InMemorySubscriptionStorage.cs" />
@@ -781,7 +780,9 @@
     <Compile Include="Services\Timeout\RemoteTimeoutViewer.cs" />
     <Compile Include="Util\SequenceNumberGenerator.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Todo.txt" />
+  </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
       <Visible>False</Visible>

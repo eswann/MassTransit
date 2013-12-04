@@ -37,13 +37,5 @@ namespace Burrows.PublisherConfirms.BackingStores
             return Task.FromResult(false);
         }
 
-        public Task StoreMessages(IEnumerable<ConfirmableMessage> messages, string publisherId)
-        {
-            lock (_syncLock)
-            {
-                _messageStore.AddRange(messages);
-            }
-            return Task.FromResult(false);
-        }
     }
 }

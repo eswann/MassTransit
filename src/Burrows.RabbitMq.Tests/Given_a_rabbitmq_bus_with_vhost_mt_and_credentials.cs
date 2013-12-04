@@ -1,12 +1,12 @@
-﻿namespace Burrows.RabbitMq.Tests
-{
-    using System;
-    using BusConfigurators;
-    using Magnum.TestFramework;
-    using TestFramework.Fixtures;
-    using Transports;
-    using Transports.Configuration.Extensions;
+﻿using System;
+using Burrows.BusConfigurators;
+using Burrows.Tests.Framework.Fixtures;
+using Magnum.TestFramework;
+using Burrows.Transports;
+using Burrows.Transports.Configuration.Extensions;
 
+namespace Burrows.Tests.RabbitMq
+{
     [Scenario]
 	public class Given_a_rabbitmq_bus_with_vhost_mt_and_credentials :
 		LocalTestFixture<TransportFactory>

@@ -1,8 +1,8 @@
-namespace Burrows.TestFramework
-{
-    using System;
-    using System.Runtime.Serialization;
+using System;
+using System.Runtime.Serialization;
 
+namespace Burrows.Tests.Framework
+{
     [Serializable]
     public class ATestException: Exception
     {

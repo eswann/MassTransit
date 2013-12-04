@@ -10,15 +10,16 @@
 // under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR 
 // CONDITIONS OF ANY KIND, either express or implied. See the License for the 
 // specific language governing permissions and limitations under the License.
-namespace Burrows.RabbitMq.Tests
-{
-    using System;
-    using BusConfigurators;
-    using Magnum.TestFramework;
-    using NUnit.Framework;
-    using Transports.Configuration.Configurators;
-    using Transports.Configuration.Extensions;
 
+using System;
+using Burrows.BusConfigurators;
+using Magnum.TestFramework;
+using NUnit.Framework;
+using Burrows.Transports.Configuration.Configurators;
+using Burrows.Transports.Configuration.Extensions;
+
+namespace Burrows.Tests.RabbitMq
+{
     [Scenario]
     public abstract class Given_two_rabbitmq_buses_walk_into_a_bar
     {

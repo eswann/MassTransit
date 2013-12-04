@@ -12,17 +12,16 @@
 // specific language governing permissions and limitations under the License.
 
 using Burrows.Endpoints;
+using System;
+using Burrows.Context;
+using Magnum.Extensions;
+using Magnum.TestFramework;
+using Burrows.Transports;
+using NUnit.Framework;
+using Burrows.Serialization;
 
-namespace Burrows.TestFramework
+namespace Burrows.Tests.Framework
 {
-    using System;
-    using Context;
-    using Magnum.Extensions;
-    using Magnum.TestFramework;
-    using Burrows.Transports;
-    using NUnit.Framework;
-    using Serialization;
-
     public static class ExtensionsForTestingEndpoints
     {
         public static void ShouldContain<TMessage>(this IInboundTransport transport, IMessageSerializer serializer)

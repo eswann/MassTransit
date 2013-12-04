@@ -1,8 +1,8 @@
-﻿namespace Burrows.RabbitMq.Tests.Assumptions
-{
-    using NUnit.Framework;
-    using RabbitMQ.Client;
+﻿using NUnit.Framework;
+using RabbitMQ.Client;
 
+namespace Burrows.Tests.RabbitMq.Assumptions
+{
     [TestFixture]
     public class BasicExchangePerformanceDifferences
     {

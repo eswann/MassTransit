@@ -58,17 +58,37 @@ namespace Burrows.PublisherConfirms
         /// </summary>
         /// <typeparam name="T">Type to publish</typeparam>
         /// <param name="message">Message to publish</param>
-        /// <param name="forcePublish">Force a publish even if publishing is not currently enabled</param>
-        public void Publish<T>(T message, bool forcePublish = false)
+        public void Publish<T>(T message)
         {
             var confirmableMessage = new ConfirmableMessage(message, typeof(T));
 
-            if (PublishImmediately || forcePublish)
+            if (PublishImmediately)
             {
                 try
                 {
                     _confirmer.RecordPublicationAttempt(confirmableMessage);
                     _serviceBus.Value.Publish(message, context => context.SetHeader("ClientMessageId", confirmableMessage.Id));
+                }
+                catch (Exception ex)
+                {
+                    _confirmer.RecordPublicationFailure(new[]{confirmableMessage.Id});
+                    _log.Error("An error occurred while publishing to MassTransit", ex);
+                }
+            }
+            else
+            {
+                _unpublishedMessageBuffer.Enqueue(confirmableMessage);
+            }
+        }
+
+        private void PublishStoredMessage(ConfirmableMessage confirmableMessage, bool forcePublish = false)
+        {
+            if (PublicationEnabled || forcePublish)
+            {
+                try
+                {
+                    _confirmer.RecordPublicationAttempt(confirmableMessage);
+                    _serviceBus.Value.Publish(confirmableMessage.Message, confirmableMessage.Type, context => context.SetHeader("ClientMessageId", confirmableMessage.Id));
                 }
                 catch (Exception ex)
                 {
@@ -222,7 +242,7 @@ namespace Burrows.PublisherConfirms
 
                         foreach (var storedMessage in storedMessages)
                         {
-                            Publish(storedMessage);
+                            PublishStoredMessage(storedMessage);
                         }
                     }
 
@@ -251,7 +271,7 @@ namespace Burrows.PublisherConfirms
 
                     if (message != null)
                     {
-                        Publish(message, true);
+                        PublishStoredMessage(message, true);
                     }
                 }
                 finally
@@ -270,7 +290,7 @@ namespace Burrows.PublisherConfirms
             ConfirmableMessage message;
             while (_publicationEnabled && _unpublishedMessageBuffer.TryDequeue(out message))
             {
-                Publish(message, true);
+                PublishStoredMessage(message);
             }
         }
 

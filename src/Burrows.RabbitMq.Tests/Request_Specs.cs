@@ -10,16 +10,17 @@
 // under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR 
 // CONDITIONS OF ANY KIND, either express or implied. See the License for the 
 // specific language governing permissions and limitations under the License.
-namespace Burrows.RabbitMq.Tests
-{
-    using System;
-    using BusConfigurators;
-    using Context;
-    using Exceptions;
-    using Magnum.Extensions;
-    using Magnum.TestFramework;
-    using NUnit.Framework;
 
+using System;
+using Burrows.BusConfigurators;
+using Burrows.Context;
+using Burrows.Exceptions;
+using Magnum.Extensions;
+using Magnum.TestFramework;
+using NUnit.Framework;
+
+namespace Burrows.Tests.RabbitMq
+{
     [Scenario]
     public class When_sending_a_request_to_a_rabbitmq_endpoint :
         Given_a_rabbitmq_bus

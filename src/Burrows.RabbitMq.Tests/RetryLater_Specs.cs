@@ -10,14 +10,15 @@
 // under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR 
 // CONDITIONS OF ANY KIND, either express or implied. See the License for the 
 // specific language governing permissions and limitations under the License.
-namespace Burrows.RabbitMq.Tests
-{
-    using System;
-    using System.Diagnostics;
-    using System.Threading;
-    using NUnit.Framework;
-    using Transports.Configuration.Extensions;
 
+using System;
+using System.Diagnostics;
+using System.Threading;
+using NUnit.Framework;
+using Burrows.Transports.Configuration.Extensions;
+
+namespace Burrows.Tests.RabbitMq
+{
     [TestFixture]
     public class RetryLaterTests
     {

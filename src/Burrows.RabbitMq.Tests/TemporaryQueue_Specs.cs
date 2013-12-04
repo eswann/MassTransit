@@ -10,14 +10,15 @@
 // under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR 
 // CONDITIONS OF ANY KIND, either express or implied. See the License for the 
 // specific language governing permissions and limitations under the License.
-namespace Burrows.RabbitMq.Tests
-{
-    using System.Threading;
-    using BusConfigurators;
-    using Context;
-    using Magnum.Extensions;
-    using NUnit.Framework;
 
+using System.Threading;
+using Burrows.BusConfigurators;
+using Burrows.Context;
+using Magnum.Extensions;
+using NUnit.Framework;
+
+namespace Burrows.Tests.RabbitMq
+{
     [TestFixture]
     public class When_a_temporary_queue_is_specified :
         Given_a_service_bus_and_a_temporary_client

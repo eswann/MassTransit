@@ -12,20 +12,19 @@
 // specific language governing permissions and limitations under the License.
 
 using Burrows.Endpoints;
+using System;
+using System.IO;
+using System.Text;
+using Burrows.Context;
+using Magnum.Extensions;
+using Magnum.TestFramework;
+using NUnit.Framework;
+using RabbitMQ.Client;
+using Burrows.Serialization;
+using Burrows.Transports;
 
-namespace Burrows.RabbitMq.Tests
+namespace Burrows.Tests.RabbitMq
 {
-    using System;
-    using System.IO;
-    using System.Text;
-    using Context;
-    using Magnum.Extensions;
-    using Magnum.TestFramework;
-    using NUnit.Framework;
-    using RabbitMQ.Client;
-    using Serialization;
-    using Transports;
-
     [TestFixture, Explicit("integration tests and require custom configuration")]
     public class RabbitMqTransportFactoryTests
     {

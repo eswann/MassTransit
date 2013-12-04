@@ -10,14 +10,15 @@
 // under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR 
 // CONDITIONS OF ANY KIND, either express or implied. See the License for the 
 // specific language governing permissions and limitations under the License.
-namespace Burrows.RabbitMq.Tests
-{
-    using System;
-    using BusConfigurators;
-    using Magnum.Extensions;
-    using Magnum.TestFramework;
-    using TestFramework;
 
+using System;
+using Burrows.BusConfigurators;
+using Burrows.Tests.Framework;
+using Magnum.Extensions;
+using Magnum.TestFramework;
+
+namespace Burrows.Tests.RabbitMq
+{
     [Scenario]
     public class When_a_message_is_published_to_a_subclass :
         Given_a_rabbitmq_bus

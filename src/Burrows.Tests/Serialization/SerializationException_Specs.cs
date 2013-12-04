@@ -12,6 +12,7 @@
 // specific language governing permissions and limitations under the License.
 
 using Burrows.Endpoints;
+using Burrows.Tests.Framework;
 
 namespace Burrows.Tests.Serialization
 {
@@ -19,7 +20,6 @@ namespace Burrows.Tests.Serialization
     using BusConfigurators;
     using Magnum.TestFramework;
     using Burrows.Transports.Loopback;
-    using TestFramework;
     using TextFixtures;
     using Util;
 

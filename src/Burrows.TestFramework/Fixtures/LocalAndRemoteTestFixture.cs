@@ -10,14 +10,15 @@
 // under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR 
 // CONDITIONS OF ANY KIND, either express or implied. See the License for the 
 // specific language governing permissions and limitations under the License.
-namespace Burrows.TestFramework.Fixtures
-{
-    using System;
-    using BusConfigurators;
-    using Burrows.Transports;
-    using NUnit.Framework;
-    using Subscriptions.Coordinator;
 
+using System;
+using Burrows.BusConfigurators;
+using Burrows.Transports;
+using NUnit.Framework;
+using Burrows.Subscriptions.Coordinator;
+
+namespace Burrows.Tests.Framework.Fixtures
+{
     [TestFixture, Ignore]
 	public class LocalAndRemoteTestFixture<TTransportFactory> :
 		EndpointTestFixture<TTransportFactory>

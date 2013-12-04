@@ -13,24 +13,23 @@ namespace Burrows.PublisherConfirms.BackingStores
 {
     public class UnconfirmedMessageFileRepository : IUnconfirmedMessageRepository
     {
-        private const char MessageSegmentDelimiter = '|';
-        private static readonly ILog _log = Logger.Get <UnconfirmedMessageFileRepository>();
+        private static readonly ILog _log = Logger.Get<UnconfirmedMessageFileRepository>();
 
         private static readonly object _directoryLock = new object();
-        private readonly string _filePath;
+        private readonly string _rootFilePath;
         
         private readonly List<string> _existingDirectories = new List<string>();
 
-        private readonly ConcurrentDictionary<string, Type> _cachedTypes = new ConcurrentDictionary<string, Type>();
+        private readonly ConcurrentDictionary<string, long> _latestFileSequences = new ConcurrentDictionary<string, long>();
         
         public UnconfirmedMessageFileRepository(PublishSettings publishSettings)
         {
-            _filePath = publishSettings.FileRepositoryPath;
+            _rootFilePath = publishSettings.FileRepositoryPath;
 
-            _filePath = Path.Combine(HttpRuntime.AppDomainId == null ? Directory.GetCurrentDirectory() : HttpRuntime.AppDomainAppPath, _filePath);
+            _rootFilePath = Path.Combine(HttpRuntime.AppDomainId == null ? Directory.GetCurrentDirectory() : HttpRuntime.AppDomainAppPath, _rootFilePath);
 
-            if (!_filePath.EndsWith(Path.DirectorySeparatorChar.ToString(CultureInfo.InvariantCulture)))
-                _filePath += Path.DirectorySeparatorChar;
+            if (!_rootFilePath.EndsWith(Path.DirectorySeparatorChar.ToString(CultureInfo.InvariantCulture)))
+                _rootFilePath += Path.DirectorySeparatorChar;
         }
 
         public async Task<IList<ConfirmableMessage>> GetAndDeleteMessages(string publisherId, int pageSize)
@@ -47,19 +46,9 @@ namespace Burrows.PublisherConfirms.BackingStores
                     messageText = await streamReader.ReadToEndAsync();
                 }
 
-                string[] segments = messageText.Split(MessageSegmentDelimiter);
-
                 try
                 {
-                    string messageTypeKey = segments[0];
-
-                    Type messageType;
-                    if (!_cachedTypes.TryGetValue(messageTypeKey, out messageType))
-                    {
-                        _cachedTypes.TryAdd(messageTypeKey, messageType);
-                    }
-
-                    var message = (ConfirmableMessage)JsonConvert.DeserializeObject(segments[1], messageType);
+                    var message = JsonConvert.DeserializeObject<ConfirmableMessage>(messageText);
                     results.Add(message);
                     try
                     {
@@ -75,7 +64,6 @@ namespace Burrows.PublisherConfirms.BackingStores
                     _log.Error("The following error occurred while deserializing a Json object.", ex);
                 }
             }
-
             return results;
         }
 
@@ -90,21 +78,29 @@ namespace Burrows.PublisherConfirms.BackingStores
             }
         }
 
-        public async Task StoreMessages(IEnumerable<ConfirmableMessage> messages, string publisherId)
-        {
-            string path = GetOrCreateDirectory(publisherId);
-
-            foreach (var message in messages)
-            {
-                await StoreMessage(message, path);
-            }
-        }
-
         private async Task StoreMessage(ConfirmableMessage message, string path)
         {
-            var messageText = message.GetType().FullName + MessageSegmentDelimiter + JsonConvert.SerializeObject(message);
+            string typeName = message.Type.FullName;
 
-            using (var outfile = new StreamWriter(path + Path.DirectorySeparatorChar + message.Id + ".txt"))
+            var rootFilePath = path + typeName;
+
+            var messageText = JsonConvert.SerializeObject(message);
+            
+            long ticks = DateTime.UtcNow.Ticks;
+
+            long currentGreatestSequence;
+            _latestFileSequences.TryGetValue(rootFilePath, out currentGreatestSequence);
+
+            while (currentGreatestSequence >= ticks)
+            {
+                //Do nothing, just need to wait one tick.
+                ticks = DateTime.UtcNow.Ticks;
+            }
+            _latestFileSequences[rootFilePath] = ticks;
+
+            var filePath = rootFilePath + "_" + ticks + ".txt";
+
+            using (var outfile = new StreamWriter(filePath))
             {
                 await outfile.WriteAsync(messageText);
             }
@@ -112,7 +108,7 @@ namespace Burrows.PublisherConfirms.BackingStores
 
         private string GetOrCreateDirectory(string publisherId)
         {
-            string fullPath = _filePath + publisherId + Path.DirectorySeparatorChar;
+            string fullPath = _rootFilePath + publisherId + Path.DirectorySeparatorChar;
             if (!_existingDirectories.Contains(fullPath))
             {
                 lock (_directoryLock)

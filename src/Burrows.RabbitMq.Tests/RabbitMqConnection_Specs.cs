@@ -10,13 +10,14 @@
 // under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR 
 // CONDITIONS OF ANY KIND, either express or implied. See the License for the 
 // specific language governing permissions and limitations under the License.
-namespace Burrows.RabbitMq.Tests
-{
-    using System;
-    using Magnum.TestFramework;
-    using NUnit.Framework;
-    using Transports;
 
+using System;
+using Magnum.TestFramework;
+using NUnit.Framework;
+using Burrows.Transports;
+
+namespace Burrows.Tests.RabbitMq
+{
     public class RabbitMqConnection_Specs
 	{
         readonly TransportConnection _conn = new TransportConnection(

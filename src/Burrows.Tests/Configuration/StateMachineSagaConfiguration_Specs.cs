@@ -1,4 +1,6 @@
-﻿namespace Burrows.Tests.Configuration
+﻿using Burrows.Tests.Framework;
+
+namespace Burrows.Tests.Configuration
 {
     using Burrows.Saga.Configuration;
     using Examples.Sagas;
@@ -6,7 +8,6 @@
     using Magnum.TestFramework;
     using Burrows.Saga;
     using Rhino.Mocks;
-    using TestFramework;
 
     [Scenario]
 	public class When_subscribing_a_state_machine_saga_to_the_bus

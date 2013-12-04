@@ -10,12 +10,14 @@
 // under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR 
 // CONDITIONS OF ANY KIND, either express or implied. See the License for the 
 // specific language governing permissions and limitations under the License.
+
+using Burrows.Tests.Framework;
+using Burrows.Tests.Framework.Fixtures;
+
 namespace Burrows.Tests.Examples.Sagas
 {
     using Magnum.TestFramework;
     using Burrows.Saga.Configuration;
-    using TestFramework;
-    using TestFramework.Fixtures;
 
     [Scenario]
 	public class Given_a_simple_saga_exists_and_is_waiting_for_approval :

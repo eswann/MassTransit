@@ -10,14 +10,15 @@
 // under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR 
 // CONDITIONS OF ANY KIND, either express or implied. See the License for the 
 // specific language governing permissions and limitations under the License.
-namespace Burrows.RabbitMq.Tests.Assumptions
-{
-    using System.Collections.Generic;
-    using System.Text;
-    using Magnum.TestFramework;
-    using RabbitMQ.Client;
-    using RabbitMQ.Client.Framing.v0_9_1;
 
+using System.Collections.Generic;
+using System.Text;
+using Magnum.TestFramework;
+using RabbitMQ.Client;
+using RabbitMQ.Client.Framing.v0_9_1;
+
+namespace Burrows.Tests.RabbitMq.Assumptions
+{
     [Scenario]
     public abstract class Given_a_rabbitmq_server
     {

@@ -10,12 +10,14 @@
 // under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR 
 // CONDITIONS OF ANY KIND, either express or implied. See the License for the 
 // specific language governing permissions and limitations under the License.
+
+using Burrows.Tests.Framework.Transports;
+
 namespace Burrows.Tests.Transports
 {
     using System;
     using Burrows.Transports.Loopback;
     using NUnit.Framework;
-    using TestFramework.Transports;
 
     [TestFixture]
     public class LoopbackTransportContract :

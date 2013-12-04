@@ -12,6 +12,7 @@
 // specific language governing permissions and limitations under the License.
 
 using Burrows.Endpoints;
+using Burrows.Tests.Framework;
 
 namespace Burrows.Tests.Load
 {
@@ -26,7 +27,6 @@ namespace Burrows.Tests.Load
     using Magnum.TestFramework;
     using Burrows.Subscriptions;
     using Messages;
-    using TestFramework;
 
     public class LoadGenerator<TRequest, TResponse> :
 		Consumes<TResponse>.All

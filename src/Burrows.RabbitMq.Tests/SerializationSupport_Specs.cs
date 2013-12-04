@@ -1,12 +1,12 @@
-﻿namespace Burrows.RabbitMq.Tests
-{
-    using BusConfigurators;
-    using Context;
-    using Magnum.Extensions;
-    using Magnum.TestFramework;
-    using NUnit.Framework;
-    using TestFramework;
+﻿using Burrows.BusConfigurators;
+using Burrows.Context;
+using Burrows.Tests.Framework;
+using Magnum.Extensions;
+using Magnum.TestFramework;
+using NUnit.Framework;
 
+namespace Burrows.Tests.RabbitMq
+{
     [TestFixture]
     public class When_using_mixed_serialization_types :
         Given_two_rabbitmq_buses_walk_into_a_bar

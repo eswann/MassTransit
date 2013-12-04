@@ -10,13 +10,14 @@
 // under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR 
 // CONDITIONS OF ANY KIND, either express or implied. See the License for the 
 // specific language governing permissions and limitations under the License.
-namespace Burrows.TestFramework
-{
-    using System;
-    using System.Threading;
-    using Magnum;
-    using Magnum.Extensions;
 
+using System;
+using System.Threading;
+using Magnum;
+using Magnum.Extensions;
+
+namespace Burrows.Tests.Framework
+{
     /// <summary>
 	/// A future object that supports both callbacks and asynchronous waits once a future value becomes available.
 	/// </summary>

@@ -10,6 +10,9 @@
 // under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR 
 // CONDITIONS OF ANY KIND, either express or implied. See the License for the 
 // specific language governing permissions and limitations under the License.
+
+using Burrows.Tests.Framework;
+
 namespace Burrows.Tests
 {
     using System;
@@ -22,7 +25,6 @@ namespace Burrows.Tests
     using Magnum.TestFramework;
     using NUnit.Framework;
     using RequestResponse;
-    using TestFramework;
     using TextFixtures;
 
     [TestFixture]

@@ -16,8 +16,6 @@ namespace Burrows.PublisherConfirms.BackingStores
             {
                 case BackingStoreMethod.FileSystem:
                     return new UnconfirmedMessageFileRepository(_publishSettings);
-                case BackingStoreMethod.SqlServer:
-                    return new UnconfirmedMessageSqlRepository(_publishSettings);
                 default:
                     return new UnconfirmedMessageMemoryRepository();
             }

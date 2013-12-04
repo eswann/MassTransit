@@ -1,9 +1,9 @@
-namespace Burrows.RabbitMq.Tests.Assumptions
-{
-    using Magnum.Extensions;
-    using Magnum.TestFramework;
-    using NUnit.Framework;
+using Magnum.Extensions;
+using Magnum.TestFramework;
+using NUnit.Framework;
 
+namespace Burrows.Tests.RabbitMq.Assumptions
+{
     [TestFixture]
     public class RoutingAssumptions :
         GivenAChannel

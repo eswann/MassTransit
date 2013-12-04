@@ -10,14 +10,15 @@
 // under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR 
 // CONDITIONS OF ANY KIND, either express or implied. See the License for the 
 // specific language governing permissions and limitations under the License.
-namespace Burrows.RabbitMq.Tests.Assumptions
-{
-    using System;
-    using System.Diagnostics;
-    using Magnum.Extensions;
-    using Magnum.TestFramework;
-    using RabbitMQ.Client;
 
+using System;
+using System.Diagnostics;
+using Magnum.Extensions;
+using Magnum.TestFramework;
+using RabbitMQ.Client;
+
+namespace Burrows.Tests.RabbitMq.Assumptions
+{
     public class GivenAChannel
 	{
 		protected readonly byte[] TheMessage = new byte[] {1, 2, 3};

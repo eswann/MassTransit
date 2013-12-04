@@ -12,22 +12,21 @@
 // specific language governing permissions and limitations under the License.
 
 using Burrows.Endpoints;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using Burrows.BusConfigurators;
+using Burrows.Configurators;
+using Burrows.EndpointConfigurators;
+using Burrows.Exceptions;
+using Magnum.Extensions;
+using Burrows.Transports;
+using NUnit.Framework;
+using Burrows.Saga;
+using Burrows.Services.Subscriptions;
 
-namespace Burrows.TestFramework.Fixtures
+namespace Burrows.Tests.Framework.Fixtures
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using BusConfigurators;
-    using Configurators;
-    using EndpointConfigurators;
-    using Exceptions;
-    using Magnum.Extensions;
-    using Burrows.Transports;
-    using NUnit.Framework;
-    using Saga;
-    using Services.Subscriptions;
-
     /// <summary>
 	/// Test fixture that tests a single endpoint, given
 	/// a transport factory. The transport factory needs to

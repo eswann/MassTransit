@@ -10,6 +10,9 @@
 // under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR 
 // CONDITIONS OF ANY KIND, either express or implied. See the License for the 
 // specific language governing permissions and limitations under the License.
+
+using Burrows.Tests.Framework;
+
 namespace Burrows.Tests.Configuration
 {
     using Burrows.Saga.Configuration;
@@ -21,7 +24,6 @@ namespace Burrows.Tests.Configuration
     using Burrows.Services.Subscriptions.Server;
     using Burrows.Services.Subscriptions.Server.Messages;
     using Rhino.Mocks;
-    using TestFramework;
 
     [Scenario]
 	public class When_subscribing_a_saga_to_the_bus

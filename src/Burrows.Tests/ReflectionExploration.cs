@@ -1,3 +1,5 @@
+using Burrows.Tests.Framework;
+
 namespace Burrows.Tests
 {
     using System;
@@ -7,7 +9,6 @@ namespace Burrows.Tests
     using Magnum.TestFramework;
     using Burrows.Saga;
     using NUnit.Framework;
-    using TestFramework;
 
     [TestFixture]
     public class ReflectionExploration

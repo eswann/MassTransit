@@ -8,8 +8,8 @@
     <ProjectGuid>{3C4B5F1A-69AD-415E-9F40-A7FDBD7A3012}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Burrows.TestFramework</RootNamespace>
-    <AssemblyName>Burrows.TestFramework</AssemblyName>
+    <RootNamespace>Burrows.Tests.Framework</RootNamespace>
+    <AssemblyName>Burrows.Tests.Framework</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <FileUpgradeFlags>
@@ -55,7 +55,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Release\Burrows.TestFramework.xml</DocumentationFile>
+    <DocumentationFile>bin\Release\Burrows.Tests.Framework.xml</DocumentationFile>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
     <NoWarn>1591</NoWarn>
     <Prefer32Bit>false</Prefer32Bit>

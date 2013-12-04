@@ -1,13 +1,13 @@
-namespace Burrows.RabbitMq.Tests
-{
-    using System;
-    using System.Diagnostics;
-    using BusConfigurators;
-    using Magnum.Extensions;
-    using Magnum.TestFramework;
-    using NUnit.Framework;
-    using TestFramework;
+using System;
+using System.Diagnostics;
+using Burrows.BusConfigurators;
+using Burrows.Tests.Framework;
+using Magnum.Extensions;
+using Magnum.TestFramework;
+using NUnit.Framework;
 
+namespace Burrows.Tests.RabbitMq
+{
     [Scenario, Explicit("because it requires you to run a few commands first")]
 	public class When_a_message_is_published_to_as_custom_user
 		: Given_a_rabbitmq_bus_with_vhost_mt_and_credentials

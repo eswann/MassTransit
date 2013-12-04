@@ -1,11 +1,11 @@
-namespace Burrows.RabbitMq.Tests
-{
-    using System;
-    using BusConfigurators;
-    using Magnum.TestFramework;
-    using NUnit.Framework;
-    using Transports.Configuration.Extensions;
+using System;
+using Burrows.BusConfigurators;
+using Magnum.TestFramework;
+using NUnit.Framework;
+using Burrows.Transports.Configuration.Extensions;
 
+namespace Burrows.Tests.RabbitMq
+{
     [Scenario]
     public abstract class Given_a_service_bus_and_a_temporary_client
     {

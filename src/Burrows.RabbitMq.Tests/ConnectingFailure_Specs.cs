@@ -1,11 +1,11 @@
-﻿namespace Burrows.RabbitMq.Tests
-{
-    using System;
-    using System.Threading;
-    using Magnum.Extensions;
-    using NUnit.Framework;
-    using Transports.Configuration.Extensions;
+﻿using System;
+using System.Threading;
+using Magnum.Extensions;
+using NUnit.Framework;
+using Burrows.Transports.Configuration.Extensions;
 
+namespace Burrows.Tests.RabbitMq
+{
     [TestFixture]
     public class When_unable_to_connect_to_RabbitMQ
     {

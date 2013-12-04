@@ -12,15 +12,13 @@
 // specific language governing permissions and limitations under the License.
 
 using Burrows.Endpoints;
+using System;
+using Burrows.Exceptions;
+using Magnum.TestFramework;
+using NUnit.Framework;
 
-namespace Burrows.RabbitMq.Tests
+namespace Burrows.Tests.RabbitMq
 {
-    using System;
-    using Exceptions;
-    using Magnum.TestFramework;
-    using NUnit.Framework;
-    using Transports;
-
     [Scenario]
     public class GivenAVHostAddress
     {

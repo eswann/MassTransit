@@ -10,6 +10,10 @@
 // under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR 
 // CONDITIONS OF ANY KIND, either express or implied. See the License for the 
 // specific language governing permissions and limitations under the License.
+
+using Burrows.Tests.Framework;
+using Burrows.Tests.Framework.Fixtures;
+
 namespace Burrows.Tests.Subscriptions
 {
     using System;
@@ -17,8 +21,6 @@ namespace Burrows.Tests.Subscriptions
     using Magnum.Extensions;
     using Magnum.TestFramework;
     using Burrows.Transports.Loopback;
-    using TestFramework;
-    using TestFramework.Fixtures;
 
     [Scenario]
 	public class When_publishing_to_a_remote_subscriber :

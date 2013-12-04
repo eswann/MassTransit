@@ -9,7 +9,5 @@ namespace Burrows.PublisherConfirms.BackingStores
         Task<IList<ConfirmableMessage>> GetAndDeleteMessages(string publisherId, int pageSize);
 
         Task StoreMessages(ConcurrentQueue<ConfirmableMessage> messages, string publisherId);
-
-        Task StoreMessages(IEnumerable<ConfirmableMessage> messages, string publisherId);
     }
 }

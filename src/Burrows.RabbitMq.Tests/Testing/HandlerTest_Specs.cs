@@ -10,12 +10,13 @@
 // under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR 
 // CONDITIONS OF ANY KIND, either express or implied. See the License for the 
 // specific language governing permissions and limitations under the License.
-namespace Burrows.RabbitMq.Tests.Testing
-{
-    using Magnum.TestFramework;
-    using Burrows.Testing;
-    using Burrows.Testing.ScenarioBuilders;
 
+using Magnum.TestFramework;
+using Burrows.Testing;
+using Burrows.Testing.ScenarioBuilders;
+
+namespace Burrows.Tests.RabbitMq.Testing
+{
     [Scenario, NotYetImplemented("This is broken because RabbitMQ does not have subscriptions")]
 	public class Using_the_handler_test_factory
 	{
@@ -24,7 +25,7 @@ namespace Burrows.RabbitMq.Tests.Testing
 		[When]
 		public void Setup()
 		{
-			_test = TestFactory.ForHandler<A>()
+			_test = Burrows.Testing.TestFactory.ForHandler<A>()
 				.New(x =>
 					{
 						x.UseRabbitBusScenario();

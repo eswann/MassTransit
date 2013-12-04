@@ -12,17 +12,16 @@
 // specific language governing permissions and limitations under the License.
 
 using Burrows.Endpoints;
+using System;
+using System.Transactions;
+using Burrows.Context;
+using Burrows.Tests.Framework.Messages;
+using Burrows.Transports;
+using NUnit.Framework;
+using Burrows.Serialization;
 
-namespace Burrows.TestFramework.Transports
+namespace Burrows.Tests.Framework.Transports
 {
-    using System;
-    using System.Transactions;
-    using Context;
-    using Burrows.Transports;
-    using Messages;
-    using NUnit.Framework;
-    using Serialization;
-
     [TestFixture]
     public abstract class NonTransactionalTransportSendingContract<TTransportFactory>
         where TTransportFactory : ITransportFactory

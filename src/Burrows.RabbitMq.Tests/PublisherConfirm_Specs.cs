@@ -1,12 +1,12 @@
-﻿namespace Burrows.RabbitMq.Tests
-{
-    using BusConfigurators;
-    using Magnum.Extensions;
-    using Magnum.TestFramework;
-    using NUnit.Framework;
-    using TestFramework;
-    using Transports.Configuration.Configurators;
+﻿using Burrows.BusConfigurators;
+using Burrows.Tests.Framework;
+using Magnum.Extensions;
+using Magnum.TestFramework;
+using NUnit.Framework;
+using Burrows.Transports.Configuration.Configurators;
 
+namespace Burrows.Tests.RabbitMq
+{
     [TestFixture]
     public class PublisherConfirm_Specs:
         Given_two_rabbitmq_buses_walk_into_a_bar

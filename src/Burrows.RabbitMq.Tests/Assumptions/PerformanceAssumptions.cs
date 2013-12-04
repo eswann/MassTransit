@@ -1,7 +1,7 @@
-namespace Burrows.RabbitMq.Tests.Assumptions
-{
-    using NUnit.Framework;
+using NUnit.Framework;
 
+namespace Burrows.Tests.RabbitMq.Assumptions
+{
     [TestFixture, Explicit]
     public class BasicAckIsFasterOnGet :
         GivenAChannel

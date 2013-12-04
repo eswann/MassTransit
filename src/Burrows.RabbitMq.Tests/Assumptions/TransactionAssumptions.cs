@@ -1,7 +1,7 @@
-﻿namespace Burrows.RabbitMq.Tests.Assumptions
-{
-    using Magnum.TestFramework;
+﻿using Magnum.TestFramework;
 
+namespace Burrows.Tests.RabbitMq.Assumptions
+{
     [Scenario]
     public class CommittedTrxOnSend :
         GivenAChannel

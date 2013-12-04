@@ -10,14 +10,15 @@
 // under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR 
 // CONDITIONS OF ANY KIND, either express or implied. See the License for the 
 // specific language governing permissions and limitations under the License.
-namespace Burrows.TestFramework.Fixtures
-{
-    using System;
-    using Magnum.Reflection;
-    using Burrows.Transports.Loopback;
-    using NUnit.Framework;
-    using Saga;
 
+using System;
+using Magnum.Reflection;
+using Burrows.Transports.Loopback;
+using NUnit.Framework;
+using Burrows.Saga;
+
+namespace Burrows.Tests.Framework.Fixtures
+{
     [TestFixture, Ignore]
     public class SagaTestFixture<TSaga> :
         LocalTestFixture<LoopbackTransportFactory>

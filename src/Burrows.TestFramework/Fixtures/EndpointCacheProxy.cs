@@ -12,12 +12,11 @@
 // specific language governing permissions and limitations under the License.
 
 using Burrows.Endpoints;
+using System;
+using Burrows.Diagnostics.Introspection;
 
-namespace Burrows.TestFramework.Fixtures
+namespace Burrows.Tests.Framework.Fixtures
 {
-    using System;
-    using Diagnostics.Introspection;
-
     public class EndpointCacheProxy :
 		IEndpointCache
 	{

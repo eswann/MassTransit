@@ -25,30 +25,10 @@ namespace Burrows.PublisherConfirms
             return publishSettings;
         }
 
-        public static PublishSettings WithSqlBackingStore(this PublishSettings publishSettings, string connectionString)
-        {
-            publishSettings.BackingStoreMethod = BackingStoreMethod.SqlServer;
-            publishSettings.ConnectionString = connectionString;
-
-            return publishSettings;
-        }
-
         public static PublishSettings WithMaxSuccessiveFailures(this PublishSettings publishSettings,
                                                                  int maxSuccessiveFailures)
         {
             publishSettings.MaxSuccessiveFailures = maxSuccessiveFailures;
-            return publishSettings;
-        }
-
-        public static PublishSettings WithDeleteBatchSize(this PublishSettings publishSettings, int deleteBatchSize)
-        {
-            publishSettings.DeleteStoredMessagesBatchSize = deleteBatchSize;
-            return publishSettings;
-        }
-
-        public static PublishSettings WithInsertBatchSize(this PublishSettings publishSettings, int insertBatchSize)
-        {
-            publishSettings.InsertStoredMessagesBatchSize = insertBatchSize;
             return publishSettings;
         }
 

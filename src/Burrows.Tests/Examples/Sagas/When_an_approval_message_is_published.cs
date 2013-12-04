@@ -10,11 +10,13 @@
 // under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR 
 // CONDITIONS OF ANY KIND, either express or implied. See the License for the 
 // specific language governing permissions and limitations under the License.
+
+using Burrows.Tests.Framework;
+
 namespace Burrows.Tests.Examples.Sagas
 {
     using Magnum.TestFramework;
     using Messages;
-    using TestFramework;
 
     [Scenario]
 	public class When_an_approval_message_is_published :

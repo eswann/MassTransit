@@ -1,4 +1,6 @@
-﻿namespace Burrows.Tests
+﻿using Burrows.Tests.Framework;
+
+namespace Burrows.Tests
 {
     using System.Linq;
     using BusConfigurators;
@@ -6,7 +8,6 @@
     using Magnum.Extensions;
     using Magnum.TestFramework;
     using NUnit.Framework;
-    using TestFramework;
     using TextFixtures;
 
     [TestFixture]

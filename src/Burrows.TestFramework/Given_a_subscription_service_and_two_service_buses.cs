@@ -10,13 +10,14 @@
 // under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR 
 // CONDITIONS OF ANY KIND, either express or implied. See the License for the 
 // specific language governing permissions and limitations under the License.
-namespace Burrows.TestFramework
-{
-    using System;
-    using Fixtures;
-    using Magnum.TestFramework;
-    using Burrows.Transports.Loopback;
 
+using System;
+using Burrows.Tests.Framework.Fixtures;
+using Magnum.TestFramework;
+using Burrows.Transports.Loopback;
+
+namespace Burrows.Tests.Framework
+{
     [Scenario]
 	public class Given_a_subscription_service_and_two_service_buses :
 		SubscriptionServiceTestFixture<LoopbackTransportFactory>
