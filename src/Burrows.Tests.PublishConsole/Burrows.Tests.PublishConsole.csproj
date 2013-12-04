@@ -124,17 +124,6 @@
   <ItemGroup>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TestComplexObject.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Mozu.Core.Messaging.Contracts\Mozu.Core.Messaging.Contracts.csproj">
-      <Project>{E8A23FFC-6D1D-464C-90E2-57579AC7E75F}</Project>
-      <Name>Mozu.Core.Messaging.Contracts</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Mozu.Core.Messaging\Mozu.Core.Messaging.csproj">
-      <Project>{4C98832C-8EA0-45EF-8B9C-798EDC26EE2E}</Project>
-      <Name>Mozu.Core.Messaging</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
