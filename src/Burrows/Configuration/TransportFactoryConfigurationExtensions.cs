@@ -10,14 +10,15 @@
 // under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR 
 // CONDITIONS OF ANY KIND, either express or implied. See the License for the 
 // specific language governing permissions and limitations under the License.
-namespace Burrows
-{
-    using System;
-    using BusConfigurators;
-    using EndpointConfigurators;
-    using Magnum.Reflection;
-    using Transports;
 
+using System;
+using Burrows.Configuration.BusConfigurators;
+using Burrows.Configuration.EndpointConfigurators;
+using Magnum.Reflection;
+using Burrows.Transports;
+
+namespace Burrows.Configuration
+{
     public static class TransportFactoryConfigurationExtensions
 	{
 		public static T AddTransportFactory<T>(this T configurator, ITransportFactory transportFactory)

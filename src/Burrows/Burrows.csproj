@@ -142,9 +142,8 @@
     <Compile Include="PublisherConfirms\IConfirmer.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="PublisherConfirms\PublishingConfigurationExtensions.cs" />
+    <Compile Include="Configuration\PublishingConfigurationExtensions.cs" />
     <Compile Include="PublisherConfirms\IPublisher.cs" />
-    <Compile Include="PublisherConfirms\BackingStores\IUnconfirmedMessageRepositoryFactory.cs" />
     <Compile Include="PublisherConfirms\Publisher.cs" />
     <Compile Include="PublisherConfirms\PublishSettings.cs" />
     <Compile Include="PublisherConfirms\BackingStores\UnconfirmedMessageFileRepository.cs" />

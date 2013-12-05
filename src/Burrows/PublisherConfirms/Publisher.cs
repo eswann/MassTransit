@@ -30,17 +30,16 @@ namespace Burrows.PublisherConfirms
         private readonly IConfirmer _confirmer;
         private readonly IUnconfirmedMessageRepository _messageRepository;
         private readonly PublishSettings _publishSettings;
-        private readonly Lazy<IServiceBus> _serviceBus;
+        private readonly IServiceBus _serviceBus;
         private static readonly ILog _log = Logger.Get<Publisher>();
 
-        public Publisher(Lazy<IServiceBus> serviceBus, PublishSettings publishSettings, IConfirmer confirmer, 
-            IUnconfirmedMessageRepositoryFactory unconfirmedMessageRepositoryFactory)
+        public Publisher(IServiceBus serviceBus, PublishSettings publishSettings)
         {
             _publishSettings = publishSettings;
             _publishSettings.Validate();
 
-            _confirmer = confirmer;
-            _messageRepository = unconfirmedMessageRepositoryFactory.Create();
+            _confirmer = _publishSettings.Confirmer;
+            _messageRepository = UnconfirmedMessageRepositoryFactory.Create(_publishSettings);
             _serviceBus = serviceBus;
 
             _confirmer.PublicationFailed += OnPublicationFailed;
@@ -67,7 +66,7 @@ namespace Burrows.PublisherConfirms
                 try
                 {
                     _confirmer.RecordPublicationAttempt(confirmableMessage);
-                    _serviceBus.Value.Publish(message, context => context.SetHeader("ClientMessageId", confirmableMessage.Id));
+                    _serviceBus.Publish(message, context => context.SetHeader("ClientMessageId", confirmableMessage.Id));
                 }
                 catch (Exception ex)
                 {
@@ -88,7 +87,7 @@ namespace Burrows.PublisherConfirms
                 try
                 {
                     _confirmer.RecordPublicationAttempt(confirmableMessage);
-                    _serviceBus.Value.Publish(confirmableMessage.Message, confirmableMessage.Type, context => context.SetHeader("ClientMessageId", confirmableMessage.Id));
+                    _serviceBus.Publish(confirmableMessage.Message, confirmableMessage.Type, context => context.SetHeader("ClientMessageId", confirmableMessage.Id));
                 }
                 catch (Exception ex)
                 {

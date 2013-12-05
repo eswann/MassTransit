@@ -10,14 +10,15 @@
 // under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR 
 // CONDITIONS OF ANY KIND, either express or implied. See the License for the 
 // specific language governing permissions and limitations under the License.
-namespace Burrows.Advanced
-{
-    using System;
-    using System.Configuration;
-    using BusConfigurators;
-    using Configuration;
-    using EnvironmentConfigurators;
 
+using System;
+using System.Configuration;
+using Burrows.Configuration.BusConfigurators;
+using Burrows.Configuration.Configuration;
+using Burrows.Configuration.EnvironmentConfigurators;
+
+namespace Burrows.Configuration.Advanced
+{
     public static class EnvironmentExtensions
 	{
 		public static void Environments(this IServiceBusConfigurator configurator,

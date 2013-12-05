@@ -12,7 +12,8 @@
 // specific language governing permissions and limitations under the License.
 
 using System;
-using Burrows.BusConfigurators;
+using Burrows.Configuration;
+using Burrows.Configuration.BusConfigurators;
 using Burrows.Transports;
 using NUnit.Framework;
 using Burrows.Subscriptions.Coordinator;

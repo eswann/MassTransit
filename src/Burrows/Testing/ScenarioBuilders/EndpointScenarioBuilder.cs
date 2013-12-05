@@ -11,14 +11,15 @@
 // CONDITIONS OF ANY KIND, either express or implied. See the License for the 
 // specific language governing permissions and limitations under the License.
 
+using Burrows.Configuration;
+using Burrows.Configuration.Configurators;
+using Burrows.Configuration.EndpointConfigurators;
 using Burrows.Endpoints;
 
 namespace Burrows.Testing.ScenarioBuilders
 {
     using System;
-    using EndpointConfigurators;
     using Exceptions;
-    using Burrows.Configurators;
     using Scenarios;
     using Serialization;
     using Transports.Loopback;

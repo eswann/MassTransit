@@ -1,11 +1,13 @@
-﻿namespace Burrows.Tests
+﻿using Burrows.Configuration;
+using Burrows.Configuration.BusConfigurators;
+
+namespace Burrows.Tests
 {
     using System;
     using System.Collections.Generic;
     using System.Diagnostics;
     using System.Linq;
     using System.Threading;
-    using BusConfigurators;
     using Magnum.Extensions;
     using NUnit.Framework;
     using TextFixtures;

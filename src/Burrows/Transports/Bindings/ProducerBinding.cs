@@ -16,7 +16,6 @@ using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using Burrows.Endpoints;
-using Burrows.Exceptions;
 using Burrows.Logging;
 using Burrows.Transports.PublisherConfirm;
 using Burrows.Transports.Rabbit;
@@ -35,7 +34,6 @@ namespace Burrows.Transports.Bindings
 
         private readonly ConcurrentDictionary<ulong, string> _confirms;
             
-
         IModel _channel;
 
         public ProducerBinding(IEndpointAddress address, PublisherConfirmSettings publisherConfirmSettings)

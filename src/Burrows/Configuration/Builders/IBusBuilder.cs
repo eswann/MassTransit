@@ -11,13 +11,12 @@
 // CONDITIONS OF ANY KIND, either express or implied. See the License for the 
 // specific language governing permissions and limitations under the License.
 
-using Burrows.BusConfigurators;
+using System;
+using Burrows.Configuration.BusConfigurators;
+using Burrows.Configuration.BusServiceConfigurators;
 
-namespace Burrows.Builders
+namespace Burrows.Configuration.Builders
 {
-    using System;
-    using BusServiceConfigurators;
-
     /// <summary>
 	/// A BusBuilder is the base interface for building service, and includes things like
 	/// control bus, subscription bus, and other limited-functionality bus instances

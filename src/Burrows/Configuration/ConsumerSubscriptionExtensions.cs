@@ -10,16 +10,17 @@
 // under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR 
 // CONDITIONS OF ANY KIND, either express or implied. See the License for the 
 // specific language governing permissions and limitations under the License.
-namespace Burrows
-{
-    using System;
-    using Configuration;
-    using Logging;
-    using Magnum.Reflection;
-    using SubscriptionConfigurators;
-    using SubscriptionConnectors;
-    using Util;
 
+using System;
+using Burrows.Configuration.Configuration;
+using Burrows.Configuration.SubscriptionConfigurators;
+using Burrows.Configuration.SubscriptionConnectors;
+using Burrows.Logging;
+using Magnum.Reflection;
+using Burrows.Util;
+
+namespace Burrows.Configuration
+{
     public static class ConsumerSubscriptionExtensions
     {
         private static readonly ILog _log = Logger.Get(typeof (ConsumerSubscriptionExtensions));

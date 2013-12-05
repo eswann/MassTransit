@@ -11,13 +11,14 @@
 // CONDITIONS OF ANY KIND, either express or implied. See the License for the 
 // specific language governing permissions and limitations under the License.
 
+using Burrows.Configuration;
+using Burrows.Configuration.Configurators;
 using Burrows.Tests.Framework;
 
 namespace Burrows.Tests.Configuration
 {
     using System;
     using System.Linq;
-    using Configurators;
     using Exceptions;
     using Magnum.TestFramework;
     using NUnit.Framework;

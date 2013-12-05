@@ -11,18 +11,16 @@
 // CONDITIONS OF ANY KIND, either express or implied. See the License for the 
 // specific language governing permissions and limitations under the License.
 
+using Burrows.Configuration.Configurators;
+using Burrows.Configuration.EndpointConfigurators;
 using Burrows.Endpoints;
+using System;
+using Burrows.Exceptions;
+using Magnum;
+using Burrows.Util;
 
-namespace Burrows
+namespace Burrows.Configuration
 {
-    using System;
-    using Configurators;
-    using EndpointConfigurators;
-    using Exceptions;
-    using Magnum;
-    using Transports;
-    using Util;
-
     public static class EndpointCacheFactory
 	{
 		static readonly EndpointFactoryDefaultSettings _defaultSettings = new EndpointFactoryDefaultSettings();

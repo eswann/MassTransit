@@ -1,9 +1,10 @@
-﻿using Burrows.Tests.Framework;
+﻿using Burrows.Configuration;
+using Burrows.Configuration.BusConfigurators;
+using Burrows.Tests.Framework;
 
 namespace Burrows.Tests
 {
     using System.Linq;
-    using BusConfigurators;
     using Context;
     using Magnum.Extensions;
     using Magnum.TestFramework;

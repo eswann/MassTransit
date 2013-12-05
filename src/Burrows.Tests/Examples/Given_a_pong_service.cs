@@ -11,6 +11,7 @@
 // CONDITIONS OF ANY KIND, either express or implied. See the License for the 
 // specific language governing permissions and limitations under the License.
 
+using Burrows.Configuration;
 using Burrows.Tests.Framework;
 
 namespace Burrows.Tests.Examples
@@ -26,11 +27,7 @@ namespace Burrows.Tests.Examples
 		[Given]
 		public void A_pong_service()
 		{
-			PingService = new ConsumerOf<Ping>(ping =>
-				{
-					// Response with a pong to the ping
-					RemoteBus.Context().Respond(new Pong(ping.CorrelationId));
-				});
+			PingService = new ConsumerOf<Ping>(ping => RemoteBus.Context().Respond(new Pong(ping.CorrelationId)));
 			RemoteBus.SubscribeInstance(PingService);
 		}
 

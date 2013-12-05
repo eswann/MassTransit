@@ -10,15 +10,16 @@
 // under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR 
 // CONDITIONS OF ANY KIND, either express or implied. See the License for the 
 // specific language governing permissions and limitations under the License.
-namespace Burrows.Configurators
-{
-    using System;
-    using System.Collections.Generic;
-    using System.Diagnostics;
-    using System.Linq;
-    using Exceptions;
-    using Util;
 
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
+using Burrows.Exceptions;
+using Burrows.Util;
+
+namespace Burrows.Configuration.Configurators
+{
     public interface IConfigurationResult
     {
         IEnumerable<IValidationResult> Results { get; }

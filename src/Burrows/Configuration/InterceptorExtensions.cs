@@ -11,13 +11,12 @@
 // CONDITIONS OF ANY KIND, either express or implied. See the License for the 
 // specific language governing permissions and limitations under the License.
 
+using Burrows.Configuration.BusConfigurators;
 using Burrows.Pipeline;
+using Burrows.Pipeline.Configuration;
 
-namespace Burrows
+namespace Burrows.Configuration
 {
-    using BusConfigurators;
-    using Pipeline.Configuration;
-
     public static class InterceptorExtensions
     {
         /// <summary>

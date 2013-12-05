@@ -12,13 +12,12 @@
 // specific language governing permissions and limitations under the License.
 
 using Burrows.Endpoints;
+using Burrows.Serialization;
+using Burrows.Transports;
+using Burrows.Util;
 
-namespace Burrows.EndpointConfigurators
+namespace Burrows.Configuration.EndpointConfigurators
 {
-    using Serialization;
-    using Transports;
-    using Util;
-
     public interface IEndpointFactoryDefaultSettings
     {
         MessageTrackerFactory TrackerFactory { get; }

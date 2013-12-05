@@ -12,12 +12,11 @@
 // specific language governing permissions and limitations under the License.
 
 using Burrows.Endpoints;
+using System;
+using Magnum.Extensions;
 
-namespace Burrows.BusConfigurators
+namespace Burrows.Configuration.BusConfigurators
 {
-    using System;
-    using Magnum.Extensions;
-
     public class ServiceBusDefaultSettings
 	{
 		public ServiceBusDefaultSettings()

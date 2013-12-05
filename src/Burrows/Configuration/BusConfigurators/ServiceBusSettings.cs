@@ -12,11 +12,10 @@
 // specific language governing permissions and limitations under the License.
 
 using Burrows.Endpoints;
+using System;
 
-namespace Burrows.BusConfigurators
+namespace Burrows.Configuration.BusConfigurators
 {
-    using System;
-
     public class ServiceBusSettings 
 	{
 		public ServiceBusSettings(ServiceBusDefaultSettings defaultSettings)

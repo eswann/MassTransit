@@ -11,12 +11,12 @@
 // CONDITIONS OF ANY KIND, either express or implied. See the License for the 
 // specific language governing permissions and limitations under the License.
 
-namespace Burrows.BusConfigurators
-{
-    using Builders;
-    using Configurators;
-    using Util;
+using Burrows.Configuration.Builders;
+using Burrows.Configuration.Configurators;
+using Burrows.Util;
 
+namespace Burrows.Configuration.BusConfigurators
+{
     /// <summary>
 	/// A thing that configures the thing that builds the bus.
 	/// </summary>

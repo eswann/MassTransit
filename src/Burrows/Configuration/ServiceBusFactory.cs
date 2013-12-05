@@ -10,16 +10,17 @@
 // under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR 
 // CONDITIONS OF ANY KIND, either express or implied. See the License for the 
 // specific language governing permissions and limitations under the License.
-namespace Burrows
-{
-    using System;
-    using BusConfigurators;
-    using Configurators;
-    using Diagnostics;
-    using Exceptions;
-    using Magnum;
-    using Util;
 
+using System;
+using Burrows.Configuration.BusConfigurators;
+using Burrows.Configuration.Configurators;
+using Burrows.Diagnostics;
+using Burrows.Exceptions;
+using Magnum;
+using Burrows.Util;
+
+namespace Burrows.Configuration
+{
     /// <summary>
 	/// The starting point to configure and create a service bus instance
 	/// </summary>

@@ -10,15 +10,16 @@
 // under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR 
 // CONDITIONS OF ANY KIND, either express or implied. See the License for the 
 // specific language governing permissions and limitations under the License.
-namespace Burrows
-{
-    using System;
-    using BusConfigurators;
-    using EndpointConfigurators;
-    using Magnum.Reflection;
-    using Newtonsoft.Json;
-    using Serialization;
 
+using System;
+using Burrows.Configuration.BusConfigurators;
+using Burrows.Configuration.EndpointConfigurators;
+using Magnum.Reflection;
+using Newtonsoft.Json;
+using Burrows.Serialization;
+
+namespace Burrows.Configuration
+{
     public static class SerializerConfigurationExtensions
     {
         public static T UseJsonSerializer<T>(this T configurator)

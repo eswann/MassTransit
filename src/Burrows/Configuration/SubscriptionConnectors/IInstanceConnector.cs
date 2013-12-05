@@ -10,18 +10,19 @@
 // under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR 
 // CONDITIONS OF ANY KIND, either express or implied. See the License for the 
 // specific language governing permissions and limitations under the License.
-namespace Burrows.SubscriptionConnectors
-{
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using Exceptions;
-    using Magnum.Extensions;
-    using Magnum.Reflection;
-    using Pipeline;
-    using Saga;
-    using Util;
 
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using Burrows.Exceptions;
+using Magnum.Extensions;
+using Magnum.Reflection;
+using Burrows.Pipeline;
+using Burrows.Saga;
+using Burrows.Util;
+
+namespace Burrows.Configuration.SubscriptionConnectors
+{
     public interface IInstanceConnector
     {
         UnsubscribeAction Connect(IInboundPipelineConfigurator configurator, object instance);

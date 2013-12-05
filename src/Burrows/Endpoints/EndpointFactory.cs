@@ -13,9 +13,9 @@
 
 using System;
 using System.Collections.Generic;
-using Burrows.Builders;
+using Burrows.Configuration.Builders;
+using Burrows.Configuration.EndpointConfigurators;
 using Burrows.Diagnostics.Introspection;
-using Burrows.EndpointConfigurators;
 using Burrows.Exceptions;
 using Burrows.Transports;
 using Magnum.Caching;

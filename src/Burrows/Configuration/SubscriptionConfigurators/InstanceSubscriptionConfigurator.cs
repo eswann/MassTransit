@@ -10,13 +10,14 @@
 // under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR 
 // CONDITIONS OF ANY KIND, either express or implied. See the License for the 
 // specific language governing permissions and limitations under the License.
-namespace Burrows.SubscriptionConfigurators
-{
-    using System.Collections.Generic;
-    using Configurators;
-    using Magnum.Extensions;
-    using SubscriptionBuilders;
 
+using System.Collections.Generic;
+using Burrows.Configuration.Configurators;
+using Burrows.Configuration.SubscriptionBuilders;
+using Magnum.Extensions;
+
+namespace Burrows.Configuration.SubscriptionConfigurators
+{
     public interface IInstanceSubscriptionConfigurator :
     ISubscriptionConfigurator<IInstanceSubscriptionConfigurator>
     {

@@ -10,15 +10,16 @@
 // under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR 
 // CONDITIONS OF ANY KIND, either express or implied. See the License for the 
 // specific language governing permissions and limitations under the License.
-namespace Burrows
-{
-    using System;
-    using EndpointConfigurators;
-    using Magnum.Reflection;
-    using Serialization;
-    using Transports;
-    using Util;
 
+using System;
+using Burrows.Configuration.EndpointConfigurators;
+using Magnum.Reflection;
+using Burrows.Serialization;
+using Burrows.Transports;
+using Burrows.Util;
+
+namespace Burrows.Configuration
+{
     public static class EndpointConfiguratorExtensions
 	{
 		/// <summary>

@@ -10,12 +10,13 @@
 // under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR 
 // CONDITIONS OF ANY KIND, either express or implied. See the License for the 
 // specific language governing permissions and limitations under the License.
-namespace Burrows.SubscriptionBuilders
-{
-    using Pipeline;
-    using SubscriptionConnectors;
-    using Subscriptions;
 
+using Burrows.Configuration.SubscriptionConnectors;
+using Burrows.Pipeline;
+using Burrows.Subscriptions;
+
+namespace Burrows.Configuration.SubscriptionBuilders
+{
     public class HandlerSubscriptionBuilder<TMessage> :
         ISubscriptionBuilder
         where TMessage : class

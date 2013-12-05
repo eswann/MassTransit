@@ -11,19 +11,18 @@
 // CONDITIONS OF ANY KIND, either express or implied. See the License for the 
 // specific language governing permissions and limitations under the License.
 
+using Burrows.Configuration.Builders;
+using Burrows.Configuration.Configurators;
 using Burrows.Endpoints;
+using System;
+using System.Collections.Generic;
+using Magnum.Extensions;
+using Burrows.Serialization;
+using Burrows.Transports;
+using Burrows.Util;
 
-namespace Burrows.EndpointConfigurators
+namespace Burrows.Configuration.EndpointConfigurators
 {
-    using System;
-    using System.Collections.Generic;
-    using Builders;
-    using Configurators;
-    using Magnum.Extensions;
-    using Serialization;
-    using Transports;
-    using Util;
-
     /// <summary>
     /// Configure the endpoint
     /// </summary>

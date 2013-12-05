@@ -10,16 +10,17 @@
 // under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR 
 // CONDITIONS OF ANY KIND, either express or implied. See the License for the 
 // specific language governing permissions and limitations under the License.
-namespace Burrows.EndpointConfigurators
-{
-    using System;
-    using System.Collections.Generic;
-    using Builders;
-    using Configurators;
-    using Exceptions;
-    using Transports;
-    using Util;
 
+using System;
+using System.Collections.Generic;
+using Burrows.Configuration.Builders;
+using Burrows.Configuration.Configurators;
+using Burrows.Exceptions;
+using Burrows.Transports;
+using Burrows.Util;
+
+namespace Burrows.Configuration.EndpointConfigurators
+{
     public class TransportFactoryConfigurator<TTransport> :
 		IEndpointFactoryBuilderConfigurator
 		where TTransport : class, ITransportFactory

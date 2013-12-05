@@ -11,22 +11,21 @@
 // CONDITIONS OF ANY KIND, either express or implied. See the License for the 
 // specific language governing permissions and limitations under the License.
 
+using Burrows.Configuration.Builders;
+using Burrows.Configuration.Configurators;
+using Burrows.Configuration.EndpointConfigurators;
+using Burrows.Configuration.SubscriptionConfigurators;
 using Burrows.Endpoints;
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
+using Burrows.Logging;
+using Magnum.Extensions;
+using Burrows.Util;
 
-namespace Burrows.BusConfigurators
+namespace Burrows.Configuration.BusConfigurators
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Diagnostics;
-    using System.Linq;
-    using Builders;
-    using Configurators;
-    using EndpointConfigurators;
-    using Logging;
-    using Magnum.Extensions;
-    using SubscriptionConfigurators;
-    using Util;
-
     /// <summary>
     /// <para>The configurator to call methods on, as well as extension methods on,
     /// in order to configure your service bus. The configuration

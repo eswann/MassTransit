@@ -11,17 +11,15 @@
 // CONDITIONS OF ANY KIND, either express or implied. See the License for the 
 // specific language governing permissions and limitations under the License.
 
+using Burrows.Configuration.Builders;
+using Burrows.Configuration.Configurators;
 using Burrows.Endpoints;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
-namespace Burrows.EndpointConfigurators
+namespace Burrows.Configuration.EndpointConfigurators
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using Builders;
-    using Configurators;
-    using Transports;
-
     /// <summary>
 	/// Allows for the configuration of the EndpointFactory through the use of an EndpointFactoryConfigurator
 	/// </summary>

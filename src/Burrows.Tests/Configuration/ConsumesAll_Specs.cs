@@ -10,13 +10,16 @@
 // under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR 
 // CONDITIONS OF ANY KIND, either express or implied. See the License for the 
 // specific language governing permissions and limitations under the License.
+
+using Burrows.Configuration.Configuration;
+using Burrows.Configuration.SubscriptionConnectors;
+
 namespace Burrows.Tests.Configuration
 {
     using System;
     using System.Linq;
     using Magnum.TestFramework;
     using Burrows.Configuration;
-    using SubscriptionConnectors;
 
     [Scenario]
 	public class When_a_consumer_with_consumes_all_interfaces_is_inspected

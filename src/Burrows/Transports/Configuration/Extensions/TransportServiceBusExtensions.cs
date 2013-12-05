@@ -11,15 +11,16 @@
 // CONDITIONS OF ANY KIND, either express or implied. See the License for the 
 // specific language governing permissions and limitations under the License.
 
+using Burrows.Configuration;
+using Burrows.Configuration.BusConfigurators;
+using Burrows.Configuration.EndpointConfigurators;
 using Burrows.Endpoints;
 using Burrows.Pipeline;
 
 namespace Burrows.Transports.Configuration.Extensions
 {
     using System;
-    using BusConfigurators;
     using Configurators;
-    using EndpointConfigurators;
     using Magnum.Extensions;
     using Pipeline.Configuration;
 

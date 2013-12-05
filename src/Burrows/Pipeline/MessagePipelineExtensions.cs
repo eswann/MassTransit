@@ -11,6 +11,8 @@
 // CONDITIONS OF ANY KIND, either express or implied. See the License for the 
 // specific language governing permissions and limitations under the License.
 
+using Burrows.Configuration.Configuration;
+using Burrows.Configuration.SubscriptionConnectors;
 using Burrows.Endpoints;
 
 namespace Burrows.Pipeline
@@ -21,7 +23,6 @@ namespace Burrows.Pipeline
     using Context;
     using Burrows.Configuration;
     using Sinks;
-    using SubscriptionConnectors;
 
     /// <summary>
 	/// Extensions for the message pipeline.

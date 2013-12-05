@@ -12,14 +12,13 @@
 // specific language governing permissions and limitations under the License.
 
 using Burrows.Endpoints;
+using System;
+using Burrows.Serialization;
+using Burrows.Transports;
+using Burrows.Util;
 
-namespace Burrows.EndpointConfigurators
+namespace Burrows.Configuration.EndpointConfigurators
 {
-    using System;
-    using Serialization;
-    using Transports;
-    using Util;
-
     public class EndpointFactoryDefaultSettings : IEndpointFactoryDefaultSettings
     {
         public EndpointFactoryDefaultSettings()

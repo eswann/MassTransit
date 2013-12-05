@@ -10,16 +10,17 @@
 // under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR 
 // CONDITIONS OF ANY KIND, either express or implied. See the License for the 
 // specific language governing permissions and limitations under the License.
-namespace Burrows.SubscriptionConfigurators
-{
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Reflection;
-    using Configurators;
-    using Magnum.Extensions;
-    using SubscriptionConnectors;
 
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
+using Burrows.Configuration.Configurators;
+using Burrows.Configuration.SubscriptionConnectors;
+using Magnum.Extensions;
+
+namespace Burrows.Configuration.SubscriptionConfigurators
+{
     public static class ConsumerFactoryConfiguratorExtensions
     {
         public static IEnumerable<IValidationResult> ValidateConsumer<TConsumer>(this IConfigurator configurator)

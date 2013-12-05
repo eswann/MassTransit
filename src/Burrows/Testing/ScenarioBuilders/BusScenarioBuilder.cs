@@ -11,16 +11,17 @@
 // CONDITIONS OF ANY KIND, either express or implied. See the License for the 
 // specific language governing permissions and limitations under the License.
 
+using Burrows.Configuration;
+using Burrows.Configuration.BusConfigurators;
+using Burrows.Configuration.SubscriptionConfigurators;
 using Burrows.Endpoints;
 
 namespace Burrows.Testing.ScenarioBuilders
 {
     using System;
-    using BusConfigurators;
     using Diagnostics;
     using Magnum.Extensions;
     using Scenarios;
-    using SubscriptionConfigurators;
     using Transports;
 
     public interface IBusScenarioBuilder : IEndpointScenarioBuilder<IBusTestScenario>

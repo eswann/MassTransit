@@ -1,21 +1,14 @@
 ﻿
 namespace Burrows.PublisherConfirms.BackingStores
 {
-    public class UnconfirmedMessageRepositoryFactory : IUnconfirmedMessageRepositoryFactory
+    public static class UnconfirmedMessageRepositoryFactory
     {
-        private readonly PublishSettings _publishSettings;
-
-        public UnconfirmedMessageRepositoryFactory(PublishSettings publishSettings)
+        public static IUnconfirmedMessageRepository Create(PublishSettings publishSettings)
         {
-            _publishSettings = publishSettings;
-        }
-
-        public IUnconfirmedMessageRepository Create()
-        {
-            switch (_publishSettings.BackingStoreMethod)
+            switch (publishSettings.BackingStoreMethod)
             {
                 case BackingStoreMethod.FileSystem:
-                    return new UnconfirmedMessageFileRepository(_publishSettings);
+                    return new UnconfirmedMessageFileRepository(publishSettings.FileRepositoryPath);
                 default:
                     return new UnconfirmedMessageMemoryRepository();
             }

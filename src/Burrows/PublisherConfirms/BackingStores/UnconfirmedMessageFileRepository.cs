@@ -22,11 +22,9 @@ namespace Burrows.PublisherConfirms.BackingStores
 
         private readonly ConcurrentDictionary<string, long> _latestFileSequences = new ConcurrentDictionary<string, long>();
         
-        public UnconfirmedMessageFileRepository(PublishSettings publishSettings)
+        public UnconfirmedMessageFileRepository(string rootFilePath)
         {
-            _rootFilePath = publishSettings.FileRepositoryPath;
-
-            _rootFilePath = Path.Combine(HttpRuntime.AppDomainId == null ? Directory.GetCurrentDirectory() : HttpRuntime.AppDomainAppPath, _rootFilePath);
+            _rootFilePath = Path.Combine(HttpRuntime.AppDomainId == null ? Directory.GetCurrentDirectory() : HttpRuntime.AppDomainAppPath, rootFilePath);
 
             if (!_rootFilePath.EndsWith(Path.DirectorySeparatorChar.ToString(CultureInfo.InvariantCulture)))
                 _rootFilePath += Path.DirectorySeparatorChar;

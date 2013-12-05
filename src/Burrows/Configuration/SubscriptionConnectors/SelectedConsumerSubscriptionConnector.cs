@@ -10,14 +10,15 @@
 // under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR 
 // CONDITIONS OF ANY KIND, either express or implied. See the License for the 
 // specific language governing permissions and limitations under the License.
-namespace Burrows.SubscriptionConnectors
-{
-    using System;
-    using Magnum.Extensions;
-    using Pipeline;
-    using Pipeline.Configuration;
-    using Pipeline.Sinks;
 
+using System;
+using Magnum.Extensions;
+using Burrows.Pipeline;
+using Burrows.Pipeline.Configuration;
+using Burrows.Pipeline.Sinks;
+
+namespace Burrows.Configuration.SubscriptionConnectors
+{
     public class SelectedConsumerSubscriptionConnector<TConsumer, TMessage> :
         IConsumerSubscriptionConnector
         where TConsumer : class, Consumes<TMessage>.Selected

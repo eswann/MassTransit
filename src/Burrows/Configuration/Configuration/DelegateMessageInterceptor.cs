@@ -12,12 +12,11 @@
 // specific language governing permissions and limitations under the License.
 
 using Burrows.Pipeline;
+using System;
+using Burrows.Context;
 
-namespace Burrows.Configuration
+namespace Burrows.Configuration.Configuration
 {
-    using System;
-    using Context;
-
     public class DelegateMessageInterceptor :
         IInboundMessageInterceptor
     {

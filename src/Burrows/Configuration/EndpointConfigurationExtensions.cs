@@ -11,14 +11,13 @@
 // CONDITIONS OF ANY KIND, either express or implied. See the License for the 
 // specific language governing permissions and limitations under the License.
 
+using Burrows.Configuration.EndpointConfigurators;
 using Burrows.Endpoints;
+using System;
+using Burrows.Util;
 
-namespace Burrows
+namespace Burrows.Configuration
 {
-    using System;
-    using EndpointConfigurators;
-    using Util;
-
     public static class EndpointConfigurationExtensions
 	{
 		/// <summary>

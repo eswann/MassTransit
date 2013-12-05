@@ -10,15 +10,16 @@
 // under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR 
 // CONDITIONS OF ANY KIND, either express or implied. See the License for the 
 // specific language governing permissions and limitations under the License.
-namespace Burrows.EnvironmentConfigurators
-{
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using Configuration;
-    using Configurators;
-    using Magnum.Extensions;
 
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using Burrows.Configuration.Configuration;
+using Burrows.Configuration.Configurators;
+using Magnum.Extensions;
+
+namespace Burrows.Configuration.EnvironmentConfigurators
+{
     public interface IEnvironmentsConfigurator :
         IConfigurator
     {

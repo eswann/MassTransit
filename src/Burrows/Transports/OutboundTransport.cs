@@ -26,8 +26,7 @@ namespace Burrows.Transports
     using RabbitMQ.Client;
     using RabbitMQ.Client.Exceptions;
 
-    public class OutboundTransport :
-        IOutboundTransport
+    public class OutboundTransport : IOutboundTransport
     {
         private readonly IRabbitEndpointAddress _address;
         private readonly PublisherConfirmSettings _publisherConfirmSettings;

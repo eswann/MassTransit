@@ -11,13 +11,14 @@
 // CONDITIONS OF ANY KIND, either express or implied. See the License for the 
 // specific language governing permissions and limitations under the License.
 
+using Burrows.Configuration;
 using Burrows.Endpoints;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Burrows.BusConfigurators;
-using Burrows.Configurators;
-using Burrows.EndpointConfigurators;
+using Burrows.Configuration.BusConfigurators;
+using Burrows.Configuration.Configurators;
+using Burrows.Configuration.EndpointConfigurators;
 using Burrows.Exceptions;
 using Magnum.Extensions;
 using Burrows.Transports;

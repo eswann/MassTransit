@@ -1,4 +1,5 @@
-﻿using Burrows.Tests.Framework;
+﻿using Burrows.Configuration;
+using Burrows.Tests.Framework;
 
 namespace Burrows.Tests.Configuration
 {

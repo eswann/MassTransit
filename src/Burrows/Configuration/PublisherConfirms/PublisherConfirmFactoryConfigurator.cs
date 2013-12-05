@@ -12,13 +12,13 @@
 // specific language governing permissions and limitations under the License.
 
 using System;
-using Burrows.Configurators;
+using Burrows.Configuration.Configurators;
 using Burrows.Transports.Configuration.Builders;
 using Burrows.Transports.Configuration.Configurators;
 using Burrows.Transports.PublisherConfirm;
 using System.Collections.Generic;
 
-namespace Burrows.PublisherConfirms
+namespace Burrows.Configuration.PublisherConfirms
 {
     /// <summary>
     /// Configures SSL/TLS for RabbitMQ. See http://www.rabbitmq.com/ssl.html

@@ -11,6 +11,8 @@
 // CONDITIONS OF ANY KIND, either express or implied. See the License for the 
 // specific language governing permissions and limitations under the License.
 
+using Burrows.Configuration;
+using Burrows.Configuration.BusConfigurators;
 using Burrows.Tests.Framework;
 
 namespace Burrows.Tests
@@ -18,7 +20,6 @@ namespace Burrows.Tests
     using System;
     using System.Linq;
     using System.Threading.Tasks;
-    using BusConfigurators;
     using Context;
     using Exceptions;
     using Magnum.Extensions;

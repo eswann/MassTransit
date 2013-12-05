@@ -1,17 +1,17 @@
-﻿using Burrows.BusConfigurators;
+﻿using Burrows.Configuration.BusConfigurators;
+using Burrows.PublisherConfirms;
 using Burrows.PublisherConfirms.BackingStores;
 using Burrows.Transports.Configuration.Extensions;
 
-namespace Burrows.PublisherConfirms
+namespace Burrows.Configuration
 {
     public static class PublishingConfigurationExtensions
     {
 
-        public static PublishSettings UseRabbitWithPublisherConfirms(this ServiceBusConfigurator sbc, PublishSettings publishSettings)
+        public static PublishSettings UsePublisherConfirms(this IServiceBusConfigurator sbc)
         {
-            publishSettings.UsePublisherConfirms = true;
-
             var confirmer = new Confirmer();
+            var publishSettings = new PublishSettings {UsePublisherConfirms = true, Confirmer = confirmer};
 
             sbc.UseRabbitMq(conf => conf.UsePublisherConfirms(confirmer.RecordPublicationSuccess, confirmer.RecordPublicationFailure));
             return publishSettings;

@@ -10,13 +10,14 @@
 // under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR 
 // CONDITIONS OF ANY KIND, either express or implied. See the License for the 
 // specific language governing permissions and limitations under the License.
-namespace Burrows
-{
-    using Magnum;
-    using SubscriptionConfigurators;
-    using SubscriptionConnectors;
-    using Util;
 
+using Burrows.Configuration.SubscriptionConfigurators;
+using Burrows.Configuration.SubscriptionConnectors;
+using Magnum;
+using Burrows.Util;
+
+namespace Burrows.Configuration
+{
     /// <summary>
 	/// Extensions for subscribing object instances.
 	/// </summary>

@@ -10,9 +10,12 @@
 // under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR 
 // CONDITIONS OF ANY KIND, either express or implied. See the License for the 
 // specific language governing permissions and limitations under the License.
+
+using Burrows.Configuration;
+using Burrows.Configuration.BusConfigurators;
+
 namespace Burrows.Tests.TextFixtures
 {
-    using BusConfigurators;
     using Burrows.Saga;
     using Burrows.Services.Subscriptions.Configuration;
     using Burrows.Services.Subscriptions.Server;

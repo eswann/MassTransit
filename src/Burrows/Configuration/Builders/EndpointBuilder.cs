@@ -12,14 +12,13 @@
 // specific language governing permissions and limitations under the License.
 
 using Burrows.Endpoints;
+using System;
+using Burrows.Exceptions;
+using Burrows.Transports;
+using Burrows.Util;
 
-namespace Burrows.Builders
+namespace Burrows.Configuration.Builders
 {
-    using System;
-    using Exceptions;
-    using Transports;
-    using Util;
-
     public interface IEndpointBuilder
     {
         IEndpoint CreateEndpoint(ITransportFactory transportFactory);

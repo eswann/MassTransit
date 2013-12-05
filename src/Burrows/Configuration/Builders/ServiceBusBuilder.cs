@@ -11,23 +11,22 @@
 // CONDITIONS OF ANY KIND, either express or implied. See the License for the 
 // specific language governing permissions and limitations under the License.
 
-using Burrows.BusConfigurators;
+using Burrows.Configuration.BusConfigurators;
+using Burrows.Configuration.BusServiceConfigurators;
+using Burrows.Configuration.Configuration;
 using Burrows.Endpoints;
+using System;
+using System.Collections.Generic;
+using System.Threading;
+using Burrows.Exceptions;
+using Burrows.Logging;
+using Magnum;
+using Magnum.Extensions;
+using Burrows.Pipeline.Configuration;
+using Burrows.Util;
 
-namespace Burrows.Builders
+namespace Burrows.Configuration.Builders
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Threading;
-    using BusServiceConfigurators;
-    using Configuration;
-    using Exceptions;
-    using Logging;
-    using Magnum;
-    using Magnum.Extensions;
-    using Pipeline.Configuration;
-    using Util;
-
     /// <summary>
     /// A ServiceBusBuilder includes everything for configuring a complete service bus instance,
     /// and is an extension of the BusBuilder (which can only build a limited, dependent bus)

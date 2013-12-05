@@ -1,7 +1,9 @@
-﻿namespace Burrows.Tests.Subscriptions
+﻿using Burrows.Configuration;
+using Burrows.Configuration.BusConfigurators;
+
+namespace Burrows.Tests.Subscriptions
 {
     using System.Linq;
-    using BusConfigurators;
     using Magnum.Extensions;
     using Magnum.TestFramework;
     using Burrows.Subscriptions;

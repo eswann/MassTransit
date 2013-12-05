@@ -10,10 +10,11 @@
 // under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR 
 // CONDITIONS OF ANY KIND, either express or implied. See the License for the 
 // specific language governing permissions and limitations under the License.
-namespace Burrows.Configurators
-{
-    using System.Collections.Generic;
 
+using System.Collections.Generic;
+
+namespace Burrows.Configuration.Configurators
+{
     /// <summary>
 	/// Base interface for all Burrows configurators. This interface only
 	/// contains a method for validating the validity of the configuration.
