@@ -38,7 +38,7 @@ namespace BusDriver
 		static readonly ILog _log = Logger.Get(typeof (Program));
 	    static ConsoleAppender _appender;
 		static IServiceBus _bus;
-		static readonly Uri _driverUri = new Uri("msmq://localhost/masstransit_busdriver");
+        static readonly Uri _driverUri = new Uri("rabbitmq://localhost/masstransit_busdriver");
 		static IList<IPendingCommand> _pending;
 	    static readonly Cache<string, IServiceBus> _buses; 
 

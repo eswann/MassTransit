@@ -577,7 +577,7 @@
     <Compile Include="Transports\Configuration\Configurators\ConnectionFactoryBuilderConfigurator.cs" />
     <Compile Include="Transports\Configuration\Configurators\ConnectionFactoryConfigurator.cs" />
     <Compile Include="Transports\Configuration\Configurators\PasswordConnectionFactoryConfigurator.cs" />
-    <Compile Include="Configuration\PublisherConfirms\PublisherConfirmFactoryConfigurator.cs" />
+    <Compile Include="Configuration\EndpointConfigurators\PublisherConfirmFactoryConfigurator.cs" />
     <Compile Include="Transports\Configuration\Configurators\ITransportFactoryBuilderConfigurator.cs" />
     <Compile Include="Transports\Configuration\Configurators\TransportFactoryConfigurator.cs" />
     <Compile Include="Transports\Configuration\Configurators\RequestedHeartbeatConnectionFactoryConfigurator.cs" />
@@ -608,7 +608,7 @@
     <Compile Include="Transports\MessageName.cs" />
     <Compile Include="Transports\MessageTrackerFactory.cs" />
     <Compile Include="Transports\OutboundTransport.cs" />
-    <Compile Include="Pipeline\RabbitPublishEndpointInterceptor.cs" />
+    <Compile Include="Pipeline\PublishEndpointInterceptor.cs" />
     <Compile Include="Pipeline\Sinks\PublishEndpointSinkLocator.cs" />
     <Compile Include="Transports\PublisherConfirm\PublisherConfirmSettings.cs" />
     <Compile Include="Exceptions\AddressException.cs" />

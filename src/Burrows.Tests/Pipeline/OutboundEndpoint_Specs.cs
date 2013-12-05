@@ -39,7 +39,7 @@ namespace Burrows.Tests.Pipeline
 		public void The_endpoint_consumer_should_be_returned()
 		{
 			var endpoint = MockRepository.GenerateMock<IEndpoint>();
-			endpoint.Stub(x => x.Address.Uri).Return(new Uri("msmq://localhost/queue_name"));
+			endpoint.Stub(x => x.Address.Uri).Return(new Uri("rabbitmq://localhost/queue_name"));
 
 			_pipeline.ConnectEndpoint<PingMessage>(endpoint);
 

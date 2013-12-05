@@ -105,6 +105,22 @@
     <CodeAnalysisIgnoreBuiltInRules>false</CodeAnalysisIgnoreBuiltInRules>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Autofac, Version=3.0.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Autofac.3.1.5\lib\net40\Autofac.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net, Version=1.2.13.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\log4net.2.0.3\lib\net40-full\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="Magnum, Version=2.1.1.0, Culture=neutral, PublicKeyToken=b800c4cfcdeea87b, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Magnum.2.1.1\lib\NET40\Magnum.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.5.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
@@ -113,23 +129,44 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
+    <Reference Include="Topshelf, Version=3.1.118.0, Culture=neutral, PublicKeyToken=b800c4cfcdeea87b, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Topshelf.3.1.2\lib\net40-full\Topshelf.dll</HintPath>
+    </Reference>
+    <Reference Include="Topshelf.Log4Net, Version=3.1.118.0, Culture=neutral, PublicKeyToken=b800c4cfcdeea87b, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Topshelf.Log4Net.3.1.2\lib\net40-full\Topshelf.Log4Net.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AutofacModule.cs" />
+    <Compile Include="Bootstrapper.cs" />
+    <Compile Include="Consumers\SubscribeConsoleConsumer.cs" />
+    <Compile Include="Main.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Mozu.Core.Messaging.Contracts\Mozu.Core.Messaging.Contracts.csproj">
-      <Project>{E8A23FFC-6D1D-464C-90E2-57579AC7E75F}</Project>
-      <Name>Mozu.Core.Messaging.Contracts</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Mozu.Core.Messaging\Mozu.Core.Messaging.csproj">
-      <Project>{4C98832C-8EA0-45EF-8B9C-798EDC26EE2E}</Project>
-      <Name>Mozu.Core.Messaging</Name>
-    </ProjectReference>
+    <None Include="App.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <ProjectReference Include="..\Burrows.Tests.Messages\Burrows.Tests.Messages.csproj">
+      <Project>{9b002752-c3cc-4e96-b03c-0d10d7533842}</Project>
+      <Name>Burrows.Tests.Messages</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Burrows\Burrows.csproj">
+      <Project>{6efd69fc-cbcc-4f85-aee0-efba73f4d273}</Project>
+      <Name>Burrows</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Containers\Burrows.AutofacIntegration\Burrows.AutofacIntegration.csproj">
+      <Project>{a31f2c6b-c806-46fd-a4f3-c54209dd495c}</Project>
+      <Name>Burrows.AutofacIntegration</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Loggers\Burrows.Log4NetIntegration\Burrows.Log4NetIntegration.csproj">
+      <Project>{8d2be372-a756-4676-b2ea-ed7846809bfe}</Project>
+      <Name>Burrows.Log4NetIntegration</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\nuget.targets" />

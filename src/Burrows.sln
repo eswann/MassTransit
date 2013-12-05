@@ -19,13 +19,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Burrows.Log4NetIntegration"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Burrows.NLogIntegration", "Loggers\Burrows.NLogIntegration\Burrows.NLogIntegration.csproj", "{F802655A-D5EC-4031-B21F-A3EECCBE02A5}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{2C8A15FA-A445-4916-AAC2-3BE53AA247A7}"
-	ProjectSection(SolutionItems) = preProject
-		.nuget\NuGet.Config = .nuget\NuGet.Config
-		.nuget\NuGet.exe = .nuget\NuGet.exe
-		.nuget\NuGet.targets = .nuget\NuGet.targets
-	EndProjectSection
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{4D626E2C-218B-47F6-BAA4-DBD792413BF4}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Burrows.Tests.PublishConsole", "Burrows.Tests.PublishConsole\Burrows.Tests.PublishConsole.csproj", "{CABB4486-07CC-4C1C-9ECB-592EB5DD39B3}"

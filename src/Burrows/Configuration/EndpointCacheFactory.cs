@@ -40,7 +40,7 @@ namespace Burrows.Configuration
 			{
 				IEndpointFactory endpointFactory = configurator.CreateEndpointFactory();
 
-				EndpointCache endpointCache = new EndpointCache(endpointFactory);
+				var endpointCache = new EndpointCache(endpointFactory);
 
 				return endpointCache;
 			}

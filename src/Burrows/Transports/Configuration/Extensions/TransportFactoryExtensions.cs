@@ -12,7 +12,7 @@
 // specific language governing permissions and limitations under the License.
 
 using System.Collections.Generic;
-using Burrows.Configuration.PublisherConfirms;
+using Burrows.Configuration.EndpointConfigurators;
 using Burrows.Endpoints;
 using Burrows.PublisherConfirms;
 

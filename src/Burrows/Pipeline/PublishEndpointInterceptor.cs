@@ -30,7 +30,7 @@ namespace Burrows.Pipeline
     /// that we'll never get 404 exchange not found for published messages. If someone is
     /// listening to them; that's another question (there might be no queue bound to it).
     /// </summary>
-    public class RabbitPublishEndpointInterceptor : IOutboundMessageInterceptor
+    public class PublishEndpointInterceptor : IOutboundMessageInterceptor
     {
         private readonly IDictionary<Type, UnsubscribeAction> _added;
         private readonly IRabbitEndpointAddress _address;
@@ -38,7 +38,7 @@ namespace Burrows.Pipeline
         private readonly InboundTransport _inboundTransport;
         private readonly IMessageNameFormatter _messageNameFormatter;
 
-        public RabbitPublishEndpointInterceptor(IServiceBus bus)
+        public PublishEndpointInterceptor(IServiceBus bus)
         {
             _bus = bus;
 

@@ -44,7 +44,7 @@ namespace Burrows.Tests.Pipeline
 
 		private IServiceBus _bus;
 
-		private readonly Uri _uri = new Uri("msmq://localhost/mt_client");
+		private readonly Uri _uri = new Uri("rabbitmq://localhost/mt_client");
 		private IEndpoint _endpoint;
 		private IInboundMessagePipeline _pipeline;
 		private ISubscriptionEvent _subscriptionEvent;
@@ -147,7 +147,7 @@ namespace Burrows.Tests.Pipeline
 
 		private IServiceBus _bus;
 
-		private readonly Uri _uri = new Uri("msmq://localhost/mt_client");
+		private readonly Uri _uri = new Uri("rabbitmq://localhost/mt_client");
 		private IEndpoint _endpoint;
 		private IInboundMessagePipeline _pipeline;
 		private ISubscriptionEvent _subscriptionEvent;

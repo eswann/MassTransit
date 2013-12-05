@@ -18,7 +18,7 @@ using Burrows.Transports.Configuration.Configurators;
 using Burrows.Transports.PublisherConfirm;
 using System.Collections.Generic;
 
-namespace Burrows.Configuration.PublisherConfirms
+namespace Burrows.Configuration.EndpointConfigurators
 {
     /// <summary>
     /// Configures SSL/TLS for RabbitMQ. See http://www.rabbitmq.com/ssl.html

@@ -19,20 +19,6 @@ namespace Burrows.Configuration
 {
     public static class BusServiceConfigurationExtensions
 	{
-        [Obsolete("Use AddService<TService>(..) instead.")]
-		public static void ConfigureService<TServiceConfigurator>(this IServiceBusConfigurator configurator, IBusServiceLayer layer,
-		                                                          Action<TServiceConfigurator> configure)
-			where TServiceConfigurator : IBusServiceConfigurator, new()
-		{
-			var serviceConfigurator = new TServiceConfigurator();
-
-			configure(serviceConfigurator);
-
-			var busConfigurator = new CustomBusServiceConfigurator(serviceConfigurator);
-
-			configurator.AddBusConfigurator(busConfigurator);
-		}
-
 		public static void AddService<TService>(this IServiceBusConfigurator configurator, IBusServiceLayer layer, Func<TService> serviceFactory)
 			where TService : IBusService
 		{

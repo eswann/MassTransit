@@ -12,7 +12,6 @@ namespace Burrows.PublisherConfirms
         private int _getStoredMessagesBatchSize = 200;
         private string _fileRepositoryPath = "BurrowBackingStore";
 
-
         public bool UsePublisherConfirms { get; set; }
 
         public BackingStoreMethod BackingStoreMethod { get; set; }

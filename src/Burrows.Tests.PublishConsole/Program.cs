@@ -16,6 +16,7 @@ namespace Burrows.Tests.PublishConsole
                 {
                     sbc.ReceiveFrom(@"rabbitmq://localhost/PublishConsole");
                     publishSettings = sbc.UsePublisherConfirms().WithFileBackingStore();
+                    publishSettings.PublisherId = "PublishConsole";
                     sbc.UseControlBus();
                     sbc.UseLog4Net();
                 });
@@ -24,14 +25,22 @@ namespace Burrows.Tests.PublishConsole
 
             Console.WriteLine("To publish a message, type a message count and hit enter");
             Console.WriteLine();
-            Console.WriteLine();
 
             string input;
-
             while (!string.IsNullOrEmpty(input = Console.ReadLine()))
             {
-                var msg = new SimpleMessage {Id = "testId", Name = "TestName"};
-            	
+                int iterations;
+                if(int.TryParse(input, out iterations))
+                {
+                    for (int i = 0; i < iterations; i++)
+                    {
+                        var msg = new SimpleMessage { Id = "testId", Name = "TestName" };
+                        publisher.Publish(msg);
+                    }
+                    
+
+                }
+
             }
         }
         

@@ -29,7 +29,7 @@ namespace Burrows.Services.Subscriptions.Configuration
         /// </summary>
         /// <param name="configurator"></param>
         /// <param name="subscriptionServiceUri"></param>
-        [Obsolete("The extension method on UseMsmq should be used instead")]
+        [Obsolete("The extension method on UseMsmq/UseRabbitMQ should be used instead")]
         public static void UseSubscriptionService(this IServiceBusConfigurator configurator,
             string subscriptionServiceUri)
         {
@@ -41,7 +41,7 @@ namespace Burrows.Services.Subscriptions.Configuration
         /// from a single publisher.  The address of the Subscription Service is used by both 
         /// publishers and subscribers, while routing is carried out by Burrows.RuntimeServices
         /// </summary>
-        [Obsolete("The extension method on UseMsmq should be used instead")]
+        [Obsolete("The extension method on UseMsmq/UseRabbitMQ should be used instead")]
         public static void UseSubscriptionService(this IServiceBusConfigurator configurator, Uri subscriptionServiceUri)
         {
             configurator.UseSubscriptionService(x => x.SetSubscriptionServiceEndpoint(subscriptionServiceUri));
@@ -52,7 +52,7 @@ namespace Burrows.Services.Subscriptions.Configuration
         /// from a single publisher.  The address of the Subscription Service is used by both 
         /// publishers and subscribers, while routing is carried out by Burrows.RuntimeServices
         /// </summary>
-        [Obsolete("The extension method on UseMsmq should be used instead")]
+        [Obsolete("The extension method on UseMsmq/UseRabbitMQ should be used instead")]
         public static void UseSubscriptionService(this IServiceBusConfigurator configurator,
             Action<ISubscriptionClientConfigurator> configureCallback)
         {

@@ -27,8 +27,6 @@ namespace Burrows.Configuration
 			return configurator;
 		}
 
-	
-
 		public static IEndpointFactoryConfigurator SetPurgeOnStartup(this IEndpointFactoryConfigurator configurator, bool value)
 		{
 			var builderConfigurator = new DelegateEndpointFactoryBuilderConfigurator(x => x.SetPurgeOnStartup(value));

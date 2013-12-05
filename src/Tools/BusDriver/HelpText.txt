@@ -63,20 +63,20 @@ Command-Line Reference
 
 Examples:
 
-    count -uri:msmq://localhost/mt_server
+    count -uri:rabbitmq://localhost/mt_server
         Returns the number of messages that are present in the local
-        MSMQ private queue named "mt_server"
+        private queue named "mt_server"
 
-    peek -uri:msmq://localhost/mt_client
+    peek -uri:rabbitmq://localhost/mt_client
         Displays the body of the first message present in the local
-        MSMQ private queue named "mt_client"
+        private queue named "mt_client"
 
-    trace -uri:msmq://localhost/mt_subscriptions
+    trace -uri:rabbitmq://localhost/mt_subscriptions
         Requests and displays a trace of the last 100 messages received
         by the mt_subscriptions (the default queue name used by the
         subscription service, which is part of the RuntimeServices)
 
-    move -from:msmq://localhost/mt_server_error -to:msmq://localhost/mt_server
+    move -from:rabbitmq://localhost/mt_server_error -to:rabbitmq://localhost/mt_server
         Moves one message from the mt_server_error queue to the mt_server
         queue (typically done to reprocess a message that was previously
         moved to the error queue due to a processing error, etc.)
