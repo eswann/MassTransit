@@ -585,7 +585,6 @@
     <Compile Include="Transports\Configuration\Configurators\UsernameConnectionFactoryConfigurator.cs" />
     <Compile Include="Transports\Rabbit\RabbitClientExtensions.cs" />
     <Compile Include="Transports\Configuration\Extensions\TransportServiceBusExtensions.cs" />
-    <Compile Include="Transports\Configuration\Extensions\TransportFactoryExtensions.cs" />
     <Compile Include="Transports\ExchangeBinding.cs" />
     <Compile Include="Transports\Bindings\IConnectionBinding.cs" />
     <Compile Include="Transports\ConnectionHandler.cs" />

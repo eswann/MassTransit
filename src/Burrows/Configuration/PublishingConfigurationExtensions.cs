@@ -8,12 +8,12 @@ namespace Burrows.Configuration
     public static class PublishingConfigurationExtensions
     {
 
-        public static PublishSettings UsePublisherConfirms(this IServiceBusConfigurator sbc)
+        public static PublishSettings UsePublisherConfirms(this IServiceBusConfigurator sbc, int testNacks = 0)
         {
             var confirmer = new Confirmer();
             var publishSettings = new PublishSettings {UsePublisherConfirms = true, Confirmer = confirmer};
 
-            sbc.UseRabbitMq(conf => conf.UsePublisherConfirms(confirmer.RecordPublicationSuccess, confirmer.RecordPublicationFailure));
+            sbc.UseRabbitMq(conf => conf.UsePublisherConfirms(confirmer.RecordPublicationSuccess, confirmer.RecordPublicationFailure, testNacks));
             return publishSettings;
         }
 

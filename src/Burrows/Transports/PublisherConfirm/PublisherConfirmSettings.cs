@@ -22,6 +22,8 @@ namespace Burrows.Transports.PublisherConfirm
 
         public bool UsePublisherConfirms { get; set; }
 
+        public int TestNacks { get; set; }
+
         public Action<IEnumerable<string>> Acktion { get; set; }
 
         public Action<IEnumerable<string>> Nacktion { get; set; }

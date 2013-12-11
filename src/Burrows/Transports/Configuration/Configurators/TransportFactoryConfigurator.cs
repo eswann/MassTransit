@@ -11,7 +11,10 @@
 // CONDITIONS OF ANY KIND, either express or implied. See the License for the 
 // specific language governing permissions and limitations under the License.
 
+using System;
 using Burrows.Configuration.Configurators;
+using Burrows.Configuration.EndpointConfigurators;
+using Burrows.Endpoints;
 
 namespace Burrows.Transports.Configuration.Configurators
 {
@@ -21,7 +24,9 @@ namespace Burrows.Transports.Configuration.Configurators
 
     public interface ITransportFactoryConfigurator : IConfigurator
     {
-        void AddConfigurator(ITransportFactoryBuilderConfigurator configurator);
+        void ConfigureHost(Uri hostAddress, Action<IConnectionFactoryConfigurator> configureHost);
+
+        void UsePublisherConfirms(Action<IEnumerable<string>> acktion, Action<IEnumerable<string>> nacktion, int testNacks);
     }
 
 	public class TransportFactoryConfigurator : ITransportFactoryConfigurator
@@ -38,10 +43,20 @@ namespace Burrows.Transports.Configuration.Configurators
 			return _transportFactoryConfigurators.SelectMany(x => x.Validate());
 		}
 
-		public void AddConfigurator(ITransportFactoryBuilderConfigurator configurator)
-		{
-			_transportFactoryConfigurators.Add(configurator);
-		}
+        public void ConfigureHost(Uri hostAddress, Action<IConnectionFactoryConfigurator> configureHost)
+        {
+            var hostConfigurator = new ConnectionFactoryConfigurator(RabbitEndpointAddress.Parse(hostAddress));
+            configureHost(hostConfigurator);
+
+            AddConfigurator(hostConfigurator);
+        }
+
+        public void UsePublisherConfirms(Action<IEnumerable<string>> acktion, Action<IEnumerable<string>> nacktion, int testNacks)
+        {
+            var hostConfigurator = new PublisherConfirmFactoryConfigurator(true, acktion, nacktion, testNacks);
+
+            AddConfigurator(hostConfigurator);
+        }
 
 		public TransportFactory Build()
 		{
@@ -52,5 +67,10 @@ namespace Burrows.Transports.Configuration.Configurators
 
 			return builder.Build();
 		}
+
+        private void AddConfigurator(ITransportFactoryBuilderConfigurator configurator)
+        {
+            _transportFactoryConfigurators.Add(configurator);
+        }
 	}
 }

@@ -226,32 +226,29 @@ namespace Burrows.PublisherConfirms
 
             Interlocked.Exchange(ref _retryingPublish, 1);
 
-            await Task.Factory.StartNew(async () =>
+            try
             {
-                try
+                //Retry messages in the DB first
+                while (_publicationEnabled)
                 {
-                    //Retry messages in the DB first
-                    while (_publicationEnabled)
+                    IList<ConfirmableMessage> storedMessages = 
+                        await _messageRepository.GetAndDeleteMessages(_publishSettings.PublisherId, _publishSettings.GetStoredMessagesBatchSize);
+
+                    if (storedMessages.Count <= 0)
+                        break;
+
+                    foreach (var storedMessage in storedMessages)
                     {
-                        IList<ConfirmableMessage> storedMessages = 
-                            await _messageRepository.GetAndDeleteMessages(_publishSettings.PublisherId, _publishSettings.GetStoredMessagesBatchSize);
-
-                        if (storedMessages.Count <= 0)
-                            break;
-
-                        foreach (var storedMessage in storedMessages)
-                        {
-                            PublishStoredMessage(storedMessage);
-                        }
+                        PublishStoredMessage(storedMessage);
                     }
 
                     PublishFromBuffer();
                 }
-                finally
-                {
-                    Interlocked.Exchange(ref _retryingPublish, 0);
-                }
-            });
+            }
+            finally
+            {
+                Interlocked.Exchange(ref _retryingPublish, 0);
+            }
         }
 
         /// <summary>
@@ -261,24 +258,21 @@ namespace Burrows.PublisherConfirms
         {
             if (_publicationEnabled || Convert.ToBoolean(_processingBufferedMessages) || Convert.ToBoolean(Interlocked.CompareExchange(ref _retryingPublish, 1, 0)))
                 return;
-            
-            await Task.Factory.StartNew(async () => 
-            {
-                try
-                {
-                    ConfirmableMessage message = (await _messageRepository.GetAndDeleteMessages(_publishSettings.PublisherId, 1)).FirstOrDefault();
 
-                    if (message != null)
-                    {
-                        PublishStoredMessage(message, true);
-                    }
-                }
-                finally
+            try
+            {
+                ConfirmableMessage message = (await _messageRepository.GetAndDeleteMessages(_publishSettings.PublisherId, 1)).FirstOrDefault();
+
+                if (message != null)
                 {
-                    Interlocked.Exchange(ref _lastPublishRetryTimestamp, DateTime.UtcNow.Ticks);
-                    Interlocked.Exchange(ref _retryingPublish, 0);
+                    PublishStoredMessage(message, true);
                 }
-            });
+            }
+            finally
+            {
+                Interlocked.Exchange(ref _lastPublishRetryTimestamp, DateTime.UtcNow.Ticks);
+                Interlocked.Exchange(ref _retryingPublish, 0);
+            }
         }
 
         /// <summary>

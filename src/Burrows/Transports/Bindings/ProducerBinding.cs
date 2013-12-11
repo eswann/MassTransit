@@ -31,6 +31,7 @@ namespace Burrows.Transports.Bindings
         private readonly IEndpointAddress _address;
         private readonly PublisherConfirmSettings _publisherConfirmSettings;
         private readonly object _lock = new object();
+        private int _testNackCount = 0;
 
         private readonly ConcurrentDictionary<ulong, string> _confirms;
             
@@ -149,7 +150,8 @@ namespace Burrows.Transports.Bindings
 
                 if (_publisherConfirmSettings.UsePublisherConfirms)
                 {
-                    _confirms.TryAdd(_channel.NextPublishSeqNo, (string)properties.Headers[PublisherConfirmSettings.ClientMessageId]);
+                    _confirms.TryAdd(_channel.NextPublishSeqNo,
+                                        (string) properties.Headers[PublisherConfirmSettings.ClientMessageId]);
                 }
 
                 _channel.BasicPublish(exchangeName, "", properties, body);
@@ -161,8 +163,19 @@ namespace Burrows.Transports.Bindings
             var confirmIds = GetConfirmIds(args.DeliveryTag, args.Multiple);
 
             if (confirmIds.Count > 0)
-                _publisherConfirmSettings.Acktion(confirmIds);
+            {
+                if (InTestNackMode)
+                {
+                    _testNackCount += confirmIds.Count;
+                    _publisherConfirmSettings.Nacktion(confirmIds);
+                }
+                else
+                {
+                    _publisherConfirmSettings.Acktion(confirmIds);
+                }
+            }
         }
+
 
         private void HandleNack(IModel model, BasicNackEventArgs args)
         {
@@ -195,7 +208,7 @@ namespace Burrows.Transports.Bindings
             return confirmIds;
         }
 
-        void HandleModelShutdown(IModel model, ShutdownEventArgs reason)
+        private void HandleModelShutdown(IModel model, ShutdownEventArgs reason)
         {
             try
             {
@@ -239,6 +252,11 @@ namespace Burrows.Transports.Bindings
 
                 _publisherConfirmSettings.Nacktion(confirmIds);
             }
+        }
+
+        private bool InTestNackMode
+        {
+            get { return _publisherConfirmSettings.TestNacks > _testNackCount; }
         }
     }
 }

@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.Web;
 using Burrows.Logging;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace Burrows.PublisherConfirms.BackingStores
 {
@@ -38,16 +39,21 @@ namespace Burrows.PublisherConfirms.BackingStores
 
             foreach (var filePath in files)
             {
-                string messageText;
+                string confirmableMessageText;
                 using (var streamReader = new StreamReader(filePath))
                 {
-                    messageText = await streamReader.ReadToEndAsync();
+                    confirmableMessageText = await streamReader.ReadToEndAsync();
                 }
 
                 try
                 {
-                    var message = JsonConvert.DeserializeObject<ConfirmableMessage>(messageText);
-                    results.Add(message);
+                    var confirmableMessage = JsonConvert.DeserializeObject<ConfirmableMessage>(confirmableMessageText);
+
+                    var innerMessage = (JObject)confirmableMessage.Message;
+                    
+                    confirmableMessage.Message = innerMessage.ToObject(confirmableMessage.Type);
+
+                    results.Add(confirmableMessage);
                     try
                     {
                         File.Delete(filePath);

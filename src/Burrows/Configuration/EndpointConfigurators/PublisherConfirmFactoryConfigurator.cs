@@ -33,15 +33,17 @@ namespace Burrows.Configuration.EndpointConfigurators
         ITransportFactoryBuilderConfigurator
     {
         private readonly bool _usePublisherConfirms;
+        private readonly int _testNacks;
         private readonly Action<IEnumerable<string>> _acktion;
         private readonly Action<IEnumerable<string>> _nacktion;
 
-        public PublisherConfirmFactoryConfigurator(bool usePublisherConfirms,
-                                                       Action<IEnumerable<string>> acktion, Action<IEnumerable<string>> nacktion)
+        public PublisherConfirmFactoryConfigurator(bool usePublisherConfirms, 
+            Action<IEnumerable<string>> acktion, Action<IEnumerable<string>> nacktion, int testNacks)
         {
             _usePublisherConfirms = usePublisherConfirms;
             _acktion = acktion;
             _nacktion = nacktion;
+            _testNacks = testNacks;
         }
 
         public ITransportFactoryBuilder Configure(ITransportFactoryBuilder builder)
@@ -51,7 +53,8 @@ namespace Burrows.Configuration.EndpointConfigurators
                     {
                         UsePublisherConfirms = _usePublisherConfirms,
                         Acktion = _acktion,
-                        Nacktion = _nacktion
+                        Nacktion = _nacktion,
+                        TestNacks = _testNacks
                     }
                 );
 
