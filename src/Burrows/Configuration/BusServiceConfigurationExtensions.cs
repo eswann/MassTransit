@@ -19,21 +19,23 @@ namespace Burrows.Configuration
 {
     public static class BusServiceConfigurationExtensions
 	{
-		public static void AddService<TService>(this IServiceBusConfigurator configurator, IBusServiceLayer layer, Func<TService> serviceFactory)
+        public static IServiceBusConfigurator AddService<TService>(this IServiceBusConfigurator configurator, IBusServiceLayer layer, Func<TService> serviceFactory)
 			where TService : IBusService
 		{
 			var serviceConfigurator = new DefaultBusServiceConfigurator<TService>(layer, bus => serviceFactory());
 
 			configurator.AddBusConfigurator(serviceConfigurator);
+            return configurator;
 		}
 
-		public static void AddService<TService>(this IServiceBusConfigurator configurator, IBusServiceLayer layer,
+        public static IServiceBusConfigurator AddService<TService>(this IServiceBusConfigurator configurator, IBusServiceLayer layer,
 		                                        Func<IServiceBus, TService> serviceFactory)
 			where TService : IBusService
 		{
 			var serviceConfigurator = new DefaultBusServiceConfigurator<TService>(layer, serviceFactory);
 
 			configurator.AddBusConfigurator(serviceConfigurator);
+            return configurator;
 		}
 	}
 }

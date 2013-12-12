@@ -20,7 +20,7 @@ namespace Burrows.Diagnostics
 
     public static class TracingExtensions
     {
-        public static void EnableMessageTracing(this IServiceBusConfigurator configurator)
+        public static IServiceBusConfigurator EnableMessageTracing(this IServiceBusConfigurator configurator)
         {
             var busConfigurator = new PostCreateBusBuilderConfigurator(bus =>
                 {
@@ -30,6 +30,7 @@ namespace Burrows.Diagnostics
                 });
 
             configurator.AddBusConfigurator(busConfigurator);
+            return configurator;
         }
     }
 }

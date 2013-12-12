@@ -21,12 +21,22 @@ namespace Burrows.Configuration
     public static class PublishingConfigurationExtensions
     {
 
-        public static PublishSettings UsePublisherConfirms(this IServiceBusConfigurator sbc, int testNacks = 0)
+        public static IServiceBusConfigurator UsePublisherConfirms(this IServiceBusConfigurator configurator, PublishSettings publishSettings)
         {
-            var confirmer = new Confirmer();
-            var publishSettings = new PublishSettings {UsePublisherConfirms = true, Confirmer = confirmer};
+            var confirmer = publishSettings.Confirmer;
 
-            sbc.UseRabbitMq(conf => conf.UsePublisherConfirms(confirmer.RecordPublicationSuccess, confirmer.RecordPublicationFailure, testNacks));
+            configurator.UseRabbitMq(conf => conf.UsePublisherConfirms(confirmer.RecordPublicationSuccess, confirmer.RecordPublicationFailure, publishSettings.TestNacks));
+            return configurator;
+        }
+
+        public static PublishSettings UsePublisherConfirms(this PublishSettings publishSettings, string publisherId)
+        {
+            publishSettings.PublisherId = publisherId;
+            publishSettings.UsePublisherConfirms = true;
+
+            if(publishSettings.Confirmer == null)
+                publishSettings.Confirmer = new Confirmer();
+
             return publishSettings;
         }
 
@@ -38,8 +48,7 @@ namespace Burrows.Configuration
             return publishSettings;
         }
 
-        public static PublishSettings WithMaxSuccessiveFailures(this PublishSettings publishSettings,
-                                                                 int maxSuccessiveFailures)
+        public static PublishSettings WithMaxSuccessiveFailures(this PublishSettings publishSettings, int maxSuccessiveFailures)
         {
             publishSettings.MaxSuccessiveFailures = maxSuccessiveFailures;
             return publishSettings;
@@ -51,24 +60,27 @@ namespace Burrows.Configuration
             return publishSettings;
         }
 
-        public static PublishSettings WithPublishRetryInterval(this PublishSettings publishSettings,
-                                                                int intevalMilliseconds)
+        public static PublishSettings WithPublishRetryInterval(this PublishSettings publishSettings, int intevalMilliseconds)
         {
             publishSettings.PublishRetryInterval = intevalMilliseconds;
             return publishSettings;
         }
 
-        public static PublishSettings WithProcessBufferedMessagesInterval(this PublishSettings publishSettings,
-                                                        int intevalMilliseconds)
+        public static PublishSettings WithProcessBufferedMessagesInterval(this PublishSettings publishSettings, int intevalMilliseconds)
         {
             publishSettings.ProcessBufferedMessagesInterval = intevalMilliseconds;
             return publishSettings;
         }
 
-        public static PublishSettings WithTimerCheckInteval(this PublishSettings publishSettings,
-                                                        int intevalMilliseconds)
+        public static PublishSettings WithTimerCheckInteval(this PublishSettings publishSettings, int intevalMilliseconds)
         {
             publishSettings.TimerCheckInterval = intevalMilliseconds;
+            return publishSettings;
+        }
+
+        public static PublishSettings WithTestNacks(this PublishSettings publishSettings, int testNacks)
+        {
+            publishSettings.TestNacks = testNacks;
             return publishSettings;
         }
 

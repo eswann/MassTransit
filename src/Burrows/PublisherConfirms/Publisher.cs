@@ -17,6 +17,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using Burrows.Configuration;
+using Burrows.Configuration.BusConfigurators;
 using Burrows.Logging;
 using Burrows.PublisherConfirms.BackingStores;
 
@@ -24,13 +26,15 @@ namespace Burrows.PublisherConfirms
 {
     public class Publisher : IDisposable, IPublisher
     {
-        private readonly ConcurrentQueue<ConfirmableMessage> _unpublishedMessageBuffer = new ConcurrentQueue<ConfirmableMessage>();
+        private static readonly ILog _log = Logger.Get<Publisher>();
 
+        private readonly ConcurrentQueue<ConfirmableMessage> _unpublishedMessageBuffer = new ConcurrentQueue<ConfirmableMessage>();
+        
         private readonly object _failuresLock = new object();
         private volatile bool _publicationEnabled = true;
 
 // ReSharper disable NotAccessedField.Local
-        private readonly Timer _checkOfflineTasksTimer;
+        private Timer _checkOfflineTasksTimer;
 // ReSharper restore NotAccessedField.Local
 
         private int _successiveFailures;
@@ -40,20 +44,48 @@ namespace Burrows.PublisherConfirms
         private int _retryingPublish;
         private bool _disposed;
 
-        private readonly IConfirmer _confirmer;
-        private readonly IUnconfirmedMessageRepository _messageRepository;
+        private IConfirmer _confirmer;
+        private IUnconfirmedMessageRepository _messageRepository;
         private readonly PublishSettings _publishSettings;
-        private readonly IServiceBus _serviceBus;
-        private static readonly ILog _log = Logger.Get<Publisher>();
+        private IServiceBus _serviceBus;
+        
+        public Publisher(Action<IServiceBusConfigurator> busConfigureAction, Action<PublishSettings> settingsConfigureAction)
+        {
+            _publishSettings = new PublishSettings();
+            settingsConfigureAction(_publishSettings);
+            _publishSettings.Validate();
 
-        public Publisher(IServiceBus serviceBus, PublishSettings publishSettings)
+            Initialize(busConfigureAction);
+        }
+
+        public Publisher(Action<IServiceBusConfigurator> busConfigureAction, PublishSettings publishSettings)
         {
             _publishSettings = publishSettings;
+
+            Initialize(busConfigureAction);
+        }
+
+        private void Initialize(Action<IServiceBusConfigurator> busConfigureAction)
+        {
             _publishSettings.Validate();
+
+            if (_publishSettings.UsePublisherConfirms)
+            {
+                Action<IServiceBusConfigurator> publisherConfirmConfigureAction =
+                    configurator =>
+                    {
+                        busConfigureAction(configurator);
+                        configurator.UsePublisherConfirms(_publishSettings);
+                    };
+                _serviceBus = ServiceBusFactory.New(publisherConfirmConfigureAction);
+            }
+            else
+            {
+                _serviceBus = ServiceBusFactory.New(busConfigureAction);
+            }
 
             _confirmer = _publishSettings.Confirmer;
             _messageRepository = UnconfirmedMessageRepositoryFactory.Create(_publishSettings);
-            _serviceBus = serviceBus;
 
             _confirmer.PublicationFailed += OnPublicationFailed;
             _confirmer.PublicationSucceeded += OnPublicationSucceeded;

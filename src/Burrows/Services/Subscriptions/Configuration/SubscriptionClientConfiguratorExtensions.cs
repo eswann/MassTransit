@@ -30,10 +30,11 @@ namespace Burrows.Services.Subscriptions.Configuration
         /// <param name="configurator"></param>
         /// <param name="subscriptionServiceUri"></param>
         [Obsolete("The extension method on UseMsmq/UseRabbitMQ should be used instead")]
-        public static void UseSubscriptionService(this IServiceBusConfigurator configurator,
+        public static IServiceBusConfigurator UseSubscriptionService(this IServiceBusConfigurator configurator,
             string subscriptionServiceUri)
         {
             configurator.UseSubscriptionService(x => x.SetSubscriptionServiceEndpoint(subscriptionServiceUri.ToUri()));
+            return configurator;
         }
 
         /// <summary>
@@ -42,9 +43,10 @@ namespace Burrows.Services.Subscriptions.Configuration
         /// publishers and subscribers, while routing is carried out by Burrows.RuntimeServices
         /// </summary>
         [Obsolete("The extension method on UseMsmq/UseRabbitMQ should be used instead")]
-        public static void UseSubscriptionService(this IServiceBusConfigurator configurator, Uri subscriptionServiceUri)
+        public static IServiceBusConfigurator UseSubscriptionService(this IServiceBusConfigurator configurator, Uri subscriptionServiceUri)
         {
             configurator.UseSubscriptionService(x => x.SetSubscriptionServiceEndpoint(subscriptionServiceUri));
+            return configurator;
         }
 
         /// <summary>
@@ -53,7 +55,7 @@ namespace Burrows.Services.Subscriptions.Configuration
         /// publishers and subscribers, while routing is carried out by Burrows.RuntimeServices
         /// </summary>
         [Obsolete("The extension method on UseMsmq/UseRabbitMQ should be used instead")]
-        public static void UseSubscriptionService(this IServiceBusConfigurator configurator,
+        public static IServiceBusConfigurator UseSubscriptionService(this IServiceBusConfigurator configurator,
             Action<ISubscriptionClientConfigurator> configureCallback)
         {
             var clientConfigurator = new SubscriptionClientConfigurator();
@@ -65,6 +67,7 @@ namespace Burrows.Services.Subscriptions.Configuration
             configurator.AddSubscriptionRouterConfigurator(routerBuilderConfigurator);
 
             configurator.AddSubscriptionObserver(clientConfigurator.Create);
+            return configurator;
         }
     }
 }

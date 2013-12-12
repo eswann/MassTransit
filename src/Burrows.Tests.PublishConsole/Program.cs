@@ -10,18 +10,9 @@ namespace Burrows.Tests.PublishConsole
     {
         static void Main(string[] args)
         {
-            PublishSettings publishSettings = null;
-
-            var serviceBus = ServiceBusFactory.New(sbc =>
-                {
-                    sbc.ReceiveFrom(@"rabbitmq://localhost/PublishConsole");
-                    publishSettings = sbc.UsePublisherConfirms().WithFileBackingStore();
-                    publishSettings.PublisherId = "PublishConsole";
-                    sbc.UseControlBus();
-                    sbc.UseLog4Net();
-                });
-
-            var publisher = new Publisher(serviceBus, publishSettings);
+            var publisher = new Publisher(
+                sbc => sbc.ReceiveFrom(@"rabbitmq://localhost/PublishConsole").UseControlBus().UseLog4Net(),
+                ps => ps.UsePublisherConfirms("PublishConsole").WithFileBackingStore());
 
             Console.WriteLine("To publish a message, type a message count and hit enter");
             Console.WriteLine();
@@ -37,10 +28,7 @@ namespace Burrows.Tests.PublishConsole
                         var msg = new SimpleMessage { Id = "testId", Name = "TestName" };
                         publisher.Publish(msg);
                     }
-                    
-
                 }
-
             }
         }
         

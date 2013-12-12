@@ -25,7 +25,7 @@ namespace Burrows.Services.HealthMonitoring.Configuration
 		/// </summary>
 		/// <param name="configurator">Configurator that the extension method is invoked upon.</param>
 		/// <param name="heartbeatInterval">The heartbeat interval in seconds (one heartbeat evey n seconds)</param>
-		public static void UseHealthMonitoring(this IServiceBusConfigurator configurator, int heartbeatInterval)
+        public static IServiceBusConfigurator UseHealthMonitoring(this IServiceBusConfigurator configurator, int heartbeatInterval)
 		{
 			var serviceConfigurator = new HealthClientConfigurator();
 			serviceConfigurator.SetHeartbeatInterval(heartbeatInterval);
@@ -33,6 +33,7 @@ namespace Burrows.Services.HealthMonitoring.Configuration
 			var busConfigurator = new CustomBusServiceConfigurator(serviceConfigurator);
 
 			configurator.AddBusConfigurator(busConfigurator);
+		    return configurator;
 		}
 	}
 }

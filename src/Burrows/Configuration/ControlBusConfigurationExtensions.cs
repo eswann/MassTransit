@@ -22,9 +22,10 @@ namespace Burrows.Configuration
 		/// Create a control bus using the default settings and associate it with the ServiceBus being configured.
 		/// </summary>
 		/// <param name="configurator"></param>
-		public static void UseControlBus(this IServiceBusConfigurator configurator)
+        public static IServiceBusConfigurator UseControlBus(this IServiceBusConfigurator configurator)
 		{
 			UseControlBus(configurator, x => { });
+		    return configurator;
 		}
 
 		/// <summary>
@@ -33,13 +34,14 @@ namespace Burrows.Configuration
 		/// </summary>
 		/// <param name="configurator"></param>
 		/// <param name="configure"></param>
-		public static void UseControlBus(this IServiceBusConfigurator configurator, Action<IControlBusConfigurator> configure)
+        public static IServiceBusConfigurator UseControlBus(this IServiceBusConfigurator configurator, Action<IControlBusConfigurator> configure)
 		{
 			var controlBusConfigurator = new ControlBusConfigurator();
 
 			configure(controlBusConfigurator);
 
 			configurator.AddBusConfigurator(controlBusConfigurator);
+		    return configurator;
 		}
 	}
 }

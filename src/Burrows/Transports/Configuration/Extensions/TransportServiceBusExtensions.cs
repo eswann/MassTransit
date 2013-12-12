@@ -104,9 +104,9 @@ namespace Burrows.Transports.Configuration.Extensions
         /// </summary>
         /// <param name="configurator"></param>
         /// <returns></returns>
-        public static void UseRabbitMq(this IServiceBusConfigurator configurator)
+        public static IServiceBusConfigurator UseRabbitMq(this IServiceBusConfigurator configurator)
         {
-            UseRabbitMq(configurator, x => { });
+            return UseRabbitMq(configurator, x => { });
         }
 
         /// <summary>
@@ -116,7 +116,7 @@ namespace Burrows.Transports.Configuration.Extensions
         /// <param name="configurator"></param>
         /// <param name="configureFactory"></param>
         /// <returns></returns>
-        public static void UseRabbitMq(this IServiceBusConfigurator configurator,
+        public static IServiceBusConfigurator UseRabbitMq(this IServiceBusConfigurator configurator,
             Action<ITransportFactoryConfigurator> configureFactory)
         {
             configurator.SetSubscriptionObserver((bus, coordinator) => new SubscriptionBinder(bus));
@@ -132,6 +132,8 @@ namespace Burrows.Transports.Configuration.Extensions
             configurator.AddBusConfigurator(busConfigurator);
 
             UseRabbitMq((IEndpointFactoryConfigurator)configurator, configureFactory);
+
+            return configurator;
         }
     }
 }

@@ -28,9 +28,10 @@ namespace Burrows.NLogIntegration
 		/// Specify that you want to use the NLog logging framework with Burrows.
 		/// </summary>
 		/// <param name="configurator">Optional service bus configurator</param>
-		public static void UseNLog([CanBeNull] this IServiceBusConfigurator configurator)
+        public static IServiceBusConfigurator UseNLog([CanBeNull] this IServiceBusConfigurator configurator)
         {
             NLogLogger.Use();
+		    return configurator;
         }
 
         /// <summary>
@@ -38,9 +39,10 @@ namespace Burrows.NLogIntegration
         /// </summary>
         /// <param name="configurator">Optional service bus configurator</param>
         /// <param name="factory">Required log-producing factory from NLog</param>
-        public static void UseNLog([CanBeNull] this IServiceBusConfigurator configurator, [NotNull] LogFactory factory)
+        public static IServiceBusConfigurator UseNLog([CanBeNull] this IServiceBusConfigurator configurator, [NotNull] LogFactory factory)
         {
             Burrows.Logging.Logger.UseLogger(new NLogLogger(factory));
+            return configurator;
         }
     }
 }

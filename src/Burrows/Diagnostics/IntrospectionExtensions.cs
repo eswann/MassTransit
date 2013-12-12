@@ -22,13 +22,14 @@ namespace Burrows.Diagnostics
 
     public static class IntrospectionExtensions
     {
-        public static void EnableRemoteIntrospection(this IServiceBusConfigurator configurator)
+        public static IServiceBusConfigurator EnableRemoteIntrospection(this IServiceBusConfigurator configurator)
         {
             var serviceConfigurator = new IntrospectionServiceConfigurator();
 
             var busConfigurator = new CustomBusServiceConfigurator(serviceConfigurator);
 
             configurator.AddBusConfigurator(busConfigurator);
+            return configurator;
         }
 
         public static void WriteIntrospectionToConsole(this IServiceBus bus)

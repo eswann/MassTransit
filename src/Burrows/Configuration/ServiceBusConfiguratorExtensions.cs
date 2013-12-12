@@ -23,9 +23,10 @@ namespace Burrows.Configuration
 		/// </summary>
 		/// <param name="configurator"></param>
 		/// <param name="uriString">The uri of the endpoint</param>
-		public static void ReceiveFrom(this IServiceBusConfigurator configurator, string uriString)
+        public static IServiceBusConfigurator ReceiveFrom(this IServiceBusConfigurator configurator, string uriString)
 		{
 			configurator.ReceiveFrom(uriString.ToUri("The receive endpoint URI is invalid"));
+		    return configurator;
 		}
 	}
 }

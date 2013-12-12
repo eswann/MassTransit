@@ -20,7 +20,7 @@ namespace Burrows.Configuration
 {
     public static class SubscriptionRouterConfiguratorExtensions
     {
-        public static void SetSubscriptionObserver(this IServiceBusConfigurator configurator,
+        public static IServiceBusConfigurator SetSubscriptionObserver(this IServiceBusConfigurator configurator,
             Func<IServiceBus, ISubscriptionRouter, ISubscriptionObserver>
                 observerFactory)
         {
@@ -28,9 +28,10 @@ namespace Burrows.Configuration
                 new SubscriptionRouterBuilderConfigurator(x => x.SetObserverFactory(observerFactory));
 
             configurator.AddSubscriptionRouterConfigurator(coordinatorConfigurator);
+            return configurator;
         }
 
-        public static void AddSubscriptionObserver(this IServiceBusConfigurator configurator,
+        public static IServiceBusConfigurator AddSubscriptionObserver(this IServiceBusConfigurator configurator,
             Func<IServiceBus, ISubscriptionRouter, ISubscriptionObserver>
                 observerFactory)
         {
@@ -38,6 +39,7 @@ namespace Burrows.Configuration
                 new SubscriptionRouterBuilderConfigurator(x => x.AddObserverFactory(observerFactory));
 
             configurator.AddSubscriptionRouterConfigurator(coordinatorConfigurator);
+            return configurator;
         }
     }
 }

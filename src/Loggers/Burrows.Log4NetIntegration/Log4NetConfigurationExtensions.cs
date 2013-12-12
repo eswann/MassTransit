@@ -29,9 +29,10 @@ namespace Burrows.Log4NetIntegration
         /// Specify that you want to use the Log4net logging engine for logging with Burrows.
         /// </summary>
         /// <param name="configurator"></param>
-        public static void UseLog4Net([CanBeNull] this IServiceBusConfigurator configurator)
+        public static IServiceBusConfigurator UseLog4Net([CanBeNull] this IServiceBusConfigurator configurator)
         {
             Log4NetLogger.Use();
+            return configurator;
         }
 
         /// <summary>
@@ -39,7 +40,7 @@ namespace Burrows.Log4NetIntegration
         /// </summary>
         /// <param name="configurator"></param>
         /// <param name="configFileName">The name of the log4net xml configuration file</param>
-        public static void UseLog4Net([NotNull] this IServiceBusConfigurator configurator, string configFileName)
+        public static IServiceBusConfigurator UseLog4Net([NotNull] this IServiceBusConfigurator configurator, string configFileName)
         {
             Log4NetLogger.Use();
 
@@ -52,6 +53,7 @@ namespace Burrows.Log4NetIntegration
             {
                 Log4NetLogger.Use(file);
             }
+            return configurator;
         }
     }
 }

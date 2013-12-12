@@ -67,6 +67,8 @@ namespace Burrows.PublisherConfirms
             set { _fileRepositoryPath = value; }
         }
 
+        public int TestNacks { get; set; }
+
         public IConfirmer Confirmer { get; set; }
 
         public void Validate()

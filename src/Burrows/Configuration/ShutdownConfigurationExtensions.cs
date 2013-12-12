@@ -18,12 +18,13 @@ namespace Burrows.Configuration
 {
     public static class ShutdownConfigurationExtensions
     {
-        public static void SetShutdownTimeout(this IServiceBusConfigurator configurator, TimeSpan timeout)
+        public static IServiceBusConfigurator SetShutdownTimeout(this IServiceBusConfigurator configurator, TimeSpan timeout)
         {
             var controlBusConfigurator =
                 new PostCreateBusBuilderConfigurator(bus => { bus.ShutdownTimeout = timeout; });
 
             configurator.AddBusConfigurator(controlBusConfigurator);
+            return configurator;
         }
     }
 }

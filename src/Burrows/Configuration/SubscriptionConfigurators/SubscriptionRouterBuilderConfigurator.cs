@@ -5,8 +5,7 @@ using Burrows.Configuration.SubscriptionBuilders;
 
 namespace Burrows.Configuration.SubscriptionConfigurators
 {
-    public interface ISubscriptionRouterBuilderConfigurator :
-    IConfigurator
+    public interface ISubscriptionRouterBuilderConfigurator : IConfigurator
     {
         ISubscriptionRouterBuilder Configure(ISubscriptionRouterBuilder builder);
     }

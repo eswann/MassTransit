@@ -21,7 +21,7 @@ namespace Burrows.Configuration.Advanced
 {
     public static class EnvironmentExtensions
 	{
-		public static void Environments(this IServiceBusConfigurator configurator,
+        public static IServiceBusConfigurator Environments(this IServiceBusConfigurator configurator,
 		                                Action<IEnvironmentsConfigurator> configureCallback)
 		{
 			var environmentsConfigurator = new EnvironmentsConfigurator();
@@ -33,6 +33,7 @@ namespace Burrows.Configuration.Advanced
 			{
 				environment.Configure(configurator);
 			}
+            return configurator;
 		}
 
 		/// <summary>

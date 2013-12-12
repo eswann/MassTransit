@@ -19,7 +19,7 @@ namespace Burrows.Configuration
 {
     public static class SubscriptionConfiguratorExtensions
 	{
-		public static void Subscribe(this IServiceBusConfigurator configurator,
+        public static IServiceBusConfigurator Subscribe(this IServiceBusConfigurator configurator,
 									 Action<ISubscriptionBusServiceConfigurator> configure)
 		{
 			var subscriptionConfigurator = new SubscriptionBusServiceConfigurator();
@@ -27,6 +27,8 @@ namespace Burrows.Configuration
 			configure(subscriptionConfigurator);
 
 			configurator.AddBusConfigurator(subscriptionConfigurator);
+
+		    return configurator;
 		}
 	}
 }

@@ -25,12 +25,13 @@ namespace Burrows.Configuration.Advanced
 		/// </summary>
 		/// <param name="configurator"></param>
 		/// <param name="concurrentReceiverLimit"></param>
-		public static void SetConcurrentReceiverLimit(this IServiceBusConfigurator configurator, int concurrentReceiverLimit)
+        public static IServiceBusConfigurator SetConcurrentReceiverLimit(this IServiceBusConfigurator configurator, int concurrentReceiverLimit)
 		{
 			var controlBusConfigurator =
 				new PostCreateBusBuilderConfigurator(bus => { bus.ConcurrentReceiveThreads = concurrentReceiverLimit; });
 
 			configurator.AddBusConfigurator(controlBusConfigurator);
+		    return configurator;
 		}
 
 		/// <summary>
@@ -39,11 +40,12 @@ namespace Burrows.Configuration.Advanced
 		/// </summary>
 		/// <param name="configurator"></param>
 		/// <param name="receiveTimeout"></param>
-		public static void SetReceiveTimeout(this IServiceBusConfigurator configurator, TimeSpan receiveTimeout)
+		public static IServiceBusConfigurator SetReceiveTimeout(this IServiceBusConfigurator configurator, TimeSpan receiveTimeout)
 		{
 			var controlBusConfigurator = new PostCreateBusBuilderConfigurator(bus => { bus.ReceiveTimeout = receiveTimeout; });
 
 			configurator.AddBusConfigurator(controlBusConfigurator);
+		    return configurator;
 		}
 
 	    public static UnsubscribeAction CombineSubscriptions<T>(this IEnumerable<T> source, Func<T, UnsubscribeAction> map)

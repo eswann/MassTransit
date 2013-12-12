@@ -24,7 +24,7 @@ namespace Burrows.Configuration
         /// </summary>
         /// <param name="configurator"></param>
         /// <param name="interceptor"></param>
-        public static void AddInboundInterceptor(this IServiceBusConfigurator configurator, IInboundMessageInterceptor interceptor)
+        public static IServiceBusConfigurator AddInboundInterceptor(this IServiceBusConfigurator configurator, IInboundMessageInterceptor interceptor)
         {
             var builderConfigurator = new PostCreateBusBuilderConfigurator(bus =>
                 {
@@ -34,6 +34,7 @@ namespace Burrows.Configuration
                 });
 
             configurator.AddBusConfigurator(builderConfigurator);
+            return configurator;
         }
     }
 }

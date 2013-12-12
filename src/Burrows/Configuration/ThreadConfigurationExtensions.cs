@@ -17,12 +17,13 @@ namespace Burrows.Configuration
 {
     public static class ThreadConfigurationExtensions
 	{
-		public static void SetConcurrentConsumerLimit(this IServiceBusConfigurator configurator, int concurrentConsumerLimit)
+        public static IServiceBusConfigurator SetConcurrentConsumerLimit(this IServiceBusConfigurator configurator, int concurrentConsumerLimit)
 		{
 			var controlBusConfigurator =
 				new PostCreateBusBuilderConfigurator(bus => { bus.MaximumConsumerThreads = concurrentConsumerLimit; });
 
 			configurator.AddBusConfigurator(controlBusConfigurator);
+            return configurator;
 		}
 	}
 }
