@@ -22,7 +22,7 @@ namespace Burrows.Subscriptions.Coordinator
     /// The connector is responsible for picking between the data and the control bus.
     /// </summary>
     public class BusSubscriptionConnector :
-        SubscriptionObserver
+        ISubscriptionObserver
     {
         private static readonly ILog _log = Logger.Get(typeof(BusSubscriptionConnector));
         private readonly Cache<Guid, UnsubscribeAction> _connectionCache;

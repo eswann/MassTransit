@@ -18,8 +18,7 @@ namespace Burrows.Subscriptions.Coordinator
     using Messages;
     using Stact;
 
-    public class BusSubscriptionRepository :
-        SubscriptionRepository
+    public class BusSubscriptionRepository : ISubscriptionRepository
     {
         private static readonly ILog _log = Logger.Get(typeof(BusSubscriptionRepository));
 
@@ -60,12 +59,12 @@ namespace Burrows.Subscriptions.Coordinator
             Dispose(true);
         }
 
-        public void Load(SubscriptionRouter router)
+        public void Load(ISubscriptionRouter router)
         {
             _fiber.Add(() => LoadSubscriptions(router));
         }
 
-        void LoadSubscriptions(SubscriptionRouter router)
+        void LoadSubscriptions(ISubscriptionRouter router)
         {
             int messageNumber = 1;
             try

@@ -17,18 +17,17 @@ namespace Burrows.Subscriptions.Coordinator
     using Logging;
     using Messages;
 
-    public class BusSubscription :
-        ISubscription
+    public class BusSubscription : ISubscription
     {
         private static readonly ILog _log = Logger.Get(typeof(BusSubscription));
         private readonly string _correlationId;
         private readonly HashSet<Guid> _ids;
         private readonly string _messageName;
-        private readonly SubscriptionObserver _observer;
+        private readonly ISubscriptionObserver _observer;
         Uri _endpointUri;
         Guid _subscriptionId;
 
-        public BusSubscription(string messageName, string correlationId, SubscriptionObserver observer)
+        public BusSubscription(string messageName, string correlationId, ISubscriptionObserver observer)
         {
             _messageName = messageName;
             _correlationId = correlationId;

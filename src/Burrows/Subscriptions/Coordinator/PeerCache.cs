@@ -20,22 +20,19 @@ namespace Burrows.Subscriptions.Coordinator
     using Stact;
     using Util;
 
-    public class PeerCache :
-        Actor
+    public class PeerCache : Actor
     {
         private static readonly ILog _log = Logger.Get(typeof(PeerCache));
         private readonly ActorFactory<PeerHandler> _peerHandlerFactory;
         private readonly Cache<Guid, Uri> _peerIds;
-        private readonly Uri _peerUri;
         private readonly Cache<Uri, ActorRef> _peers;
 
-        public PeerCache(SubscriptionObserver observer, Guid clientId, Uri controlUri, SubscriptionRepository repository)
+        public PeerCache(ISubscriptionObserver observer, Guid clientId, Uri controlUri)
         {
             _peers = new DictionaryCache<Uri, ActorRef>();
-            _peerUri = controlUri;
             _peerIds = new DictionaryCache<Guid, Uri>();
 
-            _peerHandlerFactory = ActorFactory.Create((f, s, i) => new PeerHandler(i, observer, repository));
+            _peerHandlerFactory = ActorFactory.Create((f, s, i) => new PeerHandler(i, observer));
 
             // create a peer for our local client
             WithPeer(clientId, controlUri, x => { }, true);
@@ -136,7 +133,7 @@ namespace Burrows.Subscriptions.Coordinator
 
         void WithPeer(Guid peerId, Action<ActorRef> callback)
         {
-            _peerIds.WithValue(peerId, peerUri => { WithPeer(peerId, peerUri, callback, false); });
+            _peerIds.WithValue(peerId, peerUri => WithPeer(peerId, peerUri, callback, false));
         }
 
         void WithPeer(Guid peerId, Uri controlUri, Action<ActorRef> callback, bool createIfMissing)

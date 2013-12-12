@@ -18,24 +18,23 @@ namespace Burrows.Subscriptions.Coordinator
     using Messages;
     using Services.Subscriptions.Messages;
 
-    public class SubscriptionLoopback :
-        SubscriptionObserver
+    public class SubscriptionLoopback : ISubscriptionObserver
     {
         private static readonly ILog _log = Logger.Get(typeof (SubscriptionLoopback));
         private readonly HashSet<string> _ignoredMessageTypes;
 
         private readonly Guid _peerId;
-        private readonly SubscriptionRouter _router;
-        private readonly List<Action<SubscriptionRouter>> _waiting;
+        private readonly ISubscriptionRouter _router;
+        private readonly List<Action<ISubscriptionRouter>> _waiting;
         long _messageNumber;
-        SubscriptionRouter _targetRouter;
+        ISubscriptionRouter _targetRouter;
 
-        public SubscriptionLoopback(IServiceBus bus, SubscriptionRouter router)
+        public SubscriptionLoopback(IServiceBus bus, ISubscriptionRouter router)
         {
             _router = router;
             _peerId = NewId.NextGuid();
 
-            _waiting = new List<Action<SubscriptionRouter>>();
+            _waiting = new List<Action<ISubscriptionRouter>>();
 
             _ignoredMessageTypes = IgnoredMessageTypes();
 
@@ -53,7 +52,7 @@ namespace Burrows.Subscriptions.Coordinator
                 });
         }
 
-        public SubscriptionRouter Router
+        public ISubscriptionRouter Router
         {
             get { return _router; }
         }
@@ -100,7 +99,7 @@ namespace Burrows.Subscriptions.Coordinator
         {
         }
 
-        public void SetTargetCoordinator(SubscriptionRouter targetRouter)
+        public void SetTargetCoordinator(ISubscriptionRouter targetRouter)
         {
             lock (this)
             {
@@ -110,7 +109,7 @@ namespace Burrows.Subscriptions.Coordinator
             }
         }
 
-        void WithTarget(Action<SubscriptionRouter> callback)
+        void WithTarget(Action<ISubscriptionRouter> callback)
         {
             lock (this)
             {

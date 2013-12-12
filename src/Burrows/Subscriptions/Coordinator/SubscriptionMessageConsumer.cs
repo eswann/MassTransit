@@ -34,7 +34,7 @@ namespace Burrows.Subscriptions.Coordinator
         Consumes<IRemovePeer>.Context
     {
         private static readonly ILog _log = Logger.Get(typeof (SubscriptionMessageConsumer));
-        private readonly SubscriptionRouter _router;
+        private readonly ISubscriptionRouter _router;
         private readonly HashSet<Uri> _ignoredSourceAddresses;
         private readonly string _network;
         private readonly Guid _peerId;
@@ -46,7 +46,7 @@ namespace Burrows.Subscriptions.Coordinator
         /// <param name="router">The router.</param>
         /// <param name="network">The network.</param>
         /// <param name="ignoredSourceAddresses">The ignored source addresses.</param>
-        public SubscriptionMessageConsumer(SubscriptionRouter router, string network, params Uri[] ignoredSourceAddresses)
+        public SubscriptionMessageConsumer(ISubscriptionRouter router, string network, params Uri[] ignoredSourceAddresses)
         {
             _router = router;
             _peerId = router.PeerId;

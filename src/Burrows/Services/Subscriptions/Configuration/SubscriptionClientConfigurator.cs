@@ -41,7 +41,7 @@ namespace Burrows.Services.Subscriptions.Configuration
 			_timeout = timeout;
 		}
 
-		public SubscriptionObserver Create(IServiceBus bus, SubscriptionRouter router)
+		public ISubscriptionObserver Create(IServiceBus bus, ISubscriptionRouter router)
 		{
 			var client = new SubscriptionClient(bus, router, _subscriptionServiceUri, _timeout);
 			return client;

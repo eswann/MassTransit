@@ -22,7 +22,6 @@ namespace Burrows.Testing.ScenarioBuilders
     using Diagnostics;
     using Magnum.Extensions;
     using Scenarios;
-    using Transports;
 
     public interface IBusScenarioBuilder : IEndpointScenarioBuilder<IBusTestScenario>
     {

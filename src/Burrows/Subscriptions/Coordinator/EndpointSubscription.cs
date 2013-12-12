@@ -25,20 +25,15 @@ namespace Burrows.Subscriptions.Coordinator
         private readonly string _correlationId;
         private readonly IDictionary<Guid, IPeerSubscription> _ids;
         private readonly string _messageName;
-        private readonly SubscriptionObserver _observer;
-        private readonly Uri _peerUri;
-        private readonly SubscriptionRepository _repository;
+        private readonly ISubscriptionObserver _observer;
         Uri _endpointUri;
         Guid _subscriptionId;
 
-        public EndpointSubscription(Uri peerUri, string messageName, string correlationId,
-            SubscriptionObserver observer, SubscriptionRepository repository)
+        public EndpointSubscription(string messageName, string correlationId, ISubscriptionObserver observer)
         {
-            _peerUri = peerUri;
             _messageName = messageName;
             _correlationId = correlationId;
             _observer = observer;
-            _repository = repository;
 
             _ids = new Dictionary<Guid, IPeerSubscription>();
 
@@ -51,9 +46,6 @@ namespace Burrows.Subscriptions.Coordinator
                 return;
 
             _ids.Add(message.SubscriptionId, message);
-
-            _repository.Add(message.PeerId, _peerUri, message.SubscriptionId, message.EndpointUri, message.MessageName,
-                message.CorrelationId);
 
             if (_ids.Count > 1)
                 return;
@@ -93,7 +85,7 @@ namespace Burrows.Subscriptions.Coordinator
             List<KeyValuePair<Guid, IPeerSubscription>> remove =
                 _ids.Where(x => x.Value.PeerId != message.PeerId).ToList();
 
-            remove.Each(kv => { RemoveSubscriptions(kv.Key, Enumerable.Repeat(kv.Value.SubscriptionId, 1)); });
+            remove.Each(kv => RemoveSubscriptions(kv.Key, Enumerable.Repeat(kv.Value.SubscriptionId, 1)));
 
             if (_ids.Count == 0 && _subscriptionId != Guid.Empty)
             {
@@ -117,8 +109,6 @@ namespace Burrows.Subscriptions.Coordinator
             remove.Each(subscriptionId =>
                 {
                     _ids.Remove(subscriptionId);
-
-                    _repository.Remove(peerId, _peerUri, subscriptionId, _endpointUri, _messageName, _correlationId);
                     count++;
                 });
 

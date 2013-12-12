@@ -24,7 +24,7 @@ namespace Burrows.Transports
     using Subscriptions.Coordinator;
     using Subscriptions.Messages;
 
-    public class SubscriptionBinder : SubscriptionObserver
+    public class SubscriptionBinder : ISubscriptionObserver
     {
         private static readonly ILog _log = Logger.Get(typeof (SubscriptionBinder));
         private readonly Dictionary<Guid, MessageName> _bindings;

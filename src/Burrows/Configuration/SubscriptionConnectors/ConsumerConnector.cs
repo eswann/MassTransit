@@ -34,9 +34,7 @@ namespace Burrows.Configuration.SubscriptionConnectors
             where TConsumer : class;
     }
 
-    public class ConsumerConnector<T> :
-        IConsumerConnector
-        where T : class
+    public class ConsumerConnector<T> : IConsumerConnector where T : class
     {
         private readonly IEnumerable<IConsumerSubscriptionConnector> _connectors;
 

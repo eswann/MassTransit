@@ -21,8 +21,8 @@ namespace Burrows.Configuration.SubscriptionBuilders
     public interface ISubscriptionRouterBuilder
     {
         void SetNetwork(string network);
-        void SetObserverFactory(Func<IServiceBus, SubscriptionRouter, SubscriptionObserver> observerFactory);
-        void AddObserverFactory(Func<IServiceBus, SubscriptionRouter, SubscriptionObserver> observerFactory);
+        void SetObserverFactory(Func<IServiceBus, ISubscriptionRouter, ISubscriptionObserver> observerFactory);
+        void AddObserverFactory(Func<IServiceBus, ISubscriptionRouter, ISubscriptionObserver> observerFactory);
 
         SubscriptionRouterService Build();
     }
@@ -31,20 +31,17 @@ namespace Burrows.Configuration.SubscriptionBuilders
         ISubscriptionRouterBuilder
     {
         private readonly IServiceBus _bus;
-        private readonly IList<Func<IServiceBus, SubscriptionRouter, SubscriptionObserver>> _observers;
+        private readonly IList<Func<IServiceBus, ISubscriptionRouter, ISubscriptionObserver>> _observers;
         string _network;
-        Func<SubscriptionStorage> _subscriptionStorageFactory;
 
         public SubscriptionRouterBuilder(IServiceBus bus, string network)
         {
             _bus = bus;
             _network = network;
-            _observers = new List<Func<IServiceBus, SubscriptionRouter, SubscriptionObserver>>
+            _observers = new List<Func<IServiceBus, ISubscriptionRouter, ISubscriptionObserver>>
                 {
                     (b, c) => new BusSubscriptionConnector(b)
                 };
-
-            _subscriptionStorageFactory = () => new InMemorySubscriptionStorage();
         }
 
         public void SetNetwork(string network)
@@ -52,26 +49,20 @@ namespace Burrows.Configuration.SubscriptionBuilders
             _network = network;
         }
 
-        public void SetObserverFactory(
-            Func<IServiceBus, SubscriptionRouter, SubscriptionObserver> observerFactory)
+        public void SetObserverFactory(Func<IServiceBus, ISubscriptionRouter, ISubscriptionObserver> observerFactory)
         {
             _observers.Clear();
             _observers.Add(observerFactory);
         }
 
-        public void AddObserverFactory(
-            Func<IServiceBus, SubscriptionRouter, SubscriptionObserver> observerFactory)
+        public void AddObserverFactory(Func<IServiceBus, ISubscriptionRouter, ISubscriptionObserver> observerFactory)
         {
             _observers.Add(observerFactory);
         }
 
         public SubscriptionRouterService Build()
         {
-            SubscriptionStorage storage = _subscriptionStorageFactory();
-
-            var repository = new BusSubscriptionRepository(_bus.ControlBus.Endpoint.Address.Uri, storage);
-
-            var service = new SubscriptionRouterService(_bus, repository, _network);
+            var service = new SubscriptionRouterService(_bus, _network);
 
             _observers.Each(x => service.AddObserver(x(_bus, service)));
 

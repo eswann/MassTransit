@@ -21,10 +21,10 @@ namespace Burrows.Subscriptions.Coordinator
     public class BusSubscriptionCache
     {
         private static readonly ILog _log = Logger.Get(typeof (BusSubscriptionCache));
-        private readonly SubscriptionObserver _observer;
+        private readonly ISubscriptionObserver _observer;
         private readonly Cache<SubscriptionKey, BusSubscription> _subscriptions;
 
-        public BusSubscriptionCache(SubscriptionObserver observer)
+        public BusSubscriptionCache(ISubscriptionObserver observer)
         {
             _observer = observer;
             _subscriptions =

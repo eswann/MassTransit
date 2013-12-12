@@ -21,7 +21,7 @@ namespace Burrows.Configuration
     public static class SubscriptionRouterConfiguratorExtensions
     {
         public static void SetSubscriptionObserver(this IServiceBusConfigurator configurator,
-            Func<IServiceBus, SubscriptionRouter, SubscriptionObserver>
+            Func<IServiceBus, ISubscriptionRouter, ISubscriptionObserver>
                 observerFactory)
         {
             var coordinatorConfigurator =
@@ -31,7 +31,7 @@ namespace Burrows.Configuration
         }
 
         public static void AddSubscriptionObserver(this IServiceBusConfigurator configurator,
-            Func<IServiceBus, SubscriptionRouter, SubscriptionObserver>
+            Func<IServiceBus, ISubscriptionRouter, ISubscriptionObserver>
                 observerFactory)
         {
             var coordinatorConfigurator =

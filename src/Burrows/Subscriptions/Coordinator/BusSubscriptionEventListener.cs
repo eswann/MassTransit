@@ -25,7 +25,7 @@ namespace Burrows.Subscriptions.Coordinator
         private readonly BusSubscriptionCache _busSubscriptionCache;
         private readonly Uri _endpointUri;
 
-        public BusSubscriptionEventListener(IServiceBus bus, SubscriptionObserver observer)
+        public BusSubscriptionEventListener(IServiceBus bus, ISubscriptionObserver observer)
         {
             _endpointUri = bus.Endpoint.Address.Uri;
 

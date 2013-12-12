@@ -15,7 +15,7 @@ namespace Burrows.Tests.PublishConsole
             var serviceBus = ServiceBusFactory.New(sbc =>
                 {
                     sbc.ReceiveFrom(@"rabbitmq://localhost/PublishConsole");
-                    publishSettings = sbc.UsePublisherConfirms(25).WithFileBackingStore();
+                    publishSettings = sbc.UsePublisherConfirms().WithFileBackingStore();
                     publishSettings.PublisherId = "PublishConsole";
                     sbc.UseControlBus();
                     sbc.UseLog4Net();

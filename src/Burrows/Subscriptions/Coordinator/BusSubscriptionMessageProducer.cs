@@ -22,7 +22,7 @@ namespace Burrows.Subscriptions.Coordinator
     using Messages;
 
     public class BusSubscriptionMessageProducer :
-        SubscriptionObserver
+        ISubscriptionObserver
     {
         private static readonly ILog _log = Logger.Get(typeof (BusSubscriptionMessageProducer));
         private readonly IEndpoint _endpoint;
@@ -39,7 +39,7 @@ namespace Burrows.Subscriptions.Coordinator
             get { return _timestamp; }
         }
 
-        public BusSubscriptionMessageProducer(SubscriptionRouter router, IEndpoint endpoint, Uri endpointUri)
+        public BusSubscriptionMessageProducer(ISubscriptionRouter router, IEndpoint endpoint, Uri endpointUri)
         {
             _peerId = router.PeerId;
             _peerUri = router.PeerUri;

@@ -24,7 +24,7 @@ namespace Burrows.Subscriptions.Coordinator
 	/// (e.g. if doing equivalent of RMQ:publish w/ fanout, MSMQ: multicast, ZMQ: PGM). 
 	/// This interface is also used internally to route subscriptions and manage their lifestyles.
 	/// </summary>
-	public interface SubscriptionObserver
+	public interface ISubscriptionObserver
 	{
 		/// <summary>
 		/// Called when a subscription is registered in the service bus.

@@ -20,32 +20,24 @@ namespace Burrows.Subscriptions.Coordinator
     using Messages;
     using Stact;
 
-    public class SubscriptionRouterService :
-        IBusService,
-        SubscriptionRouter,
-        SubscriptionObserver,
-        IDiagnosticsSource
+    public class SubscriptionRouterService : IBusService, ISubscriptionRouter, ISubscriptionObserver, IDiagnosticsSource
     {
         private readonly IList<BusSubscriptionEventListener> _listeners;
         private readonly string _network;
-        private readonly IList<SubscriptionObserver> _observers;
+        private readonly IList<ISubscriptionObserver> _observers;
         private readonly ActorRef _peerCache;
         private readonly Guid _peerId;
         private readonly Uri _peerUri;
         bool _disposed;
         UnsubscribeAction _unregister;
-        private readonly SubscriptionRepository _repository;
 
-        public SubscriptionRouterService(IServiceBus bus, SubscriptionRepository repository, string network)
+        public SubscriptionRouterService(IServiceBus bus, string network)
         {
             _peerUri = bus.ControlBus.Endpoint.Address.Uri;
-
-            _repository = repository;
             _network = network;
-
             _peerId = NewId.NextGuid();
 
-            _observers = new List<SubscriptionObserver>();
+            _observers = new List<ISubscriptionObserver>();
             _listeners = new List<BusSubscriptionEventListener>();
 
             _unregister = () => true;
@@ -56,16 +48,11 @@ namespace Burrows.Subscriptions.Coordinator
 
             _peerCache = ActorFactory.Create<PeerCache>(x =>
                 {
-                    x.ConstructedBy((fiber, scheduler, inbox) =>
-                                    new PeerCache(connector, _peerId, _peerUri, repository));
+                    x.ConstructedBy((fiber, scheduler, inbox) => new PeerCache(connector, _peerId, _peerUri));
                     x.UseSharedScheduler();
                     x.HandleOnPoolFiber();
                 })
                 .GetActor();
-
-            // at this point, existing subscriptions need to be loaded...
-
-            _repository.Load(this);
         }
 
         public void Inspect(IDiagnosticsProbe probe)
@@ -148,7 +135,7 @@ namespace Burrows.Subscriptions.Coordinator
             get { return _peerUri; }
         }
 
-        public void AddObserver(SubscriptionObserver observer)
+        public void AddObserver(ISubscriptionObserver observer)
         {
             lock (_observers)
                 _observers.Add(observer);
@@ -184,8 +171,6 @@ namespace Burrows.Subscriptions.Coordinator
 
                 _peerCache.Send<StopSubscriptionRouterService>();
                 _peerCache.SendRequestWaitForResponse<Exit>(new ExitImpl(), 30.Seconds());
-
-                _repository.Dispose();
             }
 
             _disposed = true;

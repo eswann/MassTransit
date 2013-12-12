@@ -29,11 +29,11 @@ namespace Burrows.Services.Subscriptions.Client
     /// The subscription client is responsible for exchanging subscription information between a local bus and the central subscription coordinator.
     /// </summary>
     public class SubscriptionClient :
-        SubscriptionObserver
+        ISubscriptionObserver
     {
         private static readonly ILog _log = Logger.Get(typeof (SubscriptionClient));
         private readonly IServiceBus _bus;
-        private readonly SubscriptionRouter _router;
+        private readonly ISubscriptionRouter _router;
         private readonly string _network;
         private readonly SubscriptionServiceMessageProducer _producer;
         private readonly ManualResetEvent _ready = new ManualResetEvent(false);
@@ -49,7 +49,7 @@ namespace Burrows.Services.Subscriptions.Client
         /// <param name="router">The router.</param>
         /// <param name="subscriptionServiceUri">The subscription service URI.</param>
         /// <param name="startTimeout">The start timeout.</param>
-        public SubscriptionClient(IServiceBus bus, SubscriptionRouter router, Uri subscriptionServiceUri, TimeSpan startTimeout)
+        public SubscriptionClient(IServiceBus bus, ISubscriptionRouter router, Uri subscriptionServiceUri, TimeSpan startTimeout)
         {
             _bus = bus;
             _router = router;

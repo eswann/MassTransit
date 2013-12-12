@@ -41,7 +41,7 @@ namespace Burrows.Services.Subscriptions.Client
         /// </summary>
         /// <param name="router">The router.</param>
         /// <param name="endpoint">The endpoint.</param>
-        public SubscriptionServiceMessageProducer(SubscriptionRouter router, IEndpoint endpoint)
+        public SubscriptionServiceMessageProducer(ISubscriptionRouter router, IEndpoint endpoint)
         {
             _peerId = router.PeerId;
             _peerUri = router.PeerUri;

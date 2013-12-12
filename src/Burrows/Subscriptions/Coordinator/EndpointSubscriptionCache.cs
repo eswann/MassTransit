@@ -12,7 +12,6 @@
 // specific language governing permissions and limitations under the License.
 namespace Burrows.Subscriptions.Coordinator
 {
-    using System;
     using Logging;
     using Magnum.Caching;
     using Messages;
@@ -22,19 +21,14 @@ namespace Burrows.Subscriptions.Coordinator
         private static readonly ILog _log = Logger.Get(typeof(EndpointSubscriptionCache));
 
         private readonly Cache<SubscriptionKey, EndpointSubscription> _messageSubscriptions;
-        private readonly SubscriptionObserver _observer;
-        private readonly Uri _peerUri;
+        private readonly ISubscriptionObserver _observer;
 
-        public EndpointSubscriptionCache(SubscriptionObserver observer, Uri peerUri,
-            SubscriptionRepository repository)
+        public EndpointSubscriptionCache(ISubscriptionObserver observer)
         {
             _observer = observer;
-            _peerUri = peerUri;
             _messageSubscriptions =
                 new DictionaryCache<SubscriptionKey, EndpointSubscription>(
-                    key =>
-                    new EndpointSubscription(_peerUri, key.MessageName, key.CorrelationId, _observer,
-                        repository));
+                    key => new EndpointSubscription(key.MessageName, key.CorrelationId, _observer));
         }
 
         public void Send(AddPeerSubscription message)

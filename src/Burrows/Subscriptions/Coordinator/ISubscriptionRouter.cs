@@ -19,7 +19,7 @@ namespace Burrows.Subscriptions.Coordinator
     /// <summary>
 	/// Implementers take care of 
 	/// </summary>
-	public interface SubscriptionRouter
+	public interface ISubscriptionRouter
 	{
 		string Network { get; }
 		Guid PeerId { get; }

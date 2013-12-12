@@ -23,23 +23,18 @@ namespace Burrows.Subscriptions.Coordinator
     {
         private static readonly ILog _log = Logger.Get(typeof(PeerHandler));
 
-        private readonly SubscriptionObserver _observer;
         EndpointSubscriptionCache _endpointSubscriptionCache;
         Guid _peerId;
         Uri _peerUri;
 
-        public PeerHandler(Inbox inbox, SubscriptionObserver observer,
-            SubscriptionRepository repository)
+        public PeerHandler(Inbox inbox, ISubscriptionObserver observer)
         {
-            _observer = observer;
-
             inbox.Receive<InitializePeerHandler>(init =>
                 {
                     _peerId = init.PeerId;
                     _peerUri = init.PeerUri;
 
-                    _endpointSubscriptionCache = new EndpointSubscriptionCache(observer, _peerUri,
-                        repository);
+                    _endpointSubscriptionCache = new EndpointSubscriptionCache(observer);
                 });
         }
 
