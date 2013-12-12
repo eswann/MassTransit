@@ -1,4 +1,4 @@
-// Copyright 2007-2012 Chris Patterson, Dru Sellers, Travis Smith, et. al.
+// Copyright 2007-2012 Chris Patterson, Dru Sellers, Travis Smith, Eric Swann et. al.
 //  
 // Licensed under the Apache License, Version 2.0 (the "License"); you may not use
 // this file except in compliance with the License. You may obtain a copy of the 
@@ -31,7 +31,7 @@ namespace Burrows.Transports.Bindings
         private readonly IEndpointAddress _address;
         private readonly PublisherConfirmSettings _publisherConfirmSettings;
         private readonly object _lock = new object();
-        private int _testNackCount = 0;
+        private int _testNackCount;
 
         private readonly ConcurrentDictionary<ulong, string> _confirms;
             

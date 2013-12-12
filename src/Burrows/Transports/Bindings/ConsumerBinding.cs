@@ -121,8 +121,7 @@ namespace Burrows.Transports.Bindings
                 if(_channel == null)
                     throw new InvalidConnectionException(_address.Uri, "No connection to RabbitMQ Host");
 
-                _channel.BasicAck(result.DeliveryTag, false);
-                
+                _channel.BasicAck(result.DeliveryTag, false);        
             }
         }
 
