@@ -24,8 +24,6 @@ namespace Burrows.Configuration.SubscriptionBuilders
         void SetObserverFactory(Func<IServiceBus, SubscriptionRouter, SubscriptionObserver> observerFactory);
         void AddObserverFactory(Func<IServiceBus, SubscriptionRouter, SubscriptionObserver> observerFactory);
 
-        void UseSubscriptionStorage(Func<SubscriptionStorage> subscriptionStorageFactory);
-
         SubscriptionRouterService Build();
     }
 
@@ -65,11 +63,6 @@ namespace Burrows.Configuration.SubscriptionBuilders
             Func<IServiceBus, SubscriptionRouter, SubscriptionObserver> observerFactory)
         {
             _observers.Add(observerFactory);
-        }
-
-        public void UseSubscriptionStorage(Func<SubscriptionStorage> subscriptionStorageFactory)
-        {
-            _subscriptionStorageFactory = subscriptionStorageFactory;
         }
 
         public SubscriptionRouterService Build()

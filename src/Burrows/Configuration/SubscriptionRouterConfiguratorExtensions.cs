@@ -25,7 +25,7 @@ namespace Burrows.Configuration
                 observerFactory)
         {
             var coordinatorConfigurator =
-                new SubscriptionRouterBuilderConfigurator(x => { x.SetObserverFactory(observerFactory); });
+                new SubscriptionRouterBuilderConfigurator(x => x.SetObserverFactory(observerFactory));
 
             configurator.AddSubscriptionRouterConfigurator(coordinatorConfigurator);
         }
@@ -35,22 +35,9 @@ namespace Burrows.Configuration
                 observerFactory)
         {
             var coordinatorConfigurator =
-                new SubscriptionRouterBuilderConfigurator(x => { x.AddObserverFactory(observerFactory); });
+                new SubscriptionRouterBuilderConfigurator(x => x.AddObserverFactory(observerFactory));
 
             configurator.AddSubscriptionRouterConfigurator(coordinatorConfigurator);
-        }
-
-        /// <summary>
-        /// Specify a custom subscription storage for the bus instance
-        /// </summary>
-        /// <param name="subscriptionStorageFactory">Factory method for the subscription storage</param>
-        public static void UseSubscriptionStorage(this IServiceBusConfigurator configurator,
-            Func<SubscriptionStorage> subscriptionStorageFactory)
-        {
-            var builderConfigurator = new SubscriptionRouterBuilderConfigurator(
-                x => x.UseSubscriptionStorage(subscriptionStorageFactory));
-
-            configurator.AddSubscriptionRouterConfigurator(builderConfigurator);
         }
     }
 }
